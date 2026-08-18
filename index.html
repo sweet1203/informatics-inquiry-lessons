@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>정보 과제 연구 차시별 수업자료</title>
+  <meta name="description" content="정보 과제 연구 수업을 위한 차시별 HTML 학습자료 목록입니다.">
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --card: #ffffff;
+      --ink: #1a1d21;
+      --muted: #687280;
+      --line: #e3e6ea;
+      --accent: #2563eb;
+      --soft: #eef2ff;
+      --shadow: 0 16px 40px rgba(25, 34, 53, .08);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #14171a;
+        --card: #1c2024;
+        --ink: #e8eaed;
+        --muted: #9aa3ad;
+        --line: #2c3238;
+        --accent: #5b8cff;
+        --soft: #1e2536;
+        --shadow: 0 18px 44px rgba(0, 0, 0, .24);
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, var(--soft), transparent 34rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      line-height: 1.65;
+      -webkit-text-size-adjust: 100%;
+    }
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 36px 18px 64px;
+    }
+    header {
+      padding: 28px 0 30px;
+    }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .02em;
+      padding: 5px 12px;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      letter-spacing: -.04em;
+      line-height: 1.12;
+    }
+    .lead {
+      margin: 14px 0 0;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    a.card {
+      display: block;
+      min-height: 118px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: color-mix(in srgb, var(--card) 94%, transparent);
+      color: inherit;
+      text-decoration: none;
+      box-shadow: var(--shadow);
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    a.card:hover,
+    a.card:focus-visible {
+      border-color: var(--accent);
+      box-shadow: 0 18px 46px rgba(37, 99, 235, .16);
+      transform: translateY(-2px);
+      outline: none;
+    }
+    .num {
+      color: var(--accent);
+      font-size: .86rem;
+      font-weight: 800;
+    }
+    .title {
+      display: block;
+      margin-top: 7px;
+      font-size: 1.06rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+    .note {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    footer {
+      margin-top: 32px;
+      color: var(--muted);
+      font-size: .86rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <span class="eyebrow">2026학년도 2학기</span>
+      <h1>정보 과제 연구<br>차시별 수업자료</h1>
+      <p class="lead">각 차시를 선택하면 학생용 HTML 학습자료로 이동합니다. 17·18·22차시는 계획서 양식으로 운영합니다.</p>
+    </header>
+
+    <main class="grid" aria-label="차시별 수업자료 목록">
+      <a class="card" href="01차시_정보과제연구가뭔데.html"><span class="num">01차시</span><span class="title">정보 과제 연구가 뭔데?</span><span class="note">과목 소개와 연구감 찾기</span></a>
+      <a class="card" href="02차시_연구란무엇인가.html"><span class="num">02차시</span><span class="title">연구란 무엇인가</span><span class="note">정보 과제 연구의 특징</span></a>
+      <a class="card" href="03차시_검색하면나오는건연구가아니다.html"><span class="num">03차시</span><span class="title">검색하면 나오는 건 연구가 아니다</span><span class="note">조사와 연구 구분</span></a>
+      <a class="card" href="04차시_남들은어떻게했을까.html"><span class="num">04차시</span><span class="title">남들은 어떻게 했을까</span><span class="note">완성 사례 읽기</span></a>
+      <a class="card" href="05차시_복잡한걸다룰수있게만들기.html"><span class="num">05차시</span><span class="title">복잡한 걸 다룰 수 있게 만들기</span><span class="note">추상화와 문제 분해</span></a>
+      <a class="card" href="06차시_컴퓨터에게시키기.html"><span class="num">06차시</span><span class="title">컴퓨터에게 시키기</span><span class="note">자동화와 컴퓨팅 사고</span></a>
+      <a class="card" href="07차시_연구방법고르기.html"><span class="num">07차시</span><span class="title">연구 방법 고르기</span><span class="note">자료 수집과 분석 방법</span></a>
+      <a class="card" href="08차시_글로설명해보기.html"><span class="num">08차시</span><span class="title">글로 설명해 보기</span><span class="note">서술형 답안 연습</span></a>
+      <a class="card" href="09차시_연구에는순서가있다.html"><span class="num">09차시</span><span class="title">연구에는 순서가 있다</span><span class="note">연구 단계와 일정</span></a>
+      <a class="card" href="10차시_문제는틈이다.html"><span class="num">10차시</span><span class="title">문제는 틈이다</span><span class="note">연구 동기 쓰기</span></a>
+      <a class="card" href="11차시_네가지로물어보기.html"><span class="num">11차시</span><span class="title">네 가지로 물어보기</span><span class="note">연산·결정·최적화·계수</span></a>
+      <a class="card" href="12차시_세갈래길중에고르기.html"><span class="num">12차시</span><span class="title">세 갈래 길 중에 고르기</span><span class="note">트랙 선택</span></a>
+      <a class="card" href="13차시_주제확정하기.html"><span class="num">13차시</span><span class="title">주제 확정하기</span><span class="note">선정 조건과 제목</span></a>
+      <a class="card" href="14차시_답할수있는한문장으로.html"><span class="num">14차시</span><span class="title">답할 수 있는 한 문장으로</span><span class="note">연구 질문 만들기</span></a>
+      <a class="card" href="15차시_데이터를실제로구해보기.html"><span class="num">15차시</span><span class="title">데이터를 실제로 구해 보기</span><span class="note">자료와 장치 확인</span></a>
+      <a class="card" href="16차시_이자료믿어도될까.html"><span class="num">16차시</span><span class="title">이 자료, 믿어도 될까</span><span class="note">출처와 AI 활용</span></a>
+      <a class="card" href="19차시_무엇으로어떻게할것인가.html"><span class="num">19차시</span><span class="title">무엇으로, 어떻게 할 것인가</span><span class="note">방법·도구·변인</span></a>
+      <a class="card" href="20차시_예상하고미리걱정하기.html"><span class="num">20차시</span><span class="title">예상하고, 미리 걱정하기</span><span class="note">예상 결과와 어려움</span></a>
+      <a class="card" href="21차시_서로의계획서를읽는다.html"><span class="num">21차시</span><span class="title">서로의 계획서를 읽는다</span><span class="note">동료 검토</span></a>
+    </main>
+
+    <footer>정보 과제 연구 · 차시별 HTML 수업자료</footer>
+  </div>
+</body>
+</html>
