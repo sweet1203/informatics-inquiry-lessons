@@ -8,7 +8,7 @@
      _설정_AppsScript.gs 를 스프레드시트에 설치하고 받은 웹 앱 URL
      ═══════════════════════════════════════════════════════════ -->
 <script>
-const ENDPOINT = "";
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbxa1jCaEXkrPhu15jE-wYaMPx9CcaucpgJm17VYU1b6mW5XitHnzjE3zqP_Sg9Wrxgq6g/exec";
 const 차시번호 = 15;
 </script>
 
@@ -192,6 +192,18 @@ function saveMe(){S.set("정보과제연구_나",JSON.stringify(me()));
   flash("logmsg",OK?"✅ 기억했습니다":"✅ 기억했습니다 (창을 닫으면 지워집니다)","ok");}
 (function(){try{const m=JSON.parse(S.get("정보과제연구_나")||"{}");
   if(m.sid)sid.value=m.sid; if(m.name)sname.value=m.name;}catch(e){}})();
+
+/* 설정 누락을 즉시 알림 — 학생이 제출을 눌러야 알게 되는 일을 막습니다 */
+(function(){
+  if(ENDPOINT) return;
+  const w=document.createElement("div");
+  w.className="note";
+  w.style.cssText="background:#fee2e2;border-left-color:#dc2626;color:#7f1d1d";
+  w.innerHTML="<b>⚠️ 선생님께 — 전송 주소가 설정되지 않았습니다.</b><br>"+
+    "이 파일 위쪽 <code>const ENDPOINT = &quot;&quot;</code> 에 Apps Script 웹 앱 주소를 넣어야 "+
+    "제출이 선생님께 전달됩니다. 지금은 학생 기기에만 저장됩니다.";
+  document.querySelector("header").after(w);
+})();
 
 function flash(id,t,c){const e=document.getElementById(id);e.textContent=t;e.className="msg "+(c||"");
   if(c==="ok")setTimeout(()=>{if(e.textContent===t)e.textContent="";},7000);}
