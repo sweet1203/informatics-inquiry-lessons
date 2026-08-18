@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>19차시 · 무엇으로, 어떻게 할 것인가</title>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ⚙️ 선생님 설정 — 아래 한 줄만 채우면 됩니다
+     _설정_AppsScript.gs 를 스프레드시트에 설치하고 받은 웹 앱 URL
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+const ENDPOINT = "";
+const 차시번호 = 19;
+</script>
+
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1a1d21;--muted:#6b7280;--line:#e3e6ea;
+--accent:#2563eb;--ink2:#fff;--ok:#0d9488;--warn:#b45309;--soft:#eef2ff;--quiz:#fff7ed;--quizline:#fdba74}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+--bg:#14171a;--card:#1c2024;--ink:#e8eaed;--muted:#9aa3ad;--line:#2c3238;
+--accent:#5b8cff;--ink2:#0d1117;--ok:#2dd4bf;--warn:#fbbf24;--soft:#1e2536;--quiz:#2a2118;--quizline:#7c4a12}}
+*{box-sizing:border-box}
+body{margin:0;padding:0 16px 72px;background:var(--bg);color:var(--ink);line-height:1.7;
+font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:780px;margin:0 auto}
+header{padding:30px 0 18px;border-bottom:2px solid var(--line);margin-bottom:22px}
+.chip{display:inline-block;background:var(--accent);color:var(--ink2);font-size:.78rem;font-weight:700;
+padding:4px 12px;border-radius:99px;margin-bottom:10px}
+h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:.93rem;margin:0}
+.me{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:15px;
+margin-bottom:26px;display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.me .f{flex:1;min-width:115px}
+label{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:5px}
+input[type=text],textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;
+background:var(--card);color:var(--ink);font-size:1rem;font-family:inherit}
+textarea{min-height:88px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:20px}
+section>h2{font-size:1.16rem;margin:0 0 4px;letter-spacing:-.01em}
+.lead{color:var(--muted);font-size:.9rem;margin:0 0 16px}
+.learn h3{font-size:1rem;margin:22px 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
+.learn p{margin:8px 0}
+.learn ul{margin:8px 0;padding-left:20px} .learn li{margin:5px 0}
+.learn table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem}
+.learn th,.learn td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.learn th{background:var(--soft);font-weight:700}
+.learn code{background:var(--soft);padding:1px 6px;border-radius:4px;font-size:.88em}
+.box{background:var(--soft);border-left:3px solid var(--accent);padding:12px 15px;border-radius:0 9px 9px 0;margin:14px 0}
+.book{font-size:.82rem;color:var(--muted);font-weight:600}
+.q{background:var(--quiz);border:1px solid var(--quizline);border-radius:11px;padding:16px;margin-bottom:13px}
+.q .qt{font-weight:700;margin-bottom:10px}
+.opt{display:block;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);
+margin-bottom:7px;cursor:pointer;font-size:.95rem}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin-right:8px}
+.fb{font-size:.9rem;font-weight:600;margin-top:9px;display:none}
+.fb.on{display:block} .fb.o{color:var(--ok)} .fb.x{color:var(--warn)}
+button{font-family:inherit;font-size:.95rem;font-weight:600;border:0;border-radius:9px;padding:11px 20px;
+cursor:pointer;background:var(--accent);color:var(--ink2)}
+button:hover{filter:brightness(1.08)}
+button.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.row{display:flex;gap:9px;align-items:center;margin-top:15px;flex-wrap:wrap}
+.msg{font-size:.9rem;font-weight:600} .msg.ok{color:var(--ok)} .msg.warn{color:var(--warn)}
+.score{font-size:1.05rem;font-weight:700;margin-top:14px}
+#log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
+border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
+footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
+</style></head><body><div class="wrap">
+
+<header>
+  <span class="chip">19차시</span>
+  <h1>무엇으로, 어떻게 할 것인가</h1>
+  <p class="sub">도구를 밝히고 변인을 정한다</p>
+</header>
+
+<div class="me">
+  <div class="f"><label for="sid">학번</label><input type="text" id="sid" placeholder="30101" autocomplete="off"></div>
+  <div class="f"><label for="sname">이름</label><input type="text" id="sname" placeholder="홍길동" autocomplete="off"></div>
+  <button class="ghost" onclick="saveMe()">기억하기</button>
+</div>
+
+<section class="learn">
+  <h2>📖 오늘 배울 것</h2>
+  <p class="lead">교과서 42~43쪽</p>
+  
+<h3>왜 도구까지 적어야 할까</h3>
+<p>계획서에 <b>“분석·구현 방법과 도구”</b> 칸이 따로 있습니다. 귀찮아 보이지만 이유가 분명합니다.</p>
+
+<div class="box">📖 정보 과제 연구에서는 <b>어떤 프로그래밍 언어를 선택했는지, 어떤 피지컬 도구를 사용했는지가
+명시되어야 하며</b>, 실제 컴퓨터를 이용하는 <b>구체적인 방법과 실행 방법</b>이 명시되어야 한다.
+<span class="book">교과서 42~43쪽</span></div>
+
+<p>핵심은 <b>“다른 사람이 똑같이 해볼 수 있는가”</b>입니다.<br>
+2차시에서 배웠죠 — 연구는 <b>누구나 다시 확인할 수 있어야</b> 믿을 만해집니다.
+도구를 안 적으면 아무도 재현할 수 없습니다.</p>
+
+<table><tr><th>이렇게 쓰면</th><th>이렇게 써야</th></tr>
+<tr><td>센서로 온도를 잰다</td><td><b>아두이노 우노 + DHT11</b> 온습도 센서로 <b>1분마다</b> 측정해 시리얼 모니터에 기록한다</td></tr>
+<tr><td>데이터를 분석한다</td><td>KOSIS에서 받은 csv를 <b>구글 스프레드시트</b>로 열어 <b>피벗 테이블</b>로 지역별 평균을 낸다</td></tr>
+<tr><td>AI로 분류한다</td><td><b>티처블 머신</b>으로 품목당 <b>30장씩</b> 학습시키고 새 사진 10장으로 정확도를 확인한다</td></tr></table>
+
+<h3>⭐ 변인 세 가지</h3>
+<p>연구는 <b>무엇을 바꾸고, 무엇을 고정하고, 무엇을 보는지</b>가 정해져야 합니다.</p>
+
+<table><tr><th>변인</th><th>뜻</th><th>교실 온도 연구라면</th></tr>
+<tr><td><b>조작 변인</b><br><i>(독립 변인)</i></td><td>내가 <b>일부러 바꾸는</b> 것</td><td>측정하는 <b>교시</b> (1교시 · 2교시 · …)</td></tr>
+<tr><td><b>통제 변인</b></td><td><b>똑같이 유지</b>하는 조건</td><td>같은 교실, 같은 센서, 같은 위치</td></tr>
+<tr><td><b>종속 변인</b></td><td>결과로 <b>나타나는</b> 값</td><td>온도와 습도</td></tr></table>
+
+<div class="box">💡 <b>외우지 말고 이렇게 물어보세요.</b><br>
+조작 = <b>“내가 뭘 바꾸지?”</b> &nbsp;·&nbsp;
+통제 = <b>“뭘 똑같이 둬야 하지?”</b> &nbsp;·&nbsp;
+종속 = <b>“뭘 보려는 거지?”</b></div>
+
+<p>교과서 사례도 같은 구조입니다. <span class="book">교과서 43쪽</span></p>
+<ul>
+<li><b>조작</b> — 생체 센서에 붙이는 재료를 바꾼다 <i>(동판 · 은판 · 알루미늄)</i></li>
+<li><b>통제</b> — 측정 대상을 <b>모두 같은 사람</b>으로 한다</li>
+<li><b>종속</b> — 재료에 따라 달라지는 <b>생체 전기 값</b></li>
+</ul>
+
+<h3>통제 변인이 진짜 중요합니다</h3>
+<p>가장 많이 놓치는 게 통제입니다. <b>통제를 안 하면 결과를 설명할 수 없어요.</b></p>
+<div class="box">⚠️ 1교시는 <b>창가</b>에서 재고 5교시는 <b>복도 쪽</b>에서 쟀다면?<br>
+온도 차이가 <b>시간 때문인지 위치 때문인지</b> 알 수 없습니다.<br>
+→ 그래서 <b>“같은 자리에서 잰다”</b>를 통제 변인으로 적어 두는 겁니다.</div>
+
+<h3>7차시에 정한 것을 문장으로</h3>
+<p>7차시에서 네 가지를 골랐죠. 그걸 이어 붙이면 계획서 문장이 됩니다.</p>
+<div class="box">일차적 · 양적 · 센서 측정 · 비교와 대조<br>↓<br>
+<b>“아두이노와 온습도 센서로 교실 온습도를 직접 측정(일차적·양적)하고,
+교시별 평균을 비교·대조하여 가장 더운 시간대를 찾는다.”</b></div>
+
+</section>
+
+<section>
+  <h2>✍️ 생각 나누기</h2>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
+  <div class="f" style="margin-top:12px"><label for="생각나누기0">내 연구에서 「통제 변인」을 정하다가 새로 알게 된 점이 있나요? 무엇을 똑같이 둬야 할지 생각하면서 든 생각을 써 주세요.</label><textarea id="생각나누기0" placeholder="예) 자리마다 온도가 다를 수 있다는 걸 미처 생각 못 했다. 센서를 한 자리에 고정해야 한다는 걸 알았다"></textarea></div><div class="f" style="margin-top:12px"><label for="생각나누기1">「다른 사람이 내 연구를 똑같이 해볼 수 있으려면」 무엇을 더 적어야 할까요?</label><textarea id="생각나누기1" placeholder="예) 센서를 창문에서 몇 미터 떨어진 곳에 뒀는지, 창문은 열었는지 닫았는지도 적어야 할 것 같다"></textarea></div>
+  <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
+    <span class="msg" id="msg-생각나누기"></span></div>
+</section>
+
+<section>
+  <h2>✅ 확인 퀴즈</h2>
+  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
+  <div class="q"><div class="qt">1. 계획서에 도구를 구체적으로 적어야 하는 가장 큰 이유는?</div><label class="opt"><input type="radio" name="q0" value="0">다른 사람이 똑같이 해볼 수 있어야 하므로</label><label class="opt"><input type="radio" name="q0" value="1">도구가 비싸면 점수가 높으므로</label><label class="opt"><input type="radio" name="q0" value="2">선생님이 준비물을 확인해야 하므로</label><label class="opt"><input type="radio" name="q0" value="3">글자 수를 채워야 하므로</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. “측정하는 교시를 1교시부터 7교시까지 바꿔 가며 잰다”에서 <b>교시</b>는 무슨 변인일까요?</div><label class="opt"><input type="radio" name="q1" value="0">통제 변인</label><label class="opt"><input type="radio" name="q1" value="1">종속 변인</label><label class="opt"><input type="radio" name="q1" value="2">조작 변인</label><label class="opt"><input type="radio" name="q1" value="3">변인이 아니다</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 교실 온도를 교시별로 비교하는 연구에서 <b>통제 변인</b>으로 알맞은 것은?</div><label class="opt"><input type="radio" name="q2" value="0">측정한 온도 값</label><label class="opt"><input type="radio" name="q2" value="1">측정하는 교시</label><label class="opt"><input type="radio" name="q2" value="2">그날의 바깥 날씨</label><label class="opt"><input type="radio" name="q2" value="3">센서를 두는 자리</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 다음 중 계획서 ⑤번 칸에 쓰기에 가장 부족한 문장은?</div><label class="opt"><input type="radio" name="q3" value="0">티처블 머신으로 품목당 30장씩 학습시켜 정확도를 확인한다</label><label class="opt"><input type="radio" name="q3" value="1">KOSIS에서 받은 csv를 스프레드시트 피벗 테이블로 정리한다</label><label class="opt"><input type="radio" name="q3" value="2">아두이노 우노와 DHT11로 1분마다 측정해 기록한다</label><label class="opt"><input type="radio" name="q3" value="3">센서를 이용해 교실 환경을 분석한다</label><div class="fb" id="fb3"></div></div>
+  <div class="row"><button onclick="grade()">채점하기</button>
+    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
+  <div class="score" id="score"></div>
+</section>
+
+<section>
+  <h2>🔬 내 연구로 가져오기</h2>
+  <p class="lead">여기 쓴 내용이 그대로 <b>계획서 ⑤ 분석·구현 방법과 도구</b> 칸이 됩니다.</p>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">쓸 도구를 구체적으로 적어 주세요 — 기기 이름 · 센서 이름 · 프로그램 이름</label><textarea id="프로젝트0" placeholder="예) 아두이노 우노 + DHT11 온습도 센서, 구글 스프레드시트"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">어떻게 할 건지 한 문단으로 써 주세요. (무엇을 · 얼마나 자주 · 어디서 · 어떻게 정리)</label><textarea id="프로젝트1" placeholder="예) 교실 뒤편 고정된 자리에 센서를 두고 1분마다 온습도를 기록한다. 일주일 뒤 시리얼 모니터 내용을 스프레드시트로 옮겨 교시별 평균을 낸다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">변인 세 가지를 정해 주세요.</label><textarea id="프로젝트2" placeholder="조작 변인(내가 바꾸는 것): 측정 교시
+통제 변인(똑같이 두는 것): 같은 교실, 같은 자리, 같은 센서
+종속 변인(결과로 보는 것): 온도와 습도"></textarea></div>
+  <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
+    <span class="msg" id="msg-프로젝트"></span></div>
+</section>
+
+<section>
+  <h2>📋 내가 낸 것</h2>
+  <div class="row">
+    <button class="ghost" onclick="showLog()">보기</button>
+    <button class="ghost" id="copybtn" style="display:none" onclick="copyLog()">전체 복사</button>
+    <span class="msg" id="logmsg"></span>
+  </div>
+  <p class="lead" id="failnote" style="display:none;margin:12px 0 0;color:var(--warn)">
+    ⚠️ 전송되지 않은 것이 있습니다. <b>전체 복사</b>를 눌러 선생님께 보내 주세요.</p>
+  <div id="log" style="display:none;margin-top:13px"></div>
+</section>
+
+<footer>정보 과제 연구 · 대성여자고등학교 · 2026학년도 2학기</footer>
+</div>
+<iframe name="sink" style="display:none" title="hidden"></iframe>
+
+<script>
+const OPEN = [{"q": "내 연구에서 「통제 변인」을 정하다가 새로 알게 된 점이 있나요? 무엇을 똑같이 둬야 할지 생각하면서 든 생각을 써 주세요."}, {"q": "「다른 사람이 내 연구를 똑같이 해볼 수 있으려면」 무엇을 더 적어야 할까요?"}];
+const PROJ = [{"q": "쓸 도구를 구체적으로 적어 주세요 — 기기 이름 · 센서 이름 · 프로그램 이름"}, {"q": "어떻게 할 건지 한 문단으로 써 주세요. (무엇을 · 얼마나 자주 · 어디서 · 어떻게 정리)"}, {"q": "변인 세 가지를 정해 주세요."}];
+const QUIZ = [{"a": 0, "why": "연구는 누구나 다시 확인할 수 있어야 믿을 만해집니다. 도구를 안 적으면 재현할 수 없어요. (교과서 42~43쪽)"}, {"a": 2, "why": "내가 일부러 바꾸는 것이 조작 변인입니다. 「내가 뭘 바꾸지?」에 답해 보세요."}, {"a": 3, "why": "자리를 바꾸면 온도 차이가 시간 때문인지 위치 때문인지 알 수 없게 됩니다. 그래서 고정해야 해요."}, {"a": 3, "why": "어떤 센서인지, 얼마나 자주 재는지, 어떻게 분석하는지가 없습니다. 이대로는 아무도 따라 할 수 없어요."}];
+
+/* ── 저장소 (막힌 환경에서도 동작) ── */
+const MEM={}; let OK=true;
+try{localStorage.setItem("__t","1");localStorage.removeItem("__t");}catch(e){OK=false;}
+const S={get(k){try{return OK?localStorage.getItem(k):(MEM[k]??null);}catch(e){return MEM[k]??null;}},
+set(k,v){MEM[k]=v;try{if(OK)localStorage.setItem(k,v);}catch(e){OK=false;}}};
+const LS="정보과제연구_기록";
+
+function me(){return {sid:sid.value.trim(),name:sname.value.trim()};}
+function saveMe(){S.set("정보과제연구_나",JSON.stringify(me()));
+  flash("logmsg",OK?"✅ 기억했습니다":"✅ 기억했습니다 (창을 닫으면 지워집니다)","ok");}
+(function(){try{const m=JSON.parse(S.get("정보과제연구_나")||"{}");
+  if(m.sid)sid.value=m.sid; if(m.name)sname.value=m.name;}catch(e){}})();
+
+function flash(id,t,c){const e=document.getElementById(id);e.textContent=t;e.className="msg "+(c||"");
+  if(c==="ok")setTimeout(()=>{if(e.textContent===t)e.textContent="";},7000);}
+function records(){try{return JSON.parse(S.get(LS)||"[]");}catch(e){return [];}}
+
+/* ── 제출 ── */
+function submitBlock(kind){
+  const list = kind==="생각나누기" ? OPEN : PROJ;
+  const who = me();
+  if(!who.sid||!who.name){flash("msg-"+kind,"⚠️ 위에 학번과 이름을 먼저 적어 주세요","warn");sid.focus();return;}
+  const parts=[];
+  for(let i=0;i<list.length;i++){
+    const v=document.getElementById(kind+i).value.trim();
+    if(!v){const lbl=list[i].q.length>16?list[i].q.slice(0,16)+"…":list[i].q;
+      flash("msg-"+kind,`⚠️ ${i+1}번 「${lbl}」 칸이 비어 있어요`,"warn");
+      document.getElementById(kind+i).focus();return;}
+    parts.push(list.length===1 ? v : `${list[i].q}\n${v}`);
+  }
+  const body=parts.join("\n\n");
+  const when=new Date().toLocaleString("ko-KR",{month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"});
+  const sent=!!ENDPOINT;
+  if(sent){
+    const f=document.createElement("form");
+    f.action=ENDPOINT; f.method="POST"; f.target="sink";
+    const put=(n,v)=>{const i=document.createElement("input");i.type="hidden";i.name=n;i.value=v;f.appendChild(i);};
+    put("n",String(차시번호)); put("sid",who.sid); put("name",who.name);
+    put("kind",kind==="생각나누기"?"생기부":"프로젝트");
+    put("item",kind); put("body",body);
+    document.body.appendChild(f); f.submit(); document.body.removeChild(f);
+    flash("msg-"+kind,"✅ 제출했습니다","ok");
+  }else{
+    flash("msg-"+kind,"⚠️ 전송 설정 전입니다. 이 기기에 저장했어요","warn");
+  }
+  try{const a=records();a.push({when,kind,body,sent});S.set(LS,JSON.stringify(a));}catch(e){}
+  refreshFail();
+}
+
+/* 전송 실패가 있을 때만 「전체 복사」를 보여 줍니다 */
+function refreshFail(){
+  const bad = records().some(r=>!r.sent);
+  document.getElementById("copybtn").style.display  = bad ? "" : "none";
+  document.getElementById("failnote").style.display = bad ? "" : "none";
+}
+
+/* ── 퀴즈 ── */
+function grade(){
+  let right=0, done=0;
+  QUIZ.forEach((q,i)=>{
+    const sel=document.querySelector(`input[name=q${i}]:checked`);
+    const fb=document.getElementById("fb"+i);
+    if(!sel){fb.className="fb";return;}
+    done++;
+    const ok=Number(sel.value)===q.a;
+    if(ok)right++;
+    fb.className="fb on "+(ok?"o":"x");
+    fb.textContent=(ok?"⭕ 맞았어요 — ":"❌ 다시 볼까요 — ")+q.why;
+  });
+  const s=document.getElementById("score");
+  if(done<QUIZ.length){s.textContent=`아직 안 푼 문제가 있어요 (${done}/${QUIZ.length})`;return;}
+  s.textContent=`${QUIZ.length}문제 중 ${right}개 정답` +
+    (right===QUIZ.length?"  🎉 완벽합니다":(right>=QUIZ.length-1?"  👍 거의 다 됐어요":"  📖 위 설명을 다시 읽어 보세요"));
+}
+function resetQuiz(){
+  document.querySelectorAll("input[type=radio]").forEach(r=>r.checked=false);
+  document.querySelectorAll(".fb").forEach(f=>f.className="fb");
+  document.getElementById("score").textContent="";
+}
+
+/* ── 기록 ── */
+function asText(){const a=records();
+  if(!a.length)return "아직 제출한 게 없습니다.";
+  return a.map(r=>`${r.sent?"✅":"⚠️"} ${r.kind}  (${r.when})\n${r.body}`).join("\n\n──────────\n\n");}
+function showLog(){const d=document.getElementById("log");
+  d.style.display=d.style.display==="none"?"block":"none"; d.textContent=asText(); refreshFail();}
+function copyLog(){const t=`${차시번호}차시  ${sid.value} ${sname.value}\n\n`+asText();
+  navigator.clipboard.writeText(t).then(()=>flash("logmsg","✅ 복사했습니다","ok"))
+  .catch(()=>{const d=document.getElementById("log");d.style.display="block";d.textContent=t;
+    flash("logmsg","아래에서 직접 선택해 복사하세요","warn");});}
+
+refreshFail();
+</script></body></html>

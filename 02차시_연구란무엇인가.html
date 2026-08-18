@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2차시 · 연구란 무엇인가</title>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ⚙️ 선생님 설정 — 아래 한 줄만 채우면 됩니다
+     _설정_AppsScript.gs 를 스프레드시트에 설치하고 받은 웹 앱 URL
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+const ENDPOINT = "";
+const 차시번호 = 2;
+</script>
+
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1a1d21;--muted:#6b7280;--line:#e3e6ea;
+--accent:#2563eb;--ink2:#fff;--ok:#0d9488;--warn:#b45309;--soft:#eef2ff;--quiz:#fff7ed;--quizline:#fdba74}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+--bg:#14171a;--card:#1c2024;--ink:#e8eaed;--muted:#9aa3ad;--line:#2c3238;
+--accent:#5b8cff;--ink2:#0d1117;--ok:#2dd4bf;--warn:#fbbf24;--soft:#1e2536;--quiz:#2a2118;--quizline:#7c4a12}}
+*{box-sizing:border-box}
+body{margin:0;padding:0 16px 72px;background:var(--bg);color:var(--ink);line-height:1.7;
+font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:780px;margin:0 auto}
+header{padding:30px 0 18px;border-bottom:2px solid var(--line);margin-bottom:22px}
+.chip{display:inline-block;background:var(--accent);color:var(--ink2);font-size:.78rem;font-weight:700;
+padding:4px 12px;border-radius:99px;margin-bottom:10px}
+h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:.93rem;margin:0}
+.me{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:15px;
+margin-bottom:26px;display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.me .f{flex:1;min-width:115px}
+label{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:5px}
+input[type=text],textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;
+background:var(--card);color:var(--ink);font-size:1rem;font-family:inherit}
+textarea{min-height:88px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:20px}
+section>h2{font-size:1.16rem;margin:0 0 4px;letter-spacing:-.01em}
+.lead{color:var(--muted);font-size:.9rem;margin:0 0 16px}
+.learn h3{font-size:1rem;margin:22px 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
+.learn p{margin:8px 0}
+.learn ul{margin:8px 0;padding-left:20px} .learn li{margin:5px 0}
+.learn table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem}
+.learn th,.learn td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.learn th{background:var(--soft);font-weight:700}
+.learn code{background:var(--soft);padding:1px 6px;border-radius:4px;font-size:.88em}
+.box{background:var(--soft);border-left:3px solid var(--accent);padding:12px 15px;border-radius:0 9px 9px 0;margin:14px 0}
+.book{font-size:.82rem;color:var(--muted);font-weight:600}
+.q{background:var(--quiz);border:1px solid var(--quizline);border-radius:11px;padding:16px;margin-bottom:13px}
+.q .qt{font-weight:700;margin-bottom:10px}
+.opt{display:block;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);
+margin-bottom:7px;cursor:pointer;font-size:.95rem}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin-right:8px}
+.fb{font-size:.9rem;font-weight:600;margin-top:9px;display:none}
+.fb.on{display:block} .fb.o{color:var(--ok)} .fb.x{color:var(--warn)}
+button{font-family:inherit;font-size:.95rem;font-weight:600;border:0;border-radius:9px;padding:11px 20px;
+cursor:pointer;background:var(--accent);color:var(--ink2)}
+button:hover{filter:brightness(1.08)}
+button.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.row{display:flex;gap:9px;align-items:center;margin-top:15px;flex-wrap:wrap}
+.msg{font-size:.9rem;font-weight:600} .msg.ok{color:var(--ok)} .msg.warn{color:var(--warn)}
+.score{font-size:1.05rem;font-weight:700;margin-top:14px}
+#log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
+border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
+footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
+</style></head><body><div class="wrap">
+
+<header>
+  <span class="chip">2차시</span>
+  <h1>연구란 무엇인가</h1>
+  <p class="sub">정보 과제 연구는 다른 연구와 무엇이 다를까</p>
+</header>
+
+<div class="me">
+  <div class="f"><label for="sid">학번</label><input type="text" id="sid" placeholder="30101" autocomplete="off"></div>
+  <div class="f"><label for="sname">이름</label><input type="text" id="sname" placeholder="홍길동" autocomplete="off"></div>
+  <button class="ghost" onclick="saveMe()">기억하기</button>
+</div>
+
+<section class="learn">
+  <h2>📖 오늘 배울 것</h2>
+  <p class="lead">교과서 18~23쪽</p>
+  
+<h3>연구는 어디서 시작할까</h3>
+<p>연구는 <b>“세상의 일들에는 어떤 규칙이 있을 것이다”</b>라는 생각에서 시작합니다.
+그 규칙을 아무렇게나 찾으면 안 되니까, <b>누구나 공감할 수 있는 방법</b>을 써야 해요.
+그래야 다른 사람이 다시 확인해 볼 수 있고, 그때 비로소 믿을 만한 결과가 됩니다.</p>
+
+<div class="box">연구 방법이 곧 <b>신뢰도</b>입니다.
+“어떻게 알아냈는데?”에 답할 수 없으면 결과도 믿기 어렵습니다.</div>
+
+<h3>사회 과학과 자연 과학</h3>
+<table><tr><th></th><th>사회 과학</th><th>자연 과학</th></tr>
+<tr><td>무엇을 보나</td><td>사람의 행동과 생각</td><td>자연의 법칙과 현상</td></tr>
+<tr><td>성격</td><td>확률 · 개연성<br><span class="book">“대체로 그렇다”</span></td><td>확실성 · 필연성<br><span class="book">“항상 그렇다”</span></td></tr>
+<tr><td>예</td><td>자본주의, 행동주의 이론</td><td>멘델의 유전 법칙, 옴의 법칙</td></tr></table>
+
+<p>둘은 <b>공통점</b>도 큽니다. 정해진 절차를 따른다는 점이에요.</p>
+<p><code>문제 제기 → 가설 설정 → 연구 설계 → 자료 수집·분석 → 가설 검증 → 결론</code></p>
+
+<div class="box">📌 <b>한쪽으로 못 나누는 것도 많습니다.</b><br>
+지구 온난화 → 자연 과학은 <i>온실가스 절감 기술</i>을, 사회 과학은 <i>절감 정책</i>을 연구합니다.
+둘을 같이 하면 훨씬 믿을 만해집니다.</div>
+
+<h3>정보 과학이란</h3>
+<p>정보의 <b>수집 · 분류 · 분석 · 저장 · 검색 · 배포</b>를 다루는 학문입니다.
+컴퓨터를 쓰는 기술만이 아니라, <b>복잡한 문제를 구조화해서 푸는 방법</b>에 관한 학문이에요.</p>
+<ul>
+<li><b>바탕 이론</b> — 이산 수학, 그래프 이론, 확률과 통계, 수리 논리학</li>
+<li><b>활용</b> — 빅데이터, 인공지능, 사물인터넷, 자율주행, 블록체인</li>
+</ul>
+
+<h3>⭐ 그래서 정보 과제 연구란</h3>
+<div class="box"><b>사회 · 과학 · 정보 분야의 문제를 컴퓨터를 이용해 분석하고 탐구하여
+결과를 제시하는 연구</b><br><span class="book">교과서 20쪽</span></div>
+
+<p>사회 과학 방법을 써도 되고, 자연 과학 방법을 써도 됩니다.
+다만 <b>딱 하나가 다릅니다.</b></p>
+
+<div class="box">🔑 <b>컴퓨팅 사고력을 쓴다는 점</b>에서 다른 연구와 구별됩니다.</div>
+
+<h3>정보 과제 연구가 잘하는 일</h3>
+<table><tr><th>특징</th><th>무슨 뜻</th></tr>
+<tr><td>문제를 쪼갠다</td><td>복잡하게 엉킨 걸 다룰 수 있는 크기로 나눔</td></tr>
+<tr><td>다시 정의한다</td><td>필요 없는 걸 걷어내고 핵심만 남김</td></tr>
+<tr><td>반복을 자동화한다</td><td>같은 일을 수천 번 해도 지치지 않음</td></tr>
+<tr><td>미리 내다본다</td><td>생길 문제를 예측해 대비함</td></tr></table>
+
+<div class="box">💡 <b>그래서 이런 게 가능해집니다.</b><br>
+사람이 손으로 세면 하루 걸릴 일을 몇 초에 끝내고,
+그 남는 시간에 <b>“그래서 이게 무슨 뜻이지?”</b>를 고민할 수 있습니다.<br>
+<b>컴퓨터는 계산을 하고, 무엇을 계산할지는 사람이 정합니다.</b></div>
+
+</section>
+
+<section>
+  <h2>✍️ 생각 나누기</h2>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
+  <div class="f" style="margin-top:12px"><label for="생각나누기0">오늘 배운 것 중에서 가장 새롭거나 뜻밖이었던 내용은 무엇인가요? 왜 그렇게 느꼈는지도 함께 써 주세요.</label><textarea id="생각나누기0" placeholder="예) 정보 과제 연구가 사회 과학 방법도 쓸 수 있다는 게 뜻밖이었다. 나는 컴퓨터로 하는 건 다 수학 같은 건 줄 알았는데…"></textarea></div><div class="f" style="margin-top:12px"><label for="생각나누기1">내가 관심 있는 분야(진로, 취미, 좋아하는 과목)에서 「컴퓨터로 풀면 좋겠다」 싶은 문제가 있나요?</label><textarea id="생각나누기1" placeholder="예) 나는 간호에 관심이 있는데, 병원 대기 시간을 줄이는 문제를 컴퓨터로 풀 수 있을 것 같다"></textarea></div>
+  <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
+    <span class="msg" id="msg-생각나누기"></span></div>
+</section>
+
+<section>
+  <h2>✅ 확인 퀴즈</h2>
+  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
+  <div class="q"><div class="qt">1. 정보 과제 연구가 다른 연구와 구별되는 가장 큰 특징은?</div><label class="opt"><input type="radio" name="q0" value="0">컴퓨팅 사고력을 활용한다는 점</label><label class="opt"><input type="radio" name="q0" value="1">컴퓨터를 사용한다는 점</label><label class="opt"><input type="radio" name="q0" value="2">결과를 숫자로 낸다는 점</label><label class="opt"><input type="radio" name="q0" value="3">혼자 수행한다는 점</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 다음 중 정보 과제 연구로 하기 어려운 것은?</div><label class="opt"><input type="radio" name="q1" value="0">1~100 중 소수의 합 구하기</label><label class="opt"><input type="radio" name="q1" value="1">우리 지역 교통사고가 많은 요일 찾기</label><label class="opt"><input type="radio" name="q1" value="2">최단 경로 찾기</label><label class="opt"><input type="radio" name="q1" value="3">철과 고무 중 저항값이 작은 것 알아내기</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 사회 과학과 자연 과학의 공통점은?</div><label class="opt"><input type="radio" name="q2" value="0">둘 다 확실성의 원리를 따른다</label><label class="opt"><input type="radio" name="q2" value="1">둘 다 사람의 생각을 다룬다</label><label class="opt"><input type="radio" name="q2" value="2">둘 다 정해진 절차에 따라 체계적으로 연구한다</label><label class="opt"><input type="radio" name="q2" value="3">둘 다 컴퓨터를 반드시 쓴다</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. “지구 온난화”처럼 한쪽으로 나눌 수 없는 주제는 어떻게 하면 좋을까요?</div><label class="opt"><input type="radio" name="q3" value="0">자연 과학으로만 접근한다</label><label class="opt"><input type="radio" name="q3" value="1">연구 주제로 삼지 않는다</label><label class="opt"><input type="radio" name="q3" value="2">여러 연구 방법을 함께 써서 신뢰성을 높인다</label><label class="opt"><input type="radio" name="q3" value="3">사회 과학으로만 접근한다</label><div class="fb" id="fb3"></div></div>
+  <div class="row"><button onclick="grade()">채점하기</button>
+    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
+  <div class="score" id="score"></div>
+</section>
+
+<section>
+  <h2>🔬 내 연구로 가져오기</h2>
+  <p class="lead">지난 시간에 적은 궁금증을 발전시킵니다. 계획서로 이어지는 칸이에요.</p>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">내 궁금증을 하나 더 늘려 보세요. 학교 / 우리 동네 / 뉴스 중 아직 안 쓴 곳에서 하나.</label><textarea id="프로젝트0" placeholder="예) (동네) 우리 동네 버스는 왜 항상 두 대가 붙어서 올까?"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">그 궁금증은 사회 과학에 가깝나요, 자연 과학에 가깝나요, 아니면 둘 다인가요? 이유도 한 줄.</label><textarea id="프로젝트1" placeholder="예) 둘 다. 사람들의 이용 패턴(사회)과 도로 상황(자연)이 같이 얽혀 있어서"></textarea></div>
+  <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
+    <span class="msg" id="msg-프로젝트"></span></div>
+</section>
+
+<section>
+  <h2>📋 내가 낸 것</h2>
+  <div class="row">
+    <button class="ghost" onclick="showLog()">보기</button>
+    <button class="ghost" id="copybtn" style="display:none" onclick="copyLog()">전체 복사</button>
+    <span class="msg" id="logmsg"></span>
+  </div>
+  <p class="lead" id="failnote" style="display:none;margin:12px 0 0;color:var(--warn)">
+    ⚠️ 전송되지 않은 것이 있습니다. <b>전체 복사</b>를 눌러 선생님께 보내 주세요.</p>
+  <div id="log" style="display:none;margin-top:13px"></div>
+</section>
+
+<footer>정보 과제 연구 · 대성여자고등학교 · 2026학년도 2학기</footer>
+</div>
+<iframe name="sink" style="display:none" title="hidden"></iframe>
+
+<script>
+const OPEN = [{"q": "오늘 배운 것 중에서 가장 새롭거나 뜻밖이었던 내용은 무엇인가요? 왜 그렇게 느꼈는지도 함께 써 주세요."}, {"q": "내가 관심 있는 분야(진로, 취미, 좋아하는 과목)에서 「컴퓨터로 풀면 좋겠다」 싶은 문제가 있나요?"}];
+const PROJ = [{"q": "내 궁금증을 하나 더 늘려 보세요. 학교 / 우리 동네 / 뉴스 중 아직 안 쓴 곳에서 하나."}, {"q": "그 궁금증은 사회 과학에 가깝나요, 자연 과학에 가깝나요, 아니면 둘 다인가요? 이유도 한 줄."}];
+const QUIZ = [{"a": 0, "why": "컴퓨터를 쓰는 연구는 많습니다. 정보 과제 연구는 「컴퓨팅 사고력」을 쓴다는 점이 다릅니다. (교과서 20쪽)"}, {"a": 3, "why": "저항값은 실제로 연결해 측정해야 하는 자연 과학 실험입니다. (교과서 23쪽)"}, {"a": 2, "why": "문제 제기 → 가설 → 설계 → 수집·분석 → 검증 → 결론. 같은 절차를 따릅니다."}, {"a": 2, "why": "교과서는 여러 방법을 동시에 진행해 신뢰성을 높이라고 권합니다. (교과서 18쪽)"}];
+
+/* ── 저장소 (막힌 환경에서도 동작) ── */
+const MEM={}; let OK=true;
+try{localStorage.setItem("__t","1");localStorage.removeItem("__t");}catch(e){OK=false;}
+const S={get(k){try{return OK?localStorage.getItem(k):(MEM[k]??null);}catch(e){return MEM[k]??null;}},
+set(k,v){MEM[k]=v;try{if(OK)localStorage.setItem(k,v);}catch(e){OK=false;}}};
+const LS="정보과제연구_기록";
+
+function me(){return {sid:sid.value.trim(),name:sname.value.trim()};}
+function saveMe(){S.set("정보과제연구_나",JSON.stringify(me()));
+  flash("logmsg",OK?"✅ 기억했습니다":"✅ 기억했습니다 (창을 닫으면 지워집니다)","ok");}
+(function(){try{const m=JSON.parse(S.get("정보과제연구_나")||"{}");
+  if(m.sid)sid.value=m.sid; if(m.name)sname.value=m.name;}catch(e){}})();
+
+function flash(id,t,c){const e=document.getElementById(id);e.textContent=t;e.className="msg "+(c||"");
+  if(c==="ok")setTimeout(()=>{if(e.textContent===t)e.textContent="";},7000);}
+function records(){try{return JSON.parse(S.get(LS)||"[]");}catch(e){return [];}}
+
+/* ── 제출 ── */
+function submitBlock(kind){
+  const list = kind==="생각나누기" ? OPEN : PROJ;
+  const who = me();
+  if(!who.sid||!who.name){flash("msg-"+kind,"⚠️ 위에 학번과 이름을 먼저 적어 주세요","warn");sid.focus();return;}
+  const parts=[];
+  for(let i=0;i<list.length;i++){
+    const v=document.getElementById(kind+i).value.trim();
+    if(!v){const lbl=list[i].q.length>16?list[i].q.slice(0,16)+"…":list[i].q;
+      flash("msg-"+kind,`⚠️ ${i+1}번 「${lbl}」 칸이 비어 있어요`,"warn");
+      document.getElementById(kind+i).focus();return;}
+    parts.push(list.length===1 ? v : `${list[i].q}\n${v}`);
+  }
+  const body=parts.join("\n\n");
+  const when=new Date().toLocaleString("ko-KR",{month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"});
+  const sent=!!ENDPOINT;
+  if(sent){
+    const f=document.createElement("form");
+    f.action=ENDPOINT; f.method="POST"; f.target="sink";
+    const put=(n,v)=>{const i=document.createElement("input");i.type="hidden";i.name=n;i.value=v;f.appendChild(i);};
+    put("n",String(차시번호)); put("sid",who.sid); put("name",who.name);
+    put("kind",kind==="생각나누기"?"생기부":"프로젝트");
+    put("item",kind); put("body",body);
+    document.body.appendChild(f); f.submit(); document.body.removeChild(f);
+    flash("msg-"+kind,"✅ 제출했습니다","ok");
+  }else{
+    flash("msg-"+kind,"⚠️ 전송 설정 전입니다. 이 기기에 저장했어요","warn");
+  }
+  try{const a=records();a.push({when,kind,body,sent});S.set(LS,JSON.stringify(a));}catch(e){}
+  refreshFail();
+}
+
+/* 전송 실패가 있을 때만 「전체 복사」를 보여 줍니다 */
+function refreshFail(){
+  const bad = records().some(r=>!r.sent);
+  document.getElementById("copybtn").style.display  = bad ? "" : "none";
+  document.getElementById("failnote").style.display = bad ? "" : "none";
+}
+
+/* ── 퀴즈 ── */
+function grade(){
+  let right=0, done=0;
+  QUIZ.forEach((q,i)=>{
+    const sel=document.querySelector(`input[name=q${i}]:checked`);
+    const fb=document.getElementById("fb"+i);
+    if(!sel){fb.className="fb";return;}
+    done++;
+    const ok=Number(sel.value)===q.a;
+    if(ok)right++;
+    fb.className="fb on "+(ok?"o":"x");
+    fb.textContent=(ok?"⭕ 맞았어요 — ":"❌ 다시 볼까요 — ")+q.why;
+  });
+  const s=document.getElementById("score");
+  if(done<QUIZ.length){s.textContent=`아직 안 푼 문제가 있어요 (${done}/${QUIZ.length})`;return;}
+  s.textContent=`${QUIZ.length}문제 중 ${right}개 정답` +
+    (right===QUIZ.length?"  🎉 완벽합니다":(right>=QUIZ.length-1?"  👍 거의 다 됐어요":"  📖 위 설명을 다시 읽어 보세요"));
+}
+function resetQuiz(){
+  document.querySelectorAll("input[type=radio]").forEach(r=>r.checked=false);
+  document.querySelectorAll(".fb").forEach(f=>f.className="fb");
+  document.getElementById("score").textContent="";
+}
+
+/* ── 기록 ── */
+function asText(){const a=records();
+  if(!a.length)return "아직 제출한 게 없습니다.";
+  return a.map(r=>`${r.sent?"✅":"⚠️"} ${r.kind}  (${r.when})\n${r.body}`).join("\n\n──────────\n\n");}
+function showLog(){const d=document.getElementById("log");
+  d.style.display=d.style.display==="none"?"block":"none"; d.textContent=asText(); refreshFail();}
+function copyLog(){const t=`${차시번호}차시  ${sid.value} ${sname.value}\n\n`+asText();
+  navigator.clipboard.writeText(t).then(()=>flash("logmsg","✅ 복사했습니다","ok"))
+  .catch(()=>{const d=document.getElementById("log");d.style.display="block";d.textContent=t;
+    flash("logmsg","아래에서 직접 선택해 복사하세요","warn");});}
+
+refreshFail();
+</script></body></html>

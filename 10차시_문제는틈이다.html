@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10차시 · 문제는 「틈」이다</title>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ⚙️ 선생님 설정 — 아래 한 줄만 채우면 됩니다
+     _설정_AppsScript.gs 를 스프레드시트에 설치하고 받은 웹 앱 URL
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+const ENDPOINT = "";
+const 차시번호 = 10;
+</script>
+
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1a1d21;--muted:#6b7280;--line:#e3e6ea;
+--accent:#2563eb;--ink2:#fff;--ok:#0d9488;--warn:#b45309;--soft:#eef2ff;--quiz:#fff7ed;--quizline:#fdba74}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+--bg:#14171a;--card:#1c2024;--ink:#e8eaed;--muted:#9aa3ad;--line:#2c3238;
+--accent:#5b8cff;--ink2:#0d1117;--ok:#2dd4bf;--warn:#fbbf24;--soft:#1e2536;--quiz:#2a2118;--quizline:#7c4a12}}
+*{box-sizing:border-box}
+body{margin:0;padding:0 16px 72px;background:var(--bg);color:var(--ink);line-height:1.7;
+font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:780px;margin:0 auto}
+header{padding:30px 0 18px;border-bottom:2px solid var(--line);margin-bottom:22px}
+.chip{display:inline-block;background:var(--accent);color:var(--ink2);font-size:.78rem;font-weight:700;
+padding:4px 12px;border-radius:99px;margin-bottom:10px}
+h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:.93rem;margin:0}
+.me{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:15px;
+margin-bottom:26px;display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.me .f{flex:1;min-width:115px}
+label{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:5px}
+input[type=text],textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;
+background:var(--card);color:var(--ink);font-size:1rem;font-family:inherit}
+textarea{min-height:88px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:20px}
+section>h2{font-size:1.16rem;margin:0 0 4px;letter-spacing:-.01em}
+.lead{color:var(--muted);font-size:.9rem;margin:0 0 16px}
+.learn h3{font-size:1rem;margin:22px 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
+.learn p{margin:8px 0}
+.learn ul{margin:8px 0;padding-left:20px} .learn li{margin:5px 0}
+.learn table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem}
+.learn th,.learn td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.learn th{background:var(--soft);font-weight:700}
+.learn code{background:var(--soft);padding:1px 6px;border-radius:4px;font-size:.88em}
+.box{background:var(--soft);border-left:3px solid var(--accent);padding:12px 15px;border-radius:0 9px 9px 0;margin:14px 0}
+.book{font-size:.82rem;color:var(--muted);font-weight:600}
+.q{background:var(--quiz);border:1px solid var(--quizline);border-radius:11px;padding:16px;margin-bottom:13px}
+.q .qt{font-weight:700;margin-bottom:10px}
+.opt{display:block;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);
+margin-bottom:7px;cursor:pointer;font-size:.95rem}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin-right:8px}
+.fb{font-size:.9rem;font-weight:600;margin-top:9px;display:none}
+.fb.on{display:block} .fb.o{color:var(--ok)} .fb.x{color:var(--warn)}
+button{font-family:inherit;font-size:.95rem;font-weight:600;border:0;border-radius:9px;padding:11px 20px;
+cursor:pointer;background:var(--accent);color:var(--ink2)}
+button:hover{filter:brightness(1.08)}
+button.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.row{display:flex;gap:9px;align-items:center;margin-top:15px;flex-wrap:wrap}
+.msg{font-size:.9rem;font-weight:600} .msg.ok{color:var(--ok)} .msg.warn{color:var(--warn)}
+.score{font-size:1.05rem;font-weight:700;margin-top:14px}
+#log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
+border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
+footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
+</style></head><body><div class="wrap">
+
+<header>
+  <span class="chip">10차시</span>
+  <h1>문제는 「틈」이다</h1>
+  <p class="sub">연구 동기를 두 문장으로 쓰는 법</p>
+</header>
+
+<div class="me">
+  <div class="f"><label for="sid">학번</label><input type="text" id="sid" placeholder="30101" autocomplete="off"></div>
+  <div class="f"><label for="sname">이름</label><input type="text" id="sname" placeholder="홍길동" autocomplete="off"></div>
+  <button class="ghost" onclick="saveMe()">기억하기</button>
+</div>
+
+<section class="learn">
+  <h2>📖 오늘 배울 것</h2>
+  <p class="lead">교과서 22쪽 · 34~35쪽</p>
+  
+<h3>「문제」라는 말부터 다시 봅시다</h3>
+<p>문제라고 하면 보통 <b>나쁜 것</b>을 떠올립니다. 시험 문제, 문제아, 문제 상황….<br>
+그런데 연구에서 말하는 문제는 다릅니다.</p>
+
+<div class="box">📖 <b>문제 = 현재의 모습(현상)과 바람직한 모습(목표)의 차이</b><br>
+<span class="book">교과서 22쪽</span></div>
+
+<p>즉 <b>「틈」</b>입니다. 지금은 이런데, 이렇게 되면 좋겠고, 그 사이가 벌어져 있는 것.<br>
+그 틈을 메우려고 하는 게 연구예요.</p>
+
+<h3>그래서 두 문장이면 됩니다</h3>
+<p><code>지금은 (          ) 이다.</code><br>
+<code>(          ) 되면 좋겠다.</code></p>
+
+<table><tr><th>지금은</th><th>되면 좋겠다</th></tr>
+<tr><td>5교시에 다들 졸고 있다</td><td>언제 환기하면 좋은지 알고 미리 열어 두면 좋겠다</td></tr>
+<tr><td>우리 지역 인구가 준다는데 얼마나 심각한지 모른다</td><td>숫자로 확인하고 어디가 위험한지 알면 좋겠다</td></tr>
+<tr><td>분리배출을 할 때마다 헷갈린다</td><td>사진만 찍으면 알려주는 게 있으면 좋겠다</td></tr></table>
+
+<div class="box">⭐ <b>이 두 문장이 그대로 계획서의 「② 연구 동기」가 됩니다.</b></div>
+
+<h3>좋은 동기 vs 약한 동기</h3>
+<table><tr><th></th><th>약한 동기</th><th>좋은 동기</th></tr>
+<tr><td>구체성</td><td>“교실 환경이 안 좋다”</td><td>“5교시에 교실이 덥고 답답하다”</td></tr>
+<tr><td>확인 가능성</td><td>“학생들이 힘들어한다”</td><td>“몇 도인지 아무도 재본 적이 없다”</td></tr>
+<tr><td>바람이 분명한가</td><td>“좋아지면 좋겠다”</td><td>“언제 환기할지 알면 좋겠다”</td></tr></table>
+
+<div class="box">💡 <b>구분하는 요령</b><br>
+읽고 나서 <b>“그래서 뭘 재면 되는데?”</b>가 바로 떠오르면 좋은 동기입니다.<br>
+안 떠오르면 아직 너무 큽니다. 더 좁히세요.</div>
+
+<h3>연구 주제는 어디서 올까</h3>
+<p>교과서는 네 곳을 듭니다. <span class="book">교과서 35쪽</span></p>
+<table><tr><th>출처</th><th>무슨 뜻</th><th>우리 학교에서라면</th></tr>
+<tr><td><b>연구자의 경험</b></td><td>내가 직접 겪은 것</td><td>급식 줄, 교실 온도, 통학 시간</td></tr>
+<tr><td><b>문헌 고찰</b></td><td>읽다가 생긴 궁금증</td><td>기사에서 본 지역 인구 감소</td></tr>
+<tr><td><b>기존 이론</b></td><td>배운 내용에서 출발</td><td>수업에서 배운 개념을 우리 상황에 적용</td></tr>
+<tr><td><b>사회적 요청</b></td><td>누군가 필요로 하는 것</td><td>분리배출 · 안전 · 에너지 절약</td></tr></table>
+
+<div class="box">🎯 <b>가장 강한 건 첫 번째, 「내 경험」입니다.</b><br>
+직접 겪은 불편은 <b>왜 궁금한지 설명할 수 있고</b>, 끝까지 밀고 갈 힘이 됩니다.<br>
+멋있어 보이는 주제보다 <b>내가 진짜 궁금한 주제</b>를 고르세요.</div>
+
+<h3>⚠️ 이런 동기는 피하세요</h3>
+<ul>
+<li><b>이미 답이 나와 있는 것</b> — 검색하면 바로 나오는 건 조사이지 연구가 아닙니다</li>
+<li><b>내가 확인할 수 없는 것</b> — “전국의 고등학생은…” → 우리 학교로 좁히세요</li>
+<li><b>재는 방법이 없는 것</b> — “우리 반 분위기가 좋았으면” → 무엇으로 잴지 먼저 정해야 합니다</li>
+</ul>
+
+</section>
+
+<section>
+  <h2>✍️ 생각 나누기</h2>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
+  <div class="f" style="margin-top:12px"><label for="생각나누기0">그 문제가 왜 하필 나에게 눈에 띄었을까요? 언제, 어떤 상황에서 그렇게 느꼈는지 써 주세요.</label><textarea id="생각나누기0" placeholder="예) 나는 창가 자리라 5교시만 되면 유독 더웠다. 복도 쪽 친구는 괜찮다고 해서 자리마다 다른 건가 궁금해졌다"></textarea></div><div class="f" style="margin-top:12px"><label for="생각나누기1">이 문제가 풀리면 누가, 어떻게 좋아질까요? 나 말고 다른 사람 입장에서도 생각해 보세요.</label><textarea id="생각나누기1" placeholder="예) 우리 반 전체가 좋아지고, 선생님도 언제 창문을 열어야 할지 알 수 있다. 다른 반에도 알려줄 수 있다"></textarea></div>
+  <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
+    <span class="msg" id="msg-생각나누기"></span></div>
+</section>
+
+<section>
+  <h2>✅ 확인 퀴즈</h2>
+  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
+  <div class="q"><div class="qt">1. 교과서에서 말하는 「문제」의 뜻으로 알맞은 것은?</div><label class="opt"><input type="radio" name="q0" value="0">현재의 모습과 바람직한 모습의 차이</label><label class="opt"><input type="radio" name="q0" value="1">해결하기 어려운 나쁜 상황</label><label class="opt"><input type="radio" name="q0" value="2">아직 아무도 답을 모르는 질문</label><label class="opt"><input type="radio" name="q0" value="3">여러 사람이 불편을 겪는 일</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 다음 중 연구 동기로 가장 좋은 것은?</div><label class="opt"><input type="radio" name="q1" value="0">우리 학교 환경이 전반적으로 좋지 않다</label><label class="opt"><input type="radio" name="q1" value="1">학생들이 많이 힘들어하는 것 같다</label><label class="opt"><input type="radio" name="q1" value="2">5교시에 교실이 덥고 답답한데 몇 도인지 재본 적이 없다</label><label class="opt"><input type="radio" name="q1" value="3">환경 문제는 매우 중요한 사회적 과제이다</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 교과서가 말하는 연구 주제의 출처가 <b>아닌</b> 것은?</div><label class="opt"><input type="radio" name="q2" value="0">연구자의 경험</label><label class="opt"><input type="radio" name="q2" value="1">문헌 고찰</label><label class="opt"><input type="radio" name="q2" value="2">인터넷 검색 순위</label><label class="opt"><input type="radio" name="q2" value="3">사회적 요청</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. “우리 반 분위기가 더 좋아지면 좋겠다”가 아직 연구 동기로 부족한 이유는?</div><label class="opt"><input type="radio" name="q3" value="0">너무 사소한 주제라서</label><label class="opt"><input type="radio" name="q3" value="1">「분위기」를 무엇으로 잴지 정하지 않아서</label><label class="opt"><input type="radio" name="q3" value="2">우리 반만 다루면 표본이 적어서</label><label class="opt"><input type="radio" name="q3" value="3">컴퓨터를 쓸 수 없는 주제라서</label><div class="fb" id="fb3"></div></div>
+  <div class="row"><button onclick="grade()">채점하기</button>
+    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
+  <div class="score" id="score"></div>
+</section>
+
+<section>
+  <h2>🔬 내 연구로 가져오기</h2>
+  <p class="lead">여기 쓴 두 문장이 그대로 <b>계획서 ② 연구 동기</b> 칸이 됩니다.</p>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">지금은 (              ) 이다.</label><textarea id="프로젝트0" placeholder="예) 5교시에 다들 졸고 있는데, 교실이 실제로 몇 도인지 아무도 재본 적이 없다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">(              ) 되면 좋겠다.</label><textarea id="프로젝트1" placeholder="예) 몇 교시가 가장 더운지 알아서 미리 환기하면 좋겠다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">위 두 문장을 읽고 「그래서 뭘 재면 되는데?」에 답해 보세요. 아직 모르겠으면 「모르겠다」라고 써도 됩니다.</label><textarea id="프로젝트2" placeholder="예) 교시별 교실 온도와 습도를 재면 된다"></textarea></div>
+  <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
+    <span class="msg" id="msg-프로젝트"></span></div>
+</section>
+
+<section>
+  <h2>📋 내가 낸 것</h2>
+  <div class="row">
+    <button class="ghost" onclick="showLog()">보기</button>
+    <button class="ghost" id="copybtn" style="display:none" onclick="copyLog()">전체 복사</button>
+    <span class="msg" id="logmsg"></span>
+  </div>
+  <p class="lead" id="failnote" style="display:none;margin:12px 0 0;color:var(--warn)">
+    ⚠️ 전송되지 않은 것이 있습니다. <b>전체 복사</b>를 눌러 선생님께 보내 주세요.</p>
+  <div id="log" style="display:none;margin-top:13px"></div>
+</section>
+
+<footer>정보 과제 연구 · 대성여자고등학교 · 2026학년도 2학기</footer>
+</div>
+<iframe name="sink" style="display:none" title="hidden"></iframe>
+
+<script>
+const OPEN = [{"q": "그 문제가 왜 하필 나에게 눈에 띄었을까요? 언제, 어떤 상황에서 그렇게 느꼈는지 써 주세요."}, {"q": "이 문제가 풀리면 누가, 어떻게 좋아질까요? 나 말고 다른 사람 입장에서도 생각해 보세요."}];
+const PROJ = [{"q": "지금은 (              ) 이다."}, {"q": "(              ) 되면 좋겠다."}, {"q": "위 두 문장을 읽고 「그래서 뭘 재면 되는데?」에 답해 보세요. 아직 모르겠으면 「모르겠다」라고 써도 됩니다."}];
+const QUIZ = [{"a": 0, "why": "문제는 나쁜 게 아니라 「틈」입니다. 지금과 바람 사이가 벌어진 것이에요. (교과서 22쪽)"}, {"a": 2, "why": "읽자마자 「그래서 온도를 재면 되겠네」가 떠오릅니다. 나머지는 무엇을 재야 할지 알 수 없어요."}, {"a": 2, "why": "교과서는 연구자의 경험 · 문헌 고찰 · 기존 이론 · 사회적 요청 네 가지를 듭니다. (교과서 35쪽)"}, {"a": 1, "why": "잴 것을 정하면 연구가 됩니다. 「점심을 같이 먹는 사람 수」처럼 셀 수 있는 것으로 바꿔 보세요."}];
+
+/* ── 저장소 (막힌 환경에서도 동작) ── */
+const MEM={}; let OK=true;
+try{localStorage.setItem("__t","1");localStorage.removeItem("__t");}catch(e){OK=false;}
+const S={get(k){try{return OK?localStorage.getItem(k):(MEM[k]??null);}catch(e){return MEM[k]??null;}},
+set(k,v){MEM[k]=v;try{if(OK)localStorage.setItem(k,v);}catch(e){OK=false;}}};
+const LS="정보과제연구_기록";
+
+function me(){return {sid:sid.value.trim(),name:sname.value.trim()};}
+function saveMe(){S.set("정보과제연구_나",JSON.stringify(me()));
+  flash("logmsg",OK?"✅ 기억했습니다":"✅ 기억했습니다 (창을 닫으면 지워집니다)","ok");}
+(function(){try{const m=JSON.parse(S.get("정보과제연구_나")||"{}");
+  if(m.sid)sid.value=m.sid; if(m.name)sname.value=m.name;}catch(e){}})();
+
+function flash(id,t,c){const e=document.getElementById(id);e.textContent=t;e.className="msg "+(c||"");
+  if(c==="ok")setTimeout(()=>{if(e.textContent===t)e.textContent="";},7000);}
+function records(){try{return JSON.parse(S.get(LS)||"[]");}catch(e){return [];}}
+
+/* ── 제출 ── */
+function submitBlock(kind){
+  const list = kind==="생각나누기" ? OPEN : PROJ;
+  const who = me();
+  if(!who.sid||!who.name){flash("msg-"+kind,"⚠️ 위에 학번과 이름을 먼저 적어 주세요","warn");sid.focus();return;}
+  const parts=[];
+  for(let i=0;i<list.length;i++){
+    const v=document.getElementById(kind+i).value.trim();
+    if(!v){const lbl=list[i].q.length>16?list[i].q.slice(0,16)+"…":list[i].q;
+      flash("msg-"+kind,`⚠️ ${i+1}번 「${lbl}」 칸이 비어 있어요`,"warn");
+      document.getElementById(kind+i).focus();return;}
+    parts.push(list.length===1 ? v : `${list[i].q}\n${v}`);
+  }
+  const body=parts.join("\n\n");
+  const when=new Date().toLocaleString("ko-KR",{month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"});
+  const sent=!!ENDPOINT;
+  if(sent){
+    const f=document.createElement("form");
+    f.action=ENDPOINT; f.method="POST"; f.target="sink";
+    const put=(n,v)=>{const i=document.createElement("input");i.type="hidden";i.name=n;i.value=v;f.appendChild(i);};
+    put("n",String(차시번호)); put("sid",who.sid); put("name",who.name);
+    put("kind",kind==="생각나누기"?"생기부":"프로젝트");
+    put("item",kind); put("body",body);
+    document.body.appendChild(f); f.submit(); document.body.removeChild(f);
+    flash("msg-"+kind,"✅ 제출했습니다","ok");
+  }else{
+    flash("msg-"+kind,"⚠️ 전송 설정 전입니다. 이 기기에 저장했어요","warn");
+  }
+  try{const a=records();a.push({when,kind,body,sent});S.set(LS,JSON.stringify(a));}catch(e){}
+  refreshFail();
+}
+
+/* 전송 실패가 있을 때만 「전체 복사」를 보여 줍니다 */
+function refreshFail(){
+  const bad = records().some(r=>!r.sent);
+  document.getElementById("copybtn").style.display  = bad ? "" : "none";
+  document.getElementById("failnote").style.display = bad ? "" : "none";
+}
+
+/* ── 퀴즈 ── */
+function grade(){
+  let right=0, done=0;
+  QUIZ.forEach((q,i)=>{
+    const sel=document.querySelector(`input[name=q${i}]:checked`);
+    const fb=document.getElementById("fb"+i);
+    if(!sel){fb.className="fb";return;}
+    done++;
+    const ok=Number(sel.value)===q.a;
+    if(ok)right++;
+    fb.className="fb on "+(ok?"o":"x");
+    fb.textContent=(ok?"⭕ 맞았어요 — ":"❌ 다시 볼까요 — ")+q.why;
+  });
+  const s=document.getElementById("score");
+  if(done<QUIZ.length){s.textContent=`아직 안 푼 문제가 있어요 (${done}/${QUIZ.length})`;return;}
+  s.textContent=`${QUIZ.length}문제 중 ${right}개 정답` +
+    (right===QUIZ.length?"  🎉 완벽합니다":(right>=QUIZ.length-1?"  👍 거의 다 됐어요":"  📖 위 설명을 다시 읽어 보세요"));
+}
+function resetQuiz(){
+  document.querySelectorAll("input[type=radio]").forEach(r=>r.checked=false);
+  document.querySelectorAll(".fb").forEach(f=>f.className="fb");
+  document.getElementById("score").textContent="";
+}
+
+/* ── 기록 ── */
+function asText(){const a=records();
+  if(!a.length)return "아직 제출한 게 없습니다.";
+  return a.map(r=>`${r.sent?"✅":"⚠️"} ${r.kind}  (${r.when})\n${r.body}`).join("\n\n──────────\n\n");}
+function showLog(){const d=document.getElementById("log");
+  d.style.display=d.style.display==="none"?"block":"none"; d.textContent=asText(); refreshFail();}
+function copyLog(){const t=`${차시번호}차시  ${sid.value} ${sname.value}\n\n`+asText();
+  navigator.clipboard.writeText(t).then(()=>flash("logmsg","✅ 복사했습니다","ok"))
+  .catch(()=>{const d=document.getElementById("log");d.style.display="block";d.textContent=t;
+    flash("logmsg","아래에서 직접 선택해 복사하세요","warn");});}
+
+refreshFail();
+</script></body></html>

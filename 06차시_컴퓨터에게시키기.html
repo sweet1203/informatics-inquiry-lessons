@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6차시 · 컴퓨터에게 시키기</title>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ⚙️ 선생님 설정 — 아래 한 줄만 채우면 됩니다
+     _설정_AppsScript.gs 를 스프레드시트에 설치하고 받은 웹 앱 URL
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+const ENDPOINT = "";
+const 차시번호 = 6;
+</script>
+
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1a1d21;--muted:#6b7280;--line:#e3e6ea;
+--accent:#2563eb;--ink2:#fff;--ok:#0d9488;--warn:#b45309;--soft:#eef2ff;--quiz:#fff7ed;--quizline:#fdba74}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+--bg:#14171a;--card:#1c2024;--ink:#e8eaed;--muted:#9aa3ad;--line:#2c3238;
+--accent:#5b8cff;--ink2:#0d1117;--ok:#2dd4bf;--warn:#fbbf24;--soft:#1e2536;--quiz:#2a2118;--quizline:#7c4a12}}
+*{box-sizing:border-box}
+body{margin:0;padding:0 16px 72px;background:var(--bg);color:var(--ink);line-height:1.7;
+font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:780px;margin:0 auto}
+header{padding:30px 0 18px;border-bottom:2px solid var(--line);margin-bottom:22px}
+.chip{display:inline-block;background:var(--accent);color:var(--ink2);font-size:.78rem;font-weight:700;
+padding:4px 12px;border-radius:99px;margin-bottom:10px}
+h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:.93rem;margin:0}
+.me{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:15px;
+margin-bottom:26px;display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.me .f{flex:1;min-width:115px}
+label{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:5px}
+input[type=text],textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;
+background:var(--card);color:var(--ink);font-size:1rem;font-family:inherit}
+textarea{min-height:88px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:20px}
+section>h2{font-size:1.16rem;margin:0 0 4px;letter-spacing:-.01em}
+.lead{color:var(--muted);font-size:.9rem;margin:0 0 16px}
+.learn h3{font-size:1rem;margin:22px 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
+.learn p{margin:8px 0}
+.learn ul{margin:8px 0;padding-left:20px} .learn li{margin:5px 0}
+.learn table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem}
+.learn th,.learn td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.learn th{background:var(--soft);font-weight:700}
+.learn code{background:var(--soft);padding:1px 6px;border-radius:4px;font-size:.88em}
+.box{background:var(--soft);border-left:3px solid var(--accent);padding:12px 15px;border-radius:0 9px 9px 0;margin:14px 0}
+.book{font-size:.82rem;color:var(--muted);font-weight:600}
+.q{background:var(--quiz);border:1px solid var(--quizline);border-radius:11px;padding:16px;margin-bottom:13px}
+.q .qt{font-weight:700;margin-bottom:10px}
+.opt{display:block;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);
+margin-bottom:7px;cursor:pointer;font-size:.95rem}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin-right:8px}
+.fb{font-size:.9rem;font-weight:600;margin-top:9px;display:none}
+.fb.on{display:block} .fb.o{color:var(--ok)} .fb.x{color:var(--warn)}
+button{font-family:inherit;font-size:.95rem;font-weight:600;border:0;border-radius:9px;padding:11px 20px;
+cursor:pointer;background:var(--accent);color:var(--ink2)}
+button:hover{filter:brightness(1.08)}
+button.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.row{display:flex;gap:9px;align-items:center;margin-top:15px;flex-wrap:wrap}
+.msg{font-size:.9rem;font-weight:600} .msg.ok{color:var(--ok)} .msg.warn{color:var(--warn)}
+.score{font-size:1.05rem;font-weight:700;margin-top:14px}
+#log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
+border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
+footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
+</style></head><body><div class="wrap">
+
+<header>
+  <span class="chip">6차시</span>
+  <h1>컴퓨터에게 시키기</h1>
+  <p class="sub">컴퓨팅 사고력 ② 자동화 · 그리고 이 과목의 의미</p>
+</header>
+
+<div class="me">
+  <div class="f"><label for="sid">학번</label><input type="text" id="sid" placeholder="30101" autocomplete="off"></div>
+  <div class="f"><label for="sname">이름</label><input type="text" id="sname" placeholder="홍길동" autocomplete="off"></div>
+  <button class="ghost" onclick="saveMe()">기억하기</button>
+</div>
+
+<section class="learn">
+  <h2>📖 오늘 배울 것</h2>
+  <p class="lead">교과서 21쪽 · 28~29쪽</p>
+  
+<h3>자동화 — 정리한 걸 컴퓨터에게</h3>
+<div class="box">📖 알고리즘을 토대로 <b>순차 · 선택 · 반복</b> 구조의 프로그램을 만들어
+연구에 적용하는 것을 <b>자동화</b>라고 한다. <span class="book">교과서 28쪽</span></div>
+
+<p>교과서의 자판기 비유가 재밌습니다.</p>
+<div class="box">자판기 안에 <b>사람이 들어가</b> 돈 받고, 물건 주고, 거스름돈 주기를
+하루 종일 반복한다면? <b>실수도 하고 매우 힘들 것</b>입니다.<br>
+→ 그래서 <b>반복되는 일은 컴퓨터에게</b> 맡깁니다.</div>
+
+<h3>자동화가 하는 두 가지</h3>
+<table><tr><th></th><th>무엇</th><th>내 연구라면</th></tr>
+<tr><td><b>시뮬레이션</b></td><td>프로그램을 돌려 결과를 보고 <b>예측</b>하기</td><td>센서가 1분마다 자동 기록 · 수식으로 전체 계산</td></tr>
+<tr><td><b>병렬화</b></td><td>여러 작업을 <b>동시에</b> 수행</td><td>여러 지역 데이터를 한꺼번에 처리</td></tr></table>
+
+<p>교과서는 시뮬레이션이 안 될 때의 점검 순서도 알려줍니다.</p>
+<table><tr><th>무엇이 문제면</th><th>이렇게</th></tr>
+<tr><td>알고리즘</td><td>알고리즘을 고친다</td></tr>
+<tr><td>프로그램 환경</td><td>다른 도구·언어를 고른다</td></tr>
+<tr><td>코드</td><td><b>디버깅</b>으로 원인을 찾는다</td></tr></table>
+
+<h3>⭐ 정보 과제 연구가 잘하는 일 일곱 가지</h3>
+<p>교과서가 정리한 특징입니다. <span class="book">교과서 21쪽</span></p>
+<table><tr><th>특징</th><th>무슨 뜻</th></tr>
+<tr><td>문제의 분석</td><td>지금 상태와 목표 상태를 분명히 함</td></tr>
+<tr><td>분해와 추상</td><td>엉킨 관계를 분리하고 모델로 만듦</td></tr>
+<tr><td>문제의 재정의</td><td>축소·변환해 간단하게 만듦</td></tr>
+<tr><td>재귀적 사고</td><td>같은 과정을 함수로 묶어 정확·효율</td></tr>
+<tr><td>선행적 사고</td><td>생길 문제를 <b>미리 예측</b>함</td></tr>
+<tr><td>발견적 추론</td><td>비슷한 문제에 <b>일반화</b>해 적용</td></tr>
+<tr><td>효율성 유지</td><td>시간과 저장 공간의 균형</td></tr></table>
+
+<h3>💬 컴퓨팅 사고를 만든 사람</h3>
+<div class="box">2006년 카네기멜론대 <b>지넷 윙</b> 교수가 논문을 내면서 널리 퍼졌습니다.
+그가 말한 특징 중 셋만 볼게요. <span class="book">교과서 28쪽</span><br><br>
+▪ 핵심은 <b>프로그래밍이 아니라 개념화</b>에 있다<br>
+▪ <b>컴퓨터가 아닌 인간의 사고 방법</b>이다<br>
+▪ <b>모두를 위한 것</b>이다</div>
+
+<p>첫 시간에 “코딩 못해도 된다”고 한 이유가 여기 있습니다.<br>
+<b>중요한 건 코드가 아니라 「무엇을 어떻게 풀지 생각하는 힘」</b>입니다.</p>
+
+<div class="box">🎯 <b>컴퓨터는 계산을 하고, 무엇을 계산할지는 사람이 정합니다.</b><br>
+여러분이 할 일은 뒤쪽이에요.</div>
+
+</section>
+
+<section>
+  <h2>✍️ 생각 나누기</h2>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
+  <div class="f" style="margin-top:12px"><label for="생각나누기0">“컴퓨팅 사고의 핵심은 프로그래밍이 아니라 개념화에 있다” — 이 말이 내 연구에서는 무슨 뜻일까요?</label><textarea id="생각나누기0" placeholder="예) 센서 코드는 선생님이 주신 걸 쓰지만, 어디에 센서를 두고 무엇과 비교할지는 내가 정해야 한다는 뜻인 것 같다"></textarea></div>
+  <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
+    <span class="msg" id="msg-생각나누기"></span></div>
+</section>
+
+<section>
+  <h2>✅ 확인 퀴즈</h2>
+  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
+  <div class="q"><div class="qt">1. 교과서에서 말하는 <b>자동화</b>의 설명으로 알맞은 것은?</div><label class="opt"><input type="radio" name="q0" value="0">복잡한 문제를 작게 나누는 것</label><label class="opt"><input type="radio" name="q0" value="1">알고리즘을 토대로 순차·선택·반복 구조의 프로그램을 만들어 적용하는 것</label><label class="opt"><input type="radio" name="q0" value="2">자료를 그래프로 표현하는 것</label><label class="opt"><input type="radio" name="q0" value="3">연구 주제를 선정하는 것</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 프로그램을 돌렸는데 결과가 예상과 다릅니다. <b>코드</b>가 문제일 때 할 일은?</div><label class="opt"><input type="radio" name="q1" value="0">알고리즘을 다시 짠다</label><label class="opt"><input type="radio" name="q1" value="1">다른 프로그래밍 언어로 바꾼다</label><label class="opt"><input type="radio" name="q1" value="2">디버깅으로 원인을 찾아 수정한다</label><label class="opt"><input type="radio" name="q1" value="3">연구 주제를 바꾼다</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 지넷 윙이 말한 컴퓨팅 사고의 특징이 <b>아닌</b> 것은?</div><label class="opt"><input type="radio" name="q2" value="0">컴퓨터가 아닌 인간의 사고 방법이다</label><label class="opt"><input type="radio" name="q2" value="1">모두를 위한 것이다</label><label class="opt"><input type="radio" name="q2" value="2">핵심은 개념화에 있다</label><label class="opt"><input type="radio" name="q2" value="3">전문 프로그래머만 갖출 수 있는 능력이다</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 정보 과제 연구의 특징 중 <b>선행적 사고</b>에 해당하는 것은?</div><label class="opt"><input type="radio" name="q3" value="0">생길 수 있는 문제를 미리 예측하고 대비한다</label><label class="opt"><input type="radio" name="q3" value="1">같은 과정을 함수로 묶는다</label><label class="opt"><input type="radio" name="q3" value="2">복잡한 관계를 분리해 모델로 만든다</label><label class="opt"><input type="radio" name="q3" value="3">시간과 저장 공간의 균형을 맞춘다</label><div class="fb" id="fb3"></div></div>
+  <div class="row"><button onclick="grade()">채점하기</button>
+    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
+  <div class="score" id="score"></div>
+</section>
+
+<section>
+  <h2>🔬 내 연구로 가져오기</h2>
+  <p class="lead">내 연구에서 <b>컴퓨터에게 맡길 일</b>과 <b>내가 할 일</b>을 나눠 봅니다.</p>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">컴퓨터(또는 도구)가 대신해 줄 반복 작업은 무엇인가요?</label><textarea id="프로젝트0" placeholder="예) 1분마다 온도를 재서 기록하는 일. 사람이 하면 밤에는 못 한다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">내가 직접 판단해야 하는 일은 무엇인가요?</label><textarea id="프로젝트1" placeholder="예) 어디에 센서를 둘지, 결과가 무슨 뜻인지 해석하는 일"></textarea></div>
+  <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
+    <span class="msg" id="msg-프로젝트"></span></div>
+</section>
+
+<section>
+  <h2>📋 내가 낸 것</h2>
+  <div class="row">
+    <button class="ghost" onclick="showLog()">보기</button>
+    <button class="ghost" id="copybtn" style="display:none" onclick="copyLog()">전체 복사</button>
+    <span class="msg" id="logmsg"></span>
+  </div>
+  <p class="lead" id="failnote" style="display:none;margin:12px 0 0;color:var(--warn)">
+    ⚠️ 전송되지 않은 것이 있습니다. <b>전체 복사</b>를 눌러 선생님께 보내 주세요.</p>
+  <div id="log" style="display:none;margin-top:13px"></div>
+</section>
+
+<footer>정보 과제 연구 · 대성여자고등학교 · 2026학년도 2학기</footer>
+</div>
+<iframe name="sink" style="display:none" title="hidden"></iframe>
+
+<script>
+const OPEN = [{"q": "“컴퓨팅 사고의 핵심은 프로그래밍이 아니라 개념화에 있다” — 이 말이 내 연구에서는 무슨 뜻일까요?"}];
+const PROJ = [{"q": "컴퓨터(또는 도구)가 대신해 줄 반복 작업은 무엇인가요?"}, {"q": "내가 직접 판단해야 하는 일은 무엇인가요?"}];
+const QUIZ = [{"a": 1, "why": "추상화로 만든 해결 모델을 컴퓨터가 반복 수행하게 하는 것이 자동화입니다."}, {"a": 2, "why": "알고리즘 문제면 알고리즘을, 환경 문제면 도구를, 코드 문제면 디버깅입니다. (교과서 28쪽)"}, {"a": 3, "why": "정반대입니다. 「모든 사람이 갖춰야 하는 핵심 역량」이라고 했어요."}, {"a": 0, "why": "계획서 ⑧번 「예상되는 어려움」을 쓰는 이유가 바로 이것입니다."}];
+
+/* ── 저장소 (막힌 환경에서도 동작) ── */
+const MEM={}; let OK=true;
+try{localStorage.setItem("__t","1");localStorage.removeItem("__t");}catch(e){OK=false;}
+const S={get(k){try{return OK?localStorage.getItem(k):(MEM[k]??null);}catch(e){return MEM[k]??null;}},
+set(k,v){MEM[k]=v;try{if(OK)localStorage.setItem(k,v);}catch(e){OK=false;}}};
+const LS="정보과제연구_기록";
+
+function me(){return {sid:sid.value.trim(),name:sname.value.trim()};}
+function saveMe(){S.set("정보과제연구_나",JSON.stringify(me()));
+  flash("logmsg",OK?"✅ 기억했습니다":"✅ 기억했습니다 (창을 닫으면 지워집니다)","ok");}
+(function(){try{const m=JSON.parse(S.get("정보과제연구_나")||"{}");
+  if(m.sid)sid.value=m.sid; if(m.name)sname.value=m.name;}catch(e){}})();
+
+function flash(id,t,c){const e=document.getElementById(id);e.textContent=t;e.className="msg "+(c||"");
+  if(c==="ok")setTimeout(()=>{if(e.textContent===t)e.textContent="";},7000);}
+function records(){try{return JSON.parse(S.get(LS)||"[]");}catch(e){return [];}}
+
+/* ── 제출 ── */
+function submitBlock(kind){
+  const list = kind==="생각나누기" ? OPEN : PROJ;
+  const who = me();
+  if(!who.sid||!who.name){flash("msg-"+kind,"⚠️ 위에 학번과 이름을 먼저 적어 주세요","warn");sid.focus();return;}
+  const parts=[];
+  for(let i=0;i<list.length;i++){
+    const v=document.getElementById(kind+i).value.trim();
+    if(!v){const lbl=list[i].q.length>16?list[i].q.slice(0,16)+"…":list[i].q;
+      flash("msg-"+kind,`⚠️ ${i+1}번 「${lbl}」 칸이 비어 있어요`,"warn");
+      document.getElementById(kind+i).focus();return;}
+    parts.push(list.length===1 ? v : `${list[i].q}\n${v}`);
+  }
+  const body=parts.join("\n\n");
+  const when=new Date().toLocaleString("ko-KR",{month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"});
+  const sent=!!ENDPOINT;
+  if(sent){
+    const f=document.createElement("form");
+    f.action=ENDPOINT; f.method="POST"; f.target="sink";
+    const put=(n,v)=>{const i=document.createElement("input");i.type="hidden";i.name=n;i.value=v;f.appendChild(i);};
+    put("n",String(차시번호)); put("sid",who.sid); put("name",who.name);
+    put("kind",kind==="생각나누기"?"생기부":"프로젝트");
+    put("item",kind); put("body",body);
+    document.body.appendChild(f); f.submit(); document.body.removeChild(f);
+    flash("msg-"+kind,"✅ 제출했습니다","ok");
+  }else{
+    flash("msg-"+kind,"⚠️ 전송 설정 전입니다. 이 기기에 저장했어요","warn");
+  }
+  try{const a=records();a.push({when,kind,body,sent});S.set(LS,JSON.stringify(a));}catch(e){}
+  refreshFail();
+}
+
+/* 전송 실패가 있을 때만 「전체 복사」를 보여 줍니다 */
+function refreshFail(){
+  const bad = records().some(r=>!r.sent);
+  document.getElementById("copybtn").style.display  = bad ? "" : "none";
+  document.getElementById("failnote").style.display = bad ? "" : "none";
+}
+
+/* ── 퀴즈 ── */
+function grade(){
+  let right=0, done=0;
+  QUIZ.forEach((q,i)=>{
+    const sel=document.querySelector(`input[name=q${i}]:checked`);
+    const fb=document.getElementById("fb"+i);
+    if(!sel){fb.className="fb";return;}
+    done++;
+    const ok=Number(sel.value)===q.a;
+    if(ok)right++;
+    fb.className="fb on "+(ok?"o":"x");
+    fb.textContent=(ok?"⭕ 맞았어요 — ":"❌ 다시 볼까요 — ")+q.why;
+  });
+  const s=document.getElementById("score");
+  if(done<QUIZ.length){s.textContent=`아직 안 푼 문제가 있어요 (${done}/${QUIZ.length})`;return;}
+  s.textContent=`${QUIZ.length}문제 중 ${right}개 정답` +
+    (right===QUIZ.length?"  🎉 완벽합니다":(right>=QUIZ.length-1?"  👍 거의 다 됐어요":"  📖 위 설명을 다시 읽어 보세요"));
+}
+function resetQuiz(){
+  document.querySelectorAll("input[type=radio]").forEach(r=>r.checked=false);
+  document.querySelectorAll(".fb").forEach(f=>f.className="fb");
+  document.getElementById("score").textContent="";
+}
+
+/* ── 기록 ── */
+function asText(){const a=records();
+  if(!a.length)return "아직 제출한 게 없습니다.";
+  return a.map(r=>`${r.sent?"✅":"⚠️"} ${r.kind}  (${r.when})\n${r.body}`).join("\n\n──────────\n\n");}
+function showLog(){const d=document.getElementById("log");
+  d.style.display=d.style.display==="none"?"block":"none"; d.textContent=asText(); refreshFail();}
+function copyLog(){const t=`${차시번호}차시  ${sid.value} ${sname.value}\n\n`+asText();
+  navigator.clipboard.writeText(t).then(()=>flash("logmsg","✅ 복사했습니다","ok"))
+  .catch(()=>{const d=document.getElementById("log");d.style.display="block";d.textContent=t;
+    flash("logmsg","아래에서 직접 선택해 복사하세요","warn");});}
+
+refreshFail();
+</script></body></html>

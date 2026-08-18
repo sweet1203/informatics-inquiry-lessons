@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>20차시 · 예상하고, 미리 걱정하기</title>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ⚙️ 선생님 설정 — 아래 한 줄만 채우면 됩니다
+     _설정_AppsScript.gs 를 스프레드시트에 설치하고 받은 웹 앱 URL
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+const ENDPOINT = "";
+const 차시번호 = 20;
+</script>
+
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1a1d21;--muted:#6b7280;--line:#e3e6ea;
+--accent:#2563eb;--ink2:#fff;--ok:#0d9488;--warn:#b45309;--soft:#eef2ff;--quiz:#fff7ed;--quizline:#fdba74}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+--bg:#14171a;--card:#1c2024;--ink:#e8eaed;--muted:#9aa3ad;--line:#2c3238;
+--accent:#5b8cff;--ink2:#0d1117;--ok:#2dd4bf;--warn:#fbbf24;--soft:#1e2536;--quiz:#2a2118;--quizline:#7c4a12}}
+*{box-sizing:border-box}
+body{margin:0;padding:0 16px 72px;background:var(--bg);color:var(--ink);line-height:1.7;
+font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:780px;margin:0 auto}
+header{padding:30px 0 18px;border-bottom:2px solid var(--line);margin-bottom:22px}
+.chip{display:inline-block;background:var(--accent);color:var(--ink2);font-size:.78rem;font-weight:700;
+padding:4px 12px;border-radius:99px;margin-bottom:10px}
+h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:.93rem;margin:0}
+.me{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:15px;
+margin-bottom:26px;display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.me .f{flex:1;min-width:115px}
+label{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:5px}
+input[type=text],textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;
+background:var(--card);color:var(--ink);font-size:1rem;font-family:inherit}
+textarea{min-height:88px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:20px}
+section>h2{font-size:1.16rem;margin:0 0 4px;letter-spacing:-.01em}
+.lead{color:var(--muted);font-size:.9rem;margin:0 0 16px}
+.learn h3{font-size:1rem;margin:22px 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
+.learn p{margin:8px 0}
+.learn ul{margin:8px 0;padding-left:20px} .learn li{margin:5px 0}
+.learn table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem}
+.learn th,.learn td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.learn th{background:var(--soft);font-weight:700}
+.learn code{background:var(--soft);padding:1px 6px;border-radius:4px;font-size:.88em}
+.box{background:var(--soft);border-left:3px solid var(--accent);padding:12px 15px;border-radius:0 9px 9px 0;margin:14px 0}
+.book{font-size:.82rem;color:var(--muted);font-weight:600}
+.q{background:var(--quiz);border:1px solid var(--quizline);border-radius:11px;padding:16px;margin-bottom:13px}
+.q .qt{font-weight:700;margin-bottom:10px}
+.opt{display:block;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);
+margin-bottom:7px;cursor:pointer;font-size:.95rem}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin-right:8px}
+.fb{font-size:.9rem;font-weight:600;margin-top:9px;display:none}
+.fb.on{display:block} .fb.o{color:var(--ok)} .fb.x{color:var(--warn)}
+button{font-family:inherit;font-size:.95rem;font-weight:600;border:0;border-radius:9px;padding:11px 20px;
+cursor:pointer;background:var(--accent);color:var(--ink2)}
+button:hover{filter:brightness(1.08)}
+button.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.row{display:flex;gap:9px;align-items:center;margin-top:15px;flex-wrap:wrap}
+.msg{font-size:.9rem;font-weight:600} .msg.ok{color:var(--ok)} .msg.warn{color:var(--warn)}
+.score{font-size:1.05rem;font-weight:700;margin-top:14px}
+#log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
+border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
+footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
+</style></head><body><div class="wrap">
+
+<header>
+  <span class="chip">20차시</span>
+  <h1>예상하고, 미리 걱정하기</h1>
+  <p class="sub">계획서 마지막 두 칸</p>
+</header>
+
+<div class="me">
+  <div class="f"><label for="sid">학번</label><input type="text" id="sid" placeholder="30101" autocomplete="off"></div>
+  <div class="f"><label for="sname">이름</label><input type="text" id="sname" placeholder="홍길동" autocomplete="off"></div>
+  <button class="ghost" onclick="saveMe()">기억하기</button>
+</div>
+
+<section class="learn">
+  <h2>📖 오늘 배울 것</h2>
+  <p class="lead">교과서 36쪽 · 40~41쪽</p>
+  
+<h3>왜 결과를 미리 써 볼까</h3>
+<p>아직 해보지도 않았는데 결과를 쓰라니 이상하죠. 그런데 이게 <b>연구의 핵심 장치</b>입니다.</p>
+
+<div class="box">📖 연구 계획서는 <b>연구 주제, 연구 목표, 예상되는 연구 결과</b>를 제시하며,
+이것이 곧 <b>연구 보고서의 초안</b>이 됩니다. <span class="book">교과서 36쪽</span></div>
+
+<p>미리 써 두면 나중에 이런 일이 생깁니다.</p>
+<table><tr><th>결과가</th><th>그러면</th></tr>
+<tr><td>예상대로 나왔다</td><td>“내 생각이 맞았다” — 확인된 것</td></tr>
+<tr><td><b>예상과 달랐다</b></td><td><b>“왜 다르지?” — 여기서 진짜 연구가 시작됩니다</b></td></tr></table>
+
+<div class="box">🎯 <b>예상은 틀려도 됩니다.</b><br>
+오히려 예상과 다를 때 쓸 말이 많아집니다.
+<b>예상을 안 써 두면 「달랐다」는 것조차 알 수 없어요.</b></div>
+
+<h3>예상 결과 쓰는 법</h3>
+<p><code>아마 (          ) 일 것이다.</code> — 한 문장이면 충분합니다.</p>
+<table><tr><th>약한 예상</th><th>좋은 예상</th></tr>
+<tr><td>좋은 결과가 나올 것이다</td><td>아마 <b>5~6교시</b>가 가장 더울 것이다</td></tr>
+<tr><td>차이가 있을 것이다</td><td>아마 창가가 복도보다 <b>2℃ 정도</b> 높을 것이다</td></tr>
+<tr><td>정확도가 높을 것이다</td><td>아마 <b>투명한 페트병</b>의 정확도가 가장 낮을 것이다</td></tr></table>
+<p><b>숫자나 방향이 들어가면 좋은 예상</b>입니다. 나중에 맞았는지 틀렸는지 판단할 수 있으니까요.</p>
+
+<h3>예상되는 어려움 — 미리 걱정하는 게 이득입니다</h3>
+<p>이 칸을 “문제가 없을 것 같습니다”로 채우는 학생이 많은데, <b>가장 아까운 칸</b>입니다.</p>
+
+<div class="box">💡 <b>미리 써 두면 두 가지가 좋습니다.</b><br>
+① 실제로 그 일이 생겼을 때 <b>당황하지 않습니다</b><br>
+② 보고서 <b>「⑥ 한계와 개선 방향」</b>을 쓸 때 그대로 이어집니다</div>
+
+<p>어려움은 보통 세 갈래입니다. <i>(뒤 차시에서 자세히 다룹니다)</i></p>
+<table><tr><th>갈래</th><th>이런 모습</th></tr>
+<tr><td><b>자료 부족</b></td><td>측정 기간이 짧다 · 표본이 적다 · 데이터 줄 수가 모자란다</td></tr>
+<tr><td><b>자료 편중</b></td><td>한 학년에만 쏠렸다 · 특정 요일만 쟀다</td></tr>
+<tr><td><b>방법·도구의 제약</b></td><td>센서 오차가 있다 · 도구가 그 분석을 지원하지 않는다</td></tr></table>
+
+<p>“데이터가 부족할 수 있다” 정도로 <b>짧게 써도 충분합니다.</b></p>
+
+<h3>✅ 계획서 8칸 점검</h3>
+<p>오늘로 여덟 칸이 다 찼습니다. 다음 시간에 서로 검토하기 전, 스스로 확인해 보세요.</p>
+<table><tr><th>칸</th><th>확인</th></tr>
+<tr><td>① 제목</td><td>무엇을 재고 무엇을 알아낼지 보이는가</td></tr>
+<tr><td>② 동기</td><td>“지금은 ~ / 되면 좋겠다” 두 문장이 있는가</td></tr>
+<tr><td>③ 질문</td><td><b>한 문장</b>이고 답할 수 있는가</td></tr>
+<tr><td>④ 데이터·장치</td><td><b>실제로 구했는가</b></td></tr>
+<tr><td>⑤ 방법·도구</td><td>다른 사람이 따라 할 수 있을 만큼 구체적인가</td></tr>
+<tr><td>⑥ 절차</td><td>주차별로 배치돼 있는가</td></tr>
+<tr><td>⑦ 예상 결과</td><td>숫자나 방향이 들어갔는가</td></tr>
+<tr><td>⑧ 어려움</td><td>“없다”라고 쓰지 않았는가</td></tr></table>
+
+<div class="box">⭐ <b>가장 중요한 건 ③ ↔ ④ ↔ ⑤가 서로 맞물리는지</b>입니다.<br>
+질문에 답하려면 그 데이터가 필요하고, 그 데이터를 다루려면 그 도구가 필요한가?<br>
+셋 중 하나라도 어긋나면 10월에 막힙니다.</div>
+
+</section>
+
+<section>
+  <h2>✍️ 생각 나누기</h2>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
+  <div class="f" style="margin-top:12px"><label for="생각나누기0">내 예상이 틀린다면, 어떤 이유일 것 같나요? 하나만 미리 상상해서 써 주세요.</label><textarea id="생각나누기0" placeholder="예) 5교시가 제일 더울 거라 생각했는데, 점심시간에 창문을 열어서 오히려 6교시가 더울 수도 있겠다"></textarea></div><div class="f" style="margin-top:12px"><label for="생각나누기1">계획서 여덟 칸을 다 채워 본 소감을 써 주세요. 처음 궁금증에서 지금까지 무엇이 가장 많이 바뀌었나요?</label><textarea id="생각나누기1" placeholder="예) 처음엔 「교실이 덥다」가 전부였는데, 지금은 무엇을 어떻게 재서 무엇을 알아낼지까지 정해졌다"></textarea></div>
+  <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
+    <span class="msg" id="msg-생각나누기"></span></div>
+</section>
+
+<section>
+  <h2>✅ 확인 퀴즈</h2>
+  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
+  <div class="q"><div class="qt">1. 예상 결과가 실제와 달랐습니다. 이때 알맞은 대응은?</div><label class="opt"><input type="radio" name="q0" value="0">연구가 실패했으므로 주제를 바꾼다</label><label class="opt"><input type="radio" name="q0" value="1">예상에 맞게 데이터를 고른다</label><label class="opt"><input type="radio" name="q0" value="2">왜 달랐는지 원인을 분석해 보고서에 쓴다</label><label class="opt"><input type="radio" name="q0" value="3">예상 결과를 나중에 고쳐 쓴다</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 다음 중 예상 결과로 가장 잘 쓴 것은?</div><label class="opt"><input type="radio" name="q1" value="0">아마 5~6교시가 1교시보다 4℃ 정도 높을 것이다</label><label class="opt"><input type="radio" name="q1" value="1">좋은 결과가 나올 것이다</label><label class="opt"><input type="radio" name="q1" value="2">의미 있는 차이가 있을 것이다</label><label class="opt"><input type="radio" name="q1" value="3">실험이 잘 될 것 같다</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 「예상되는 어려움」 칸에 <b>가장 부적절한</b> 답은?</div><label class="opt"><input type="radio" name="q2" value="0">측정 기간이 짧아 그 주 날씨에 좌우될 수 있다</label><label class="opt"><input type="radio" name="q2" value="1">센서 오차가 ±2℃ 정도 있다</label><label class="opt"><input type="radio" name="q2" value="2">한 학년 자료만 있어 전체로 보기 어렵다</label><label class="opt"><input type="radio" name="q2" value="3">특별히 어려운 점은 없을 것 같다</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 계획서를 점검할 때 가장 중요하게 봐야 할 것은?</div><label class="opt"><input type="radio" name="q3" value="0">글자 수가 충분한가</label><label class="opt"><input type="radio" name="q3" value="1">맞춤법이 맞는가</label><label class="opt"><input type="radio" name="q3" value="2">제목이 멋있는가</label><label class="opt"><input type="radio" name="q3" value="3">③ 질문 · ④ 데이터 · ⑤ 도구가 서로 맞물리는가</label><div class="fb" id="fb3"></div></div>
+  <div class="row"><button onclick="grade()">채점하기</button>
+    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
+  <div class="score" id="score"></div>
+</section>
+
+<section>
+  <h2>🔬 내 연구로 가져오기</h2>
+  <p class="lead">여기 쓴 내용이 그대로 <b>계획서 ⑦ 예상 결과 · ⑧ 예상되는 어려움</b> 칸이 됩니다.</p>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">⑦ 예상 결과 — “아마 (          ) 일 것이다” 한 문장으로.</label><textarea id="프로젝트0" placeholder="예) 아마 5~6교시가 가장 덥고, 1교시보다 4℃ 정도 높을 것이다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">⑧ 예상되는 어려움 — 자료 부족 / 자료 편중 / 방법·도구의 제약 중 하나 이상.</label><textarea id="프로젝트1" placeholder="예) 측정 기간이 일주일뿐이라 그 주의 날씨에 결과가 좌우될 수 있다. DHT11 센서는 오차가 ±2℃ 정도 있다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">③ 연구 질문 · ④ 데이터·장치 · ⑤ 방법·도구가 서로 맞물리나요? 어긋난 곳이 있으면 적어 주세요.</label><textarea id="프로젝트2" placeholder="예) 맞물린다 / 또는: 질문은 「교시별」인데 센서에 시계가 없어서 시각을 못 남긴다. RTC 모듈이 필요할 것 같다"></textarea></div>
+  <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
+    <span class="msg" id="msg-프로젝트"></span></div>
+</section>
+
+<section>
+  <h2>📋 내가 낸 것</h2>
+  <div class="row">
+    <button class="ghost" onclick="showLog()">보기</button>
+    <button class="ghost" id="copybtn" style="display:none" onclick="copyLog()">전체 복사</button>
+    <span class="msg" id="logmsg"></span>
+  </div>
+  <p class="lead" id="failnote" style="display:none;margin:12px 0 0;color:var(--warn)">
+    ⚠️ 전송되지 않은 것이 있습니다. <b>전체 복사</b>를 눌러 선생님께 보내 주세요.</p>
+  <div id="log" style="display:none;margin-top:13px"></div>
+</section>
+
+<footer>정보 과제 연구 · 대성여자고등학교 · 2026학년도 2학기</footer>
+</div>
+<iframe name="sink" style="display:none" title="hidden"></iframe>
+
+<script>
+const OPEN = [{"q": "내 예상이 틀린다면, 어떤 이유일 것 같나요? 하나만 미리 상상해서 써 주세요."}, {"q": "계획서 여덟 칸을 다 채워 본 소감을 써 주세요. 처음 궁금증에서 지금까지 무엇이 가장 많이 바뀌었나요?"}];
+const PROJ = [{"q": "⑦ 예상 결과 — “아마 (          ) 일 것이다” 한 문장으로."}, {"q": "⑧ 예상되는 어려움 — 자료 부족 / 자료 편중 / 방법·도구의 제약 중 하나 이상."}, {"q": "③ 연구 질문 · ④ 데이터·장치 · ⑤ 방법·도구가 서로 맞물리나요? 어긋난 곳이 있으면 적어 주세요."}];
+const QUIZ = [{"a": 2, "why": "예상과 다를 때 오히려 쓸 말이 많아집니다. 원인 분석이 보고서 「한계와 개선 방향」이 돼요."}, {"a": 0, "why": "숫자와 방향이 들어가면 나중에 맞았는지 틀렸는지 판단할 수 있습니다."}, {"a": 3, "why": "가장 아까운 답입니다. 미리 써 두면 보고서 「한계와 개선 방향」에 그대로 이어져 점수가 됩니다."}, {"a": 3, "why": "셋 중 하나라도 어긋나면 10월에 막힙니다. 질문에 답하려면 그 데이터가, 그 데이터엔 그 도구가 필요해요."}];
+
+/* ── 저장소 (막힌 환경에서도 동작) ── */
+const MEM={}; let OK=true;
+try{localStorage.setItem("__t","1");localStorage.removeItem("__t");}catch(e){OK=false;}
+const S={get(k){try{return OK?localStorage.getItem(k):(MEM[k]??null);}catch(e){return MEM[k]??null;}},
+set(k,v){MEM[k]=v;try{if(OK)localStorage.setItem(k,v);}catch(e){OK=false;}}};
+const LS="정보과제연구_기록";
+
+function me(){return {sid:sid.value.trim(),name:sname.value.trim()};}
+function saveMe(){S.set("정보과제연구_나",JSON.stringify(me()));
+  flash("logmsg",OK?"✅ 기억했습니다":"✅ 기억했습니다 (창을 닫으면 지워집니다)","ok");}
+(function(){try{const m=JSON.parse(S.get("정보과제연구_나")||"{}");
+  if(m.sid)sid.value=m.sid; if(m.name)sname.value=m.name;}catch(e){}})();
+
+function flash(id,t,c){const e=document.getElementById(id);e.textContent=t;e.className="msg "+(c||"");
+  if(c==="ok")setTimeout(()=>{if(e.textContent===t)e.textContent="";},7000);}
+function records(){try{return JSON.parse(S.get(LS)||"[]");}catch(e){return [];}}
+
+/* ── 제출 ── */
+function submitBlock(kind){
+  const list = kind==="생각나누기" ? OPEN : PROJ;
+  const who = me();
+  if(!who.sid||!who.name){flash("msg-"+kind,"⚠️ 위에 학번과 이름을 먼저 적어 주세요","warn");sid.focus();return;}
+  const parts=[];
+  for(let i=0;i<list.length;i++){
+    const v=document.getElementById(kind+i).value.trim();
+    if(!v){const lbl=list[i].q.length>16?list[i].q.slice(0,16)+"…":list[i].q;
+      flash("msg-"+kind,`⚠️ ${i+1}번 「${lbl}」 칸이 비어 있어요`,"warn");
+      document.getElementById(kind+i).focus();return;}
+    parts.push(list.length===1 ? v : `${list[i].q}\n${v}`);
+  }
+  const body=parts.join("\n\n");
+  const when=new Date().toLocaleString("ko-KR",{month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"});
+  const sent=!!ENDPOINT;
+  if(sent){
+    const f=document.createElement("form");
+    f.action=ENDPOINT; f.method="POST"; f.target="sink";
+    const put=(n,v)=>{const i=document.createElement("input");i.type="hidden";i.name=n;i.value=v;f.appendChild(i);};
+    put("n",String(차시번호)); put("sid",who.sid); put("name",who.name);
+    put("kind",kind==="생각나누기"?"생기부":"프로젝트");
+    put("item",kind); put("body",body);
+    document.body.appendChild(f); f.submit(); document.body.removeChild(f);
+    flash("msg-"+kind,"✅ 제출했습니다","ok");
+  }else{
+    flash("msg-"+kind,"⚠️ 전송 설정 전입니다. 이 기기에 저장했어요","warn");
+  }
+  try{const a=records();a.push({when,kind,body,sent});S.set(LS,JSON.stringify(a));}catch(e){}
+  refreshFail();
+}
+
+/* 전송 실패가 있을 때만 「전체 복사」를 보여 줍니다 */
+function refreshFail(){
+  const bad = records().some(r=>!r.sent);
+  document.getElementById("copybtn").style.display  = bad ? "" : "none";
+  document.getElementById("failnote").style.display = bad ? "" : "none";
+}
+
+/* ── 퀴즈 ── */
+function grade(){
+  let right=0, done=0;
+  QUIZ.forEach((q,i)=>{
+    const sel=document.querySelector(`input[name=q${i}]:checked`);
+    const fb=document.getElementById("fb"+i);
+    if(!sel){fb.className="fb";return;}
+    done++;
+    const ok=Number(sel.value)===q.a;
+    if(ok)right++;
+    fb.className="fb on "+(ok?"o":"x");
+    fb.textContent=(ok?"⭕ 맞았어요 — ":"❌ 다시 볼까요 — ")+q.why;
+  });
+  const s=document.getElementById("score");
+  if(done<QUIZ.length){s.textContent=`아직 안 푼 문제가 있어요 (${done}/${QUIZ.length})`;return;}
+  s.textContent=`${QUIZ.length}문제 중 ${right}개 정답` +
+    (right===QUIZ.length?"  🎉 완벽합니다":(right>=QUIZ.length-1?"  👍 거의 다 됐어요":"  📖 위 설명을 다시 읽어 보세요"));
+}
+function resetQuiz(){
+  document.querySelectorAll("input[type=radio]").forEach(r=>r.checked=false);
+  document.querySelectorAll(".fb").forEach(f=>f.className="fb");
+  document.getElementById("score").textContent="";
+}
+
+/* ── 기록 ── */
+function asText(){const a=records();
+  if(!a.length)return "아직 제출한 게 없습니다.";
+  return a.map(r=>`${r.sent?"✅":"⚠️"} ${r.kind}  (${r.when})\n${r.body}`).join("\n\n──────────\n\n");}
+function showLog(){const d=document.getElementById("log");
+  d.style.display=d.style.display==="none"?"block":"none"; d.textContent=asText(); refreshFail();}
+function copyLog(){const t=`${차시번호}차시  ${sid.value} ${sname.value}\n\n`+asText();
+  navigator.clipboard.writeText(t).then(()=>flash("logmsg","✅ 복사했습니다","ok"))
+  .catch(()=>{const d=document.getElementById("log");d.style.display="block";d.textContent=t;
+    flash("logmsg","아래에서 직접 선택해 복사하세요","warn");});}
+
+refreshFail();
+</script></body></html>
