@@ -65,9 +65,6 @@ button.ghost{background:transparent;color:var(--muted);border:1px solid var(--li
 #log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
 border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
 footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
-.nopaste{display:inline-block;background:#fef3c7;color:#92400e;font-size:.76rem;font-weight:700;
-padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .nopaste{background:#3b2f14;color:#fbbf24}}
 #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;
 background:#1f2937;color:#fff;padding:13px 20px;border-radius:11px;font-size:.93rem;font-weight:600;
 box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .22s;max-width:88vw;text-align:center}
@@ -138,7 +135,7 @@ AI가 특정 집단에 불리한 판단을 한다는 걸 알면서도 <b>편리�
 
 <section>
   <h2>✍️ 생각 나누기</h2>
-  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
   <div class="f" style="margin-top:12px"><label for="생각나누기0">오늘 토의한 주제에 대한 내 생각을 정리해 주세요. 처음 생각과 달라진 부분이 있다면 그것도.</label><textarea id="생각나누기0" placeholder="예) 처음엔 학교가 데이터를 보면 안 된다고 했는데, 「자살 위험 예측이라면?」이라는 말에 흔들렸다. 목적에 따라 다른 것 같다"></textarea></div><div class="f" style="margin-top:12px"><label for="생각나누기1">친구의 의견 중 인상 깊었던 것 하나를 적어 주세요. 왜 그렇게 느꼈나요?</label><textarea id="생각나누기1" placeholder="예) 「AI를 쓰는 건 계산기랑 비슷한데, 계산기는 답만 주고 AI는 판단까지 준다」는 말이 정확하다고 생각했다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
@@ -155,7 +152,7 @@ AI가 특정 집단에 불리한 판단을 한다는 걸 알면서도 <b>편리�
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">한 학기 연구를 <b>윤리 관점에서</b> 마무리합니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">한 학기 연구를 <b>윤리 관점에서</b> 마무리합니다.</p>
   <div class="f" style="margin-top:12px"><label for="프로젝트0">「할 수 있다고 해도 되는 것은 아니다」 — 이 말을 내 연구나 일상에 대보면 어떤가요?</label><textarea id="프로젝트0" placeholder="예) 복도 통행량을 영상으로 세는 게 훨씬 정확했을 텐데, 안 하길 잘했다는 생각이 들었다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">다음에 연구를 한다면 윤리적으로 무엇을 미리 챙기겠어요?</label><textarea id="프로젝트1" placeholder="예) 설문을 돌린다면 맨 앞에 안내 문구를 꼭 넣고, 이름은 안 받겠다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>

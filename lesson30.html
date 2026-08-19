@@ -65,9 +65,6 @@ button.ghost{background:transparent;color:var(--muted);border:1px solid var(--li
 #log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
 border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
 footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
-.nopaste{display:inline-block;background:#fef3c7;color:#92400e;font-size:.76rem;font-weight:700;
-padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .nopaste{background:#3b2f14;color:#fbbf24}}
 #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;
 background:#1f2937;color:#fff;padding:13px 20px;border-radius:11px;font-size:.93rem;font-weight:600;
 box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .22s;max-width:88vw;text-align:center}
@@ -139,7 +136,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>✍️ 생각 나누기</h2>
-  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
   <div class="f" style="margin-top:12px"><label for="생각나누기0">같은 트랙 친구들의 이야기를 듣고 새로 알게 된 것이나 도움이 된 것이 있나요?</label><textarea id="생각나누기0" placeholder="예) 나만 센서 값이 튀는 줄 알았는데 다들 그랬다. 한 명이 평균을 내서 쓴다고 해서 나도 그렇게 하기로 했다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
@@ -156,7 +153,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">📓 <b>연구일지 마지막</b> — ② 연구 수행 30점은 여기까지의 기록으로 채점됩니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">📓 <b>연구일지 마지막</b> — ② 연구 수행 30점은 여기까지의 기록으로 채점됩니다.</p>
   <div class="f" style="margin-top:12px"><label for="프로젝트0">점검 세 가지를 확인해 주세요. (자료 충분 / 잠정 답 / 그래프)</label><textarea id="프로젝트0" placeholder="자료: 사흘치 4,300줄 O
 잠정 답: 5교시가 가장 덥다 O
 그래프: 꺾은선 O"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">부족한 게 있다면 어떤 길을 택할 건가요? (범위 좁히기 / 질문 바꾸기 / 공공데이터)</label><textarea id="프로젝트1" placeholder="예) 충분함  /  또는: 이틀치뿐이라 「사흘간」을 「이틀간」으로 줄여 쓰겠다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">오늘 「내가」 한 일 · 막힌 점 · 해결 과정 · AI 활용 내역</label><textarea id="프로젝트2" placeholder="예) 자료를 다시 세어보고 부족한 부분을 확인했다. 이상값 3개를 찾아 표시했다 / AI 없음"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트3">남은 3주에 무엇을 할 건지 한 줄로</label><textarea id="프로젝트3" placeholder="예) 한계를 정리하고 보고서를 쓴 뒤 포스터를 만든다"></textarea></div>

@@ -65,9 +65,6 @@ button.ghost{background:transparent;color:var(--muted);border:1px solid var(--li
 #log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
 border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
 footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
-.nopaste{display:inline-block;background:#fef3c7;color:#92400e;font-size:.76rem;font-weight:700;
-padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .nopaste{background:#3b2f14;color:#fbbf24}}
 #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;
 background:#1f2937;color:#fff;padding:13px 20px;border-radius:11px;font-size:.93rem;font-weight:600;
 box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .22s;max-width:88vw;text-align:center}
@@ -151,7 +148,7 @@ IDE 설치와 센서 연결 절차는 그대로 따라 할 수 있어요.<br>
 
 <section>
   <h2>✍️ 생각 나누기</h2>
-  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
   <div class="f" style="margin-top:12px"><label for="생각나누기0">이 트랙을 고른 이유를 써 주세요. 망설였다면 무엇과 고민했는지도 함께.</label><textarea id="생각나누기0" placeholder="예) B와 A 사이에서 고민했다. 직접 재보고 싶은 마음이 컸는데, 배선이 걱정돼서 망설였다. 그래도 해보기로 했다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
@@ -168,7 +165,7 @@ IDE 설치와 센서 연결 절차는 그대로 따라 할 수 있어요.<br>
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">오늘 정한 트랙으로 남은 학기를 진행합니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">오늘 정한 트랙으로 남은 학기를 진행합니다.</p>
   <div class="f" style="margin-top:12px"><label for="프로젝트0">고른 트랙은? (A 데이터 분석 / B 피지컬 컴퓨팅 / C 프로그램 제작)</label><textarea id="프로젝트0" placeholder="예) B 피지컬 컴퓨팅"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">혼자 할 건가요, 모둠으로 할 건가요? 모둠이면 함께할 사람 이름도 적어 주세요.</label><textarea id="프로젝트1" placeholder="예) 2명 모둠 — 김○○와 함께"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">그 트랙으로 내 궁금증을 어떻게 다룰 생각인가요?</label><textarea id="프로젝트2" placeholder="예) 온습도 센서를 교실 뒤에 두고 교시별로 온도를 재서 비교한다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>

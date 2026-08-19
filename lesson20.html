@@ -65,9 +65,6 @@ button.ghost{background:transparent;color:var(--muted);border:1px solid var(--li
 #log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
 border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
 footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
-.nopaste{display:inline-block;background:#fef3c7;color:#92400e;font-size:.76rem;font-weight:700;
-padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .nopaste{background:#3b2f14;color:#fbbf24}}
 #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;
 background:#1f2937;color:#fff;padding:13px 20px;border-radius:11px;font-size:.93rem;font-weight:600;
 box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .22s;max-width:88vw;text-align:center}
@@ -148,7 +145,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>✍️ 생각 나누기</h2>
-  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
   <div class="f" style="margin-top:12px"><label for="생각나누기0">내 예상이 틀린다면, 어떤 이유일 것 같나요? 하나만 미리 상상해서 써 주세요.</label><textarea id="생각나누기0" placeholder="예) 5교시가 제일 더울 거라 생각했는데, 점심시간에 창문을 열어서 오히려 6교시가 더울 수도 있겠다"></textarea></div><div class="f" style="margin-top:12px"><label for="생각나누기1">계획서 여덟 칸을 다 채워 본 소감을 써 주세요. 처음 궁금증에서 지금까지 무엇이 가장 많이 바뀌었나요?</label><textarea id="생각나누기1" placeholder="예) 처음엔 「교실이 덥다」가 전부였는데, 지금은 무엇을 어떻게 재서 무엇을 알아낼지까지 정해졌다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
@@ -165,7 +162,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">여기 쓴 내용이 그대로 <b>계획서 ⑦ 예상 결과 · ⑧ 예상되는 어려움</b> 칸이 됩니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">여기 쓴 내용이 그대로 <b>계획서 ⑦ 예상 결과 · ⑧ 예상되는 어려움</b> 칸이 됩니다.</p>
   <div class="f" style="margin-top:12px"><label for="프로젝트0">⑦ 예상 결과 — “아마 (          ) 일 것이다” 한 문장으로.</label><textarea id="프로젝트0" placeholder="예) 아마 5~6교시가 가장 덥고, 1교시보다 4℃ 정도 높을 것이다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">⑧ 예상되는 어려움 — 자료 부족 / 자료 편중 / 방법·도구의 제약 중 하나 이상.</label><textarea id="프로젝트1" placeholder="예) 측정 기간이 일주일뿐이라 그 주의 날씨에 결과가 좌우될 수 있다. DHT11 센서는 오차가 ±2℃ 정도 있다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">③ 연구 질문 · ④ 데이터·장치 · ⑤ 방법·도구가 서로 맞물리나요? 어긋난 곳이 있으면 적어 주세요.</label><textarea id="프로젝트2" placeholder="예) 맞물린다 / 또는: 질문은 「교시별」인데 센서에 시계가 없어서 시각을 못 남긴다. RTC 모듈이 필요할 것 같다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>

@@ -65,9 +65,6 @@ button.ghost{background:transparent;color:var(--muted);border:1px solid var(--li
 #log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
 border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
 footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
-.nopaste{display:inline-block;background:#fef3c7;color:#92400e;font-size:.76rem;font-weight:700;
-padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .nopaste{background:#3b2f14;color:#fbbf24}}
 #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;
 background:#1f2937;color:#fff;padding:13px 20px;border-radius:11px;font-size:.93rem;font-weight:600;
 box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .22s;max-width:88vw;text-align:center}
@@ -134,7 +131,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>✍️ 생각 나누기</h2>
-  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
   <div class="f" style="margin-top:12px"><label for="생각나누기0">결과를 정리하면서 예상과 달랐던 부분이 있나요? 무엇이 어떻게 달랐는지 적어 주세요.</label><textarea id="생각나누기0" placeholder="예) 5교시가 제일 더울 줄 알았는데 6교시가 더 높은 날도 있었다. 그날은 점심때 창문을 열어둬서 그런 것 같다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
@@ -151,7 +148,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">여기 쓴 결론이 <b>보고서 ④ 결과 · ⑤ 결과 해석</b> 칸이 됩니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">여기 쓴 결론이 <b>보고서 ④ 결과 · ⑤ 결과 해석</b> 칸이 됩니다.</p>
   <div class="f" style="margin-top:12px"><label for="프로젝트0">① 답 — 내 연구 질문에 답하는 한 문장</label><textarea id="프로젝트0" placeholder="예) 우리 교실은 5~6교시에 가장 덥고 습하다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">② 근거 — 그렇게 말하는 숫자</label><textarea id="프로젝트1" placeholder="예) 5교시 평균 29.4℃·습도 70%, 1교시보다 5.3℃ 높음. 사흘 내내 같은 양상"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">③ 제안 — 그래서 무엇을 하면 좋은가</label><textarea id="프로젝트2" placeholder="예) 4교시 쉬는 시간에 미리 환기하면 5교시 체감을 낮출 수 있다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>

@@ -65,9 +65,6 @@ button.ghost{background:transparent;color:var(--muted);border:1px solid var(--li
 #log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
 border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
 footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
-.nopaste{display:inline-block;background:#fef3c7;color:#92400e;font-size:.76rem;font-weight:700;
-padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .nopaste{background:#3b2f14;color:#fbbf24}}
 #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;
 background:#1f2937;color:#fff;padding:13px 20px;border-radius:11px;font-size:.93rem;font-weight:600;
 box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .22s;max-width:88vw;text-align:center}
@@ -141,7 +138,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>✍️ 생각 나누기</h2>
-  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
   <div class="f" style="margin-top:12px"><label for="생각나누기0">교과서나 STEAM에서 연구를 하나 골라 읽어 보세요. 무엇이 가장 인상 깊었나요?</label><textarea id="생각나누기0" placeholder="예) 결과보다 「왜 이 데이터를 골랐는지」 설명이 훨씬 길어서 놀랐다. 나는 결과만 중요한 줄 알았다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
@@ -158,7 +155,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">읽은 사례를 기록해 둡니다. <b>계획서 참고 자료</b>로 쓸 수 있습니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">읽은 사례를 기록해 둡니다. <b>계획서 참고 자료</b>로 쓸 수 있습니다.</p>
   <div class="f" style="margin-top:12px"><label for="프로젝트0">읽은 연구의 제목과 어디서 봤는지 적어 주세요.</label><textarea id="프로젝트0" placeholder="예) 「우리나라 인구 소멸 위기 지역 분석하기」 / 교과서 114~140쪽"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">네 가지를 정리해 주세요. (무엇이 궁금했나 / 무엇을 모았나 / 결론 한 문장 / 분량)</label><textarea id="프로젝트1" placeholder="궁금증: 우리 지역도 소멸 위기인가
 모은 것: KOSIS 연령·성별 인구
 결론: 여성 인구 대비 고령 인구가 많은 지역이 위기다

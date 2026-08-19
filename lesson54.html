@@ -65,9 +65,6 @@ button.ghost{background:transparent;color:var(--muted);border:1px solid var(--li
 #log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
 border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
 footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
-.nopaste{display:inline-block;background:#fef3c7;color:#92400e;font-size:.76rem;font-weight:700;
-padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .nopaste{background:#3b2f14;color:#fbbf24}}
 #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;
 background:#1f2937;color:#fff;padding:13px 20px;border-radius:11px;font-size:.93rem;font-weight:600;
 box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .22s;max-width:88vw;text-align:center}
@@ -136,7 +133,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>✍️ 생각 나누기</h2>
-  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
   <div class="f" style="margin-top:12px"><label for="생각나누기0">글을 쓰면서 스스로 새로 발견한 것이 있나요? 쓰기 전엔 몰랐던 것.</label><textarea id="생각나누기0" placeholder="예) 쓰다 보니 내가 제일 오래 붙들었던 게 「무엇을 잴까」였다는 걸 알았다. 센서 다루는 시간보다 그게 길었다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
@@ -153,7 +150,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">📝 <b>한 쪽 글</b> — 네 문단으로. 이 글이 세특과 자기소개 자료가 됩니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">📝 <b>한 쪽 글</b> — 네 문단으로. 이 글이 세특과 자기소개 자료가 됩니다.</p>
   <div class="f" style="margin-top:12px"><label for="프로젝트0">① 왜 이 주제였나 — 궁금증이 생긴 구체적인 장면</label><textarea id="프로젝트0" placeholder="예) 5교시마다 다들 조는데 선생님이 창문을 여시면 좀 나아졌다. 그런데 아무도 몇 도인지는 몰랐다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">② 무엇을 어떻게 했나 — 도구·방법·기간을 숫자로</label><textarea id="프로젝트1" placeholder="예) 아두이노에 DHT11을 연결해 교실 뒤 고정 위치에서 사흘간 1분마다 4,320개를 측정했다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">③ 무엇이 어려웠고 어떻게 넘었나 — 「그 뒤로 ~하게 됐다」까지</label><textarea id="프로젝트2" placeholder="예) 센서 값이 nan으로만 나와 코드를 세 번 고쳤는데 알고 보니 배선 문제였다. 그 뒤로 안 될 때 코드부터 의심하지 않고 연결을 먼저 확인하게 됐다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트3">④ 무엇이 남았나 — 알게 된 것 + 더 하고 싶은 것</label><textarea id="프로젝트3" placeholder="예) 숫자가 있으면 「덥다」는 말이 근거가 된다는 걸 알았다. 다음엔 2주 이상 재서 날씨와 함께 보고 싶다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>

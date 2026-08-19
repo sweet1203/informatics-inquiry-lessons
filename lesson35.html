@@ -65,9 +65,6 @@ button.ghost{background:transparent;color:var(--muted);border:1px solid var(--li
 #log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
 border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
 footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
-.nopaste{display:inline-block;background:#fef3c7;color:#92400e;font-size:.76rem;font-weight:700;
-padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .nopaste{background:#3b2f14;color:#fbbf24}}
 #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;
 background:#1f2937;color:#fff;padding:13px 20px;border-radius:11px;font-size:.93rem;font-weight:600;
 box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .22s;max-width:88vw;text-align:center}
@@ -150,7 +147,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>✍️ 생각 나누기</h2>
-  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
   <div class="f" style="margin-top:12px"><label for="생각나누기0">보고서를 포스터 한 장으로 줄이면서 무엇을 버렸나요? 버리기 아까웠던 것이 있나요?</label><textarea id="생각나누기0" placeholder="예) 측정 과정에서 겪은 시행착오를 다 빼야 했다. 그게 제일 열심히 한 부분인데 아쉬웠다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
@@ -167,7 +164,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">포스터 진행 상황을 남깁니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">포스터 진행 상황을 남깁니다.</p>
   <div class="f" style="margin-top:12px"><label for="프로젝트0">다섯 칸 중 완성한 것과 남은 것을 적어 주세요.</label><textarea id="프로젝트0" placeholder="예) 1·2·3·5 완성 / 4번 그래프는 이미지로 저장까지 했고 배치만 남음"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">포스터에 넣은 그래프는 무엇이고, 왜 그것을 골랐나요?</label><textarea id="프로젝트1" placeholder="예) 교시별 평균 온도 꺾은선그래프. 5교시가 튀는 게 한눈에 보여서"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">모둠이라면 참여 학생 전원의 학번·이름을 적어 주세요. (개인이면 「개인」)</label><textarea id="프로젝트2" placeholder="예) 30106 박소민, 30111 안세윤"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>

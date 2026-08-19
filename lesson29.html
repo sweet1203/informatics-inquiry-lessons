@@ -65,9 +65,6 @@ button.ghost{background:transparent;color:var(--muted);border:1px solid var(--li
 #log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
 border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
 footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
-.nopaste{display:inline-block;background:#fef3c7;color:#92400e;font-size:.76rem;font-weight:700;
-padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .nopaste{background:#3b2f14;color:#fbbf24}}
 #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;
 background:#1f2937;color:#fff;padding:13px 20px;border-radius:11px;font-size:.93rem;font-weight:600;
 box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .22s;max-width:88vw;text-align:center}
@@ -135,7 +132,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>✍️ 생각 나누기</h2>
-  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
   <div class="f" style="margin-top:12px"><label for="생각나누기0">내 결과에서 「이것 때문이다」라고 말하고 싶은 게 있나요? 그런데 그렇게 단정할 수 없는 이유는 무엇일까요?</label><textarea id="생각나누기0" placeholder="예) 창문을 열어서 온도가 내려갔다고 말하고 싶은데, 그 시간이 마침 점심시간이라 사람이 빠져서일 수도 있다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
@@ -152,7 +149,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">📓 <b>오늘의 연구일지</b> + 잠정 답<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">📓 <b>오늘의 연구일지</b> + 잠정 답</p>
   <div class="f" style="margin-top:12px"><label for="프로젝트0">오늘 「내가」 한 일 · 사용한 도구</label><textarea id="프로젝트0" placeholder="예) 교시별 평균을 비교하고 1교시와 5교시 차이를 계산했다 / 스프레드시트"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">⭐ 내 연구 질문에 대한 「잠정 답」을 한 줄로 써 주세요. 숫자를 넣어서.</label><textarea id="프로젝트1" placeholder="예) 우리 교실은 5교시에 가장 덥고(29.4℃) 습하며(70%), 1교시보다 5.3℃ 높다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">이 결과를 「~때문이다」라고 단정할 수 있나요? 겹쳐 있는 다른 요인을 적어 주세요.</label><textarea id="프로젝트2" placeholder="예) 단정 어렵다. 점심 직후라 사람이 많이 들어온 것도 겹친다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트3">막힌 점 · 해결 과정 · AI 활용 내역</label><textarea id="프로젝트3" placeholder="예) 차이를 어떻게 표현할지 몰랐는데 「몇 도 차이」로 쓰면 된다고 배웠다 / AI 없음"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>

@@ -65,9 +65,6 @@ button.ghost{background:transparent;color:var(--muted);border:1px solid var(--li
 #log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
 border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
 footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
-.nopaste{display:inline-block;background:#fef3c7;color:#92400e;font-size:.76rem;font-weight:700;
-padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .nopaste{background:#3b2f14;color:#fbbf24}}
 #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;
 background:#1f2937;color:#fff;padding:13px 20px;border-radius:11px;font-size:.93rem;font-weight:600;
 box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .22s;max-width:88vw;text-align:center}
@@ -134,7 +131,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>✍️ 생각 나누기</h2>
-  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
   <div class="f" style="margin-top:12px"><label for="생각나누기0">내 데이터를 표로 그려 보면서 미처 생각 못 했던 점이 있나요?</label><textarea id="생각나누기0" placeholder="예) 온도만 재면 되는 줄 알았는데, 몇 시에 쟀는지도 같이 남겨야 교시별로 나눌 수 있다는 걸 알았다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
@@ -151,7 +148,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">내 데이터의 <b>표 모양</b>을 정합니다. 여기서 정한 열이 그대로 수집 항목이 됩니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">내 데이터의 <b>표 모양</b>을 정합니다. 여기서 정한 열이 그대로 수집 항목이 됩니다.</p>
   <div class="f" style="margin-top:12px"><label for="프로젝트0">내 표의 열 제목을 적어 주세요. (쉼표로 구분)</label><textarea id="프로젝트0" placeholder="예) 측정시각, 교시, 온도, 습도, 비고"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">그중 수치형과 범주형을 구분해 주세요.</label><textarea id="프로젝트1" placeholder="수치형: 온도, 습도
 범주형: 교시"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">한 줄(행)은 무엇 하나를 뜻하나요?</label><textarea id="프로젝트2" placeholder="예) 1분에 한 번 잰 측정값 하나"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>

@@ -65,9 +65,6 @@ button.ghost{background:transparent;color:var(--muted);border:1px solid var(--li
 #log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
 border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
 footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
-.nopaste{display:inline-block;background:#fef3c7;color:#92400e;font-size:.76rem;font-weight:700;
-padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .nopaste{background:#3b2f14;color:#fbbf24}}
 #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;
 background:#1f2937;color:#fff;padding:13px 20px;border-radius:11px;font-size:.93rem;font-weight:600;
 box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .22s;max-width:88vw;text-align:center}
@@ -145,7 +142,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>✍️ 생각 나누기</h2>
-  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
   <div class="f" style="margin-top:12px"><label for="생각나누기0">리허설을 해보니 어땠나요? 시간이 모자랐나요, 남았나요? 어느 부분이 늘어졌나요?</label><textarea id="생각나누기0" placeholder="예) 3분 40초 걸렸다. 배선 설명을 너무 길게 해서 결과를 급하게 말했다. 방법은 한 줄로 줄이기로 했다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
@@ -162,7 +159,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">발표 준비 상태를 점검합니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">발표 준비 상태를 점검합니다.</p>
   <div class="f" style="margin-top:12px"><label for="프로젝트0">리허설 소요 시간과 줄일 부분을 적어 주세요.</label><textarea id="프로젝트0" placeholder="예) 3분 40초 → 방법 설명을 20초로 줄이겠다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">“이 결과가 왜 이렇게 나왔다고 생각해?” — 내 답을 미리 적어 주세요.</label><textarea id="프로젝트1" placeholder="예) 점심 직후라 사람이 많이 들어오고 창문을 닫아서인 것 같다. 다만 햇빛 각도도 겹쳐서 단정하긴 어렵다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">“이 방법을 왜 골랐어?” — 내 답을 미리 적어 주세요.</label><textarea id="프로젝트2" placeholder="예) 설문으로 「덥다고 느끼는지」 물을 수도 있었지만 사람마다 기준이 달라서, 숫자로 재는 센서를 골랐다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>

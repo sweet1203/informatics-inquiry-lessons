@@ -65,9 +65,6 @@ button.ghost{background:transparent;color:var(--muted);border:1px solid var(--li
 #log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
 border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
 footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
-.nopaste{display:inline-block;background:#fef3c7;color:#92400e;font-size:.76rem;font-weight:700;
-padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .nopaste{background:#3b2f14;color:#fbbf24}}
 #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;
 background:#1f2937;color:#fff;padding:13px 20px;border-radius:11px;font-size:.93rem;font-weight:600;
 box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .22s;max-width:88vw;text-align:center}
@@ -133,7 +130,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>✍️ 생각 나누기</h2>
-  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
   <div class="f" style="margin-top:12px"><label for="생각나누기0">오늘 계획서 여덟 칸을 보면서 가장 막힐 것 같은 칸은 어디인가요? 이유도 함께 써 주세요.</label><textarea id="생각나누기0" placeholder="예) ⑤ 방법과 도구가 어렵다. 센서 이름은 알지만 몇 분마다 재야 할지 아직 못 정했다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
@@ -150,7 +147,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">각 차시에서 이미 쓴 내용을 계획서 양식으로 옮길 준비를 합니다.<span class="nopaste">붙여넣기 불가</span></p>
+  <p class="lead">각 차시에서 이미 쓴 내용을 계획서 양식으로 옮길 준비를 합니다.</p>
   <div class="f" style="margin-top:12px"><label for="프로젝트0">내 계획서에서 지금 가장 확실한 칸 2개와 가장 불안한 칸 1개를 적어 주세요.</label><textarea id="프로젝트0" placeholder="확실한 칸: ① 제목, ③ 연구 질문 / 불안한 칸: ④ 데이터·장치 — 아직 파일을 못 받았다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">내 연구 방식은 어느 쪽에 가장 가깝나요? (데이터 분석 / 알고리즘 / 피지컬 컴퓨팅 / 프로그램·AI / 제작)</label><textarea id="프로젝트1" placeholder="예) 피지컬 컴퓨팅 — 센서로 직접 데이터를 만들기 때문이다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>
