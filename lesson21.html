@@ -65,6 +65,13 @@ button.ghost{background:transparent;color:var(--muted);border:1px solid var(--li
 #log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
 border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
 footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
+.nopaste{display:inline-block;background:#fef3c7;color:#92400e;font-size:.76rem;font-weight:700;
+padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .nopaste{background:#3b2f14;color:#fbbf24}}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;
+background:#1f2937;color:#fff;padding:13px 20px;border-radius:11px;font-size:.93rem;font-weight:600;
+box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .22s;max-width:88vw;text-align:center}
+#toast.on{opacity:1}
 </style></head><body><div class="wrap">
 
 <header>
@@ -135,7 +142,7 @@ footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
 
 <section>
   <h2>✍️ 생각 나누기</h2>
-  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.<span class="nopaste">붙여넣기 불가</span></p>
   <div class="f" style="margin-top:12px"><label for="생각나누기0">다른 사람의 계획서를 읽으면서, 내 계획서에 대해 새로 깨달은 점이 있나요?</label><textarea id="생각나누기0" placeholder="예) 친구 계획서에 「어디서 잴지」가 없는 걸 보고, 내 것도 자리를 안 적었다는 걸 알았다"></textarea></div><div class="f" style="margin-top:12px"><label for="생각나누기1">내가 준 피드백 중 스스로 가장 쓸모 있었다고 생각하는 것 하나를 적어 주세요. 왜 그렇게 생각하나요?</label><textarea id="생각나누기1" placeholder="예) 「연도별 자료만 있으면 계절 비교가 안 된다」고 말해줬다. 그 친구가 바로 확인하러 갔다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
@@ -152,7 +159,7 @@ footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">받은 의견을 정리합니다. 여기 적은 것을 반영해 <b>22차시에 계획서를 제출</b>합니다.</p>
+  <p class="lead">받은 의견을 정리합니다. 여기 적은 것을 반영해 <b>22차시에 계획서를 제출</b>합니다.<span class="nopaste">붙여넣기 불가</span></p>
   <div class="f" style="margin-top:12px"><label for="프로젝트0">받은 의견 중 가장 뼈아팠던 지적은 무엇인가요?</label><textarea id="프로젝트0" placeholder="예) 「몇 교시인지 어떻게 알아?」 — 센서에 시계가 없다는 걸 지적받았다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">고칠 것 두세 개를 정해 주세요. 어느 칸을 어떻게 고칠 건가요?</label><textarea id="프로젝트1" placeholder="예) ④번에 RTC 시계 모듈 추가 / ⑤번에 측정 자리를 「교실 뒤 게시판 앞 고정」이라고 명시 / ⑧번에 측정 기간이 짧다는 점 추가"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">고치지 「않기로」 한 지적이 있다면 그 이유를 적어 주세요. 없으면 「없음」.</label><textarea id="프로젝트2" placeholder="예) 표본을 늘리라는 말이 있었는데, 우리 교실 하나를 자세히 보는 게 내 연구 목적이라 그대로 두기로 했다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>
@@ -172,6 +179,7 @@ footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
 
 <footer>정보 과제 연구 · 대성여자고등학교 · 2026학년도 2학기</footer>
 </div>
+<div id="toast" role="status" aria-live="polite"></div>
 <iframe name="sink" style="display:none" title="hidden"></iframe>
 
 <script>
@@ -208,6 +216,43 @@ function flash(id,t,c){const e=document.getElementById(id);e.textContent=t;e.cla
   if(c==="ok")setTimeout(()=>{if(e.textContent===t)e.textContent="";},7000);}
 function records(){try{return JSON.parse(S.get(LS)||"[]");}catch(e){return [];}}
 
+/* ── 붙여넣기 차단 ──────────────────────────────────────
+   ⚠️ 값을 읽는 submitBlock() 은 건드리지 않습니다.
+      paste·drop 이벤트만 막고, 뚫린 경우 직전 값으로 되돌립니다. */
+const 차단수 = {};
+let _tt;
+function 토스트(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("on");
+  clearTimeout(_tt); _tt = setTimeout(()=>t.classList.remove("on"), 2600);
+}
+(function 붙여넣기차단(){
+  const ids = [];
+  OPEN.forEach((_,i)=>ids.push("생각나누기"+i));
+  PROJ.forEach((_,i)=>ids.push("프로젝트"+i));
+  ids.forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    let 직전 = el.value;
+    const 막기 = e => {
+      e.preventDefault();
+      차단수[id] = (차단수[id]||0) + 1;
+      토스트("붙여넣기는 쓸 수 없습니다. 직접 작성해 주세요.");
+    };
+    el.addEventListener("paste", 막기);
+    el.addEventListener("drop", 막기);
+    el.addEventListener("dragover", e=>e.preventDefault());
+    el.addEventListener("beforeinput", ()=>{ 직전 = el.value; });
+    el.addEventListener("input", e=>{
+      if(e.inputType && /insertFrom(Paste|Drop|Yank)/.test(e.inputType)){
+        el.value = 직전;
+        차단수[id] = (차단수[id]||0) + 1;
+        토스트("붙여넣기는 쓸 수 없습니다. 직접 작성해 주세요.");
+      }
+    });
+  });
+})();
+
 /* ── 제출 ── */
 function submitBlock(kind){
   const list = kind==="생각나누기" ? OPEN : PROJ;
@@ -221,7 +266,9 @@ function submitBlock(kind){
       document.getElementById(kind+i).focus();return;}
     parts.push(list.length===1 ? v : `${list[i].q}\n${v}`);
   }
-  const body=parts.join("\n\n");
+  let body=parts.join("\n\n");
+  const 막힌횟수 = list.reduce((a,_,i)=>a+(차단수[kind+i]||0), 0);
+  if(막힌횟수) body += `\n\n[붙여넣기 차단 ${막힌횟수}회]`;
   const when=new Date().toLocaleString("ko-KR",{month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"});
   const sent=!!ENDPOINT;
   if(sent){

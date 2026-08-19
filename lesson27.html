@@ -65,6 +65,13 @@ button.ghost{background:transparent;color:var(--muted);border:1px solid var(--li
 #log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
 border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
 footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
+.nopaste{display:inline-block;background:#fef3c7;color:#92400e;font-size:.76rem;font-weight:700;
+padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .nopaste{background:#3b2f14;color:#fbbf24}}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;
+background:#1f2937;color:#fff;padding:13px 20px;border-radius:11px;font-size:.93rem;font-weight:600;
+box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .22s;max-width:88vw;text-align:center}
+#toast.on{opacity:1}
 </style></head><body><div class="wrap">
 
 <header>
@@ -126,7 +133,7 @@ AI 답을 그대로 받은 게 아니라 <b>내 상황에 맞는지 판단했다
 
 <section>
   <h2>✍️ 생각 나누기</h2>
-  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.<span class="nopaste">붙여넣기 불가</span></p>
   <div class="f" style="margin-top:12px"><label for="생각나누기0">「막힌 점을 적는 것이 점수가 된다」 — 이 말을 듣고 든 생각을 솔직히 써 주세요.</label><textarea id="생각나누기0" placeholder="예) 보통은 잘한 것만 쓰라고 하는데 반대라서 의외였다. 사실 오늘 두 시간 헤맸는데 그걸 적어도 된다니 마음이 놓인다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
@@ -143,7 +150,7 @@ AI 답을 그대로 받은 게 아니라 <b>내 상황에 맞는지 판단했다
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">📓 <b>오늘의 연구일지</b> — 30차시까지 매 차시 씁니다.</p>
+  <p class="lead">📓 <b>오늘의 연구일지</b> — 30차시까지 매 차시 씁니다.<span class="nopaste">붙여넣기 불가</span></p>
   <div class="f" style="margin-top:12px"><label for="프로젝트0">오늘 「내가」 한 일</label><textarea id="프로젝트0" placeholder="예) 지난주 쌓인 온습도 값 1,400줄을 스프레드시트로 옮기고 교시별로 나눴다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">사용한 도구</label><textarea id="프로젝트1" placeholder="예) 아두이노 시리얼 모니터, 구글 스프레드시트"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">막힌 점 — 안 된 것을 그대로 적으세요</label><textarea id="프로젝트2" placeholder="예) 값을 복사했더니 한 칸에 다 들어갔다. 텍스트를 열로 나누는 방법을 몰랐다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트3">해결 과정 — 못 풀었어도 시도한 것을 적으세요</label><textarea id="프로젝트3" placeholder="예) 검색해서 「데이터 → 텍스트를 열로 분할」을 찾아 쉼표로 나눴다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트4">AI 활용 내역 — 물은 것 / 쓴 것 / 버린 것 (안 썼으면 「없음」)</label><textarea id="프로젝트4" placeholder="예) 「시리얼 값 엑셀로 옮기기」를 물었다. 세 방법 중 복사·붙여넣기만 쓰고 나머지는 어려워서 버렸다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트5">다음 시간 계획</label><textarea id="프로젝트5" placeholder="예) 교시별 평균을 내고 그래프를 그려 본다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>
@@ -163,6 +170,7 @@ AI 답을 그대로 받은 게 아니라 <b>내 상황에 맞는지 판단했다
 
 <footer>정보 과제 연구 · 대성여자고등학교 · 2026학년도 2학기</footer>
 </div>
+<div id="toast" role="status" aria-live="polite"></div>
 <iframe name="sink" style="display:none" title="hidden"></iframe>
 
 <script>
@@ -199,6 +207,43 @@ function flash(id,t,c){const e=document.getElementById(id);e.textContent=t;e.cla
   if(c==="ok")setTimeout(()=>{if(e.textContent===t)e.textContent="";},7000);}
 function records(){try{return JSON.parse(S.get(LS)||"[]");}catch(e){return [];}}
 
+/* ── 붙여넣기 차단 ──────────────────────────────────────
+   ⚠️ 값을 읽는 submitBlock() 은 건드리지 않습니다.
+      paste·drop 이벤트만 막고, 뚫린 경우 직전 값으로 되돌립니다. */
+const 차단수 = {};
+let _tt;
+function 토스트(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("on");
+  clearTimeout(_tt); _tt = setTimeout(()=>t.classList.remove("on"), 2600);
+}
+(function 붙여넣기차단(){
+  const ids = [];
+  OPEN.forEach((_,i)=>ids.push("생각나누기"+i));
+  PROJ.forEach((_,i)=>ids.push("프로젝트"+i));
+  ids.forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    let 직전 = el.value;
+    const 막기 = e => {
+      e.preventDefault();
+      차단수[id] = (차단수[id]||0) + 1;
+      토스트("붙여넣기는 쓸 수 없습니다. 직접 작성해 주세요.");
+    };
+    el.addEventListener("paste", 막기);
+    el.addEventListener("drop", 막기);
+    el.addEventListener("dragover", e=>e.preventDefault());
+    el.addEventListener("beforeinput", ()=>{ 직전 = el.value; });
+    el.addEventListener("input", e=>{
+      if(e.inputType && /insertFrom(Paste|Drop|Yank)/.test(e.inputType)){
+        el.value = 직전;
+        차단수[id] = (차단수[id]||0) + 1;
+        토스트("붙여넣기는 쓸 수 없습니다. 직접 작성해 주세요.");
+      }
+    });
+  });
+})();
+
 /* ── 제출 ── */
 function submitBlock(kind){
   const list = kind==="생각나누기" ? OPEN : PROJ;
@@ -212,7 +257,9 @@ function submitBlock(kind){
       document.getElementById(kind+i).focus();return;}
     parts.push(list.length===1 ? v : `${list[i].q}\n${v}`);
   }
-  const body=parts.join("\n\n");
+  let body=parts.join("\n\n");
+  const 막힌횟수 = list.reduce((a,_,i)=>a+(차단수[kind+i]||0), 0);
+  if(막힌횟수) body += `\n\n[붙여넣기 차단 ${막힌횟수}회]`;
   const when=new Date().toLocaleString("ko-KR",{month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"});
   const sent=!!ENDPOINT;
   if(sent){
