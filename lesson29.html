@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>29차시 · 비교하고, 관계를 본다</title>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ⚙️ 선생님 설정 — 아래 한 줄만 채우면 됩니다
+     _설정_AppsScript.gs 를 스프레드시트에 설치하고 받은 웹 앱 URL
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbxa1jCaEXkrPhu15jE-wYaMPx9CcaucpgJm17VYU1b6mW5XitHnzjE3zqP_Sg9Wrxgq6g/exec";
+const 차시번호 = 29;
+</script>
+
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1a1d21;--muted:#6b7280;--line:#e3e6ea;
+--accent:#2563eb;--ink2:#fff;--ok:#0d9488;--warn:#b45309;--soft:#eef2ff;--quiz:#fff7ed;--quizline:#fdba74}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+--bg:#14171a;--card:#1c2024;--ink:#e8eaed;--muted:#9aa3ad;--line:#2c3238;
+--accent:#5b8cff;--ink2:#0d1117;--ok:#2dd4bf;--warn:#fbbf24;--soft:#1e2536;--quiz:#2a2118;--quizline:#7c4a12}}
+*{box-sizing:border-box}
+body{margin:0;padding:0 16px 72px;background:var(--bg);color:var(--ink);line-height:1.7;
+font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:780px;margin:0 auto}
+header{padding:30px 0 18px;border-bottom:2px solid var(--line);margin-bottom:22px}
+.chip{display:inline-block;background:var(--accent);color:var(--ink2);font-size:.78rem;font-weight:700;
+padding:4px 12px;border-radius:99px;margin-bottom:10px}
+h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:.93rem;margin:0}
+.me{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:15px;
+margin-bottom:26px;display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.me .f{flex:1;min-width:115px}
+label{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:5px}
+input[type=text],textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;
+background:var(--card);color:var(--ink);font-size:1rem;font-family:inherit}
+textarea{min-height:88px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:20px}
+section>h2{font-size:1.16rem;margin:0 0 4px;letter-spacing:-.01em}
+.lead{color:var(--muted);font-size:.9rem;margin:0 0 16px}
+.learn h3{font-size:1rem;margin:22px 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
+.learn p{margin:8px 0}
+.learn ul{margin:8px 0;padding-left:20px} .learn li{margin:5px 0}
+.learn table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem}
+.learn th,.learn td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.learn th{background:var(--soft);font-weight:700}
+.learn code{background:var(--soft);padding:1px 6px;border-radius:4px;font-size:.88em}
+.box{background:var(--soft);border-left:3px solid var(--accent);padding:12px 15px;border-radius:0 9px 9px 0;margin:14px 0}
+.book{font-size:.82rem;color:var(--muted);font-weight:600}
+.q{background:var(--quiz);border:1px solid var(--quizline);border-radius:11px;padding:16px;margin-bottom:13px}
+.q .qt{font-weight:700;margin-bottom:10px}
+.opt{display:block;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);
+margin-bottom:7px;cursor:pointer;font-size:.95rem}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin-right:8px}
+.fb{font-size:.9rem;font-weight:600;margin-top:9px;display:none}
+.fb.on{display:block} .fb.o{color:var(--ok)} .fb.x{color:var(--warn)}
+button{font-family:inherit;font-size:.95rem;font-weight:600;border:0;border-radius:9px;padding:11px 20px;
+cursor:pointer;background:var(--accent);color:var(--ink2)}
+button:hover{filter:brightness(1.08)}
+button.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.row{display:flex;gap:9px;align-items:center;margin-top:15px;flex-wrap:wrap}
+.msg{font-size:.9rem;font-weight:600} .msg.ok{color:var(--ok)} .msg.warn{color:var(--warn)}
+.score{font-size:1.05rem;font-weight:700;margin-top:14px}
+#log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
+border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
+footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
+</style></head><body><div class="wrap">
+
+<header>
+  <span class="chip">29차시</span>
+  <h1>비교하고, 관계를 본다</h1>
+  <p class="sub">결과 산출 ② — 그리고 가장 흔한 함정</p>
+</header>
+
+<div class="me">
+  <div class="f"><label for="sid">학번</label><input type="text" id="sid" placeholder="30101" autocomplete="off"></div>
+  <div class="f"><label for="sname">이름</label><input type="text" id="sname" placeholder="홍길동" autocomplete="off"></div>
+  <button class="ghost" onclick="saveMe()">기억하기</button>
+</div>
+
+<section class="learn">
+  <h2>📖 오늘 배울 것</h2>
+  <p class="lead">교과서 15~17쪽</p>
+  
+<div class="box">🔍 <b>오늘 목표 — 「내 연구 질문에 대한 잠정 답」을 한 줄로 만든다.</b></div>
+
+<h3>비교와 대조 — 7차시에서 배운 것</h3>
+<p>거의 모든 학교 연구가 여기서 결론이 납니다. <span class="book">교과서 15쪽</span></p>
+<table><tr><th></th><th>무엇</th><th>내 연구라면</th></tr>
+<tr><td><b>비교</b></td><td>공통점·유사점 찾기</td><td>모든 교시에서 오후가 더 덥다</td></tr>
+<tr><td><b>대조</b></td><td>차이점 찾기</td><td>5교시가 1교시보다 5.3℃ 높다</td></tr></table>
+
+<div class="box">💡 <b>차이를 말할 때는 「얼마나」를 붙이세요.</b><br>
+「더 덥다」 ❌ → <b>「5.3℃ 더 높다」</b> ⭕<br>
+숫자가 붙으면 그때부터 근거가 됩니다.</div>
+
+<h3>⭐ 오늘의 핵심 — 같이 나타난다고 원인은 아니다</h3>
+<div class="box" style="border-left-color:#dc2626">
+<b>5교시가 덥다 + 5교시에 존다</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;≠<br>
+<b>더워서 존다</b></div>
+
+<p>왜 아닐까요? <b>다른 이유가 얼마든지 있기 때문</b>입니다.</p>
+<ul><li>점심을 먹어서 (식곤증)</li>
+<li>오전 수업으로 이미 지쳐서</li>
+<li>5교시가 어려운 과목이라서</li></ul>
+
+<p>이걸 <b>「상관관계 ≠ 인과관계」</b>라고 합니다. 교과서는 <b>유추의 오류</b>로 다룹니다. <span class="book">교과서 17쪽</span></p>
+
+<h3>그럼 어떻게 써야 하나</h3>
+<table><tr><th>이렇게 쓰면 ❌</th><th>이렇게 써야 ⭕</th></tr>
+<tr><td>더워서 학생들이 존다</td><td>온도가 높은 교시에 <b>졸음 호소가 함께 많았다.</b> 다만 점심 직후라는 요인이 겹쳐 있어 <b>원인으로 단정하기 어렵다</b></td></tr>
+<tr><td>인구가 줄어서 상권이 죽었다</td><td>인구 감소와 상점 수 감소가 <b>같은 시기에 나타났다.</b> 어느 쪽이 먼저인지는 이 자료로 알 수 없다</td></tr></table>
+
+<div class="box">🎯 <b>「단정하기 어렵다」고 쓰는 게 겁먹은 게 아닙니다.</b><br>
+오히려 <b>연구자다운 태도</b>이고, 32차시 「한계」와 보고서 ⑥번 칸으로 그대로 이어져 <b>점수가 됩니다.</b></div>
+
+<h3>잠정 답 한 줄 만들기</h3>
+<div class="box"><code>내 연구 질문에 대한 답은 (            ) 이다.</code></div>
+<table><tr><th>질문</th><th>잠정 답</th></tr>
+<tr><td>몇 교시에 가장 덥고 습할까?</td><td><b>5교시</b>가 가장 덥고(29.4℃) 습했다(70%)</td></tr>
+<tr><td>우리 지역은 소멸 위기인가?</td><td>5개 구 중 <b>3개 구</b>가 0.5 미만으로 위기에 해당한다</td></tr>
+<tr><td>AI가 얼마나 정확히 구분할까?</td><td>평균 <b>80.5%</b>, 그중 <b>페트병이 61%</b>로 가장 낮다</td></tr></table>
+<p><b>「잠정」인 이유</b> — 아직 한계를 안 따져봤기 때문입니다. 그건 32차시에 합니다.</p>
+
+</section>
+
+<section>
+  <h2>✍️ 생각 나누기</h2>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
+  <div class="f" style="margin-top:12px"><label for="생각나누기0">내 결과에서 「이것 때문이다」라고 말하고 싶은 게 있나요? 그런데 그렇게 단정할 수 없는 이유는 무엇일까요?</label><textarea id="생각나누기0" placeholder="예) 창문을 열어서 온도가 내려갔다고 말하고 싶은데, 그 시간이 마침 점심시간이라 사람이 빠져서일 수도 있다"></textarea></div>
+  <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
+    <span class="msg" id="msg-생각나누기"></span></div>
+</section>
+
+<section>
+  <h2>✅ 확인 퀴즈</h2>
+  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
+  <div class="q"><div class="qt">1. “5교시가 덥고, 5교시에 조는 학생이 많다”에서 곧바로 내릴 수 <b>없는</b> 결론은?</div><label class="opt"><input type="radio" name="q0" value="0">두 현상이 같은 시간대에 나타났다</label><label class="opt"><input type="radio" name="q0" value="1">5교시 평균 온도가 다른 교시보다 높다</label><label class="opt"><input type="radio" name="q0" value="2">더워서 학생들이 조는 것이다</label><label class="opt"><input type="radio" name="q0" value="3">졸음 호소가 5교시에 가장 많았다</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 차이를 서술할 때 가장 좋은 표현은?</div><label class="opt"><input type="radio" name="q1" value="0">5교시가 훨씬 덥다</label><label class="opt"><input type="radio" name="q1" value="1">5교시가 좀 더 더운 편이다</label><label class="opt"><input type="radio" name="q1" value="2">5교시가 매우 더웠다</label><label class="opt"><input type="radio" name="q1" value="3">5교시가 1교시보다 5.3℃ 높다</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 보고서에 “원인으로 단정하기 어렵다”고 쓰면?</div><label class="opt"><input type="radio" name="q2" value="0">연구가 실패한 것이다</label><label class="opt"><input type="radio" name="q2" value="1">감점된다</label><label class="opt"><input type="radio" name="q2" value="2">결론을 안 낸 것이다</label><label class="opt"><input type="radio" name="q2" value="3">연구자다운 태도이고 한계 서술로 이어져 점수가 된다</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 잠정 답을 「잠정」이라고 부르는 이유는?</div><label class="opt"><input type="radio" name="q3" value="0">아직 한계를 따져보지 않았기 때문</label><label class="opt"><input type="radio" name="q3" value="1">자료가 부족해서</label><label class="opt"><input type="radio" name="q3" value="2">선생님 확인이 안 끝나서</label><label class="opt"><input type="radio" name="q3" value="3">발표를 안 해서</label><div class="fb" id="fb3"></div></div>
+  <div class="row"><button onclick="grade()">채점하기</button>
+    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
+  <div class="score" id="score"></div>
+</section>
+
+<section>
+  <h2>🔬 내 연구로 가져오기</h2>
+  <p class="lead">📓 <b>오늘의 연구일지</b> + 잠정 답</p>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">오늘 「내가」 한 일 · 사용한 도구</label><textarea id="프로젝트0" placeholder="예) 교시별 평균을 비교하고 1교시와 5교시 차이를 계산했다 / 스프레드시트"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">⭐ 내 연구 질문에 대한 「잠정 답」을 한 줄로 써 주세요. 숫자를 넣어서.</label><textarea id="프로젝트1" placeholder="예) 우리 교실은 5교시에 가장 덥고(29.4℃) 습하며(70%), 1교시보다 5.3℃ 높다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">이 결과를 「~때문이다」라고 단정할 수 있나요? 겹쳐 있는 다른 요인을 적어 주세요.</label><textarea id="프로젝트2" placeholder="예) 단정 어렵다. 점심 직후라 사람이 많이 들어온 것도 겹친다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트3">막힌 점 · 해결 과정 · AI 활용 내역</label><textarea id="프로젝트3" placeholder="예) 차이를 어떻게 표현할지 몰랐는데 「몇 도 차이」로 쓰면 된다고 배웠다 / AI 없음"></textarea></div>
+  <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
+    <span class="msg" id="msg-프로젝트"></span></div>
+</section>
+
+<section>
+  <h2>📋 내가 낸 것</h2>
+  <div class="row">
+    <button class="ghost" onclick="showLog()">보기</button>
+    <button class="ghost" id="copybtn" style="display:none" onclick="copyLog()">전체 복사</button>
+    <span class="msg" id="logmsg"></span>
+  </div>
+  <p class="lead" id="failnote" style="display:none;margin:12px 0 0;color:var(--warn)">
+    ⚠️ 전송되지 않은 것이 있습니다. <b>전체 복사</b>를 눌러 선생님께 보내 주세요.</p>
+  <div id="log" style="display:none;margin-top:13px"></div>
+</section>
+
+<footer>정보 과제 연구 · 대성여자고등학교 · 2026학년도 2학기</footer>
+</div>
+<iframe name="sink" style="display:none" title="hidden"></iframe>
+
+<script>
+const OPEN = [{"q": "내 결과에서 「이것 때문이다」라고 말하고 싶은 게 있나요? 그런데 그렇게 단정할 수 없는 이유는 무엇일까요?"}];
+const PROJ = [{"q": "오늘 「내가」 한 일 · 사용한 도구"}, {"q": "⭐ 내 연구 질문에 대한 「잠정 답」을 한 줄로 써 주세요. 숫자를 넣어서."}, {"q": "이 결과를 「~때문이다」라고 단정할 수 있나요? 겹쳐 있는 다른 요인을 적어 주세요."}, {"q": "막힌 점 · 해결 과정 · AI 활용 내역"}];
+const QUIZ = [{"a": 2, "why": "점심 직후라는 요인이 겹쳐 있습니다. 같이 나타난다고 원인은 아니에요."}, {"a": 3, "why": "숫자가 붙어야 근거가 됩니다. 「얼마나」를 꼭 넣으세요."}, {"a": 3, "why": "겁먹은 게 아니라 정확한 태도입니다. 보고서 ⑥번 칸으로 그대로 이어져요."}, {"a": 0, "why": "한계 검토는 32차시에 합니다. 그 뒤에야 최종 결론이 돼요."}];
+
+/* ── 저장소 (막힌 환경에서도 동작) ── */
+const MEM={}; let OK=true;
+try{localStorage.setItem("__t","1");localStorage.removeItem("__t");}catch(e){OK=false;}
+const S={get(k){try{return OK?localStorage.getItem(k):(MEM[k]??null);}catch(e){return MEM[k]??null;}},
+set(k,v){MEM[k]=v;try{if(OK)localStorage.setItem(k,v);}catch(e){OK=false;}}};
+const LS="정보과제연구_기록";
+
+function me(){return {sid:sid.value.trim(),name:sname.value.trim()};}
+function saveMe(){S.set("정보과제연구_나",JSON.stringify(me()));
+  flash("logmsg",OK?"✅ 기억했습니다":"✅ 기억했습니다 (창을 닫으면 지워집니다)","ok");}
+(function(){try{const m=JSON.parse(S.get("정보과제연구_나")||"{}");
+  if(m.sid)sid.value=m.sid; if(m.name)sname.value=m.name;}catch(e){}})();
+
+/* 설정 누락을 즉시 알림 — 학생이 제출을 눌러야 알게 되는 일을 막습니다 */
+(function(){
+  if(ENDPOINT) return;
+  const w=document.createElement("div");
+  w.className="note";
+  w.style.cssText="background:#fee2e2;border-left-color:#dc2626;color:#7f1d1d";
+  w.innerHTML="<b>⚠️ 선생님께 — 전송 주소가 설정되지 않았습니다.</b><br>"+
+    "이 파일 위쪽 <code>const ENDPOINT = &quot;&quot;</code> 에 Apps Script 웹 앱 주소를 넣어야 "+
+    "제출이 선생님께 전달됩니다. 지금은 학생 기기에만 저장됩니다.";
+  document.querySelector("header").after(w);
+})();
+
+function flash(id,t,c){const e=document.getElementById(id);e.textContent=t;e.className="msg "+(c||"");
+  if(c==="ok")setTimeout(()=>{if(e.textContent===t)e.textContent="";},7000);}
+function records(){try{return JSON.parse(S.get(LS)||"[]");}catch(e){return [];}}
+
+/* ── 제출 ── */
+function submitBlock(kind){
+  const list = kind==="생각나누기" ? OPEN : PROJ;
+  const who = me();
+  if(!who.sid||!who.name){flash("msg-"+kind,"⚠️ 위에 학번과 이름을 먼저 적어 주세요","warn");sid.focus();return;}
+  const parts=[];
+  for(let i=0;i<list.length;i++){
+    const v=document.getElementById(kind+i).value.trim();
+    if(!v){const lbl=list[i].q.length>16?list[i].q.slice(0,16)+"…":list[i].q;
+      flash("msg-"+kind,`⚠️ ${i+1}번 「${lbl}」 칸이 비어 있어요`,"warn");
+      document.getElementById(kind+i).focus();return;}
+    parts.push(list.length===1 ? v : `${list[i].q}\n${v}`);
+  }
+  const body=parts.join("\n\n");
+  const when=new Date().toLocaleString("ko-KR",{month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"});
+  const sent=!!ENDPOINT;
+  if(sent){
+    const f=document.createElement("form");
+    f.action=ENDPOINT; f.method="POST"; f.target="sink";
+    const put=(n,v)=>{const i=document.createElement("input");i.type="hidden";i.name=n;i.value=v;f.appendChild(i);};
+    put("n",String(차시번호)); put("sid",who.sid); put("name",who.name);
+    put("kind",kind==="생각나누기"?"생기부":"프로젝트");
+    put("item",kind); put("body",body);
+    document.body.appendChild(f); f.submit(); document.body.removeChild(f);
+    flash("msg-"+kind,"✅ 제출했습니다","ok");
+  }else{
+    flash("msg-"+kind,"⚠️ 전송 설정 전입니다. 이 기기에 저장했어요","warn");
+  }
+  try{const a=records();a.push({when,kind,body,sent});S.set(LS,JSON.stringify(a));}catch(e){}
+  refreshFail();
+}
+
+/* 전송 실패가 있을 때만 「전체 복사」를 보여 줍니다 */
+function refreshFail(){
+  const bad = records().some(r=>!r.sent);
+  document.getElementById("copybtn").style.display  = bad ? "" : "none";
+  document.getElementById("failnote").style.display = bad ? "" : "none";
+}
+
+/* ── 퀴즈 ── */
+function grade(){
+  let right=0, done=0;
+  QUIZ.forEach((q,i)=>{
+    const sel=document.querySelector(`input[name=q${i}]:checked`);
+    const fb=document.getElementById("fb"+i);
+    if(!sel){fb.className="fb";return;}
+    done++;
+    const ok=Number(sel.value)===q.a;
+    if(ok)right++;
+    fb.className="fb on "+(ok?"o":"x");
+    fb.textContent=(ok?"⭕ 맞았어요 — ":"❌ 다시 볼까요 — ")+q.why;
+  });
+  const s=document.getElementById("score");
+  if(done<QUIZ.length){s.textContent=`아직 안 푼 문제가 있어요 (${done}/${QUIZ.length})`;return;}
+  s.textContent=`${QUIZ.length}문제 중 ${right}개 정답` +
+    (right===QUIZ.length?"  🎉 완벽합니다":(right>=QUIZ.length-1?"  👍 거의 다 됐어요":"  📖 위 설명을 다시 읽어 보세요"));
+}
+function resetQuiz(){
+  document.querySelectorAll("input[type=radio]").forEach(r=>r.checked=false);
+  document.querySelectorAll(".fb").forEach(f=>f.className="fb");
+  document.getElementById("score").textContent="";
+}
+
+/* ── 기록 ── */
+function asText(){const a=records();
+  if(!a.length)return "아직 제출한 게 없습니다.";
+  return a.map(r=>`${r.sent?"✅":"⚠️"} ${r.kind}  (${r.when})\n${r.body}`).join("\n\n──────────\n\n");}
+function showLog(){const d=document.getElementById("log");
+  d.style.display=d.style.display==="none"?"block":"none"; d.textContent=asText(); refreshFail();}
+function copyLog(){const t=`${차시번호}차시  ${sid.value} ${sname.value}\n\n`+asText();
+  navigator.clipboard.writeText(t).then(()=>flash("logmsg","✅ 복사했습니다","ok"))
+  .catch(()=>{const d=document.getElementById("log");d.style.display="block";d.textContent=t;
+    flash("logmsg","아래에서 직접 선택해 복사하세요","warn");});}
+
+refreshFail();
+</script></body></html>

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>32차시 · 한계를 찾는 게 실력이다</title>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ⚙️ 선생님 설정 — 아래 한 줄만 채우면 됩니다
+     _설정_AppsScript.gs 를 스프레드시트에 설치하고 받은 웹 앱 URL
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbxa1jCaEXkrPhu15jE-wYaMPx9CcaucpgJm17VYU1b6mW5XitHnzjE3zqP_Sg9Wrxgq6g/exec";
+const 차시번호 = 32;
+</script>
+
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1a1d21;--muted:#6b7280;--line:#e3e6ea;
+--accent:#2563eb;--ink2:#fff;--ok:#0d9488;--warn:#b45309;--soft:#eef2ff;--quiz:#fff7ed;--quizline:#fdba74}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+--bg:#14171a;--card:#1c2024;--ink:#e8eaed;--muted:#9aa3ad;--line:#2c3238;
+--accent:#5b8cff;--ink2:#0d1117;--ok:#2dd4bf;--warn:#fbbf24;--soft:#1e2536;--quiz:#2a2118;--quizline:#7c4a12}}
+*{box-sizing:border-box}
+body{margin:0;padding:0 16px 72px;background:var(--bg);color:var(--ink);line-height:1.7;
+font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:780px;margin:0 auto}
+header{padding:30px 0 18px;border-bottom:2px solid var(--line);margin-bottom:22px}
+.chip{display:inline-block;background:var(--accent);color:var(--ink2);font-size:.78rem;font-weight:700;
+padding:4px 12px;border-radius:99px;margin-bottom:10px}
+h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:.93rem;margin:0}
+.me{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:15px;
+margin-bottom:26px;display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.me .f{flex:1;min-width:115px}
+label{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:5px}
+input[type=text],textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;
+background:var(--card);color:var(--ink);font-size:1rem;font-family:inherit}
+textarea{min-height:88px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:20px}
+section>h2{font-size:1.16rem;margin:0 0 4px;letter-spacing:-.01em}
+.lead{color:var(--muted);font-size:.9rem;margin:0 0 16px}
+.learn h3{font-size:1rem;margin:22px 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
+.learn p{margin:8px 0}
+.learn ul{margin:8px 0;padding-left:20px} .learn li{margin:5px 0}
+.learn table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem}
+.learn th,.learn td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.learn th{background:var(--soft);font-weight:700}
+.learn code{background:var(--soft);padding:1px 6px;border-radius:4px;font-size:.88em}
+.box{background:var(--soft);border-left:3px solid var(--accent);padding:12px 15px;border-radius:0 9px 9px 0;margin:14px 0}
+.book{font-size:.82rem;color:var(--muted);font-weight:600}
+.q{background:var(--quiz);border:1px solid var(--quizline);border-radius:11px;padding:16px;margin-bottom:13px}
+.q .qt{font-weight:700;margin-bottom:10px}
+.opt{display:block;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);
+margin-bottom:7px;cursor:pointer;font-size:.95rem}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin-right:8px}
+.fb{font-size:.9rem;font-weight:600;margin-top:9px;display:none}
+.fb.on{display:block} .fb.o{color:var(--ok)} .fb.x{color:var(--warn)}
+button{font-family:inherit;font-size:.95rem;font-weight:600;border:0;border-radius:9px;padding:11px 20px;
+cursor:pointer;background:var(--accent);color:var(--ink2)}
+button:hover{filter:brightness(1.08)}
+button.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.row{display:flex;gap:9px;align-items:center;margin-top:15px;flex-wrap:wrap}
+.msg{font-size:.9rem;font-weight:600} .msg.ok{color:var(--ok)} .msg.warn{color:var(--warn)}
+.score{font-size:1.05rem;font-weight:700;margin-top:14px}
+#log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
+border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
+footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
+</style></head><body><div class="wrap">
+
+<header>
+  <span class="chip">32차시</span>
+  <h1>한계를 찾는 게 실력이다</h1>
+  <p class="sub">결과가 부진할수록 여기서 점수가 납니다 ⭐</p>
+</header>
+
+<div class="me">
+  <div class="f"><label for="sid">학번</label><input type="text" id="sid" placeholder="30101" autocomplete="off"></div>
+  <div class="f"><label for="sname">이름</label><input type="text" id="sname" placeholder="홍길동" autocomplete="off"></div>
+  <button class="ghost" onclick="saveMe()">기억하기</button>
+</div>
+
+<section class="learn">
+  <h2>📖 오늘 배울 것</h2>
+  <p class="lead">교과서 134~135쪽</p>
+  
+<div class="box" style="border-left-color:#0d9488">
+⭐ <b>오늘이 이 과목에서 가장 중요한 차시입니다.</b><br>
+결과가 잘 안 나온 사람에게 <b>점수를 되찾을 기회</b>이고,
+잘 나온 사람에게는 <b>연구를 완성하는 마지막 조각</b>입니다.</div>
+
+<h3>한계를 쓰는 게 왜 점수가 되나</h3>
+<p>교과서의 마지막 정리 기준을 다시 봅시다.</p>
+<div class="box">📖 <b>다른 연구자가 생각하는 일반화 조건이 추가될 수 있다.</b> <span class="book">교과서 135쪽</span></div>
+<p>즉 <b>「내 연구가 어디까지 말할 수 있는가」를 스스로 아는 것</b>이 연구의 일부라는 뜻입니다.<br>
+한계를 모르는 연구는 <b>과장</b>이 되고, 아는 연구는 <b>정직</b>해집니다.</p>
+
+<div class="box">🎯 보고서 채점 기준에 <b>「⑥ 한계와 개선 방향」이 따로</b> 있습니다.
+여기를 비우면 만점이 안 나오고, <b>결과가 부진해도 여기를 채우면 점수가 올라갑니다.</b></div>
+
+<h3>⭐ 한계는 세 갈래입니다</h3>
+<table><tr><th>갈래</th><th>이런 모습</th><th>내 연구라면</th></tr>
+<tr><td><b>자료 부족</b></td><td>기간이 짧다 · 표본이 적다 · 줄 수가 모자라다</td><td>사흘만 쟀다 · 한 교실만 봤다</td></tr>
+<tr><td><b>자료 편중</b></td><td>한쪽에 쏠렸다 · 특정 조건만 있다</td><td>맑은 날만 쟀다 · 한 학년 자료뿐이다</td></tr>
+<tr><td><b>방법·도구의 제약</b></td><td>오차가 있다 · 도구가 지원 안 한다</td><td>DHT11 오차 ±2℃ · 조도값이 럭스가 아니다</td></tr></table>
+
+<h3>트랙별 — 자주 나오는 한계</h3>
+<table><tr><th>트랙</th><th>흔한 한계</th></tr>
+<tr><td>🅰️</td><td>연도별 자료뿐이라 계절 차이를 못 봄 · 지역 단위가 커서 우리 동네를 못 봄 · 최신 자료가 2년 전</td></tr>
+<tr><td>🅱️</td><td>센서 오차(±2℃) · 측정 기간이 짧음 · 한 지점만 쟀음 · 그날 날씨에 좌우됨</td></tr>
+<tr><td>🅲</td><td>학습 사진이 적음 · 배경이 단조로움 · 특정 라벨에 쏠림 · 실제 환경과 다름</td></tr></table>
+
+<h3>한계마다 <u>개선 방향</u>을 하나씩</h3>
+<div class="box">한계만 쓰면 반쪽입니다. <b>「다시 한다면 무엇을 바꿀까」</b>를 붙이세요.</div>
+
+<table><tr><th>한계</th><th>개선 방향</th></tr>
+<tr><td>사흘만 측정해 그 주 날씨에 좌우될 수 있다</td><td>2주 이상 재고 <b>비 오는 날과 맑은 날을 나눠</b> 비교하면 좋겠다</td></tr>
+<tr><td>DHT11의 오차가 ±2℃라 작은 차이는 말하기 어렵다</td><td><b>정밀 센서로 같은 자리를 함께 재어</b> 보정값을 구하면 좋겠다</td></tr>
+<tr><td>페트병 사진이 모두 같은 배경이었다</td><td><b>배경을 바꿔 가며</b> 찍어 학습시키면 좋겠다</td></tr></table>
+
+<div class="box">💡 <b>「~하면 좋겠다」로 끝내면 됩니다.</b><br>
+실제로 할 필요는 없어요. <b>무엇이 부족했는지 안다는 것</b>만 보여주면 됩니다.</div>
+
+<h3>⚠️ 이렇게 쓰면 아깝습니다</h3>
+<table><tr><th>이런 답 ❌</th><th>왜</th></tr>
+<tr><td>특별한 한계는 없었다</td><td>가장 아까운 답. <b>모든 연구에는 한계가 있습니다</b></td></tr>
+<tr><td>시간이 부족했다</td><td>연구의 한계가 아니라 <b>일정</b>의 문제</td></tr>
+<tr><td>내가 실력이 부족했다</td><td>자책은 한계가 아닙니다. <b>자료·방법</b>을 말하세요</td></tr></table>
+
+</section>
+
+<section>
+  <h2>✍️ 생각 나누기</h2>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
+  <div class="f" style="margin-top:12px"><label for="생각나누기0">내 연구의 한계를 스스로 찾아보니 어떤 기분이었나요? 인정하기 어려웠던 부분이 있나요?</label><textarea id="생각나누기0" placeholder="예) 사흘밖에 못 쟀다는 걸 쓰기가 좀 그랬는데, 쓰고 나니 오히려 「다음엔 2주」라는 생각이 정리됐다"></textarea></div>
+  <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
+    <span class="msg" id="msg-생각나누기"></span></div>
+</section>
+
+<section>
+  <h2>✅ 확인 퀴즈</h2>
+  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
+  <div class="q"><div class="qt">1. 한계를 쓰는 것이 <b>점수가 되는</b> 이유는?</div><label class="opt"><input type="radio" name="q0" value="0">글자 수를 채울 수 있어서</label><label class="opt"><input type="radio" name="q0" value="1">보고서 채점 기준에 「한계와 개선 방향」 항목이 따로 있어서</label><label class="opt"><input type="radio" name="q0" value="2">선생님이 좋아해서</label><label class="opt"><input type="radio" name="q0" value="3">발표 시간을 채울 수 있어서</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. “맑은 날에만 측정했다”는 어느 갈래의 한계인가요?</div><label class="opt"><input type="radio" name="q1" value="0">자료 부족</label><label class="opt"><input type="radio" name="q1" value="1">방법·도구의 제약</label><label class="opt"><input type="radio" name="q1" value="2">자료 편중</label><label class="opt"><input type="radio" name="q1" value="3">한계 아님</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 한계를 쓸 때 <b>반드시 함께</b> 써야 하는 것은?</div><label class="opt"><input type="radio" name="q2" value="0">참고 문헌</label><label class="opt"><input type="radio" name="q2" value="1">그래프</label><label class="opt"><input type="radio" name="q2" value="2">다시 한다면 무엇을 바꿀지(개선 방향)</label><label class="opt"><input type="radio" name="q2" value="3">표본 수</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 한계로 쓰기에 <b>적절하지 않은</b> 것은?</div><label class="opt"><input type="radio" name="q3" value="0">센서 오차가 ±2℃라 작은 차이를 말하기 어렵다</label><label class="opt"><input type="radio" name="q3" value="1">한 교실만 측정해 다른 교실로 일반화하기 어렵다</label><label class="opt"><input type="radio" name="q3" value="2">시간이 부족해서 열심히 못 했다</label><label class="opt"><input type="radio" name="q3" value="3">연도별 자료뿐이라 계절 차이를 볼 수 없다</label><div class="fb" id="fb3"></div></div>
+  <div class="row"><button onclick="grade()">채점하기</button>
+    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
+  <div class="score" id="score"></div>
+</section>
+
+<section>
+  <h2>🔬 내 연구로 가져오기</h2>
+  <p class="lead">여기 쓴 내용이 그대로 <b>보고서 ⑥ 한계와 개선 방향</b> 칸이 됩니다.</p>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">한계 ① — 어느 갈래인가요? (자료 부족 / 자료 편중 / 방법·도구의 제약) 그리고 구체적으로.</label><textarea id="프로젝트0" placeholder="예) 자료 부족 — 사흘만 측정해 그 주 날씨에 결과가 좌우될 수 있다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">한계 ①의 개선 방향 — 「다시 한다면 ~하면 좋겠다」</label><textarea id="프로젝트1" placeholder="예) 2주 이상 재고 비 오는 날과 맑은 날을 나눠 비교하면 좋겠다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">한계 ② — 다른 갈래에서 하나 더 찾아 주세요.</label><textarea id="프로젝트2" placeholder="예) 방법·도구의 제약 — DHT11 오차가 ±2℃라 2도 이내 차이는 단정하기 어렵다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트3">한계 ②의 개선 방향</label><textarea id="프로젝트3" placeholder="예) 정밀 센서를 같은 자리에 함께 두고 재어 보정값을 구하면 좋겠다"></textarea></div>
+  <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
+    <span class="msg" id="msg-프로젝트"></span></div>
+</section>
+
+<section>
+  <h2>📋 내가 낸 것</h2>
+  <div class="row">
+    <button class="ghost" onclick="showLog()">보기</button>
+    <button class="ghost" id="copybtn" style="display:none" onclick="copyLog()">전체 복사</button>
+    <span class="msg" id="logmsg"></span>
+  </div>
+  <p class="lead" id="failnote" style="display:none;margin:12px 0 0;color:var(--warn)">
+    ⚠️ 전송되지 않은 것이 있습니다. <b>전체 복사</b>를 눌러 선생님께 보내 주세요.</p>
+  <div id="log" style="display:none;margin-top:13px"></div>
+</section>
+
+<footer>정보 과제 연구 · 대성여자고등학교 · 2026학년도 2학기</footer>
+</div>
+<iframe name="sink" style="display:none" title="hidden"></iframe>
+
+<script>
+const OPEN = [{"q": "내 연구의 한계를 스스로 찾아보니 어떤 기분이었나요? 인정하기 어려웠던 부분이 있나요?"}];
+const PROJ = [{"q": "한계 ① — 어느 갈래인가요? (자료 부족 / 자료 편중 / 방법·도구의 제약) 그리고 구체적으로."}, {"q": "한계 ①의 개선 방향 — 「다시 한다면 ~하면 좋겠다」"}, {"q": "한계 ② — 다른 갈래에서 하나 더 찾아 주세요."}, {"q": "한계 ②의 개선 방향"}];
+const QUIZ = [{"a": 1, "why": "여기를 비우면 만점이 안 됩니다. 결과가 부진해도 이 칸으로 점수를 올릴 수 있어요."}, {"a": 2, "why": "한쪽 조건에만 쏠린 것이 편중입니다. 부족은 양의 문제예요."}, {"a": 2, "why": "한계만 쓰면 반쪽입니다. 「~하면 좋겠다」를 붙이세요."}, {"a": 2, "why": "일정 문제나 자책은 연구의 한계가 아닙니다. 자료와 방법을 말하세요."}];
+
+/* ── 저장소 (막힌 환경에서도 동작) ── */
+const MEM={}; let OK=true;
+try{localStorage.setItem("__t","1");localStorage.removeItem("__t");}catch(e){OK=false;}
+const S={get(k){try{return OK?localStorage.getItem(k):(MEM[k]??null);}catch(e){return MEM[k]??null;}},
+set(k,v){MEM[k]=v;try{if(OK)localStorage.setItem(k,v);}catch(e){OK=false;}}};
+const LS="정보과제연구_기록";
+
+function me(){return {sid:sid.value.trim(),name:sname.value.trim()};}
+function saveMe(){S.set("정보과제연구_나",JSON.stringify(me()));
+  flash("logmsg",OK?"✅ 기억했습니다":"✅ 기억했습니다 (창을 닫으면 지워집니다)","ok");}
+(function(){try{const m=JSON.parse(S.get("정보과제연구_나")||"{}");
+  if(m.sid)sid.value=m.sid; if(m.name)sname.value=m.name;}catch(e){}})();
+
+/* 설정 누락을 즉시 알림 — 학생이 제출을 눌러야 알게 되는 일을 막습니다 */
+(function(){
+  if(ENDPOINT) return;
+  const w=document.createElement("div");
+  w.className="note";
+  w.style.cssText="background:#fee2e2;border-left-color:#dc2626;color:#7f1d1d";
+  w.innerHTML="<b>⚠️ 선생님께 — 전송 주소가 설정되지 않았습니다.</b><br>"+
+    "이 파일 위쪽 <code>const ENDPOINT = &quot;&quot;</code> 에 Apps Script 웹 앱 주소를 넣어야 "+
+    "제출이 선생님께 전달됩니다. 지금은 학생 기기에만 저장됩니다.";
+  document.querySelector("header").after(w);
+})();
+
+function flash(id,t,c){const e=document.getElementById(id);e.textContent=t;e.className="msg "+(c||"");
+  if(c==="ok")setTimeout(()=>{if(e.textContent===t)e.textContent="";},7000);}
+function records(){try{return JSON.parse(S.get(LS)||"[]");}catch(e){return [];}}
+
+/* ── 제출 ── */
+function submitBlock(kind){
+  const list = kind==="생각나누기" ? OPEN : PROJ;
+  const who = me();
+  if(!who.sid||!who.name){flash("msg-"+kind,"⚠️ 위에 학번과 이름을 먼저 적어 주세요","warn");sid.focus();return;}
+  const parts=[];
+  for(let i=0;i<list.length;i++){
+    const v=document.getElementById(kind+i).value.trim();
+    if(!v){const lbl=list[i].q.length>16?list[i].q.slice(0,16)+"…":list[i].q;
+      flash("msg-"+kind,`⚠️ ${i+1}번 「${lbl}」 칸이 비어 있어요`,"warn");
+      document.getElementById(kind+i).focus();return;}
+    parts.push(list.length===1 ? v : `${list[i].q}\n${v}`);
+  }
+  const body=parts.join("\n\n");
+  const when=new Date().toLocaleString("ko-KR",{month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"});
+  const sent=!!ENDPOINT;
+  if(sent){
+    const f=document.createElement("form");
+    f.action=ENDPOINT; f.method="POST"; f.target="sink";
+    const put=(n,v)=>{const i=document.createElement("input");i.type="hidden";i.name=n;i.value=v;f.appendChild(i);};
+    put("n",String(차시번호)); put("sid",who.sid); put("name",who.name);
+    put("kind",kind==="생각나누기"?"생기부":"프로젝트");
+    put("item",kind); put("body",body);
+    document.body.appendChild(f); f.submit(); document.body.removeChild(f);
+    flash("msg-"+kind,"✅ 제출했습니다","ok");
+  }else{
+    flash("msg-"+kind,"⚠️ 전송 설정 전입니다. 이 기기에 저장했어요","warn");
+  }
+  try{const a=records();a.push({when,kind,body,sent});S.set(LS,JSON.stringify(a));}catch(e){}
+  refreshFail();
+}
+
+/* 전송 실패가 있을 때만 「전체 복사」를 보여 줍니다 */
+function refreshFail(){
+  const bad = records().some(r=>!r.sent);
+  document.getElementById("copybtn").style.display  = bad ? "" : "none";
+  document.getElementById("failnote").style.display = bad ? "" : "none";
+}
+
+/* ── 퀴즈 ── */
+function grade(){
+  let right=0, done=0;
+  QUIZ.forEach((q,i)=>{
+    const sel=document.querySelector(`input[name=q${i}]:checked`);
+    const fb=document.getElementById("fb"+i);
+    if(!sel){fb.className="fb";return;}
+    done++;
+    const ok=Number(sel.value)===q.a;
+    if(ok)right++;
+    fb.className="fb on "+(ok?"o":"x");
+    fb.textContent=(ok?"⭕ 맞았어요 — ":"❌ 다시 볼까요 — ")+q.why;
+  });
+  const s=document.getElementById("score");
+  if(done<QUIZ.length){s.textContent=`아직 안 푼 문제가 있어요 (${done}/${QUIZ.length})`;return;}
+  s.textContent=`${QUIZ.length}문제 중 ${right}개 정답` +
+    (right===QUIZ.length?"  🎉 완벽합니다":(right>=QUIZ.length-1?"  👍 거의 다 됐어요":"  📖 위 설명을 다시 읽어 보세요"));
+}
+function resetQuiz(){
+  document.querySelectorAll("input[type=radio]").forEach(r=>r.checked=false);
+  document.querySelectorAll(".fb").forEach(f=>f.className="fb");
+  document.getElementById("score").textContent="";
+}
+
+/* ── 기록 ── */
+function asText(){const a=records();
+  if(!a.length)return "아직 제출한 게 없습니다.";
+  return a.map(r=>`${r.sent?"✅":"⚠️"} ${r.kind}  (${r.when})\n${r.body}`).join("\n\n──────────\n\n");}
+function showLog(){const d=document.getElementById("log");
+  d.style.display=d.style.display==="none"?"block":"none"; d.textContent=asText(); refreshFail();}
+function copyLog(){const t=`${차시번호}차시  ${sid.value} ${sname.value}\n\n`+asText();
+  navigator.clipboard.writeText(t).then(()=>flash("logmsg","✅ 복사했습니다","ok"))
+  .catch(()=>{const d=document.getElementById("log");d.style.display="block";d.textContent=t;
+    flash("logmsg","아래에서 직접 선택해 복사하세요","warn");});}
+
+refreshFail();
+</script></body></html>

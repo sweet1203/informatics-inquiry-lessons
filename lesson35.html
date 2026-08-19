@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>35차시 · 한 장으로 보여주기</title>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ⚙️ 선생님 설정 — 아래 한 줄만 채우면 됩니다
+     _설정_AppsScript.gs 를 스프레드시트에 설치하고 받은 웹 앱 URL
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbxa1jCaEXkrPhu15jE-wYaMPx9CcaucpgJm17VYU1b6mW5XitHnzjE3zqP_Sg9Wrxgq6g/exec";
+const 차시번호 = 35;
+</script>
+
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1a1d21;--muted:#6b7280;--line:#e3e6ea;
+--accent:#2563eb;--ink2:#fff;--ok:#0d9488;--warn:#b45309;--soft:#eef2ff;--quiz:#fff7ed;--quizline:#fdba74}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+--bg:#14171a;--card:#1c2024;--ink:#e8eaed;--muted:#9aa3ad;--line:#2c3238;
+--accent:#5b8cff;--ink2:#0d1117;--ok:#2dd4bf;--warn:#fbbf24;--soft:#1e2536;--quiz:#2a2118;--quizline:#7c4a12}}
+*{box-sizing:border-box}
+body{margin:0;padding:0 16px 72px;background:var(--bg);color:var(--ink);line-height:1.7;
+font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:780px;margin:0 auto}
+header{padding:30px 0 18px;border-bottom:2px solid var(--line);margin-bottom:22px}
+.chip{display:inline-block;background:var(--accent);color:var(--ink2);font-size:.78rem;font-weight:700;
+padding:4px 12px;border-radius:99px;margin-bottom:10px}
+h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:.93rem;margin:0}
+.me{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:15px;
+margin-bottom:26px;display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.me .f{flex:1;min-width:115px}
+label{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:5px}
+input[type=text],textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;
+background:var(--card);color:var(--ink);font-size:1rem;font-family:inherit}
+textarea{min-height:88px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:20px}
+section>h2{font-size:1.16rem;margin:0 0 4px;letter-spacing:-.01em}
+.lead{color:var(--muted);font-size:.9rem;margin:0 0 16px}
+.learn h3{font-size:1rem;margin:22px 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
+.learn p{margin:8px 0}
+.learn ul{margin:8px 0;padding-left:20px} .learn li{margin:5px 0}
+.learn table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem}
+.learn th,.learn td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.learn th{background:var(--soft);font-weight:700}
+.learn code{background:var(--soft);padding:1px 6px;border-radius:4px;font-size:.88em}
+.box{background:var(--soft);border-left:3px solid var(--accent);padding:12px 15px;border-radius:0 9px 9px 0;margin:14px 0}
+.book{font-size:.82rem;color:var(--muted);font-weight:600}
+.q{background:var(--quiz);border:1px solid var(--quizline);border-radius:11px;padding:16px;margin-bottom:13px}
+.q .qt{font-weight:700;margin-bottom:10px}
+.opt{display:block;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);
+margin-bottom:7px;cursor:pointer;font-size:.95rem}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin-right:8px}
+.fb{font-size:.9rem;font-weight:600;margin-top:9px;display:none}
+.fb.on{display:block} .fb.o{color:var(--ok)} .fb.x{color:var(--warn)}
+button{font-family:inherit;font-size:.95rem;font-weight:600;border:0;border-radius:9px;padding:11px 20px;
+cursor:pointer;background:var(--accent);color:var(--ink2)}
+button:hover{filter:brightness(1.08)}
+button.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.row{display:flex;gap:9px;align-items:center;margin-top:15px;flex-wrap:wrap}
+.msg{font-size:.9rem;font-weight:600} .msg.ok{color:var(--ok)} .msg.warn{color:var(--warn)}
+.score{font-size:1.05rem;font-weight:700;margin-top:14px}
+#log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
+border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
+footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
+</style></head><body><div class="wrap">
+
+<header>
+  <span class="chip">35차시</span>
+  <h1>한 장으로 보여주기</h1>
+  <p class="sub">연구 포스터 만들기</p>
+</header>
+
+<div class="me">
+  <div class="f"><label for="sid">학번</label><input type="text" id="sid" placeholder="30101" autocomplete="off"></div>
+  <div class="f"><label for="sname">이름</label><input type="text" id="sname" placeholder="홍길동" autocomplete="off"></div>
+  <button class="ghost" onclick="saveMe()">기억하기</button>
+</div>
+
+<section class="learn">
+  <h2>📖 오늘 배울 것</h2>
+  <p class="lead">교과서 30~31쪽</p>
+  
+<div class="box">🖼️ <b>A3 한 장.</b> 보고서 전체를 <b>3분에 설명할 수 있게</b> 줄이는 작업입니다.</div>
+
+<h3>왜 포스터인가</h3>
+<div class="box">📖 STEP 8 — <b>산출물(논문, 포스터 등) 발표</b> <span class="book">교과서 30~31쪽</span></div>
+<p>포스터는 <b>실제 학술 대회에서 쓰는 방식</b>입니다. 발표자가 포스터 앞에 서 있으면
+관심 있는 사람이 찾아와 묻는 형태예요. 우리도 그렇게 합니다.</p>
+
+<h3>⭐ 다섯 칸 — 이것만 담습니다</h3>
+<div class="box">
+<pre style="margin:0;font-family:ui-monospace,Menlo,monospace;font-size:.85rem;line-height:1.5">
+┌──────────────────────────────────────┐
+│  제목            학번·이름(참여 학생 전원)  │
+├──────────────────────────────────────┤
+│  1  연구 질문                          │
+│  2  데이터·장치                        │
+│  3  방법                               │
+│                                        │
+│  4  결과 그래프    ← 가장 크게            │
+│                                        │
+│  5  알게 된 점                         │
+└──────────────────────────────────────┘</pre></div>
+
+<table><tr><th>칸</th><th>분량</th><th>내용</th></tr>
+<tr><td>1 연구 질문</td><td><b>한 문장</b></td><td>보고서 ①</td></tr>
+<tr><td>2 데이터·장치</td><td>2~3줄</td><td>무엇을 얼마나</td></tr>
+<tr><td>3 방법</td><td>2~3줄 또는 그림</td><td>어떻게 했는지</td></tr>
+<tr><td><b>4 결과 그래프</b></td><td><b>가장 크게</b></td><td>그래프 1~2개</td></tr>
+<tr><td>5 알게 된 점</td><td>2~3줄</td><td>결론 + 한계 한 줄</td></tr></table>
+
+<div class="box">🎯 <b>그래프가 포스터의 절반을 차지해야 합니다.</b><br>
+멀리서도 보이는 게 그래프입니다. 글자는 가까이 와야 읽혀요.</div>
+
+<h3>도구 — 캔바 또는 미리캔버스</h3>
+<table><tr><th>순서</th><th>할 일</th></tr>
+<tr><td>1</td><td><code>canva.com</code> 또는 <code>miricanvas.com</code> 접속</td></tr>
+<tr><td>2</td><td>새 디자인 → <b>사용자 지정 크기 → A3 (297 × 420mm)</b></td></tr>
+<tr><td>3</td><td><b>세로 방향</b>으로 설정</td></tr>
+<tr><td>4</td><td>다섯 칸을 텍스트 상자로 배치</td></tr>
+<tr><td>5</td><td>스프레드시트 그래프를 <b>이미지로 저장해 넣기</b></td></tr></table>
+<div class="box">💡 <b>그래프 넣는 법</b> — 스프레드시트에서 차트 <b>우클릭 → 이미지 다운로드(PNG)</b>
+→ 캔바에 <b>드래그</b>해서 넣으면 됩니다.</div>
+
+<h3>⚠️ 자주 하는 실수</h3>
+<table><tr><th>실수</th><th>이렇게</th></tr>
+<tr><td>글자가 너무 많다</td><td><b>보고서를 그대로 옮기지 마세요.</b> 문장을 짧게 자르기</td></tr>
+<tr><td>글자가 너무 작다</td><td>제목 <b>60pt 이상</b>, 본문 <b>20pt 이상</b></td></tr>
+<tr><td>그래프가 작다</td><td>포스터의 <b>40~50%</b>를 차지하게</td></tr>
+<tr><td>색이 너무 많다</td><td><b>2~3가지</b>로 통일</td></tr>
+<tr><td>참여 학생 이름 누락</td><td>모둠이면 <b>전원</b> 반드시</td></tr></table>
+
+<div class="box">⚠️ <b>「참여 학생」 칸을 반드시 살리세요.</b><br>
+모둠 연구에서 <b>개인별 기여를 확인하는 첫 단서</b>입니다.</div>
+
+<h3>다음 시간(36차시) 준비</h3>
+<p>포스터를 <b>출력해서 가져오세요.</b> 리허설을 합니다.</p>
+
+</section>
+
+<section>
+  <h2>✍️ 생각 나누기</h2>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
+  <div class="f" style="margin-top:12px"><label for="생각나누기0">보고서를 포스터 한 장으로 줄이면서 무엇을 버렸나요? 버리기 아까웠던 것이 있나요?</label><textarea id="생각나누기0" placeholder="예) 측정 과정에서 겪은 시행착오를 다 빼야 했다. 그게 제일 열심히 한 부분인데 아쉬웠다"></textarea></div>
+  <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
+    <span class="msg" id="msg-생각나누기"></span></div>
+</section>
+
+<section>
+  <h2>✅ 확인 퀴즈</h2>
+  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
+  <div class="q"><div class="qt">1. 포스터에서 <b>가장 크게</b> 넣어야 하는 것은?</div><label class="opt"><input type="radio" name="q0" value="0">제목</label><label class="opt"><input type="radio" name="q0" value="1">연구 질문</label><label class="opt"><input type="radio" name="q0" value="2">결과 그래프</label><label class="opt"><input type="radio" name="q0" value="3">참고 자료</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 포스터 다섯 칸에 <b>들어가지 않는</b> 것은?</div><label class="opt"><input type="radio" name="q1" value="0">연구 질문</label><label class="opt"><input type="radio" name="q1" value="1">데이터·장치</label><label class="opt"><input type="radio" name="q1" value="2">참고 문헌 목록</label><label class="opt"><input type="radio" name="q1" value="3">알게 된 점</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 포스터를 만들 때 흔한 실수는?</div><label class="opt"><input type="radio" name="q2" value="0">그래프를 넣는다</label><label class="opt"><input type="radio" name="q2" value="1">제목을 크게 쓴다</label><label class="opt"><input type="radio" name="q2" value="2">색을 2~3가지로 통일한다</label><label class="opt"><input type="radio" name="q2" value="3">보고서 문장을 그대로 옮겨 글자가 너무 많다</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 「참여 학생」 칸을 반드시 채워야 하는 이유는?</div><label class="opt"><input type="radio" name="q3" value="0">출석 확인용이라서</label><label class="opt"><input type="radio" name="q3" value="1">모둠 연구의 개인별 기여를 확인하는 단서라서</label><label class="opt"><input type="radio" name="q3" value="2">포스터 규격이라서</label><label class="opt"><input type="radio" name="q3" value="3">발표 순서를 정하려고</label><div class="fb" id="fb3"></div></div>
+  <div class="row"><button onclick="grade()">채점하기</button>
+    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
+  <div class="score" id="score"></div>
+</section>
+
+<section>
+  <h2>🔬 내 연구로 가져오기</h2>
+  <p class="lead">포스터 진행 상황을 남깁니다.</p>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">다섯 칸 중 완성한 것과 남은 것을 적어 주세요.</label><textarea id="프로젝트0" placeholder="예) 1·2·3·5 완성 / 4번 그래프는 이미지로 저장까지 했고 배치만 남음"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">포스터에 넣은 그래프는 무엇이고, 왜 그것을 골랐나요?</label><textarea id="프로젝트1" placeholder="예) 교시별 평균 온도 꺾은선그래프. 5교시가 튀는 게 한눈에 보여서"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">모둠이라면 참여 학생 전원의 학번·이름을 적어 주세요. (개인이면 「개인」)</label><textarea id="프로젝트2" placeholder="예) 30106 박소민, 30111 안세윤"></textarea></div>
+  <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
+    <span class="msg" id="msg-프로젝트"></span></div>
+</section>
+
+<section>
+  <h2>📋 내가 낸 것</h2>
+  <div class="row">
+    <button class="ghost" onclick="showLog()">보기</button>
+    <button class="ghost" id="copybtn" style="display:none" onclick="copyLog()">전체 복사</button>
+    <span class="msg" id="logmsg"></span>
+  </div>
+  <p class="lead" id="failnote" style="display:none;margin:12px 0 0;color:var(--warn)">
+    ⚠️ 전송되지 않은 것이 있습니다. <b>전체 복사</b>를 눌러 선생님께 보내 주세요.</p>
+  <div id="log" style="display:none;margin-top:13px"></div>
+</section>
+
+<footer>정보 과제 연구 · 대성여자고등학교 · 2026학년도 2학기</footer>
+</div>
+<iframe name="sink" style="display:none" title="hidden"></iframe>
+
+<script>
+const OPEN = [{"q": "보고서를 포스터 한 장으로 줄이면서 무엇을 버렸나요? 버리기 아까웠던 것이 있나요?"}];
+const PROJ = [{"q": "다섯 칸 중 완성한 것과 남은 것을 적어 주세요."}, {"q": "포스터에 넣은 그래프는 무엇이고, 왜 그것을 골랐나요?"}, {"q": "모둠이라면 참여 학생 전원의 학번·이름을 적어 주세요. (개인이면 「개인」)"}];
+const QUIZ = [{"a": 2, "why": "멀리서 보이는 건 그래프입니다. 포스터의 40~50%를 차지하게 하세요."}, {"a": 2, "why": "참고 문헌은 보고서에 씁니다. 포스터는 질문·데이터·방법·결과·알게 된 점 다섯 칸이에요."}, {"a": 3, "why": "포스터는 요약입니다. 문장을 짧게 자르세요."}, {"a": 1, "why": "성적이 개인별로 산출되므로 누가 참여했는지가 근거가 됩니다."}];
+
+/* ── 저장소 (막힌 환경에서도 동작) ── */
+const MEM={}; let OK=true;
+try{localStorage.setItem("__t","1");localStorage.removeItem("__t");}catch(e){OK=false;}
+const S={get(k){try{return OK?localStorage.getItem(k):(MEM[k]??null);}catch(e){return MEM[k]??null;}},
+set(k,v){MEM[k]=v;try{if(OK)localStorage.setItem(k,v);}catch(e){OK=false;}}};
+const LS="정보과제연구_기록";
+
+function me(){return {sid:sid.value.trim(),name:sname.value.trim()};}
+function saveMe(){S.set("정보과제연구_나",JSON.stringify(me()));
+  flash("logmsg",OK?"✅ 기억했습니다":"✅ 기억했습니다 (창을 닫으면 지워집니다)","ok");}
+(function(){try{const m=JSON.parse(S.get("정보과제연구_나")||"{}");
+  if(m.sid)sid.value=m.sid; if(m.name)sname.value=m.name;}catch(e){}})();
+
+/* 설정 누락을 즉시 알림 — 학생이 제출을 눌러야 알게 되는 일을 막습니다 */
+(function(){
+  if(ENDPOINT) return;
+  const w=document.createElement("div");
+  w.className="note";
+  w.style.cssText="background:#fee2e2;border-left-color:#dc2626;color:#7f1d1d";
+  w.innerHTML="<b>⚠️ 선생님께 — 전송 주소가 설정되지 않았습니다.</b><br>"+
+    "이 파일 위쪽 <code>const ENDPOINT = &quot;&quot;</code> 에 Apps Script 웹 앱 주소를 넣어야 "+
+    "제출이 선생님께 전달됩니다. 지금은 학생 기기에만 저장됩니다.";
+  document.querySelector("header").after(w);
+})();
+
+function flash(id,t,c){const e=document.getElementById(id);e.textContent=t;e.className="msg "+(c||"");
+  if(c==="ok")setTimeout(()=>{if(e.textContent===t)e.textContent="";},7000);}
+function records(){try{return JSON.parse(S.get(LS)||"[]");}catch(e){return [];}}
+
+/* ── 제출 ── */
+function submitBlock(kind){
+  const list = kind==="생각나누기" ? OPEN : PROJ;
+  const who = me();
+  if(!who.sid||!who.name){flash("msg-"+kind,"⚠️ 위에 학번과 이름을 먼저 적어 주세요","warn");sid.focus();return;}
+  const parts=[];
+  for(let i=0;i<list.length;i++){
+    const v=document.getElementById(kind+i).value.trim();
+    if(!v){const lbl=list[i].q.length>16?list[i].q.slice(0,16)+"…":list[i].q;
+      flash("msg-"+kind,`⚠️ ${i+1}번 「${lbl}」 칸이 비어 있어요`,"warn");
+      document.getElementById(kind+i).focus();return;}
+    parts.push(list.length===1 ? v : `${list[i].q}\n${v}`);
+  }
+  const body=parts.join("\n\n");
+  const when=new Date().toLocaleString("ko-KR",{month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"});
+  const sent=!!ENDPOINT;
+  if(sent){
+    const f=document.createElement("form");
+    f.action=ENDPOINT; f.method="POST"; f.target="sink";
+    const put=(n,v)=>{const i=document.createElement("input");i.type="hidden";i.name=n;i.value=v;f.appendChild(i);};
+    put("n",String(차시번호)); put("sid",who.sid); put("name",who.name);
+    put("kind",kind==="생각나누기"?"생기부":"프로젝트");
+    put("item",kind); put("body",body);
+    document.body.appendChild(f); f.submit(); document.body.removeChild(f);
+    flash("msg-"+kind,"✅ 제출했습니다","ok");
+  }else{
+    flash("msg-"+kind,"⚠️ 전송 설정 전입니다. 이 기기에 저장했어요","warn");
+  }
+  try{const a=records();a.push({when,kind,body,sent});S.set(LS,JSON.stringify(a));}catch(e){}
+  refreshFail();
+}
+
+/* 전송 실패가 있을 때만 「전체 복사」를 보여 줍니다 */
+function refreshFail(){
+  const bad = records().some(r=>!r.sent);
+  document.getElementById("copybtn").style.display  = bad ? "" : "none";
+  document.getElementById("failnote").style.display = bad ? "" : "none";
+}
+
+/* ── 퀴즈 ── */
+function grade(){
+  let right=0, done=0;
+  QUIZ.forEach((q,i)=>{
+    const sel=document.querySelector(`input[name=q${i}]:checked`);
+    const fb=document.getElementById("fb"+i);
+    if(!sel){fb.className="fb";return;}
+    done++;
+    const ok=Number(sel.value)===q.a;
+    if(ok)right++;
+    fb.className="fb on "+(ok?"o":"x");
+    fb.textContent=(ok?"⭕ 맞았어요 — ":"❌ 다시 볼까요 — ")+q.why;
+  });
+  const s=document.getElementById("score");
+  if(done<QUIZ.length){s.textContent=`아직 안 푼 문제가 있어요 (${done}/${QUIZ.length})`;return;}
+  s.textContent=`${QUIZ.length}문제 중 ${right}개 정답` +
+    (right===QUIZ.length?"  🎉 완벽합니다":(right>=QUIZ.length-1?"  👍 거의 다 됐어요":"  📖 위 설명을 다시 읽어 보세요"));
+}
+function resetQuiz(){
+  document.querySelectorAll("input[type=radio]").forEach(r=>r.checked=false);
+  document.querySelectorAll(".fb").forEach(f=>f.className="fb");
+  document.getElementById("score").textContent="";
+}
+
+/* ── 기록 ── */
+function asText(){const a=records();
+  if(!a.length)return "아직 제출한 게 없습니다.";
+  return a.map(r=>`${r.sent?"✅":"⚠️"} ${r.kind}  (${r.when})\n${r.body}`).join("\n\n──────────\n\n");}
+function showLog(){const d=document.getElementById("log");
+  d.style.display=d.style.display==="none"?"block":"none"; d.textContent=asText(); refreshFail();}
+function copyLog(){const t=`${차시번호}차시  ${sid.value} ${sname.value}\n\n`+asText();
+  navigator.clipboard.writeText(t).then(()=>flash("logmsg","✅ 복사했습니다","ok"))
+  .catch(()=>{const d=document.getElementById("log");d.style.display="block";d.textContent=t;
+    flash("logmsg","아래에서 직접 선택해 복사하세요","warn");});}
+
+refreshFail();
+</script></body></html>

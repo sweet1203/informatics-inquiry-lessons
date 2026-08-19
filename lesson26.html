@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>26차시 · 여기가 갈림길입니다</title>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ⚙️ 선생님 설정 — 아래 한 줄만 채우면 됩니다
+     _설정_AppsScript.gs 를 스프레드시트에 설치하고 받은 웹 앱 URL
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbxa1jCaEXkrPhu15jE-wYaMPx9CcaucpgJm17VYU1b6mW5XitHnzjE3zqP_Sg9Wrxgq6g/exec";
+const 차시번호 = 26;
+</script>
+
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1a1d21;--muted:#6b7280;--line:#e3e6ea;
+--accent:#2563eb;--ink2:#fff;--ok:#0d9488;--warn:#b45309;--soft:#eef2ff;--quiz:#fff7ed;--quizline:#fdba74}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+--bg:#14171a;--card:#1c2024;--ink:#e8eaed;--muted:#9aa3ad;--line:#2c3238;
+--accent:#5b8cff;--ink2:#0d1117;--ok:#2dd4bf;--warn:#fbbf24;--soft:#1e2536;--quiz:#2a2118;--quizline:#7c4a12}}
+*{box-sizing:border-box}
+body{margin:0;padding:0 16px 72px;background:var(--bg);color:var(--ink);line-height:1.7;
+font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:780px;margin:0 auto}
+header{padding:30px 0 18px;border-bottom:2px solid var(--line);margin-bottom:22px}
+.chip{display:inline-block;background:var(--accent);color:var(--ink2);font-size:.78rem;font-weight:700;
+padding:4px 12px;border-radius:99px;margin-bottom:10px}
+h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:.93rem;margin:0}
+.me{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:15px;
+margin-bottom:26px;display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.me .f{flex:1;min-width:115px}
+label{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:5px}
+input[type=text],textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;
+background:var(--card);color:var(--ink);font-size:1rem;font-family:inherit}
+textarea{min-height:88px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:20px}
+section>h2{font-size:1.16rem;margin:0 0 4px;letter-spacing:-.01em}
+.lead{color:var(--muted);font-size:.9rem;margin:0 0 16px}
+.learn h3{font-size:1rem;margin:22px 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
+.learn p{margin:8px 0}
+.learn ul{margin:8px 0;padding-left:20px} .learn li{margin:5px 0}
+.learn table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem}
+.learn th,.learn td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.learn th{background:var(--soft);font-weight:700}
+.learn code{background:var(--soft);padding:1px 6px;border-radius:4px;font-size:.88em}
+.box{background:var(--soft);border-left:3px solid var(--accent);padding:12px 15px;border-radius:0 9px 9px 0;margin:14px 0}
+.book{font-size:.82rem;color:var(--muted);font-weight:600}
+.q{background:var(--quiz);border:1px solid var(--quizline);border-radius:11px;padding:16px;margin-bottom:13px}
+.q .qt{font-weight:700;margin-bottom:10px}
+.opt{display:block;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);
+margin-bottom:7px;cursor:pointer;font-size:.95rem}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin-right:8px}
+.fb{font-size:.9rem;font-weight:600;margin-top:9px;display:none}
+.fb.on{display:block} .fb.o{color:var(--ok)} .fb.x{color:var(--warn)}
+button{font-family:inherit;font-size:.95rem;font-weight:600;border:0;border-radius:9px;padding:11px 20px;
+cursor:pointer;background:var(--accent);color:var(--ink2)}
+button:hover{filter:brightness(1.08)}
+button.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.row{display:flex;gap:9px;align-items:center;margin-top:15px;flex-wrap:wrap}
+.msg{font-size:.9rem;font-weight:600} .msg.ok{color:var(--ok)} .msg.warn{color:var(--warn)}
+.score{font-size:1.05rem;font-weight:700;margin-top:14px}
+#log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
+border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
+footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
+</style></head><body><div class="wrap">
+
+<header>
+  <span class="chip">26차시</span>
+  <h1>여기가 갈림길입니다</h1>
+  <p class="sub">장치·환경 완성 점검 ★</p>
+</header>
+
+<div class="me">
+  <div class="f"><label for="sid">학번</label><input type="text" id="sid" placeholder="30101" autocomplete="off"></div>
+  <div class="f"><label for="sname">이름</label><input type="text" id="sname" placeholder="홍길동" autocomplete="off"></div>
+  <button class="ghost" onclick="saveMe()">기억하기</button>
+</div>
+
+<section class="learn">
+  <h2>📖 오늘 배울 것</h2>
+  <p class="lead">—</p>
+  
+<div class="box">🚦 <b>오늘은 판정하는 날입니다.</b><br>
+다음 시간(27차시)부터 <b>실제 자료를 모읍니다.</b> 그러려면 오늘 준비가 끝나 있어야 해요.</div>
+
+<h3>통과 기준 — 트랙별로 딱 하나씩</h3>
+<table><tr><th>트랙</th><th>이게 되면 통과</th></tr>
+<tr><td>🅰️ 데이터 분석</td><td>쓸 <b>데이터 파일이 열려 있고</b>, 필요한 열이 다 있다</td></tr>
+<tr><td>🅱️ 피지컬</td><td><b>시리얼 모니터에 값이 찍히고</b>, 잴 자리가 정해졌다</td></tr>
+<tr><td>🅲 프로그램</td><td><b>모델이 돌아가고</b>, 바꿔 볼 조건이 정해졌다</td></tr></table>
+
+<div class="box">💡 <b>완벽할 필요 없습니다.</b> 그래프가 예쁠 필요도, 정확도가 높을 필요도 없어요.<br>
+<b>값이 나오기만 하면</b> 통과입니다.</div>
+
+<h3>⚠️ 통과 못 했다면 — 트랙 A로 바꿉니다</h3>
+<p>이건 <b>실패가 아니라 처음부터 예정된 선택지</b>입니다. 12차시에 미리 말씀드렸죠.</p>
+
+<table><tr><th>상황</th><th>이렇게 바꿉니다</th></tr>
+<tr><td>센서 값이 안 나온다</td><td>같은 주제를 <b>공공데이터로</b> — 기상청 기온 자료로 교실 대신 지역 기온 분석</td></tr>
+<tr><td>모델이 안 돌아간다</td><td>이미 있는 <b>분류 결과 데이터</b>를 분석</td></tr>
+<tr><td>데이터를 못 구했다</td><td>주제를 바꾸거나 <b>범위를 넓힘</b> — 우리 시 → 우리 도</td></tr></table>
+
+<div class="box">🎯 <b>지금 바꾸는 게 10월 말에 아무것도 없는 것보다 훨씬 낫습니다.</b><br>
+바꾸기로 했다면 <b>오늘 선생님께 말하세요.</b> 같이 새 데이터를 찾아 드립니다.</div>
+
+<h3>통과했다면 — 27차시 준비</h3>
+<table><tr><th>트랙</th><th>다음 시간까지</th></tr>
+<tr><td>🅰️</td><td>데이터를 <b>내 계정 스프레드시트에</b> 올려 두기</td></tr>
+<tr><td>🅱️</td><td>장치를 <b>잴 자리에 설치</b>하고 PC에 연결해 두기</td></tr>
+<tr><td>🅲</td><td>바꿔 볼 조건 <b>3가지를 목록으로</b></td></tr></table>
+
+<div class="box">⏰ <b>트랙 B는 특히 중요합니다.</b><br>
+측정에는 <b>며칠이 걸립니다.</b> 오늘 설치해 두면 수업이 없는 시간에도 데이터가 쌓입니다.<br>
+설치가 늦어질수록 분석할 자료가 줄어듭니다.</div>
+
+<h3>공통 — 자료를 얼마나 모아야 하나</h3>
+<table><tr><th>트랙</th><th>최소 기준</th></tr>
+<tr><td>🅰️</td><td>행 <b>30줄 이상</b> <i>(적으면 비교가 안 됩니다)</i></td></tr>
+<tr><td>🅱️</td><td><b>이틀 이상</b> 또는 <b>수업 시간 3회</b> 이상</td></tr>
+<tr><td>🅲</td><td>조건 <b>3가지</b> × 시험 사진 <b>10장</b></td></tr></table>
+
+</section>
+
+<section>
+  <h2>✍️ 생각 나누기</h2>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
+  <div class="f" style="margin-top:12px"><label for="생각나누기0">지금까지 준비하면서 가장 어려웠던 순간과, 그걸 어떻게 넘겼는지 적어 주세요.</label><textarea id="생각나누기0" placeholder="예) 배선을 세 번 다시 했다. 결국 짝이 자기 것과 비교해 주면서 GND가 빠진 걸 찾았다"></textarea></div>
+  <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
+    <span class="msg" id="msg-생각나누기"></span></div>
+</section>
+
+<section>
+  <h2>✅ 확인 퀴즈</h2>
+  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
+  <div class="q"><div class="qt">1. 26차시 통과 기준으로 알맞은 것은?</div><label class="opt"><input type="radio" name="q0" value="0">그래프가 예쁘게 나온다</label><label class="opt"><input type="radio" name="q0" value="1">값이 나오기만 하면 된다</label><label class="opt"><input type="radio" name="q0" value="2">정확도가 90% 이상이다</label><label class="opt"><input type="radio" name="q0" value="3">보고서 초안이 있다</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 센서 값이 끝내 안 나옵니다. 가장 바람직한 대응은?</div><label class="opt"><input type="radio" name="q1" value="0">혼자 계속 붙들고 고친다</label><label class="opt"><input type="radio" name="q1" value="1">연구를 포기한다</label><label class="opt"><input type="radio" name="q1" value="2">결과를 지어낸다</label><label class="opt"><input type="radio" name="q1" value="3">오늘 선생님께 말하고 트랙 A로 전환한다</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 트랙 B에서 <b>오늘 장치를 설치해야 하는</b> 이유는?</div><label class="opt"><input type="radio" name="q2" value="0">측정에 며칠이 걸리므로</label><label class="opt"><input type="radio" name="q2" value="1">오늘이 마지막 실습 시간이라서</label><label class="opt"><input type="radio" name="q2" value="2">장치를 반납해야 해서</label><label class="opt"><input type="radio" name="q2" value="3">설치가 평가 대상이라서</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 트랙 A에서 자료의 최소 기준으로 제시된 것은?</div><label class="opt"><input type="radio" name="q3" value="0">행 5줄 이상</label><label class="opt"><input type="radio" name="q3" value="1">열 10개 이상</label><label class="opt"><input type="radio" name="q3" value="2">행 30줄 이상</label><label class="opt"><input type="radio" name="q3" value="3">파일 3개 이상</label><div class="fb" id="fb3"></div></div>
+  <div class="row"><button onclick="grade()">채점하기</button>
+    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
+  <div class="score" id="score"></div>
+</section>
+
+<section>
+  <h2>🔬 내 연구로 가져오기</h2>
+  <p class="lead">관문 통과 여부를 기록합니다. <b>선생님이 확인하고 필요하면 도와드립니다.</b></p>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">통과했나요? (통과 / 미통과) 무엇을 확인했는지 구체적으로 적어 주세요.</label><textarea id="프로젝트0" placeholder="예) 통과 — 시리얼 모니터에 온도·습도가 1분마다 찍히는 것 확인, 교실 뒤 게시판 앞에 설치함"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">미통과라면 무엇이 막고 있나요? 트랙을 바꿀 생각이 있나요?</label><textarea id="프로젝트1" placeholder="예) 통과했으므로 해당 없음  /  또는: 센서 값이 안 나옴. 트랙 A로 바꾸고 싶다"></textarea></div>
+  <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
+    <span class="msg" id="msg-프로젝트"></span></div>
+</section>
+
+<section>
+  <h2>📋 내가 낸 것</h2>
+  <div class="row">
+    <button class="ghost" onclick="showLog()">보기</button>
+    <button class="ghost" id="copybtn" style="display:none" onclick="copyLog()">전체 복사</button>
+    <span class="msg" id="logmsg"></span>
+  </div>
+  <p class="lead" id="failnote" style="display:none;margin:12px 0 0;color:var(--warn)">
+    ⚠️ 전송되지 않은 것이 있습니다. <b>전체 복사</b>를 눌러 선생님께 보내 주세요.</p>
+  <div id="log" style="display:none;margin-top:13px"></div>
+</section>
+
+<footer>정보 과제 연구 · 대성여자고등학교 · 2026학년도 2학기</footer>
+</div>
+<iframe name="sink" style="display:none" title="hidden"></iframe>
+
+<script>
+const OPEN = [{"q": "지금까지 준비하면서 가장 어려웠던 순간과, 그걸 어떻게 넘겼는지 적어 주세요."}];
+const PROJ = [{"q": "통과했나요? (통과 / 미통과) 무엇을 확인했는지 구체적으로 적어 주세요."}, {"q": "미통과라면 무엇이 막고 있나요? 트랙을 바꿀 생각이 있나요?"}];
+const QUIZ = [{"a": 1, "why": "완성도가 아니라 「작동 여부」를 봅니다. 다듬는 건 다음 차시부터예요."}, {"a": 3, "why": "12차시에 미리 안내한 예정된 선택지입니다. 실패가 아니에요."}, {"a": 0, "why": "설치해 두면 수업 없는 시간에도 데이터가 쌓입니다. 늦을수록 자료가 줄어요."}, {"a": 2, "why": "줄이 너무 적으면 비교할 것이 없어 분석이 안 됩니다."}];
+
+/* ── 저장소 (막힌 환경에서도 동작) ── */
+const MEM={}; let OK=true;
+try{localStorage.setItem("__t","1");localStorage.removeItem("__t");}catch(e){OK=false;}
+const S={get(k){try{return OK?localStorage.getItem(k):(MEM[k]??null);}catch(e){return MEM[k]??null;}},
+set(k,v){MEM[k]=v;try{if(OK)localStorage.setItem(k,v);}catch(e){OK=false;}}};
+const LS="정보과제연구_기록";
+
+function me(){return {sid:sid.value.trim(),name:sname.value.trim()};}
+function saveMe(){S.set("정보과제연구_나",JSON.stringify(me()));
+  flash("logmsg",OK?"✅ 기억했습니다":"✅ 기억했습니다 (창을 닫으면 지워집니다)","ok");}
+(function(){try{const m=JSON.parse(S.get("정보과제연구_나")||"{}");
+  if(m.sid)sid.value=m.sid; if(m.name)sname.value=m.name;}catch(e){}})();
+
+/* 설정 누락을 즉시 알림 — 학생이 제출을 눌러야 알게 되는 일을 막습니다 */
+(function(){
+  if(ENDPOINT) return;
+  const w=document.createElement("div");
+  w.className="note";
+  w.style.cssText="background:#fee2e2;border-left-color:#dc2626;color:#7f1d1d";
+  w.innerHTML="<b>⚠️ 선생님께 — 전송 주소가 설정되지 않았습니다.</b><br>"+
+    "이 파일 위쪽 <code>const ENDPOINT = &quot;&quot;</code> 에 Apps Script 웹 앱 주소를 넣어야 "+
+    "제출이 선생님께 전달됩니다. 지금은 학생 기기에만 저장됩니다.";
+  document.querySelector("header").after(w);
+})();
+
+function flash(id,t,c){const e=document.getElementById(id);e.textContent=t;e.className="msg "+(c||"");
+  if(c==="ok")setTimeout(()=>{if(e.textContent===t)e.textContent="";},7000);}
+function records(){try{return JSON.parse(S.get(LS)||"[]");}catch(e){return [];}}
+
+/* ── 제출 ── */
+function submitBlock(kind){
+  const list = kind==="생각나누기" ? OPEN : PROJ;
+  const who = me();
+  if(!who.sid||!who.name){flash("msg-"+kind,"⚠️ 위에 학번과 이름을 먼저 적어 주세요","warn");sid.focus();return;}
+  const parts=[];
+  for(let i=0;i<list.length;i++){
+    const v=document.getElementById(kind+i).value.trim();
+    if(!v){const lbl=list[i].q.length>16?list[i].q.slice(0,16)+"…":list[i].q;
+      flash("msg-"+kind,`⚠️ ${i+1}번 「${lbl}」 칸이 비어 있어요`,"warn");
+      document.getElementById(kind+i).focus();return;}
+    parts.push(list.length===1 ? v : `${list[i].q}\n${v}`);
+  }
+  const body=parts.join("\n\n");
+  const when=new Date().toLocaleString("ko-KR",{month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"});
+  const sent=!!ENDPOINT;
+  if(sent){
+    const f=document.createElement("form");
+    f.action=ENDPOINT; f.method="POST"; f.target="sink";
+    const put=(n,v)=>{const i=document.createElement("input");i.type="hidden";i.name=n;i.value=v;f.appendChild(i);};
+    put("n",String(차시번호)); put("sid",who.sid); put("name",who.name);
+    put("kind",kind==="생각나누기"?"생기부":"프로젝트");
+    put("item",kind); put("body",body);
+    document.body.appendChild(f); f.submit(); document.body.removeChild(f);
+    flash("msg-"+kind,"✅ 제출했습니다","ok");
+  }else{
+    flash("msg-"+kind,"⚠️ 전송 설정 전입니다. 이 기기에 저장했어요","warn");
+  }
+  try{const a=records();a.push({when,kind,body,sent});S.set(LS,JSON.stringify(a));}catch(e){}
+  refreshFail();
+}
+
+/* 전송 실패가 있을 때만 「전체 복사」를 보여 줍니다 */
+function refreshFail(){
+  const bad = records().some(r=>!r.sent);
+  document.getElementById("copybtn").style.display  = bad ? "" : "none";
+  document.getElementById("failnote").style.display = bad ? "" : "none";
+}
+
+/* ── 퀴즈 ── */
+function grade(){
+  let right=0, done=0;
+  QUIZ.forEach((q,i)=>{
+    const sel=document.querySelector(`input[name=q${i}]:checked`);
+    const fb=document.getElementById("fb"+i);
+    if(!sel){fb.className="fb";return;}
+    done++;
+    const ok=Number(sel.value)===q.a;
+    if(ok)right++;
+    fb.className="fb on "+(ok?"o":"x");
+    fb.textContent=(ok?"⭕ 맞았어요 — ":"❌ 다시 볼까요 — ")+q.why;
+  });
+  const s=document.getElementById("score");
+  if(done<QUIZ.length){s.textContent=`아직 안 푼 문제가 있어요 (${done}/${QUIZ.length})`;return;}
+  s.textContent=`${QUIZ.length}문제 중 ${right}개 정답` +
+    (right===QUIZ.length?"  🎉 완벽합니다":(right>=QUIZ.length-1?"  👍 거의 다 됐어요":"  📖 위 설명을 다시 읽어 보세요"));
+}
+function resetQuiz(){
+  document.querySelectorAll("input[type=radio]").forEach(r=>r.checked=false);
+  document.querySelectorAll(".fb").forEach(f=>f.className="fb");
+  document.getElementById("score").textContent="";
+}
+
+/* ── 기록 ── */
+function asText(){const a=records();
+  if(!a.length)return "아직 제출한 게 없습니다.";
+  return a.map(r=>`${r.sent?"✅":"⚠️"} ${r.kind}  (${r.when})\n${r.body}`).join("\n\n──────────\n\n");}
+function showLog(){const d=document.getElementById("log");
+  d.style.display=d.style.display==="none"?"block":"none"; d.textContent=asText(); refreshFail();}
+function copyLog(){const t=`${차시번호}차시  ${sid.value} ${sname.value}\n\n`+asText();
+  navigator.clipboard.writeText(t).then(()=>flash("logmsg","✅ 복사했습니다","ok"))
+  .catch(()=>{const d=document.getElementById("log");d.style.display="block";d.textContent=t;
+    flash("logmsg","아래에서 직접 선택해 복사하세요","warn");});}
+
+refreshFail();
+</script></body></html>
