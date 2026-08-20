@@ -112,6 +112,12 @@
       color: var(--muted);
       font-size: .9rem;
     }
+    a.card.ref {
+      grid-column: 1 / -1;
+      min-height: 0;
+      border-color: var(--accent);
+      background: var(--soft);
+    }
     footer {
       margin-top: 32px;
       color: var(--muted);
@@ -127,6 +133,10 @@
       <h1>정보 과제 연구<br>차시별 수업자료</h1>
       <p class="lead">각 차시를 선택하면 학생용 HTML 학습자료로 이동합니다. 계획서 작성 차시에는 교과서 기반 점검 질문을 함께 제공합니다.</p>
     </header>
+
+    <main class="grid" aria-label="참고 자료" style="margin-bottom:14px">
+      <a class="card ref" href="sample-report.html"><span class="num">📄 참고 자료</span><span class="title">참고 보고서 — 완성본 하나 읽어 보기</span><span class="note">교과서 보고서 양식 ①~⑧을 실제로 채운 예시입니다. 칸마다 「여기서 무엇을 보라」는 해설이 붙어 있어요.</span></a>
+    </main>
 
     <main class="grid" aria-label="차시별 수업자료 목록">
       <a class="card" href="lesson01.html"><span class="num">01차시</span><span class="title">정보 과제 연구가 뭔데?</span><span class="note">과목 소개와 연구감 찾기</span></a>
