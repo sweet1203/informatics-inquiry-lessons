@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>내 제출 확인 · 정보 과제 연구</title>
+  <script>
+    const ENDPOINT = "https://script.google.com/macros/s/AKfycbxa1jCaEXkrPhu15jE-wYaMPx9CcaucpgJm17VYU1b6mW5XitHnzjE3zqP_Sg9Wrxgq6g/exec";
+  </script>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --card: #ffffff;
+      --ink: #1a1d21;
+      --muted: #687280;
+      --line: #e3e6ea;
+      --accent: #2563eb;
+      --soft: #eef2ff;
+      --ok: #0d9488;
+      --warn: #b45309;
+      --bad: #dc2626;
+      --okbg: #ecfdf5;
+      --badbg: #fef2f2;
+      --shadow: 0 16px 40px rgba(25, 34, 53, .08);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #14171a;
+        --card: #1c2024;
+        --ink: #e8eaed;
+        --muted: #9aa3ad;
+        --line: #2c3238;
+        --accent: #5b8cff;
+        --soft: #1e2536;
+        --ok: #2dd4bf;
+        --warn: #fbbf24;
+        --bad: #f87171;
+        --okbg: #042f2e;
+        --badbg: #3f1d1d;
+        --shadow: 0 18px 44px rgba(0, 0, 0, .24);
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, var(--soft), transparent 34rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      line-height: 1.65;
+      -webkit-text-size-adjust: 100%;
+    }
+    .wrap { max-width: 780px; margin: 0 auto; padding: 36px 18px 64px; }
+    header { padding: 8px 0 22px; }
+    .back {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .back:hover { color: var(--accent); }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 800;
+      padding: 5px 12px;
+    }
+    h1 { margin: 0; font-size: clamp(1.6rem, 4.5vw, 2.2rem); letter-spacing: -.04em; line-height: 1.2; }
+    .lead { margin: 12px 0 0; color: var(--muted); }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+    }
+    label { display: block; font-size: .82rem; font-weight: 700; color: var(--muted); margin: 10px 0 5px; }
+    input {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--card);
+      color: var(--ink);
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    input:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: transparent; }
+    button {
+      font-family: inherit;
+      font-size: .95rem;
+      font-weight: 700;
+      border: 0;
+      border-radius: 9px;
+      padding: 12px 20px;
+      cursor: pointer;
+      background: var(--accent);
+      color: #fff;
+      width: 100%;
+      margin-top: 16px;
+    }
+    button:hover { filter: brightness(1.08); }
+    button:disabled { opacity: .6; cursor: default; }
+    button.ghost {
+      width: auto;
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      padding: 7px 12px;
+      margin: 0;
+    }
+    .msg { min-height: 22px; margin-top: 10px; text-align: center; font-size: .92rem; font-weight: 700; }
+    .msg.err { color: var(--bad); }
+    .hint { margin: 12px 0 0; color: var(--muted); font-size: .82rem; text-align: center; }
+    .who { font-size: 1.05rem; }
+    .who b { font-size: 1.2rem; }
+    .summary {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 12px;
+    }
+    .pill {
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: .86rem;
+      font-weight: 800;
+    }
+    .pill.ok { background: var(--okbg); color: var(--ok); }
+    .pill.bad { background: var(--badbg); color: var(--bad); }
+    .bar {
+      flex: 1;
+      min-width: 140px;
+      height: 10px;
+      background: var(--line);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .bar > i { display: block; height: 100%; background: var(--ok); width: 0; }
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 4px 0 12px; }
+    .filters button.ghost.on {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--soft);
+    }
+    .lesson { overflow: hidden; }
+    .lesson summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .lesson summary::-webkit-details-marker { display: none; }
+    .lnum { color: var(--accent); font-size: .82rem; font-weight: 800; }
+    .ltitle { font-weight: 800; letter-spacing: -.02em; flex: 1; min-width: 140px; }
+    .marks { display: flex; gap: 6px; }
+    .mark {
+      font-size: .75rem;
+      font-weight: 800;
+      border-radius: 7px;
+      padding: 3px 8px;
+    }
+    .mark.ok { background: var(--okbg); color: var(--ok); }
+    .mark.bad { background: var(--badbg); color: var(--bad); }
+    .item { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+    .item h3 { margin: 0 0 6px; font-size: .95rem; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .body {
+      white-space: pre-wrap;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 12px;
+      font-size: .92rem;
+    }
+    .when { color: var(--muted); font-size: .8rem; font-weight: 600; }
+    .qs { color: var(--muted); font-size: .88rem; margin: 0 0 8px; padding-left: 18px; }
+    .go { display: inline-block; margin-top: 8px; color: var(--accent); font-weight: 800; font-size: .9rem; text-decoration: none; }
+    .hist { margin-top: 8px; font-size: .86rem; color: var(--muted); }
+    footer { margin-top: 28px; color: var(--muted); font-size: .82rem; text-align: center; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="back" href="index.html">← 차시 목록</a>
+      <span class="eyebrow">정보 과제 연구</span>
+      <h1>내 제출 확인</h1>
+      <p class="lead">학번 · 이름 · 개별 비밀번호를 입력하면, 제출한 내용과 아직 안 낸 칸을 한눈에 볼 수 있습니다.</p>
+    </header>
+
+    <section class="card" id="login">
+      <label for="hak">학번</label>
+      <input id="hak" inputmode="numeric" autocomplete="username" placeholder="예: 30101">
+      <label for="nm">이름</label>
+      <input id="nm" autocomplete="name" placeholder="본인 이름">
+      <label for="pw">개별 비밀번호</label>
+      <input id="pw" type="password" autocomplete="current-password">
+      <button type="button" id="go">조회하기</button>
+      <p class="msg" id="msg"></p>
+      <p class="hint">비밀번호는 선생님이 개별 배부한 것입니다. 분실 시 선생님께 문의하세요.</p>
+    </section>
+
+    <div id="result" class="hidden">
+      <section class="card">
+        <div class="who" id="who"></div>
+        <div class="summary">
+          <span class="pill ok" id="donePill"></span>
+          <span class="pill bad" id="missPill"></span>
+          <span class="bar" aria-hidden="true"><i id="bar"></i></span>
+        </div>
+        <div style="margin-top:14px">
+          <button type="button" class="ghost" id="logout">다른 사람으로 조회</button>
+        </div>
+      </section>
+      <div class="filters">
+        <button type="button" class="ghost on" data-filter="all">전체</button>
+        <button type="button" class="ghost" data-filter="missing">미제출만</button>
+        <button type="button" class="ghost" data-filter="done">제출만</button>
+      </div>
+      <div id="list"></div>
+    </div>
+
+    <footer>정보 과제 연구 · 대성여자고등학교 · 2026학년도 2학기</footer>
+  </div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+let ASSIGN = null;
+let FILTER = "all";
+let VIEW = null;
+
+try {
+  const me = JSON.parse(localStorage.getItem("정보과제연구_나") || "{}");
+  if (me.sid) $("hak").value = me.sid;
+  if (me.name) $("nm").value = me.name;
+} catch (e) {}
+
+fetch("assignments.json", { cache: "no-store" })
+  .then((r) => r.json())
+  .then((d) => { ASSIGN = d; })
+  .catch(() => { ASSIGN = { lessons: [] }; });
+
+function jsonp(params) {
+  return new Promise((resolve, reject) => {
+    const cb = "cb_" + Math.random().toString(36).slice(2);
+    const s = document.createElement("script");
+    const t = setTimeout(() => { cleanup(); reject(new Error("timeout")); }, 22000);
+    function cleanup() {
+      clearTimeout(t);
+      try { delete window[cb]; } catch (e) { window[cb] = undefined; }
+      if (s.parentNode) s.parentNode.removeChild(s);
+    }
+    window[cb] = (data) => { cleanup(); resolve(data); };
+    s.onerror = () => { cleanup(); reject(new Error("network")); };
+    const q = new URLSearchParams(Object.assign({ callback: cb }, params));
+    s.src = ENDPOINT + "?" + q.toString();
+    document.body.appendChild(s);
+  });
+}
+
+function esc(s) {
+  return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+}
+
+function itemKey(n, item) {
+  return String(n) + "\t" + item;
+}
+
+function latestByItem(rows) {
+  const map = new Map();
+  rows.forEach((r) => {
+    const k = itemKey(r.n, r.item);
+    const prev = map.get(k);
+    if (!prev) map.set(k, { latest: r, hist: [] });
+    else {
+      prev.hist.push(prev.latest);
+      prev.latest = r;
+    }
+  });
+  return map;
+}
+
+function render() {
+  if (!VIEW || !ASSIGN) return;
+  const grouped = latestByItem(VIEW.submissions);
+  let done = 0;
+  let total = 0;
+  const html = ASSIGN.lessons.map((lesson) => {
+    const parts = lesson.items.map((it) => {
+      total++;
+      const rec = grouped.get(itemKey(lesson.n, it.id));
+      const ok = !!(rec && rec.latest && String(rec.latest.body || "").trim());
+      if (ok) done++;
+      return { it, rec, ok };
+    });
+    const miss = parts.some((p) => !p.ok);
+    const allOk = parts.every((p) => p.ok);
+    if (FILTER === "missing" && !miss) return "";
+    if (FILTER === "done" && !allOk) return "";
+    const marks = parts.map((p) =>
+      `<span class="mark ${p.ok ? "ok" : "bad"}">${esc(p.it.label)} ${p.ok ? "제출" : "미제출"}</span>`
+    ).join("");
+    const body = parts.map((p) => {
+      if (p.ok) {
+        const hist = p.rec.hist || [];
+        const histHtml = hist.length
+          ? `<details class="hist"><summary>이전 제출 ${hist.length}건</summary>${
+              hist.slice().reverse().map((h) =>
+                `<p class="when">${esc(h.when || "")}</p><div class="body">${esc(h.body)}</div>`
+              ).join("")
+            }</details>`
+          : "";
+        return `<div class="item">
+          <h3>${esc(p.it.label)} <span class="mark ok">제출</span>
+            <span class="when">${esc(p.rec.latest.when || "")}</span></h3>
+          <div class="body">${esc(p.rec.latest.body)}</div>
+          ${histHtml}
+        </div>`;
+      }
+      const qs = (p.it.questions || []).map((q) => `<li>${esc(q)}</li>`).join("");
+      return `<div class="item">
+        <h3>${esc(p.it.label)} <span class="mark bad">미제출</span></h3>
+        <ul class="qs">${qs}</ul>
+        <a class="go" href="${esc(lesson.href)}">이 차시로 가서 제출하기 →</a>
+      </div>`;
+    }).join("");
+    const open = miss && FILTER !== "done" ? " open" : "";
+    return `<details class="card lesson"${open}>
+      <summary>
+        <span class="lnum">${String(lesson.n).padStart(2, "0")}차시</span>
+        <span class="ltitle">${esc(lesson.title)}</span>
+        <span class="marks">${marks}</span>
+      </summary>
+      ${body}
+    </details>`;
+  }).join("");
+
+  $("who").innerHTML = `<b>${esc(VIEW.name)}</b> · ${esc(VIEW.sid)}`;
+  $("donePill").textContent = `제출 ${done}`;
+  $("missPill").textContent = `미제출 ${total - done}`;
+  $("bar").style.width = (total ? Math.round((done / total) * 100) : 0) + "%";
+  $("list").innerHTML = html || `<p class="card hint">이 조건에 해당하는 차시가 없습니다.</p>`;
+}
+
+async function submit() {
+  const sid = $("hak").value.trim();
+  const name = $("nm").value.trim();
+  const pw = $("pw").value.trim();
+  if (!sid || !name || !pw) {
+    $("msg").textContent = "학번 · 이름 · 비밀번호를 모두 입력하세요.";
+    $("msg").className = "msg err";
+    return;
+  }
+  if (!ASSIGN) {
+    try { ASSIGN = await (await fetch("assignments.json", { cache: "no-store" })).json(); }
+    catch (e) { ASSIGN = { lessons: [] }; }
+  }
+  $("go").disabled = true;
+  $("msg").textContent = "확인 중…";
+  $("msg").className = "msg";
+  try {
+    const data = await jsonp({ sid, name, pw });
+    if (!data || !data.ok) {
+      const why = data && data.reason;
+      $("msg").textContent =
+        why === "lockout" ? "잠시 후 다시 시도해 주세요." :
+        why === "no-roster" ? "조회 설정이 아직 끝나지 않았습니다. 선생님께 알려 주세요." :
+        "학번 · 이름 · 비밀번호가 일치하지 않습니다.";
+      $("msg").className = "msg err";
+      return;
+    }
+    try { localStorage.setItem("정보과제연구_나", JSON.stringify({ sid, name })); } catch (e) {}
+    VIEW = data;
+    $("login").classList.add("hidden");
+    $("result").classList.remove("hidden");
+    render();
+    window.scrollTo(0, 0);
+  } catch (e) {
+    $("msg").textContent = "조회에 실패했습니다. 네트워크를 확인하거나, 선생님께 조회 설치 여부를 물어 보세요.";
+    $("msg").className = "msg err";
+  } finally {
+    $("go").disabled = false;
+  }
+}
+
+$("go").addEventListener("click", submit);
+["hak", "nm", "pw"].forEach((id) => {
+  $(id).addEventListener("keydown", (e) => { if (e.key === "Enter") submit(); });
+});
+$("logout").addEventListener("click", () => {
+  VIEW = null;
+  $("pw").value = "";
+  $("result").classList.add("hidden");
+  $("login").classList.remove("hidden");
+  $("msg").textContent = "";
+  $("msg").className = "msg";
+});
+document.querySelectorAll(".filters [data-filter]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    FILTER = btn.getAttribute("data-filter");
+    document.querySelectorAll(".filters [data-filter]").forEach((b) => b.classList.toggle("on", b === btn));
+    render();
+  });
+});
+</script>
+</body>
+</html>
