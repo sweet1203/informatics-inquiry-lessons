@@ -210,9 +210,6 @@
           <span class="pill bad" id="missPill"></span>
           <span class="bar" aria-hidden="true"><i id="bar"></i></span>
         </div>
-        <div style="margin-top:14px">
-          <button type="button" class="ghost" id="logout">다른 사람으로 조회</button>
-        </div>
       </section>
       <div class="filters">
         <button type="button" class="ghost on" data-filter="all">전체</button>
@@ -409,14 +406,6 @@ async function submit() {
 $("go").addEventListener("click", submit);
 ["hak", "nm", "pw"].forEach((id) => {
   $(id).addEventListener("keydown", (e) => { if (e.key === "Enter") submit(); });
-});
-$("logout").addEventListener("click", () => {
-  VIEW = null;
-  $("pw").value = "";
-  $("result").classList.add("hidden");
-  $("login").classList.remove("hidden");
-  $("msg").textContent = "";
-  $("msg").className = "msg";
 });
 document.querySelectorAll(".filters [data-filter]").forEach((btn) => {
   btn.addEventListener("click", () => {
