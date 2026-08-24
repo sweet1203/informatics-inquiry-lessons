@@ -275,7 +275,8 @@ function esc(s) {
 }
 
 function itemKey(n, item) {
-  return String(n) + "\t" + item;
+  const num = Number(n);
+  return (Number.isFinite(num) && num > 0 ? String(num) : String(n)) + "\t" + String(item || "").trim();
 }
 
 function latestByItem(rows) {
@@ -292,12 +293,31 @@ function latestByItem(rows) {
   return map;
 }
 
+function lessonsToShow() {
+  const sheets = (VIEW && Array.isArray(VIEW.sheets) ? VIEW.sheets : [])
+    .map(Number)
+    .filter((n) => n > 0);
+  if (!sheets.length) return ASSIGN.lessons;
+  const byN = new Map(ASSIGN.lessons.map((l) => [Number(l.n), l]));
+  return sheets.map((n) => byN.get(n) || {
+    n,
+    href: "lesson" + String(n).padStart(2, "0") + ".html",
+    title: n + "차시",
+    note: "",
+    items: [
+      { id: "생각나누기", label: "생각나누기", questions: [] },
+      { id: "프로젝트", label: "내 연구로 가져오기", questions: [] }
+    ]
+  });
+}
+
 function render() {
   if (!VIEW || !ASSIGN) return;
   const grouped = latestByItem(VIEW.submissions);
+  const lessons = lessonsToShow();
   let done = 0;
   let total = 0;
-  const html = ASSIGN.lessons.map((lesson) => {
+  const html = lessons.map((lesson) => {
     const parts = lesson.items.map((it) => {
       total++;
       const rec = grouped.get(itemKey(lesson.n, it.id));
@@ -347,7 +367,8 @@ function render() {
     </details>`;
   }).join("");
 
-  $("who").innerHTML = `<b>${esc(VIEW.name)}</b> · ${esc(VIEW.sid)}`;
+  $("who").innerHTML = `<b>${esc(VIEW.name)}</b> · ${esc(VIEW.sid)}`
+    + `<div class="hint" style="text-align:left;margin-top:6px">지금 있는 차시 시트 ${lessons.length}개 기준으로 집계합니다.</div>`;
   $("donePill").textContent = `제출 ${done}`;
   $("missPill").textContent = `미제출 ${total - done}`;
   $("bar").style.width = (total ? Math.round((done / total) * 100) : 0) + "%";

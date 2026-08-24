@@ -1,28 +1,15 @@
 /**
- * 정보 과제 연구 — 제출 + 조회 (이 파일 하나로 교체해도 됩니다)
+ * 정보 과제 연구 — 제출 + 조회
  *
- * 설치
- * 1. 제출이 쌓이는 스프레드시트 → 확장 프로그램 → Apps Script
- * 2. 기존 코드를 전부 지우고 이 파일을 붙여 넣는다.
- * 3. 저장 후: 배포 → 배포 관리 → 기존 웹 앱의 연필 → 버전 「새 버전」 → 배포
- *    ※ 「새 배포」를 누르면 URL 이 바뀌어 차시 제출이 끊깁니다. 반드시 기존 배포를 수정하세요.
+ * 시트 구조
+ * - 명단: A 학번 / B 이름 / C 개별비번
+ * - 01차시, 02차시, … : 그 차시 제출. 차시 번호는 탭 이름에서 읽습니다.
  *
- * 이 스크립트가 하는 일
- * - doPost: 차시 HTML 에서 학생이 낸 답을 제출 탭에 한 줄 추가 (기존과 같은 역할)
- * - doGet:  학번·이름·개별비번이 맞으면 그 학생 제출만 돌려줌
- *
- * 하지 않는 일
- * - 이미 쌓인 제출 행을 지우거나 고치지 않음
- * - 명단 탭(A 학번 / B 이름 / C 개별비번)은 읽기만 함
- * - 차시 HTML · Vercel 사이트는 건드리지 않음
- *
- * 명단 탭 이름: 명단 (또는 명단시트 / 명렬)
- * 제출 탭: 명단이 아닌 탭. 「제출」 탭이 있으면 거기로 넣고,
- *          없으면 명단을 제외한 탭 중 데이터가 가장 많은 곳으로 넣습니다.
+ * 설치: 이 파일로 기존 코드를 교체한 뒤
+ * 배포 → 배포 관리 → 기존 웹 앱 연필 → 버전 「새 버전」 → 배포
  */
 
 const ROSTER_NAMES = ["명단", "명단시트", "명렬"];
-const SUBMIT_NAMES = ["제출", "응답", "기록"];
 const FAIL_LIMIT = 8;
 const FAIL_MINUTES = 10;
 
@@ -31,37 +18,34 @@ function doPost(e) {
   lock.waitLock(15000);
   try {
     const p = (e && e.parameter) || {};
-    const sheet = submitSheet_();
-    const values = [
-      new Date(),
-      p.n || "",
-      p.sid || "",
-      p.name || "",
-      p.kind || "",
-      p.item || "",
-      p.body || ""
-    ];
-    const lastCol = Math.max(sheet.getLastColumn(), 7);
+    const n = Number(p.n);
+    const sheet = lessonSheet_(n, true);
+    const item = canonItem_(p.item, p.kind);
+    const lastCol = Math.max(sheet.getLastColumn(), 6);
     const header = sheet.getLastRow() >= 1
       ? sheet.getRange(1, 1, 1, lastCol).getValues()[0]
       : [];
     const map = colMap_(header);
-    if (map.header) {
-      const row = [];
-      for (let i = 0; i < lastCol; i++) row[i] = "";
-      row[map.when] = values[0];
-      row[map.n] = values[1];
-      row[map.sid] = values[2];
-      row[map.name] = values[3];
-      row[map.kind] = values[4];
-      row[map.item] = values[5];
-      row[map.body] = values[6];
-      sheet.appendRow(row);
+    const wide = itemCols_(header);
+
+    if (wide.length && map.sid != null) {
+      upsertWide_(sheet, header, map, wide, {
+        sid: p.sid || "",
+        name: p.name || "",
+        item: item,
+        body: p.body || "",
+        when: new Date()
+      });
     } else {
-      if (sheet.getLastRow() === 0) {
-        sheet.appendRow(["시각", "차시", "학번", "이름", "구분", "항목", "내용"]);
-      }
-      sheet.appendRow(values);
+      appendLog_(sheet, header, map, {
+        when: new Date(),
+        n: n || "",
+        sid: p.sid || "",
+        name: p.name || "",
+        kind: p.kind || "",
+        item: item,
+        body: p.body || ""
+      });
     }
     return ContentService.createTextOutput("ok");
   } finally {
@@ -116,8 +100,109 @@ function lookup_(p) {
     ok: true,
     sid: matched.sid,
     name: matched.name,
+    sheets: existingLessonNums_(),
     submissions: collectSubmissions_(matched.sid)
   };
+}
+
+function existingLessonNums_() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const seen = {};
+  const nums = [];
+  ss.getSheets().forEach(function (sh) {
+    const n = lessonNumFromName_(sh.getName());
+    if (n == null || seen[n]) return;
+    seen[n] = true;
+    nums.push(n);
+  });
+  nums.sort(function (a, b) { return a - b; });
+  return nums;
+}
+
+function collectSubmissions_(sid) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const out = [];
+  ss.getSheets().forEach(function (sh) {
+    const sheetName = sh.getName();
+    if (isRoster_(sheetName)) return;
+    const values = sh.getDataRange().getValues();
+    if (!values.length) return;
+    const lessonN = lessonNumFromName_(sheetName);
+    const header = values[0];
+    const map = colMap_(header);
+    const wide = itemCols_(header);
+    const start = map.header ? 1 : 0;
+
+    if (wide.length && map.sid != null) {
+      for (let r = start; r < values.length; r++) {
+        const row = values[r];
+        if (normSid_(row[map.sid]) !== sid) continue;
+        const when = formatWhen_(row[map.when]);
+        wide.forEach(function (col) {
+          const body = cellText_(row[col.i]);
+          if (!body) return;
+          out.push({
+            n: lessonN != null ? lessonN : "",
+            item: col.item,
+            kind: col.kind,
+            body: body,
+            when: when
+          });
+        });
+      }
+      return;
+    }
+
+    for (let r = start; r < values.length; r++) {
+      const row = values[r];
+      const rowSid = sidFromRow_(row, map);
+      if (!rowSid || rowSid !== sid) continue;
+      const body = cellText_(row[map.body]);
+      const item = canonItem_(row[map.item], row[map.kind]);
+      if (!body && !item) continue;
+      const nRaw = map.n != null ? row[map.n] : "";
+      const n = looksLikeLesson_(nRaw) ? Number(nRaw) : lessonN;
+      out.push({
+        n: n == null ? "" : n,
+        item: item,
+        kind: cellText_(row[map.kind]),
+        body: body,
+        when: formatWhen_(row[map.when])
+      });
+    }
+  });
+  return out;
+}
+
+function lessonNumFromName_(name) {
+  const m = String(name).match(/(\d+)\s*차시/);
+  if (m) return Number(m[1]);
+  if (/^\d{1,2}$/.test(String(name).trim())) return Number(name);
+  return null;
+}
+
+function lessonSheetName_(n) {
+  const num = Number(n);
+  if (!num) return "";
+  return (num < 10 ? "0" + num : String(num)) + "차시";
+}
+
+function lessonSheet_(n, createIfMissing) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const padded = lessonSheetName_(n);
+  const plain = Number(n) ? String(Number(n)) + "차시" : "";
+  let sh = padded && ss.getSheetByName(padded);
+  if (!sh && plain) sh = ss.getSheetByName(plain);
+  if (!sh && createIfMissing && padded) {
+    sh = ss.insertSheet(padded);
+    sh.appendRow(["시각", "학번", "이름", "구분", "항목", "내용"]);
+  }
+  return sh;
+}
+
+function looksLikeLesson_(v) {
+  const n = Number(v);
+  return n >= 1 && n <= 80;
 }
 
 function rosterSheet_() {
@@ -133,64 +218,16 @@ function isRoster_(name) {
   return ROSTER_NAMES.indexOf(name) !== -1;
 }
 
-function submitSheet_() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  for (let i = 0; i < SUBMIT_NAMES.length; i++) {
-    const sh = ss.getSheetByName(SUBMIT_NAMES[i]);
-    if (sh) return sh;
-  }
-  const others = ss.getSheets().filter(function (sh) {
-    return !isRoster_(sh.getName());
-  });
-  if (!others.length) return ss.insertSheet("제출");
-  others.sort(function (a, b) {
-    return b.getLastRow() - a.getLastRow();
-  });
-  return others[0];
-}
-
-function collectSubmissions_(sid) {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const out = [];
-  ss.getSheets().forEach(function (sh) {
-    if (isRoster_(sh.getName())) return;
-    const values = sh.getDataRange().getValues();
-    if (!values.length) return;
-    const map = colMap_(values[0]);
-    const start = map.header ? 1 : 0;
-    for (let r = start; r < values.length; r++) {
-      const row = values[r];
-      const rowSid = normSid_(row[map.sid]);
-      if (!rowSid || rowSid !== sid) continue;
-      const whenRaw = row[map.when];
-      let when = "";
-      if (whenRaw instanceof Date) {
-        when = Utilities.formatDate(whenRaw, "Asia/Seoul", "yyyy-MM-dd HH:mm");
-      } else if (whenRaw) {
-        when = String(whenRaw);
-      }
-      out.push({
-        n: Number(row[map.n]) || String(row[map.n] || "").trim(),
-        item: String(row[map.item] || "").trim(),
-        kind: String(row[map.kind] || "").trim(),
-        body: String(row[map.body] || ""),
-        when: when
-      });
-    }
-  });
-  return out;
-}
-
 function colMap_(headerRow) {
   const idx = { when: 0, n: 1, sid: 2, name: 3, kind: 4, item: 5, body: 6, header: false };
   const aliases = {
-    when: ["시각", "시간", "타임스탬프", "timestamp", "when", "일시"],
+    when: ["시각", "시간", "타임스탬프", "timestamp", "when", "일시", "제출시각"],
     n: ["차시", "차시번호", "n", "lesson"],
-    sid: ["학번", "sid", "id"],
+    sid: ["학번", "sid"],
     name: ["이름", "성명", "name"],
     kind: ["구분", "kind", "종류"],
     item: ["항목", "item", "과제"],
-    body: ["내용", "본문", "body", "답", "제출내용"]
+    body: ["내용", "본문", "body", "답", "제출내용", "응답"]
   };
   const found = {};
   (headerRow || []).forEach(function (cell, i) {
@@ -200,11 +237,108 @@ function colMap_(headerRow) {
       if (aliases[field].indexOf(k) !== -1) found[field] = i;
     });
   });
-  if (found.sid != null && (found.n != null || found.item != null || found.body != null)) {
+  if (found.sid != null) {
     idx.header = true;
     Object.keys(found).forEach(function (k) { idx[k] = found[k]; });
   }
   return idx;
+}
+
+function itemCols_(headerRow) {
+  const cols = [];
+  (headerRow || []).forEach(function (cell, i) {
+    const item = canonItem_(cell, "");
+    if (item === "생각나누기" || item === "프로젝트") {
+      cols.push({
+        i: i,
+        item: item,
+        kind: item === "생각나누기" ? "생기부" : "프로젝트"
+      });
+    }
+  });
+  return cols;
+}
+
+function canonItem_(item, kind) {
+  const a = String(item == null ? "" : item).trim();
+  const b = String(kind == null ? "" : kind).trim();
+  const s = a + " " + b;
+  if (/생각나누기|생기부/.test(s)) return "생각나누기";
+  if (/프로젝트|내 연구/.test(s)) return "프로젝트";
+  if (a === "생각나누기" || a === "프로젝트") return a;
+  return a;
+}
+
+function sidFromRow_(row, map) {
+  if (map.header && map.sid != null) return normSid_(row[map.sid]);
+  for (let i = 0; i < Math.min(row.length, 4); i++) {
+    const s = normSid_(row[i]);
+    if (s && /^\d{4,6}$/.test(s)) return s;
+  }
+  return "";
+}
+
+function upsertWide_(sheet, header, map, wide, rec) {
+  const last = sheet.getLastRow();
+  const width = Math.max(sheet.getLastColumn(), header.length);
+  const values = last >= 2
+    ? sheet.getRange(2, 1, last - 1, width).getValues()
+    : [];
+  let rowIndex = -1;
+  for (let i = 0; i < values.length; i++) {
+    if (normSid_(values[i][map.sid]) === normSid_(rec.sid)) {
+      rowIndex = i + 2;
+      break;
+    }
+  }
+  const col = wide.filter(function (c) { return c.item === rec.item; })[0];
+  if (rowIndex === -1) {
+    const row = [];
+    for (let i = 0; i < width; i++) row[i] = "";
+    row[map.sid] = rec.sid;
+    if (map.name != null) row[map.name] = rec.name;
+    if (map.when != null) row[map.when] = rec.when;
+    if (col) row[col.i] = rec.body;
+    sheet.appendRow(row);
+    return;
+  }
+  if (col) sheet.getRange(rowIndex, col.i + 1).setValue(rec.body);
+  if (map.when != null) sheet.getRange(rowIndex, map.when + 1).setValue(rec.when);
+}
+
+function appendLog_(sheet, header, map, rec) {
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(["시각", "학번", "이름", "구분", "항목", "내용"]);
+    map = colMap_(["시각", "학번", "이름", "구분", "항목", "내용"]);
+  }
+  if (map.header) {
+    const width = Math.max(sheet.getLastColumn(), 6);
+    const row = [];
+    for (let i = 0; i < width; i++) row[i] = "";
+    if (map.when != null) row[map.when] = rec.when;
+    if (map.n != null) row[map.n] = rec.n;
+    if (map.sid != null) row[map.sid] = rec.sid;
+    if (map.name != null) row[map.name] = rec.name;
+    if (map.kind != null) row[map.kind] = rec.kind;
+    if (map.item != null) row[map.item] = rec.item;
+    if (map.body != null) row[map.body] = rec.body;
+    sheet.appendRow(row);
+  } else {
+    sheet.appendRow([rec.when, rec.sid, rec.name, rec.kind, rec.item, rec.body]);
+  }
+}
+
+function cellText_(v) {
+  if (v == null || v === "") return "";
+  if (v instanceof Date) return formatWhen_(v);
+  return String(v).trim();
+}
+
+function formatWhen_(v) {
+  if (v instanceof Date) {
+    return Utilities.formatDate(v, "Asia/Seoul", "yyyy-MM-dd HH:mm");
+  }
+  return v ? String(v) : "";
 }
 
 function normSid_(v) {
@@ -218,18 +352,14 @@ function normName_(v) {
   return String(v).trim().normalize("NFC").replace(/\s+/g, "");
 }
 
-function failKey_(sid) {
-  return "fail_" + sid;
-}
-
 function tooManyFails_(sid) {
-  const n = Number(CacheService.getScriptCache().get(failKey_(sid)) || "0");
+  const n = Number(CacheService.getScriptCache().get("fail_" + sid) || "0");
   return n >= FAIL_LIMIT;
 }
 
 function recordFail_(sid) {
   const cache = CacheService.getScriptCache();
-  const key = failKey_(sid);
+  const key = "fail_" + sid;
   const n = Number(cache.get(key) || "0") + 1;
   cache.put(key, String(n), FAIL_MINUTES * 60);
 }
