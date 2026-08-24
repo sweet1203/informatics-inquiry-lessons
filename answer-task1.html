@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>수행평가 1 · 정보과제연구</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1a1d21;--muted:#6b7280;--line:#e3e6ea;
+--accent:#2563eb;--ink2:#fff;--ok:#0d9488;--warn:#b45309;--soft:#eef2ff;--quiz:#fff7ed;--quizline:#fdba74}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+--bg:#14171a;--card:#1c2024;--ink:#e8eaed;--muted:#9aa3ad;--line:#2c3238;
+--accent:#5b8cff;--ink2:#0d1117;--ok:#2dd4bf;--warn:#fbbf24;--soft:#1e2536;--quiz:#2a2118;--quizline:#7c4a12}}
+*{box-sizing:border-box}
+body{margin:0;padding:0 16px 72px;background:var(--bg);color:var(--ink);line-height:1.7;
+font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:780px;margin:0 auto}
+header{padding:30px 0 18px;border-bottom:2px solid var(--line);margin-bottom:22px}
+.chip{display:inline-block;background:var(--accent);color:var(--ink2);font-size:.78rem;font-weight:700;
+padding:4px 12px;border-radius:99px;margin-bottom:10px}
+h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:.93rem;margin:0}
+.me{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:15px;
+margin-bottom:26px;display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.me .f{flex:1;min-width:115px}
+label{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:5px}
+input[type=text],textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;
+background:var(--card);color:var(--ink);font-size:1rem;font-family:inherit}
+textarea{min-height:88px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:20px}
+section>h2{font-size:1.16rem;margin:0 0 4px;letter-spacing:-.01em}
+.lead{color:var(--muted);font-size:.9rem;margin:0 0 16px}
+.learn h3{font-size:1rem;margin:22px 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
+.learn p{margin:8px 0}
+.learn ul{margin:8px 0;padding-left:20px} .learn li{margin:5px 0}
+.learn table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem}
+.learn th,.learn td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.learn th{background:var(--soft);font-weight:700}
+.learn code{background:var(--soft);padding:1px 6px;border-radius:4px;font-size:.88em}
+.box{background:var(--soft);border-left:3px solid var(--accent);padding:12px 15px;border-radius:0 9px 9px 0;margin:14px 0}
+.book{font-size:.82rem;color:var(--muted);font-weight:600}
+.q{background:var(--quiz);border:1px solid var(--quizline);border-radius:11px;padding:16px;margin-bottom:13px}
+.q .qt{font-weight:700;margin-bottom:10px}
+.opt{display:block;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);
+margin-bottom:7px;cursor:pointer;font-size:.95rem}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin-right:8px}
+.fb{font-size:.9rem;font-weight:600;margin-top:9px;display:none}
+.fb.on{display:block} .fb.o{color:var(--ok)} .fb.x{color:var(--warn)}
+button{font-family:inherit;font-size:.95rem;font-weight:600;border:0;border-radius:9px;padding:11px 20px;
+cursor:pointer;background:var(--accent);color:var(--ink2)}
+button:hover{filter:brightness(1.08)}
+button.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.row{display:flex;gap:9px;align-items:center;margin-top:15px;flex-wrap:wrap}
+.msg{font-size:.9rem;font-weight:600} .msg.ok{color:var(--ok)} .msg.warn{color:var(--warn)}
+.score{font-size:1.05rem;font-weight:700;margin-top:14px}
+#log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
+border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
+footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;
+background:#1f2937;color:#fff;padding:13px 20px;border-radius:11px;font-size:.93rem;font-weight:600;
+box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .22s;max-width:88vw;text-align:center}
+#toast.on{opacity:1}
+
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+@media(max-width:640px){.cmp{grid-template-columns:1fr}}
+.cmp>div{border:1px solid var(--line);border-radius:11px;overflow:hidden}
+.cmp h5{margin:0;padding:9px 13px;font-size:.92rem}
+.good h5{background:var(--ok);color:var(--ink2)}
+.bad h5{background:#b91c1c;color:#fff}
+.cmp .bd{padding:13px;font-size:.93rem}
+.split{background:var(--quiz);border:1px solid var(--quizline);border-radius:10px;padding:12px 15px;margin:10px 0 22px;font-size:.92rem}
+.split b{color:var(--warn)}
+.gr{display:inline-block;background:var(--accent);color:var(--ink2);font-weight:800;
+padding:2px 11px;border-radius:99px;font-size:.82rem;margin-left:6px}
+.bad .gr{background:#b91c1c}
+.qbox{border-left:3px solid var(--accent);background:var(--soft);padding:12px 15px;border-radius:0 9px 9px 0;margin:16px 0}
+.talk{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin:10px 0;font-size:.94rem}
+.talk .who{font-weight:800;color:var(--accent)}
+nav.go{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:22px 0 6px}
+@media(max-width:560px){nav.go{grid-template-columns:1fr}}
+nav.go a{display:block;padding:15px 17px;border:1px solid var(--line);border-radius:12px;
+background:var(--soft);color:inherit;text-decoration:none;transition:border-color .15s}
+nav.go a:hover{border-color:var(--accent)}
+nav.go .k{display:block;font-size:.8rem;color:var(--muted);font-weight:700}
+nav.go .v{display:block;font-size:1.02rem;font-weight:800;margin-top:3px;letter-spacing:-.01em}
+.eg{font-size:.82rem;color:var(--muted);font-weight:600}
+</style>
+</head><body>
+<div class="wrap">
+<header>
+  <span class="chip">수행평가 1 · 30%</span>
+  <h1>선행 연구 분석 · 내 주제 설정</h1>
+  <p class="sub">문항별 답안 예시와 등급 기준</p>
+</header>
+<nav class="go"><a href="answer-guide.html"><span class="k">← 돌아가기</span><span class="v">수행평가 안내</span></a><a href="answer-task2.html"><span class="k">수행평가 2 · 40%</span><span class="v">연구 계획서 · 구술 발표</span></a></nav>
+
+<section class="learn">
+<h2>한눈에</h2>
+<table>
+<tr><th>평가 주간</th><td><b>9월 3주 (9.14~9.18)</b> · 16~19차시</td></tr>
+<tr><th>제출</th><td><b>17차시</b></td></tr>
+<tr><th>유형</th><td><b>서술·논술형</b> — 이 과목의 서술형은 여기 하나뿐입니다</td></tr>
+<tr><th>반영</th><td><b>30%</b></td></tr>
+<tr><th>방식</th><td>개인 <i>(모둠이어도 각자 작성)</i></td></tr>
+</table>
+<p class="eg">아래 답안은 <b>「버스 정류장 이용객」</b>이라는 다른 주제로 쓴 예시입니다.</p>
+</section>
+
+<section class="learn">
+<h2>문항 ① 선행 연구 분석</h2>
+<div class="qbox"><b>[문항]</b> 완성된 연구 <b>2편</b>을 찾아 읽고, 각각 ① 무엇이 궁금했는가 ② 무엇으로 어떻게 알아냈는가 ③ 결론이 무엇인가를 정리하시오.
+<b>학술 데이터베이스에서 찾은 논문·연구 보고서로 한다.</b> <i>(초록을 읽고 정리한다.)</i><br>
+두 편 중 한 편을 골라, <b>같은 주제를 사회나 과학 과제 연구로 다룬다면 무엇이 달라지는지</b> 서술하시오.</div>
+
+<div class="cmp">
+<div class="good"><h5>⭕ 이렇게 <span class="gr">A</span></h5><div class="bd">
+<b>연구 1</b> — 「○○ 지역 인구 감소 요인의 데이터 분석」 <i>(DBpia · 초록)</i><br>
+① 어떤 지역이 인구 소멸 위험이 큰가, 무엇이 그 차이를 만드는가<br>
+② 통계청 인구 자료로 <b>소멸위험지수(20~39세 여성 ÷ 65세 이상)</b>를 지역마다 계산해 비교<br>
+③ 지수 0.5 미만 지역이 여럿이었고, 그 지역들은 <b>청년 순유출이 함께</b> 나타남<br><br>
+<b>연구 2</b> — 「대중교통 이용 데이터를 활용한 정류장별 혼잡 특성 분석」 <i>(RISS · 초록)</i><br>
+① 같은 노선인데 정류장마다 이용객 수가 크게 다른 이유는 무엇인가<br>
+② 교통카드 승하차 기록을 <b>정류장별·시간대별로 집계</b>하고 주변 시설과 견주어 비교<br>
+③ 출근 시간대는 <b>주거지 인근</b>, 하교 시간대는 <b>학교 인근</b>이 뚜렷하게 높았음<br><br>
+<b>④ 사회 과제 연구와의 차이</b> — 연구 1을 사회 과제 연구로 한다면 「왜 젊은 사람이 떠나는가」를 <b>설문이나 면담</b>으로 알아볼 것이다. 정보 과제 연구는 <b>이미 공개된 데이터를 골라 계산식 하나로 답을 냈다.</b>
+</div></div>
+<div class="bad"><h5>❌ 이러면 <span class="gr">D</span></h5><div class="bd">
+<b>연구 1</b> — 인구 감소에 관한 논문<br>
+① 인구가 줄어드는 문제를 다뤘다<br>
+② <b>통계를 썼다</b><br>
+③ <b>인구가 줄고 있다는 결과가 나왔다</b><br><br>
+<b>연구 2</b> — 버스 이용에 관한 논문<br>
+① 버스 이용에 대해 조사했다<br><br>
+<i>(②③ 없음, ④ 없음)</i>
+</div></div>
+</div>
+
+<div class="split">🔍 <b>무엇이 갈랐나</b><br>
+▪ <b>②가 「통계를 썼다」</b> — 도구 이름만 적으면 <b>방법 서술로 보지 않습니다.</b> 「무엇을 어떻게 계산했는지」가 있어야 해요<br>
+▪ <b>③이 「인구가 줄고 있다」</b> — <b>숫자나 방향이 없으면</b> 결론으로 보지 않습니다<br>
+▪ <b>두 번째 연구가 ①만</b> — 2편 모두 ①②③이 다 있어야 합니다<br>
+▪ <b>④가 빠짐</b> — 이것만 없어도 등급이 두 단계 내려갑니다</div>
+
+<h3>등급 기준</h3>
+<table><tr><th>등급</th><th>이 정도면</th></tr>
+<tr><td><b>A</b></td><td>2편의 ①②③을 각각 정리 + 한 편에 대해 사회·과학 과제 연구와의 차이를 <b>근거를 들어</b> 서술</td></tr>
+<tr><td><b>B</b></td><td>2편의 ①②③ 정리 + 차이를 제시</td></tr>
+<tr><td><b>C</b></td><td>2편의 ①②③을 정리</td></tr>
+<tr><td><b>D</b></td><td>1편의 ①②③을 정리</td></tr>
+<tr><td><b>E</b></td><td>연구 자료를 찾아 제목과 내용을 제시</td></tr></table>
+
+<div class="box">📚 <b>어디서 찾나</b> — <b>DBpia</b>(우리 학교 구독) · RISS · KCI · 구글 학술검색<br>
+😌 <b>초록을 읽고 정리합니다.</b> 논문 초록에 <b>목적·방법·결과</b>가 다 들어 있고, 그게 바로 ①②③이에요.<br>
+⚠️ 기사·블로그·백과사전 항목은 <b>0점</b>입니다. 논문이나 연구 보고서여야 합니다.</div>
+</section>
+
+<section class="learn">
+<h2>문항 ② 연구 과정 분석</h2>
+<div class="qbox"><b>[문항]</b> 문항 ①에서 읽은 연구 중 <b>한 편</b>을 골라, <b>설계 → 수행 → 결론 도출 → 발표</b> 네 단계로 나누고 각 단계에서 <b>그 연구자가 무엇을 했는지</b> 서술하시오.</div>
+
+<div class="cmp">
+<div class="good"><h5>⭕ 이렇게 <span class="gr">A</span></h5><div class="bd">
+「정류장별 혼잡 특성 분석」을 네 단계로 나누면 이렇다.<br><br>
+<b>① 설계</b> — '혼잡하다'는 그대로 잴 수 없으므로 <b>「정류장별·시간대별 승하차 인원」</b>이라는 셀 수 있는 값으로 바꾸고, 비교할 정류장과 시간대 구간을 미리 나눴다.<br>
+<b>② 수행</b> — 교통카드 승하차 기록을 정류장별·시간대별로 집계했다.<br>
+<b>③ 결론 도출</b> — 집계값을 주변 시설(학교·상가)과 견주어 비교하고, 「출근 시간대는 주거지 인근, 하교 시간대는 학교 인근이 높다」로 정리했다.<br>
+<b>④ 발표</b> — 표와 그래프에 단위를 붙여 논문으로 정리했다.
+</div></div>
+<div class="bad"><h5>❌ 이러면 <span class="gr">C</span></h5><div class="bd">
+<b>① 설계</b> — 연구 계획을 세웠다.<br>
+<b>② 수행</b> — 데이터를 모았다.<br>
+<b>③ 결론 도출</b> — 결과를 정리했다.<br>
+<b>④ 발표</b> — <b>발표했다.</b>
+</div></div>
+</div>
+
+<div class="split">🔍 <b>무엇이 갈랐나</b><br>
+▪ 아쉬운 답안은 <b>단계 이름을 되풀이</b>했을 뿐입니다. <b>「무엇을 어떻게」</b>가 없어요<br>
+▪ 한 단계의 서술이 <b>한 낱말뿐이면</b> 그 단계는 없는 것으로 봅니다<br>
+▪ ⚠️ <b>내 연구 계획을 나누면 안 됩니다.</b> <b>읽은 연구</b>를 나누는 문항이에요</div>
+
+<h3>등급 기준</h3>
+<table><tr><th>등급</th><th>이 정도면</th></tr>
+<tr><td><b>A</b></td><td>네 단계로 나누고 각 단계에서 한 일을 <b>구체적으로</b>(무엇을·어떻게) 서술</td></tr>
+<tr><td><b>B</b></td><td>네 단계로 나누고 각 단계에서 한 일을 서술</td></tr>
+<tr><td><b>C</b></td><td>세 단계 이상으로 나누고 각 단계에서 한 일을 서술</td></tr>
+<tr><td><b>D</b></td><td>두 단계 이상으로 나누어 서술</td></tr>
+<tr><td><b>E</b></td><td>연구 과정에 단계가 있음을 서술</td></tr></table>
+
+<div class="box">💡 단계 이름이 교과서와 달라도 됩니다. <b>준비–실행–정리–공유</b>처럼 써도 네 단계의 기능이 구분되면 인정해요.
+「발표」를 「논문 작성」·「보고서 작성」으로 바꿔 써도 됩니다.</div>
+</section>
+
+<section class="learn">
+<h2>문항 ③ 내 주제와 방법 설정</h2>
+<div class="qbox"><b>[문항]</b> 읽은 연구에서 배운 점을 바탕으로 <b>자신의 연구 질문</b>을 한 문장으로 정하고, ① 왜 이 주제를 골랐는지(<b>읽은 연구와 연결지어</b>) ② <b>무엇으로</b> ③ <b>어떻게</b> 답을 낼 것인지 ④ 미리 걱정되는 점은 무엇인지 서술하시오.</div>
+
+<div class="cmp">
+<div class="good"><h5>⭕ 이렇게 <span class="gr">A</span></h5><div class="bd">
+<b>내 연구 질문</b> — 우리 동네 버스 정류장 세 곳의 <b>시간대별 이용객 수는 얼마나 다른가?</b><br><br>
+<b>① 왜 골랐나</b> — 등굣길에 어떤 정류장은 사람이 넘치고 다음 정류장은 비어 있는 게 궁금했다. 읽은 연구 2가 <b>'혼잡'을 '시간대별 승하차 인원'으로 바꿔 잰 것</b>을 보고, 나도 '붐빈다'를 셀 수 있는 값으로 바꿔 정했다.<br>
+<b>② 무엇으로</b> — 공공데이터포털 「정류장별 시간대별 승하차 인원」 지난달 자료<br>
+<b>③ 어떻게</b> — 정류장 3곳의 시간대별 평균을 스프레드시트로 내고 막대그래프로 비교한다. 차이가 가장 큰 시간대를 찾아 답한다.<br>
+<b>④ 미리 걱정되는 점</b> — 같은 정류장이 데이터에 여러 이름으로 나뉘어 있을 수 있다. <b>그러면 이름을 합쳐 세는 작업이 먼저 필요하다.</b>
+</div></div>
+<div class="bad"><h5>❌ 이러면 <span class="gr">E</span></h5><div class="bd">
+<b>내 연구 질문</b> — <b>버스 정류장에 대하여</b><br><br>
+<b>① 왜 골랐나</b> — 평소에 관심이 있었다.<br>
+<b>② 무엇으로</b> — 인터넷 자료<br>
+<b>③ 어떻게</b> — 조사해서 정리한다.<br>
+<b>④</b> — <i>(없음)</i>
+</div></div>
+</div>
+
+<div class="split">🔍 <b>무엇이 갈랐나</b><br>
+▪ <b>「~에 대하여」는 질문이 아닙니다.</b> 무엇과 무엇을 견주는지 드러나야 합니다<br>
+▪ <b>①에 읽은 연구와의 연결이 없음</b> — 「평소에 관심이 있었다」로는 안 됩니다<br>
+▪ <b>②가 「인터넷 자료」</b> — 어느 사이트의 무슨 자료인지 있어야 합니다<br>
+▪ <b>④가 빠짐</b> — 미리 걱정되는 점과 대비가 있어야 합니다</div>
+
+<h3>등급 기준</h3>
+<table><tr><th>등급</th><th>이 정도면</th></tr>
+<tr><td><b>A</b></td><td>연구 질문을 <b>답할 수 있는 한 문장</b>으로 쓰고, <b>읽은 연구를 근거로</b> 선정 이유를 밝히고, 무엇으로·어떻게와 <b>걱정되는 점</b>까지 서술</td></tr>
+<tr><td><b>B</b></td><td>연구 질문 한 문장 + 무엇으로 어떻게 + 읽은 연구와 연결</td></tr>
+<tr><td><b>C</b></td><td>연구 질문 한 문장 + 무엇으로 어떻게</td></tr>
+<tr><td><b>D</b></td><td>연구 질문과 사용할 데이터 또는 장치를 서술</td></tr>
+<tr><td><b>E</b></td><td>관심 있는 주제를 제시</td></tr></table>
+
+<div class="box">💡 <b>①의 연결은 「저렇게는 안 하겠다」도 인정</b>됩니다. 따라 하든 반대로 가든, <b>읽은 것이 내 결정에 영향을 줬다</b>는 게 보이면 돼요.<br>
+⚠️ <b>검색 한 번으로 답이 나오는 질문</b>(「미세먼지는 왜 나쁜가?」)은 <b>최저점</b>입니다.</div>
+</section>
+<nav class="go"><a href="answer-guide.html"><span class="k">← 돌아가기</span><span class="v">수행평가 안내</span></a><a href="answer-task2.html"><span class="k">수행평가 2 · 40%</span><span class="v">연구 계획서 · 구술 발표</span></a></nav>
+
+</div>
+</body></html>
