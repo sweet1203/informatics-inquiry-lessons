@@ -107,7 +107,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 단어를 바꾸는 게 인용이 아닙니다.</div>
 
 <h3>인용의 세 가지</h3>
-<p>16차시에 배운 것입니다. <span class="book">교과서 39쪽</span></p>
+<p>앞에서 배운 것입니다. <span class="book">교과서 39쪽</span></p>
 <table><tr><th>종류</th><th>언제</th><th>표시</th></tr>
 <tr><td><b>직접 인용</b></td><td>원문을 그대로</td><td><b>따옴표 필수</b> + 출처</td></tr>
 <tr><td><b>간접 인용</b></td><td>요약·정리해서</td><td>따옴표 없이 + 출처</td></tr>
@@ -121,7 +121,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <tr><td>통계 자료를 씀</td><td>「2025 광주광역시 기본통계」, 광주광역시청, 2025</td></tr>
 <tr><td>기사를 참고함</td><td>「○○ 기사 제목」, ○○신문, 2025.3.14.</td></tr>
 <tr><td>남의 코드를 씀</td><td>출처 주소 + <b>「어디를 바꿨는지」</b></td></tr>
-<tr><td>선생님 자료를 씀</td><td>「정보 과제 연구 수업자료, 25차시」</td></tr></table>
+<tr><td>선생님 자료를 씀</td><td>「정보 과제 연구 수업자료, 해당 차시」</td></tr></table>
 
 <h3>⭐ AI를 쓸 때는 — 우리 수업의 규칙</h3>
 <table><tr><th>이건 됩니다 ⭕</th><th>이건 안 됩니다 ❌</th></tr>
@@ -137,7 +137,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 AI 글로 채우면 <b>해당 항목이 채점에서 제외</b>됩니다. 학기 초에 공지한 규칙입니다.</div>
 
 <h3>왜 이렇게까지 하나</h3>
-<p>2차시에서 배운 걸 다시 봅시다.</p>
+<p>앞에서 배운 걸 다시 봅시다.</p>
 <div class="box">연구는 <b>누구나 다시 확인할 수 있어야</b> 믿을 만해집니다.<br>
 출처를 밝히는 건 <b>규칙이 아니라 「확인 가능하게 만드는 장치」</b>예요.</div>
 
@@ -146,7 +146,7 @@ AI 글로 채우면 <b>해당 항목이 채점에서 제외</b>됩니다. 학기
 <section>
   <h2>✍️ 생각 나누기</h2>
   <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
-  <div class="f" style="margin-top:12px"><label for="생각나누기0">내 연구에서 「남의 것」을 쓴 부분을 떠올려 보세요. 출처를 제대로 밝혔나요?</label><textarea id="생각나누기0" placeholder="예) 배선도는 선생님이 주신 걸 그대로 썼는데 보고서에 안 적었다. 「수업자료 25차시」라고 적어야겠다"></textarea></div><div class="f" style="margin-top:12px"><label for="생각나누기1">「AI는 출처가 아니다」 — 이 말을 어떻게 이해했나요?</label><textarea id="생각나누기1" placeholder="예) AI가 알려준 통계를 그냥 쓸 뻔했는데, 실제로 그 통계를 만든 기관을 찾아 적어야 한다는 뜻인 것 같다"></textarea></div>
+  <div class="f" style="margin-top:12px"><label for="생각나누기0">내 연구에서 「남의 것」을 쓴 부분을 떠올려 보세요. 출처를 제대로 밝혔나요?</label><textarea id="생각나누기0" placeholder="예) 배선도는 선생님이 주신 걸 그대로 썼는데 보고서에 안 적었다. 「수업자료」라고 출처를 적어야겠다"></textarea></div><div class="f" style="margin-top:12px"><label for="생각나누기1">「AI는 출처가 아니다」 — 이 말을 어떻게 이해했나요?</label><textarea id="생각나누기1" placeholder="예) AI가 알려준 통계를 그냥 쓸 뻔했는데, 실제로 그 통계를 만든 기관을 찾아 적어야 한다는 뜻인 것 같다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
 </section>
@@ -188,7 +188,7 @@ AI 글로 채우면 <b>해당 항목이 채점에서 제외</b>됩니다. 학기
 <script>
 const OPEN = [{"q": "내 연구에서 「남의 것」을 쓴 부분을 떠올려 보세요. 출처를 제대로 밝혔나요?"}, {"q": "「AI는 출처가 아니다」 — 이 말을 어떻게 이해했나요?"}];
 const PROJ = [{"q": "보고서·포스터에서 출처를 빠뜨린 것이 있나요? 있다면 무엇인가요?"}, {"q": "AI 활용 내역을 연구일지에 제대로 기록했나요? 빠진 게 있다면 지금 적어 주세요."}];
-const QUIZ = [{"a": 2, "why": "출처를 밝히면 표절이 아닙니다. 문제는 밝히지 않는 것이에요."}, {"a": 0, "why": "단어를 바꾸는 게 인용이 아닙니다. 「말 바꾸기 표현」도 표절이에요."}, {"a": 2, "why": "AI는 통로일 뿐입니다. 실제 자료의 발행처를 적으세요."}, {"a": 2, "why": "2차시에서 배운 것입니다. 연구는 재확인 가능해야 믿을 만해져요."}];
+const QUIZ = [{"a": 2, "why": "출처를 밝히면 표절이 아닙니다. 문제는 밝히지 않는 것이에요."}, {"a": 0, "why": "단어를 바꾸는 게 인용이 아닙니다. 「말 바꾸기 표현」도 표절이에요."}, {"a": 2, "why": "AI는 통로일 뿐입니다. 실제 자료의 발행처를 적으세요."}, {"a": 2, "why": "연구는 재확인 가능해야 믿을 만해집니다."}];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
 const MEM={}; let OK=true;

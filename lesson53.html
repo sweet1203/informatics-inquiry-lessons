@@ -87,8 +87,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
   <h2>📖 오늘 배울 것</h2>
   <p class="lead">교과서 20~21쪽</p>
   
-<div class="box">🎓 <b>성적은 끝났습니다.</b> 이제부터는 <b>내 연구를 진로와 이어보는</b> 시간입니다.<br>
-여기서 쓰는 글은 <b>학교생활기록부 세부능력 및 특기사항의 재료</b>가 됩니다.</div>
+<div class="box">🎓 이제부터는 <b>내 연구를 진로와 이어보는</b> 시간입니다.</div>
 
 <h3>정보 과학과 이어진 학문들</h3>
 <p>교과서가 정리한 목록입니다. 생각보다 넓습니다. <span class="book">교과서 20~21쪽</span></p>
@@ -120,7 +119,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <code>센서 학과</code> ❌ → <code>환경 측정 하는 일</code> ⭕</div>
 
 <h3>⚠️ 한 가지만 짚고 갑니다</h3>
-<p>진로를 <b>지금 정하라는 게 아닙니다.</b> 고3 12월에 진로가 확실한 사람은 많지 않아요.</p>
+<p>진로를 <b>지금 정하라는 게 아닙니다.</b> 이 나이에 진로가 확실한 사람은 많지 않아요.</p>
 <div class="box">🎯 <b>오늘의 목표는 「내가 한 것이 세상 어디에 있는지」를 아는 것</b>입니다.<br>
 그걸 알면 나중에 어느 길로 가든 <b>“나는 이런 걸 해본 적 있다”</b>고 말할 수 있습니다.</div>
 
@@ -145,7 +144,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">여기 쓴 내용이 <b>세특 기록의 재료</b>가 됩니다. 구체적으로 쓸수록 좋습니다.</p>
+  <p class="lead">찾은 내용을 기록합니다. 구체적으로 쓸수록 좋습니다.</p>
   <div class="f" style="margin-top:12px"><label for="프로젝트0">관심 가는 학과나 직업을 하나 적어 주세요. 어디서 찾았는지도.</label><textarea id="프로젝트0" placeholder="예) 환경공학과 — 커리어넷에서 「환경 측정」으로 검색"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">내 연구 경험 중 그 분야와 이어지는 부분을 구체적으로 적어 주세요.</label><textarea id="프로젝트1" placeholder="예) 센서를 설치하고 사흘간 데이터를 모아 교시별로 비교한 경험. 측정 위치를 고정해야 비교가 된다는 걸 몸으로 배웠다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>
@@ -171,7 +170,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <script>
 const OPEN = [{"q": "내 연구와 닮은 「실제 일」을 하나 찾아보세요. 어떤 일이고, 무엇이 닮았나요?"}, {"q": "그 일을 하려면 어떤 것을 더 배워야 할까요? 오늘 찾아본 내용을 바탕으로."}];
 const PROJ = [{"q": "관심 가는 학과나 직업을 하나 적어 주세요. 어디서 찾았는지도."}, {"q": "내 연구 경험 중 그 분야와 이어지는 부분을 구체적으로 적어 주세요."}];
-const QUIZ = [{"a": 3, "why": "정보 철학·정보 심리학·인지 과학·언어학 네 가지입니다. (교과서 20쪽)"}, {"a": 0, "why": "「데이터 분석 학과」보다 「공공데이터 활용 직업」이 훨씬 많이 나옵니다."}, {"a": 2, "why": "건물마다 센서를 놓고 데이터를 모아 관리하는 일이 실제로 있습니다."}, {"a": 2, "why": "고3 12월에 진로가 확실한 사람은 많지 않습니다. 위치를 아는 것이 오늘의 목표예요."}];
+const QUIZ = [{"a": 3, "why": "정보 철학·정보 심리학·인지 과학·언어학 네 가지입니다. (교과서 20쪽)"}, {"a": 0, "why": "「데이터 분석 학과」보다 「공공데이터 활용 직업」이 훨씬 많이 나옵니다."}, {"a": 2, "why": "건물마다 센서를 놓고 데이터를 모아 관리하는 일이 실제로 있습니다."}, {"a": 2, "why": "이 나이에 진로가 확실한 사람은 많지 않습니다. 위치를 아는 것이 오늘의 목표예요."}];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
 const MEM={}; let OK=true;
