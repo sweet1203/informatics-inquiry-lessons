@@ -10,6 +10,7 @@
  */
 
 const ROSTER_NAMES = ["명단", "명단시트", "명렬"];
+const TASK_SHEETS = { "1": "수행1", "2": "수행2" };
 const FAIL_LIMIT = 8;
 const FAIL_MINUTES = 10;
 
@@ -140,7 +141,7 @@ function collectSubmissions_(sid) {
   const out = [];
   ss.getSheets().forEach(function (sh) {
     const sheetName = sh.getName();
-    if (isRoster_(sheetName)) return;
+    if (skipInLessonScan_(sheetName)) return;
     const values = sh.getDataRange().getValues();
     if (!values.length) return;
     const lessonN = lessonNumFromName_(sheetName);
@@ -231,8 +232,21 @@ function rosterSheet_() {
 }
 
 function isRoster_(name) {
-  if (ROSTER_NAMES.indexOf(name) !== -1) return true;
-  return /_이력$/.test(String(name));
+  return ROSTER_NAMES.indexOf(name) !== -1;
+}
+
+/* 차시 제출 집계에서 건너뛸 시트.
+ * 명단 · 수행평가 시트 · 이력 시트는 차시 시트가 아니므로 제외한다.
+ * 빠뜨리면 collectSubmissions_ 가 이 시트들을 차시 제출로 오인해
+ * 「내 제출 확인」에 엉뚱한 줄이 뜬다. */
+function skipInLessonScan_(name) {
+  const nm = String(name);
+  if (isRoster_(nm)) return true;
+  if (/_이력$/.test(nm)) return true;
+  for (const k in TASK_SHEETS) {
+    if (TASK_SHEETS[k] === nm) return true;
+  }
+  return false;
 }
 
 function colMap_(headerRow) {
@@ -393,7 +407,6 @@ function safeCallback_(raw) {
  * 열은 보내온 필드 이름으로 자동 생성되므로 폼을 고치면 시트도 따라옵니다.
  * ═══════════════════════════════════════════════════════════ */
 
-const TASK_SHEETS = { "1": "수행1", "2": "수행2" };
 const TASK_FIXED = ["학번", "이름", "상태", "최근저장", "최종제출"];
 
 function taskSheet_(task, createIfMissing) {
