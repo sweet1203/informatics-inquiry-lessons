@@ -1,1 +1,6 @@
 .vercel
+__pycache__/
+*.bak
+*.bak_*
+*.local_old
+.DS_Store

@@ -1,0 +1,342 @@
+# -*- coding: utf-8 -*-
+"""차시 정의(LESSONS) → 차시별 HTML 생성.  실행:  python3 _생성기.py"""
+import html, json, io, os, re
+
+TPL = """<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{n}차시 · {title}</title>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ⚙️ 선생님 설정 — 아래 한 줄만 채우면 됩니다
+     _설정_AppsScript.gs 를 스프레드시트에 설치하고 받은 웹 앱 URL
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbxa1jCaEXkrPhu15jE-wYaMPx9CcaucpgJm17VYU1b6mW5XitHnzjE3zqP_Sg9Wrxgq6g/exec";
+const 차시번호 = {n};
+</script>
+
+<style>
+:root{{--bg:#f6f7f9;--card:#fff;--ink:#1a1d21;--muted:#6b7280;--line:#e3e6ea;
+--accent:#2563eb;--ink2:#fff;--ok:#0d9488;--warn:#b45309;--soft:#eef2ff;--quiz:#fff7ed;--quizline:#fdba74}}
+@media (prefers-color-scheme:dark){{:root:not([data-theme=light]){{
+--bg:#14171a;--card:#1c2024;--ink:#e8eaed;--muted:#9aa3ad;--line:#2c3238;
+--accent:#5b8cff;--ink2:#0d1117;--ok:#2dd4bf;--warn:#fbbf24;--soft:#1e2536;--quiz:#2a2118;--quizline:#7c4a12}}}}
+*{{box-sizing:border-box}}
+body{{margin:0;padding:0 16px 72px;background:var(--bg);color:var(--ink);line-height:1.7;
+font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-text-size-adjust:100%}}
+.wrap{{max-width:780px;margin:0 auto}}
+header{{padding:30px 0 18px;border-bottom:2px solid var(--line);margin-bottom:22px}}
+.chip{{display:inline-block;background:var(--accent);color:var(--ink2);font-size:.78rem;font-weight:700;
+padding:4px 12px;border-radius:99px;margin-bottom:10px}}
+h1{{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em}}
+.sub{{color:var(--muted);font-size:.93rem;margin:0}}
+.me{{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:15px;
+margin-bottom:26px;display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}}
+.me .f{{flex:1;min-width:115px}}
+label{{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:5px}}
+input[type=text],textarea{{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;
+background:var(--card);color:var(--ink);font-size:1rem;font-family:inherit}}
+textarea{{min-height:88px;resize:vertical}}
+input:focus,textarea:focus{{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}}
+section{{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:20px}}
+section>h2{{font-size:1.16rem;margin:0 0 4px;letter-spacing:-.01em}}
+.lead{{color:var(--muted);font-size:.9rem;margin:0 0 16px}}
+.learn h3{{font-size:1rem;margin:22px 0 8px;padding-left:10px;border-left:3px solid var(--accent)}}
+.learn p{{margin:8px 0}}
+.learn ul{{margin:8px 0;padding-left:20px}} .learn li{{margin:5px 0}}
+.learn table{{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem}}
+.learn th,.learn td{{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}}
+.learn th{{background:var(--soft);font-weight:700}}
+.learn code{{background:var(--soft);padding:1px 6px;border-radius:4px;font-size:.88em}}
+.box{{background:var(--soft);border-left:3px solid var(--accent);padding:12px 15px;border-radius:0 9px 9px 0;margin:14px 0}}
+.book{{font-size:.82rem;color:var(--muted);font-weight:600}}
+.q{{background:var(--quiz);border:1px solid var(--quizline);border-radius:11px;padding:16px;margin-bottom:13px}}
+.q .qt{{font-weight:700;margin-bottom:10px}}
+.opt{{display:block;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);
+margin-bottom:7px;cursor:pointer;font-size:.95rem}}
+.opt:hover{{border-color:var(--accent)}}
+.opt input{{margin-right:8px}}
+.fb{{font-size:.9rem;font-weight:600;margin-top:9px;display:none}}
+.fb.on{{display:block}} .fb.o{{color:var(--ok)}} .fb.x{{color:var(--warn)}}
+button{{font-family:inherit;font-size:.95rem;font-weight:600;border:0;border-radius:9px;padding:11px 20px;
+cursor:pointer;background:var(--accent);color:var(--ink2)}}
+button:hover{{filter:brightness(1.08)}}
+button.ghost{{background:transparent;color:var(--muted);border:1px solid var(--line)}}
+.row{{display:flex;gap:9px;align-items:center;margin-top:15px;flex-wrap:wrap}}
+.msg{{font-size:.9rem;font-weight:600}} .msg.ok{{color:var(--ok)}} .msg.warn{{color:var(--warn)}}
+.score{{font-size:1.05rem;font-weight:700;margin-top:14px}}
+#log{{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
+border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}}
+footer{{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}}
+#toast{{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;
+background:#1f2937;color:#fff;padding:13px 20px;border-radius:11px;font-size:.93rem;font-weight:600;
+box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .22s;max-width:88vw;text-align:center}}
+#toast.on{{opacity:1}}
+</style></head><body><div class="wrap">
+
+<header>
+  <span class="chip">{n}차시</span>
+  <h1>{title}</h1>
+  <p class="sub">{subtitle}</p>
+</header>
+
+<div class="me">
+  <div class="f"><label for="sid">학번</label><input type="text" id="sid" placeholder="30101" autocomplete="off"></div>
+  <div class="f"><label for="sname">이름</label><input type="text" id="sname" placeholder="홍길동" autocomplete="off"></div>
+  <button class="ghost" onclick="saveMe()">기억하기</button>
+</div>
+
+<section class="learn">
+  <h2>📖 오늘 배울 것</h2>
+  <p class="lead">{booknote}</p>
+  {learn}
+</section>
+
+<section>
+  <h2>✍️ 생각 나누기</h2>
+  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
+  {open_fields}
+  <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
+    <span class="msg" id="msg-생각나누기"></span></div>
+</section>
+
+<section>
+  <h2>✅ 확인 퀴즈</h2>
+  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
+  {quiz}
+  <div class="row"><button onclick="grade()">채점하기</button>
+    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
+  <div class="score" id="score"></div>
+</section>
+
+<section>
+  <h2>🔬 내 연구로 가져오기</h2>
+  <p class="lead">{project_lead}</p>
+  {proj_fields}
+  <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
+    <span class="msg" id="msg-프로젝트"></span></div>
+</section>
+
+<section>
+  <h2>📋 내가 낸 것</h2>
+  <div class="row">
+    <button class="ghost" onclick="showLog()">보기</button>
+    <button class="ghost" id="copybtn" style="display:none" onclick="copyLog()">전체 복사</button>
+    <span class="msg" id="logmsg"></span>
+  </div>
+  <p class="lead" id="failnote" style="display:none;margin:12px 0 0;color:var(--warn)">
+    ⚠️ 전송되지 않은 것이 있습니다. <b>전체 복사</b>를 눌러 선생님께 보내 주세요.</p>
+  <div id="log" style="display:none;margin-top:13px"></div>
+</section>
+
+<footer>정보 과제 연구 · 대성여자고등학교 · 2026학년도 2학기</footer>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+<iframe name="sink" style="display:none" title="hidden"></iframe>
+
+<script>
+const OPEN = {open_json};
+const PROJ = {proj_json};
+const QUIZ = {quiz_json};
+
+/* ── 저장소 (막힌 환경에서도 동작) ── */
+const MEM={{}}; let OK=true;
+try{{localStorage.setItem("__t","1");localStorage.removeItem("__t");}}catch(e){{OK=false;}}
+const S={{get(k){{try{{return OK?localStorage.getItem(k):(MEM[k]??null);}}catch(e){{return MEM[k]??null;}}}},
+set(k,v){{MEM[k]=v;try{{if(OK)localStorage.setItem(k,v);}}catch(e){{OK=false;}}}}}};
+const LS="정보과제연구_기록";
+
+function me(){{return {{sid:sid.value.trim(),name:sname.value.trim()}};}}
+function saveMe(){{S.set("정보과제연구_나",JSON.stringify(me()));
+  flash("logmsg",OK?"✅ 기억했습니다":"✅ 기억했습니다 (창을 닫으면 지워집니다)","ok");}}
+(function(){{try{{const m=JSON.parse(S.get("정보과제연구_나")||"{{}}");
+  if(m.sid)sid.value=m.sid; if(m.name)sname.value=m.name;}}catch(e){{}}}})();
+
+/* 설정 누락을 즉시 알림 — 학생이 제출을 눌러야 알게 되는 일을 막습니다 */
+(function(){{
+  if(ENDPOINT) return;
+  const w=document.createElement("div");
+  w.className="note";
+  w.style.cssText="background:#fee2e2;border-left-color:#dc2626;color:#7f1d1d";
+  w.innerHTML="<b>⚠️ 선생님께 — 전송 주소가 설정되지 않았습니다.</b><br>"+
+    "이 파일 위쪽 <code>const ENDPOINT = &quot;&quot;</code> 에 Apps Script 웹 앱 주소를 넣어야 "+
+    "제출이 선생님께 전달됩니다. 지금은 학생 기기에만 저장됩니다.";
+  document.querySelector("header").after(w);
+}})();
+
+function flash(id,t,c){{const e=document.getElementById(id);e.textContent=t;e.className="msg "+(c||"");
+  if(c==="ok")setTimeout(()=>{{if(e.textContent===t)e.textContent="";}},7000);}}
+function records(){{try{{return JSON.parse(S.get(LS)||"[]");}}catch(e){{return [];}}}}
+
+/* ── 붙여넣기 차단 ──────────────────────────────────────
+   ⚠️ 값을 읽는 submitBlock() 은 건드리지 않습니다.
+      paste·drop 이벤트만 막고, 뚫린 경우 직전 값으로 되돌립니다. */
+const 차단수 = {{}};
+let _tt;
+function 토스트(msg){{
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("on");
+  clearTimeout(_tt); _tt = setTimeout(()=>t.classList.remove("on"), 2600);
+}}
+(function 붙여넣기차단(){{
+  const ids = [];
+  OPEN.forEach((_,i)=>ids.push("생각나누기"+i));
+  PROJ.forEach((_,i)=>ids.push("프로젝트"+i));
+  ids.forEach(id=>{{
+    const el = document.getElementById(id);
+    if(!el) return;
+    let 직전 = el.value;
+    const 막기 = e => {{
+      e.preventDefault();
+      차단수[id] = (차단수[id]||0) + 1;
+      토스트("붙여넣기는 쓸 수 없습니다. 직접 작성해 주세요.");
+    }};
+    el.addEventListener("paste", 막기);
+    el.addEventListener("drop", 막기);
+    el.addEventListener("dragover", e=>e.preventDefault());
+    el.addEventListener("beforeinput", ()=>{{ 직전 = el.value; }});
+    el.addEventListener("input", e=>{{
+      if(e.inputType && /insertFrom(Paste|Drop|Yank)/.test(e.inputType)){{
+        el.value = 직전;
+        차단수[id] = (차단수[id]||0) + 1;
+        토스트("붙여넣기는 쓸 수 없습니다. 직접 작성해 주세요.");
+      }}
+    }});
+  }});
+}})();
+
+/* ── 제출 ── */
+function submitBlock(kind){{
+  const list = kind==="생각나누기" ? OPEN : PROJ;
+  const who = me();
+  if(!who.sid||!who.name){{flash("msg-"+kind,"⚠️ 위에 학번과 이름을 먼저 적어 주세요","warn");sid.focus();return;}}
+  const parts=[];
+  for(let i=0;i<list.length;i++){{
+    const v=document.getElementById(kind+i).value.trim();
+    if(!v){{const lbl=list[i].q.length>16?list[i].q.slice(0,16)+"…":list[i].q;
+      flash("msg-"+kind,`⚠️ ${{i+1}}번 「${{lbl}}」 칸이 비어 있어요`,"warn");
+      document.getElementById(kind+i).focus();return;}}
+    parts.push(list.length===1 ? v : `${{list[i].q}}\\n${{v}}`);
+  }}
+  let body=parts.join("\\n\\n");
+  const 막힌횟수 = list.reduce((a,_,i)=>a+(차단수[kind+i]||0), 0);
+  if(막힌횟수) body += `\\n\\n[붙여넣기 차단 ${{막힌횟수}}회]`;
+  const when=new Date().toLocaleString("ko-KR",{{month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"}});
+  const sent=!!ENDPOINT;
+  if(sent){{
+    const f=document.createElement("form");
+    f.action=ENDPOINT; f.method="POST"; f.target="sink";
+    const put=(n,v)=>{{const i=document.createElement("input");i.type="hidden";i.name=n;i.value=v;f.appendChild(i);}};
+    put("n",String(차시번호)); put("sid",who.sid); put("name",who.name);
+    put("kind",kind==="생각나누기"?"생기부":"프로젝트");
+    put("item",kind); put("body",body);
+    document.body.appendChild(f); f.submit(); document.body.removeChild(f);
+    flash("msg-"+kind,"✅ 제출했습니다","ok");
+  }}else{{
+    flash("msg-"+kind,"⚠️ 전송 설정 전입니다. 이 기기에 저장했어요","warn");
+  }}
+  try{{const a=records();a.push({{when,kind,body,sent}});S.set(LS,JSON.stringify(a));}}catch(e){{}}
+  refreshFail();
+}}
+
+/* 전송 실패가 있을 때만 「전체 복사」를 보여 줍니다 */
+function refreshFail(){{
+  const bad = records().some(r=>!r.sent);
+  document.getElementById("copybtn").style.display  = bad ? "" : "none";
+  document.getElementById("failnote").style.display = bad ? "" : "none";
+}}
+
+/* ── 퀴즈 ── */
+function grade(){{
+  let right=0, done=0;
+  QUIZ.forEach((q,i)=>{{
+    const sel=document.querySelector(`input[name=q${{i}}]:checked`);
+    const fb=document.getElementById("fb"+i);
+    if(!sel){{fb.className="fb";return;}}
+    done++;
+    const ok=Number(sel.value)===q.a;
+    if(ok)right++;
+    fb.className="fb on "+(ok?"o":"x");
+    fb.textContent=(ok?"⭕ 맞았어요 — ":"❌ 다시 볼까요 — ")+q.why;
+  }});
+  const s=document.getElementById("score");
+  if(done<QUIZ.length){{s.textContent=`아직 안 푼 문제가 있어요 (${{done}}/${{QUIZ.length}})`;return;}}
+  s.textContent=`${{QUIZ.length}}문제 중 ${{right}}개 정답` +
+    (right===QUIZ.length?"  🎉 완벽합니다":(right>=QUIZ.length-1?"  👍 거의 다 됐어요":"  📖 위 설명을 다시 읽어 보세요"));
+}}
+function resetQuiz(){{
+  document.querySelectorAll("input[type=radio]").forEach(r=>r.checked=false);
+  document.querySelectorAll(".fb").forEach(f=>f.className="fb");
+  document.getElementById("score").textContent="";
+}}
+
+/* ── 기록 ── */
+function asText(){{const a=records();
+  if(!a.length)return "아직 제출한 게 없습니다.";
+  return a.map(r=>`${{r.sent?"✅":"⚠️"}} ${{r.kind}}  (${{r.when}})\\n${{r.body}}`).join("\\n\\n──────────\\n\\n");}}
+function showLog(){{const d=document.getElementById("log");
+  d.style.display=d.style.display==="none"?"block":"none"; d.textContent=asText(); refreshFail();}}
+function copyLog(){{const t=`${{차시번호}}차시  ${{sid.value}} ${{sname.value}}\\n\\n`+asText();
+  navigator.clipboard.writeText(t).then(()=>flash("logmsg","✅ 복사했습니다","ok"))
+  .catch(()=>{{const d=document.getElementById("log");d.style.display="block";d.textContent=t;
+    flash("logmsg","아래에서 직접 선택해 복사하세요","warn");}});}}
+
+refreshFail();
+</script></body></html>
+"""
+
+
+PLAIN_ONLY = "open/proj 의 q·ph 와 퀴즈 보기(o)는 평문만 쓸 수 있습니다 (검증 메시지에 그대로 노출됨)"
+
+def check(L):
+    """평문 전용 칸에 HTML 태그가 섞이면 잡아냅니다."""
+    bad = []
+    for key in ("open", "proj"):
+        for i, f in enumerate(L.get(key, [])):
+            for sub in ("q", "ph"):
+                if "<" in str(f.get(sub, "")):
+                    bad.append(f'{L["n"]}차시 {key}[{i}].{sub}')
+    for i, q in enumerate(L.get("quiz", [])):
+        for j, o in enumerate(q.get("o", [])):
+            if "<" in o:
+                bad.append(f'{L["n"]}차시 quiz[{i}].o[{j}]')
+    if bad:
+        raise SystemExit(f"❌ HTML 사용 불가 위치에 태그가 있습니다:\n   " + "\n   ".join(bad) + f"\n   → {PLAIN_ONLY}")
+
+
+def build(L):
+    check(L)
+    open_fields = "".join(
+        f'<div class="f" style="margin-top:12px"><label for="생각나누기{i}">{html.escape(f["q"])}</label>'
+        f'<textarea id="생각나누기{i}" placeholder="{html.escape(f.get("ph",""))}"></textarea></div>'
+        for i, f in enumerate(L["open"]))
+    proj_fields = "".join(
+        f'<div class="f" style="margin-top:12px"><label for="프로젝트{i}">{html.escape(f["q"])}</label>'
+        f'<textarea id="프로젝트{i}" placeholder="{html.escape(f.get("ph",""))}"></textarea></div>'
+        for i, f in enumerate(L["proj"]))
+    quiz = ""
+    for i, q in enumerate(L["quiz"]):
+        opts = "".join(
+            f'<label class="opt"><input type="radio" name="q{i}" value="{j}">{html.escape(o)}</label>'
+            for j, o in enumerate(q["o"]))
+        quiz += (f'<div class="q"><div class="qt">{i+1}. {q["q"]}</div>'
+                 f'{opts}<div class="fb" id="fb{i}"></div></div>')
+    strip = lambda ds: [{k: v for k, v in d.items() if k in ("q",)} for d in ds]
+    return TPL.format(
+        n=L["n"], title=html.escape(L["title"]), subtitle=html.escape(L["subtitle"]),
+        booknote=html.escape(L["booknote"]), learn=L["learn"],
+        open_fields=open_fields, proj_fields=proj_fields, quiz=quiz,
+        project_lead=L["project_lead"],          # 굵은 글씨 등 HTML 허용
+        open_json=json.dumps(strip(L["open"]), ensure_ascii=False),
+        proj_json=json.dumps(strip(L["proj"]), ensure_ascii=False),
+        quiz_json=json.dumps([{"a": q["a"], "why": q["why"]} for q in L["quiz"]], ensure_ascii=False))
+
+
+if __name__ == "__main__":
+    from 차시정의 import LESSONS
+    for L in LESSONS:
+        fn = f'lesson{L["n"]:02d}.html'          # 주소 입력이 쉽도록 영문 파일명
+        with io.open(fn, "w", encoding="utf-8") as f:
+            f.write(build(L))
+        print(f'  ✅ {fn}  ({os.path.getsize(fn):,} bytes)')

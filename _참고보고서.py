@@ -1,0 +1,297 @@
+# -*- coding: utf-8 -*-
+"""참고 보고서 페이지 생성 — 스타일은 _생성기.py 의 것을 그대로 가져다 쓴다."""
+import io, os, re
+
+src = io.open('_생성기.py', encoding='utf-8').read()
+CSS = re.search(r'<style>(.*?)</style>', src, re.S).group(1)
+CSS = CSS.replace('{{', '{').replace('}}', '}')          # .format 용 이중 중괄호 되돌리기
+
+EXTRA = """
+.rep{border:1px solid var(--line);border-radius:12px;padding:0;margin:18px 0;overflow:hidden}
+.rep>h4{margin:0;padding:11px 15px;background:var(--accent);color:var(--ink2);font-size:.98rem}
+.rep>div{padding:15px}
+.see{background:var(--quiz);border:1px solid var(--quizline);border-radius:0 0 11px 11px;
+padding:11px 15px;font-size:.89rem;margin:0}
+.see b{color:var(--warn)}
+.fig{border:1px dashed var(--line);border-radius:9px;padding:14px;margin:12px 0;
+background:var(--soft);font-size:.9rem}
+.bar{display:flex;align-items:center;gap:9px;margin:5px 0;font-size:.88rem}
+.bar i{display:block;height:17px;background:var(--accent);border-radius:3px;font-style:normal}
+.bar span:first-child{min-width:86px}
+.no{color:#b91c1c}.yes{color:var(--ok)}
+@media print{body{background:#fff}section{break-inside:avoid}}
+"""
+
+BODY = r"""
+<div class="wrap">
+<header>
+  <span class="chip">참고 자료</span>
+  <h1>참고 보고서 — 완성본 하나 읽어 보기</h1>
+  <p class="sub">교과서 보고서 양식(①~⑧)을 실제로 채우면 이렇게 됩니다</p>
+</header>
+
+<section class="learn">
+<h2>이건 무엇인가요</h2>
+<p class="lead">여러분이 <b>11월에 쓸 연구 보고서</b>가 어떤 모습인지 미리 보는 자료입니다. <b>29차시</b>에 함께 읽습니다.</p>
+
+<div class="box">📖 <b>선생님이 직접 쓴 예시입니다.</b><br>
+실제 학생 연구가 아니라, <b>양식 여덟 칸을 어떻게 채우는지 보여주려고</b> 만든 것이에요.
+주제는 트랙 B(피지컬 컴퓨팅)지만 <b>여덟 칸의 틀은 A·C 트랙도 똑같습니다.</b></div>
+
+<div class="box">🔔 <b>이 보고서는 성적에 들어가지 않습니다.</b><br>성적은 <b>수행평가 1(9월 3주 · 30%)</b> · <b>수행평가 2(9월 5주 · 40%)</b> · <b>1차 정기시험(10월 3주 객관식 · 30%)</b>으로 끝나요.<br>대신 여기 쓴 내용이 <b>생활기록부 「과목별 세부능력 및 특기사항」에 문장으로 남습니다.</b><br><b>여기 쓴 것이 생활기록부에 어떤 문장으로 남을지를 정합니다.</b></div>
+
+<div class="box">⚠️ <b>베끼면 0점입니다.</b> 볼 것은 내용이 아니라 <b>쓰는 방식</b>이에요.<br>
+▪ 어느 정도 분량이면 되는지<br>
+▪ 숫자를 어디에 어떻게 넣는지<br>
+▪ 잘 안 된 부분을 어떻게 적는지</div>
+
+<h3>이 보고서 한눈에</h3>
+<table>
+<tr><th>트랙</th><td>B. 피지컬 컴퓨팅 — 사운드 센서</td></tr>
+<tr><th>연구 질문</th><td>교실 소음은 수업 활동에 따라 얼마나 달라지는가</td></tr>
+<tr><th>모은 자료</th><td>3일 · 6교시 · 10초 간격 · <b>1,800개</b></td></tr>
+<tr><th>계산</th><td>평균과 최댓값 — <b>스프레드시트 함수 두 개</b></td></tr>
+<tr><th>분량</th><td>A4 약 3장</td></tr>
+</table>
+
+<div class="box">😮 <b>계산은 평균과 최댓값이 전부입니다.</b><br>
+그런데 보고서는 3장이에요. 대부분이 <b>“왜 이걸 쟀는지”와 “이 숫자가 무슨 뜻인지”</b>입니다.
+교과서 인구 소멸 연구가 <b>나눗셈 하나</b>로 30쪽이 된 것과 같은 이유예요.</div>
+</section>
+
+
+<section class="learn">
+<h2>📄 보고서 전문</h2>
+<p class="lead">각 칸 아래 주황색 상자는 <b>보고서에 들어가는 내용이 아닙니다.</b> “여기서 무엇을 보라”는 설명이에요.</p>
+
+<div style="background:var(--soft);border:1px solid var(--line);border-radius:9px;padding:12px;font-size:.92rem;margin-bottom:6px">
+학번 <b>30000</b> &nbsp; 이름 <b>구예시</b> &nbsp; 트랙 <b>B 피지컬</b>
+</div>
+<p class="see">👀 <b>연구는 개인 과제입니다.</b> 이름 칸을 비우면 채점 근거가 없습니다.</p>
+
+<div class="rep"><h4>① 연구 질문</h4><div>
+우리 반 교실의 소음은 <b>수업 활동의 종류에 따라</b> 얼마나 달라지는가?
+</div></div>
+<p class="see">👀 <b>한 문장.</b> 그리고 <b>답할 수 있는</b> 질문입니다.
+“우리 반은 시끄러운가?”는 사람마다 기준이 달라 답이 안 나와요.
+<b>무엇과 무엇을 견줄지</b>가 질문 안에 들어 있어야 합니다.</p>
+
+<div class="rep"><h4>② 사용한 데이터 또는 장치·프로그램</h4><div>
+아두이노 우노 R3에 <b>사운드(소리 감지) 센서</b>를 연결해 직접 측정했다.<br><br>
+<b>2026년 10월 6일(화)~10월 8일(목) 사흘간</b>, 매일 <b>2교시와 3교시</b>에 측정했다.
+센서는 교실 창가 쪽 사물함 위, 바닥에서 <b>120cm</b> 높이에 고정했다.
+<b>10초 간격</b>으로 값을 읽어 <b>총 1,800개</b>의 값을 얻었다.<br><br>
+같은 시간에 수업 활동을 <b>ⓐ 강의 · ⓑ 개별 활동 · ⓒ 모둠 토의</b> 세 가지로 나누어 손으로 기록했다.
+활동별 측정 개수는 ⓐ 780개, ⓑ 540개, ⓒ 480개다.
+</div></div>
+<p class="see">👀 <b>“센서로 측정했다”로 끝내면 감점입니다.</b> 이 칸의 핵심은 <b>숫자</b>예요 —
+언제부터 언제까지 · 몇 초 간격 · 몇 개.
+<span class="no">약하게 ❌ “사운드 센서로 교실 소음을 쟀다”</span> →
+<span class="yes">좋게 ⭕ “10초 간격으로 사흘간 1,800개”</span></p>
+
+<div class="rep"><h4>③ 분석·구현 방법과 도구</h4><div>
+<b>쓴 도구</b><br>
+아두이노 우노 R3 · 사운드 센서(아날로그 출력을 A0에 연결) · 아두이노 IDE 시리얼 모니터 ·
+교실 노트북(USB 연결) · 구글 스프레드시트<br><br>
+
+<b>어떻게 했는가</b><br>
+스케치는 <code>analogRead(A0)</code> 값을 10초마다 시리얼로 내보내게 짰다.
+SD카드 모듈이 없어 저장이 안 되므로 노트북에 USB로 연결한 채 측정하고,
+수업이 끝나면 시리얼 모니터 내용을 복사해 스프레드시트에 붙여 넣었다.
+붙여 넣은 뒤 시각 열을 만들고, 그 옆에 활동 유형(ⓐⓑⓒ)을 손으로 표시했다.
+활동별 평균은 <code>AVERAGE</code>, 최댓값은 <code>MAX</code>로 계산하고 막대그래프를 그렸다.<br><br>
+
+<b>변인</b>
+<table>
+<tr><th>조작 <span style="font-weight:400">(내가 바꾼 것)</span></th><td>수업 활동 유형 ⓐⓑⓒ</td></tr>
+<tr><th>통제 <span style="font-weight:400">(똑같이 둔 것)</span></th><td>센서 위치와 높이 · 측정 간격 10초 · 교시(2·3교시) · 창문은 계속 닫음 · 센서 감도 나사는 첫날 맞춘 뒤 고정</td></tr>
+<tr><th>종속 <span style="font-weight:400">(결과로 본 것)</span></th><td>센서 아날로그 값(0~1023)</td></tr>
+</table>
+</div></div>
+<p class="see">👀 기준은 하나입니다 — <b>“이 글만 읽고 남이 똑같이 따라 할 수 있는가?”</b><br>
+계획과 달라진 부분(SD카드가 없어 노트북 연결로 바꾼 것)을 <b>이유와 함께</b> 적었습니다.
+<b>계획대로 안 된 걸 숨기지 않는 게 더 좋은 보고서예요.</b></p>
+
+<div class="rep"><h4>④ 결과</h4><div>
+<b>대표하는 숫자</b>
+<table>
+<tr><th></th><th>값</th><th>언제·어디서</th></tr>
+<tr><td>평균</td><td><b>412</b></td><td>전체 1,800개</td></tr>
+<tr><td>최댓값</td><td><b>869</b></td><td>10.7 3교시, 모둠 토의 중</td></tr>
+<tr><td>최솟값</td><td><b>138</b></td><td>10.6 2교시, 개별 활동 중</td></tr>
+<tr><td>자료 개수</td><td><b>1,800개</b></td><td>10.6~10.8, 2·3교시</td></tr>
+</table>
+
+<b>활동 유형별</b>
+<table>
+<tr><th>활동</th><th>평균</th><th>최댓값</th><th>측정 개수</th></tr>
+<tr><td>ⓐ 강의</td><td>331</td><td>592</td><td>780</td></tr>
+<tr><td>ⓑ 개별 활동</td><td>287</td><td>511</td><td>540</td></tr>
+<tr><td>ⓒ 모둠 토의</td><td><b>623</b></td><td><b>869</b></td><td>480</td></tr>
+</table>
+
+<div class="fig"><b>[그림 1] 수업 활동 유형별 소음 센서 값 평균</b> <span style="color:var(--muted)">(아날로그 값, 0~1023)</span>
+<div class="bar"><span>ⓐ 강의</span><i style="width:32%"></i><span>331</span></div>
+<div class="bar"><span>ⓑ 개별 활동</span><i style="width:28%"></i><span>287</span></div>
+<div class="bar"><span>ⓒ 모둠 토의</span><i style="width:61%"></i><span>623</span></div>
+</div>
+
+<div class="fig"><b>[그림 2] 10월 7일 3교시 경과 시간에 따른 소음 센서 값</b>
+<span style="color:var(--muted)">(세로축 = 아날로그 값 0~1023, 가로축 = 경과 시간(분))</span>
+<svg viewBox="0 0 660 210" width="100%" role="img" aria-label="시간에 따른 소음 센서 값 변화">
+<style>
+.g{stroke:var(--line);stroke-width:1} .ax{font-size:10px;fill:var(--muted)}
+.ln{fill:none;stroke:var(--accent);stroke-width:2} .mk{fill:var(--accent)}
+.sp{fill:var(--warn);opacity:.10} .lb{font-size:10.5px;fill:var(--muted)}
+</style>
+<rect x="190.5" y="12" width="457.5" height="168" class="sp"/>
+<line x1="46" y1="180.0" x2="648" y2="180.0" class="g"/><text x="40" y="184.0" class="ax" text-anchor="end">0</text><line x1="46" y1="138.9" x2="648" y2="138.9" class="g"/><text x="40" y="142.9" class="ax" text-anchor="end">250</text><line x1="46" y1="97.9" x2="648" y2="97.9" class="g"/><text x="40" y="101.9" class="ax" text-anchor="end">500</text><line x1="46" y1="56.8" x2="648" y2="56.8" class="g"/><text x="40" y="60.8" class="ax" text-anchor="end">750</text><line x1="46" y1="15.8" x2="648" y2="15.8" class="g"/><text x="40" y="19.8" class="ax" text-anchor="end">1000</text><line x1="46" y1="12" x2="46" y2="180" class="g"/>
+<line x1="46" y1="180" x2="648" y2="180" class="g"/>
+<text x="46.0" y="196" class="ax" text-anchor="middle">0</text><text x="166.4" y="196" class="ax" text-anchor="middle">10</text><text x="286.8" y="196" class="ax" text-anchor="middle">20</text><text x="407.2" y="196" class="ax" text-anchor="middle">30</text><text x="527.6" y="196" class="ax" text-anchor="middle">40</text><text x="648.0" y="196" class="ax" text-anchor="middle">50</text><polyline class="ln" points="46.0,127.8 70.1,124.0 94.2,129.9 118.2,122.2 142.3,126.0 166.4,124.8 190.5,114.1 214.6,83.4 238.6,74.6 262.7,78.7 286.8,64.9 310.9,72.4 335.0,82.1 359.0,37.3 383.1,75.9 407.2,69.6 431.3,79.7 455.4,64.6 479.4,83.4 503.5,74.1 527.6,77.5 551.7,68.2 575.8,81.1 599.8,72.1 623.9,78.3 648.0,86.2"/>
+<circle cx="359.0" cy="37.3" r="3.5" class="mk"/>
+<text x="366.0" y="33.3" class="lb">최댓값 869</text>
+<text x="202.5" y="25" class="lb">← 12분: 모둠 토의 시작</text>
+<text x="8" y="14" class="ax">값</text>
+<text x="648" y="206" class="ax" text-anchor="end">경과 시간(분)</text>
+</svg>
+</div>
+</div></div>
+<p class="see">👀 <b>이 칸에 해석을 쓰면 감점입니다.</b> “모둠 토의가 시끄러웠다”는 ⑤번 칸 말이에요.
+여기는 <b>숫자와 그림만</b>.<br>
+그림에 <b>번호·제목·축 단위</b>가 붙어 있는 것도 보세요. 그래야 본문에서 “[그림 1]에서 보듯”이라고 가리킬 수 있습니다.</p>
+
+<div class="rep"><h4>⑤ 결과 해석</h4><div>
+<b>① 답</b><br>
+교실 소음은 수업 활동에 따라 뚜렷하게 달라졌으며, <b>모둠 토의 때가 개별 활동 때의 약 2.2배</b>였다.<br><br>
+
+<b>② 근거</b><br>
+[그림 1]에서 보듯 모둠 토의 평균은 623, 개별 활동 평균은 287로 <b>336 차이</b>가 났다(623 ÷ 287 ≒ 2.17).
+최댓값도 모둠 토의가 869로 개별 활동 511보다 <b>358 높았다</b>.
+반면 강의(331)와 개별 활동(287) 사이는 44 차이로 크지 않았다.<br><br>
+
+<b>③ 제안</b><br>
+모둠 토의를 두 교시 연속으로 배치하기보다 강의·개별 활동과 <b>번갈아 배치</b>하면
+높은 소음이 오래 이어지는 것을 줄일 수 있다. 또 모둠 토의를 시작하기 전에
+<b>“한 팔 거리 안에서만 들리게”</b> 같은 목소리 약속을 정하는 것을 제안한다.<br><br>
+
+<span style="color:var(--muted)">다만 모둠 토의는 주로 3교시에 이루어졌고 그 시간에 복도 이동 소리도 겹쳐 있었다.
+따라서 <b>교실 안 대화만의 영향이라고 단정하기는 어렵다.</b></span>
+</div></div>
+<p class="see">👀 <b>세 겹으로 씁니다 — 답 · 근거 · 제안.</b>
+그리고 <b>답이 연구 질문의 말을 그대로 받고</b> 있어요(“활동에 따라 얼마나 달라지는가” → “활동에 따라 달라졌으며 2.2배”).<br>
+마지막 회색 문장이 중요합니다. <b>“A 때문에 B다”라고 단정하지 않고</b> 겹친 요인을 밝혔어요.
+이걸 쓰면 <b>점수가 올라갑니다.</b></p>
+
+<div class="rep"><h4>⑥ 한계와 개선 방향</h4><div>
+<b>한계 ①</b> <span style="color:var(--muted)">(자료 부족)</span><br>
+사흘 동안 2·3교시만 측정해 1,800개를 얻었다. 5·6교시와 점심시간은 재지 못했다.
+그래서 <b>하루 중 언제가 가장 시끄러운지는 이 연구로 답할 수 없다.</b><br>
+<b>개선 방향 ①</b> — 다시 한다면 이틀만이라도 <b>1교시부터 7교시까지 전부</b> 재서 교시별 비교를 넣겠다.<br><br>
+
+<b>한계 ②</b> <span style="color:var(--muted)">(방법·도구의 제약)</span><br>
+사용한 센서는 <b>데시벨(dB)이 아니라 0~1023의 아날로그 값</b>을 낸다.
+그래서 “몇 dB이었다”라고 말할 수 없고 <b>서로 견주는 것만</b> 가능하다.
+감도 조절 나사도 첫날 한 번 맞춘 뒤 고정했을 뿐, 그 기준이 절대적인 것은 아니다.<br>
+<b>개선 방향 ②</b> — 스마트폰 소음 측정 앱으로 같은 시각에 dB을 함께 재어
+<b>센서 값과 dB의 대응표</b>를 만들면 절대 수치로 바꿔 말할 수 있다.
+학교보건법 시행규칙에 교실 소음 기준이 정해져 있으므로, dB로 바꿀 수 있으면 <b>기준과 견줄 수도 있다.</b><br><br>
+
+<b>한계 ③</b> <span style="color:var(--muted)">(자료 편중)</span><br>
+측정 위치가 창가 한 곳뿐이라 교실 뒤쪽과 복도 쪽 소리는 제대로 반영되지 않았다.<br>
+<b>개선 방향 ③</b> — 센서를 앞·뒤·창가 세 곳에 두고 동시에 재면 <b>위치별 차이</b>도 볼 수 있다.
+</div></div>
+<p class="see">👀 <b>여기가 점수를 되찾는 칸입니다.</b> 결과가 시원찮아도 이 칸을 채우면 점수가 올라가요.<br>
+세 한계가 모두 <b>자료 부족 · 자료 편중 · 방법과 도구의 제약</b> 중 하나로 <b>이름 붙여져</b> 있고,
+<b>각각에 개선 방향이 하나씩</b> 붙어 있습니다.<br>
+<span class="no">❌ 이렇게 쓰면 아깝습니다</span> — “특별한 한계는 없었다” · “시간이 부족했다” · “내 실력이 부족했다”.
+일정 문제나 자책은 <b>연구의 한계가 아닙니다.</b></p>
+
+<div class="rep"><h4>⑦ 알게 된 점</h4><div>
+측정하는 것보다 <b>무엇을 잴지 정하는 일이 훨씬 어려웠다.</b>
+처음에는 “우리 반이 시끄러운가”를 재려고 했는데, ‘시끄럽다’는 사람마다 기준이 달라
+무엇을 재야 할지 정할 수가 없었다. 그래서 질문을 “활동에 따라 소음이 달라지는가”로 바꾸고
+활동을 ⓐⓑⓒ 세 가지로 미리 정한 뒤에야 측정을 시작할 수 있었다.<br><br>
+또 <b>센서가 dB을 주지 않는다는 것을 첫날 측정을 마치고 나서야 알았다.</b>
+다음에 한다면 <b>센서가 어떤 단위로 값을 주는지 먼저 확인하고</b> 연구 질문을 쓰겠다.
+</div></div>
+<p class="see">👀 <b>가장 대충 쓰기 쉬운 칸이자, 생활기록부에 그대로 옮겨질 수 있는 칸입니다.</b><br>
+“연구가 어렵다는 걸 알았다” 같은 문장은 아무 것도 말하지 않아요.
+<b>구체적인 장면 하나</b>를 넣으세요 — 여기서는 “‘시끄럽다’를 잴 수 없어 질문을 바꾼 일”입니다.</p>
+
+<div class="rep"><h4>⑧ 참고 자료</h4><div>
+<table>
+<tr><td style="width:34px">1</td><td>「학교보건법 시행규칙」 교사 안에서의 환경 위생 기준 · 법제처 국가법령정보센터 · <code>law.go.kr</code></td></tr>
+<tr><td>2</td><td>「소음·진동관리법 시행규칙」 생활소음 규제기준 · 법제처 국가법령정보센터 · <code>law.go.kr</code></td></tr>
+<tr><td>3</td><td>「트랙 B 실습자료 — 배선도와 예제 스케치」 B-4 교실 소음도 · 담당 교사 배부 자료 · 2026</td></tr>
+</table>
+</div></div>
+<p class="see">👀 <b>2건 이상.</b> 학술 논문이 아니어도 됩니다 — 법령·통계·기사·수업 자료로 충분해요.<br>
+형식은 <b>자료 이름 · 발행처 · 연도 · 주소</b>.
+AI에게 물어서 알게 된 자료라도 <b>AI 이름이 아니라 실제 자료의 원 출처</b>를 적습니다.<br>
+⚠️ 위 목록은 <b>형식을 보여주는 예시</b>입니다. 여러분은 <b>직접 들어가서 확인한 자료</b>를 쓰세요.</p>
+</section>
+
+
+<section class="learn">
+<h2>같은 여덟 칸을 다른 트랙으로 쓰면</h2>
+<p class="lead"><b>틀은 똑같습니다.</b> 무엇을 채우는지만 달라져요.</p>
+<table>
+<tr><th>칸</th><th>B 피지컬 <span style="font-weight:400">(위 보고서)</span></th><th>A 데이터 분석</th><th>C 프로그램 제작</th></tr>
+<tr><th>②</th><td>센서 · 측정 기간 · 값 1,800개</td><td>KOSIS 「연령 및 성별 인구」 2024년 · 광주 5개 구 1,200행</td><td>학습시킨 사진 3종류 × 각 40장 = 120장</td></tr>
+<tr><th>③</th><td>배선 · 스케치 · 스프레드시트 함수</td><td>오렌지3 위젯 연결 순서</td><td>티처블 머신 학습 설정 · 테스트 방법</td></tr>
+<tr><th>④</th><td>활동별 평균·최댓값</td><td>지역별 계산값 표 · 지도</td><td>종류별 정확도 · 틀린 사진</td></tr>
+<tr><th>⑥</th><td>센서가 dB을 안 줌</td><td>2024년 한 해 자료뿐</td><td>사진을 모두 교실에서 찍어 배경이 비슷함</td></tr>
+</table>
+<div class="box">💡 <b>⑤ 결과 해석 · ⑥ 한계 · ⑦ 알게 된 점은 세 트랙이 완전히 똑같습니다.</b><br>
+그리고 <b>배점이 큰 곳도 바로 거기</b>예요. 어떤 트랙을 골라도 불리하지 않은 이유입니다.</div>
+</section>
+
+
+<section class="learn">
+<h2>좋은 보고서를 가르는 것</h2>
+<p class="lead">점수는 없지만 기준은 있습니다. <b>세특에 무엇이 적힐지</b>가 여기서 갈립니다.</p>
+<table>
+<tr><th></th><th>이 정도면</th><th>세특에 이렇게 적힙니다</th></tr>
+<tr><td><b>충분</b></td><td>여덟 항목을 모두 쓰고, ⑤ 해석을 연구 질문에 답하는 한 문장으로 진술하며,
+⑥ 한계를 <b>자료 부족 · 자료 편중 · 방법과 도구의 제약</b> 중 하나 이상으로 지목하고
+<b>한계마다 개선 방향을 하나씩</b> 달았으며, ⑧ 출처를 밝혔다</td>
+<td class="yes">"결과의 한계를 스스로 진단하고 개선 방향을 구체적으로 제시함"</td></tr>
+<tr><td>보통</td><td>여덟 항목을 모두 쓰고 해석 1문장과 한계·개선 방향을 각 1개씩 제시했다</td>
+<td>"연구 결과를 해석하고 한계를 인식함"</td></tr>
+<tr><td>부족</td><td>항목 일부만 채우고 결과만 나열했다</td>
+<td class="no">쓸 문장이 거의 없습니다</td></tr>
+</table>
+<div class="box">⭐ <b>가르는 건 ⑥번 칸입니다.</b>
+한계에 <b>이름을 붙였는가</b>, 그리고 <b>한계마다 개선 방향이 붙었는가</b>.<br>
+결과가 예상과 달라도 이 칸이 튼튼하면 <b>가장 좋은 기록이 남습니다.</b>
+오히려 예상대로 나온 연구보다 쓸 말이 많아요.</div>
+</section>
+
+
+<section class="learn">
+<h2>제출 전 자가 점검 8가지</h2>
+<table>
+<tr><th>#</th><th>확인할 것</th></tr>
+<tr><td>1</td><td>여덟 칸을 <b>모두</b> 채웠는가</td></tr>
+<tr><td>2</td><td>④ 결과에 <b>해석이 섞이지 않았는가</b></td></tr>
+<tr><td>3</td><td>⑤ 해석이 <b>연구 질문에 답하는</b> 형태인가</td></tr>
+<tr><td>4</td><td>⑥ 한계가 <b>2개 이상</b>이고 개선 방향이 붙었는가</td></tr>
+<tr><td>5</td><td>그래프에 <b>번호 · 제목 · 축 단위</b>가 있는가</td></tr>
+<tr><td>6</td><td>② 데이터를 <b>숫자로</b> 밝혔는가</td></tr>
+<tr><td>7</td><td>⑧ 참고 자료가 <b>2건 이상</b>인가</td></tr>
+<tr><td>8</td><td>맨 위 <b>학번 · 이름 · 트랙</b>을 적었는가</td></tr>
+</table>
+<div class="box">🖨️ 이 화면은 <b>그대로 인쇄</b>해도 됩니다. 옆에 두고 쓰세요.</div>
+</section>
+
+</div>
+"""
+
+PAGE = ("<!doctype html>\n<html lang=\"ko\"><head><meta charset=\"utf-8\">\n"
+        "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
+        "<title>참고 보고서 · 정보과제연구</title>\n"
+        "<style>" + CSS + EXTRA + "</style>\n</head><body>\n" + BODY + "\n</body></html>\n")
+
+with io.open('sample-report.html', 'w', encoding='utf-8') as f:
+    f.write(PAGE)
+print(f'  ✅ sample-report.html  ({os.path.getsize("sample-report.html"):,} bytes)')
