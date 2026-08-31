@@ -17,6 +17,7 @@ EXTRA = """
 .fld input[type=text],.fld textarea,.fld select{width:100%;box-sizing:border-box;
 padding:9px 11px;border:1px solid var(--line);border-radius:8px;font:inherit;background:var(--card);color:var(--ink)}
 .fld textarea{min-height:96px;resize:vertical;line-height:1.6}
+#f_AI활용{min-height:200px}
 .fld input:focus,.fld textarea:focus,.fld select:focus{outline:2px solid var(--accent);outline-offset:1px}
 .grp{border:1px solid var(--line);border-radius:12px;padding:2px 15px 15px;margin:18px 0}
 .grp>h4{margin:0 -15px 4px;padding:10px 15px;background:var(--accent);color:var(--ink2);
@@ -87,7 +88,11 @@ T2 = [
 ]
 
 AI_FIELD = ("AI활용", "생성형 AI를 썼다면 — 무엇을 물었고, 무엇을 쓰고 무엇을 버렸나", "area",
+            "이 칸은 붙여넣기가 됩니다. 주고받은 대화를 그대로 붙여 넣어도 됩니다. "
             "쓰지 않았으면 「사용 안 함」이라고 적으세요", None)
+
+# 붙여넣기를 막지 않는 칸
+PASTE_OK = ["AI활용"]
 
 
 def field_html(key, label, kind, hint, opts):
@@ -136,7 +141,8 @@ __LEAD__
 <div class="box">💾 <b>「임시저장」을 누르면 지금까지 쓴 내용이 시트에 저장됩니다.</b><br>
 다음 시간에 학번·이름·개별 비밀번호를 넣고 <b>「불러오기」</b>를 누르면 이어서 쓸 수 있습니다. 다른 컴퓨터에서도 됩니다.<br>
 <b>빈 칸은 저장해도 앞서 쓴 내용을 지우지 않습니다.</b> 정말 지우려면 그 칸에 <b>－</b> 한 글자만 넣으세요.</div>
-<div class="box">⚠️ <b>붙여넣기는 막혀 있습니다.</b> 시도한 횟수가 함께 기록됩니다.</div>
+<div class="box">⚠️ <b>답안 칸은 붙여넣기가 막혀 있습니다.</b> 시도한 횟수가 함께 기록됩니다.<br>
+<b>맨 아래 「AI 활용 기록」 칸만 붙여넣기가 됩니다.</b> 주고받은 대화를 그대로 넣으세요.</div>
 
 <div class="who">
   <div class="fld"><label for="sid">학번</label><input type="text" id="sid" inputmode="numeric"></div>
@@ -163,6 +169,7 @@ __BODY__
 const ENDPOINT = "__ENDPOINT__";
 const TASK = "__TASK__";
 const KEYS = __KEYS__;
+const PASTE_OK = __PASTEOK__;
 const LS = "정연-수행" + TASK;
 let 차단 = 0;
 let 불러옴 = false;   /* 이번에 서버에서 기존 내용을 확인했는가 */
@@ -175,8 +182,10 @@ const el = function (k) { return $("f_" + k); };
 KEYS.forEach(function (k) {
   const e = el(k);
   if (!e) return;
-  e.addEventListener("paste", function (ev) { ev.preventDefault(); 차단++; note("붙여넣기는 막혀 있습니다 (" + 차단 + "회)"); });
-  e.addEventListener("drop", function (ev) { ev.preventDefault(); });
+  if (PASTE_OK.indexOf(k) === -1) {
+    e.addEventListener("paste", function (ev) { ev.preventDefault(); 차단++; note("붙여넣기는 막혀 있습니다 (" + 차단 + "회)"); });
+    e.addEventListener("drop", function (ev) { ev.preventDefault(); });
+  }
   if (e.tagName === "TEXTAREA") {
     e.addEventListener("input", function () {
       const c = $("c_" + k);
@@ -284,6 +293,7 @@ window.addEventListener("beforeunload", function (ev) {
                 .replace("__TITLE__", title).replace("__SUB__", sub)
                 .replace("__LEAD__", lead).replace("__BODY__", body)
                 .replace("__ENDPOINT__", ENDPOINT).replace("__TASK__", task)
+                .replace("__PASTEOK__", json.dumps(PASTE_OK, ensure_ascii=False))
                 .replace("__KEYS__", json.dumps(keys, ensure_ascii=False)))
     fn = "task%s-submit.html" % task
     with io.open(fn, "w", encoding="utf-8") as f:
@@ -294,8 +304,7 @@ window.addEventListener("beforeunload", function (ev) {
 build("1", "수행평가 1 제출",
       "선행 연구 사례 분석 및 연구 주제 설정하기",
       T1,
-      '<div class="box">📄 <b><a href="answer-task1.html" target="_blank" rel="noopener">수행평가 1 안내</a></b>에 '
-      '문항별 답안 예시와 등급 기준이 있습니다. 옆에 띄워 두고 쓰세요.</div>')
+      '<div class="box">📄 <b><a href="answer-task1.html" target="_blank" rel="noopener">수행평가 1 안내</a></b></div>')
 
 build("2", "수행평가 2 제출",
       "연구 계획서 작성",
