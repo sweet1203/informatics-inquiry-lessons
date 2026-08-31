@@ -547,3 +547,152 @@ function taskLoad_(task, sid) {
   }
   return empty;
 }
+
+
+/* ═══════════ 교사용 — 스프레드시트 메뉴 「📊 정보과제연구」 ═══════════ */
+
+function onOpen() {
+  SpreadsheetApp.getUi()
+    .createMenu('📊 정보과제연구')
+    .addItem('제출 현황 정리하기', '제출현황정리')
+    .addItem('차시 시트 순서 정렬', '차시정렬')
+    .addToUi();
+}
+
+function 제출현황정리() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ui = SpreadsheetApp.getUi();
+
+  const 명단시트 = ss.getSheetByName('명단');
+  if (!명단시트) {
+    ui.alert('「명단」 시트가 없습니다.\n\n' +
+             '시트를 하나 만들어 이름을 「명단」으로 바꾸고,\n' +
+             'A1에 학번, B1에 이름을 적은 뒤 2행부터 학생 명단을 붙여넣어 주세요.');
+    return;
+  }
+
+  const 명단 = 명단시트.getDataRange().getValues().slice(1)
+    .map(r => ({ sid: String(r[0]).trim(), name: String(r[1]).trim() }))
+    .filter(m => m.sid);
+
+  if (!명단.length) {
+    ui.alert('「명단」 시트가 비어 있습니다. 2행부터 학번과 이름을 넣어 주세요.');
+    return;
+  }
+
+  const 시트들   = ss.getSheets().filter(s => /^\d+차시$/.test(s.getName()))
+                     .sort((a, b) => parseInt(a.getName()) - parseInt(b.getName()));
+  const 차시목록 = 시트들.map(s => s.getName());
+  if (!차시목록.length) { ui.alert('아직 제출된 차시가 없습니다.'); return; }
+
+  const 명단학번 = {};
+  명단.forEach(m => 명단학번[m.sid] = m.name);
+
+  const 제출   = {};   // 학번 → { 차시 → 건수 }
+  const 미등록 = [];   // 명단에 없는 학번으로 들어온 제출
+
+  시트들.forEach(sh => {
+    const 차시 = sh.getName();
+    const vals = sh.getDataRange().getValues();
+    if (!vals.length) return;
+    /* 열 위치를 머리글에서 찾습니다. 넓은(항목별 열) 형식도 함께 다룹니다. */
+    const map = colMap_(vals[0]);
+    vals.slice(map.header ? 1 : 0).forEach(r => {
+      const sid  = normSid_(sidFromRow_(r, map));
+      const name = String(r[map.name] == null ? "" : r[map.name]).trim();
+      if (!sid && !name) return;
+      if (!(sid in 명단학번)) {
+        미등록.push([차시, sid, name, formatWhen_(r[map.when])]);
+        return;
+      }
+      제출[sid] = 제출[sid] || {};
+      제출[sid][차시] = (제출[sid][차시] || 0) + 1;
+    });
+  });
+
+  /* 수행평가는 상태(제출 / 임시저장)를 그대로 보여 줍니다. */
+  const 수행상태 = {};
+  ["1", "2"].forEach(function (t) {
+    const nm = TASK_SHEETS[t];
+    const sh = ss.getSheetByName(nm);
+    if (!sh || sh.getLastRow() < 2) return;
+    const vals = sh.getDataRange().getValues();
+    const hd = vals[0].map(v => String(v == null ? "" : v).trim());
+    const ci = hd.indexOf("학번"), cs = hd.indexOf("상태");
+    if (ci === -1) return;
+    vals.slice(1).forEach(r => {
+      const sid = normSid_(r[ci]);
+      if (!sid) return;
+      수행상태[sid] = 수행상태[sid] || {};
+      수행상태[sid][nm] = cs === -1 ? "저장" : String(r[cs] || "").trim();
+    });
+  });
+  const 수행열 = ["1", "2"].map(t => TASK_SHEETS[t]);
+
+  let out = ss.getSheetByName('현황');
+  if (!out) out = ss.insertSheet('현황', 0);
+  out.clear();
+
+  const W = 차시목록.length;
+  const WA = W + 수행열.length;
+  out.appendRow(['학번', '이름', ...차시목록, ...수행열, '제출', '미제출']);
+
+  명단.forEach(m => {
+    const 행   = 차시목록.map(c => (제출[m.sid] || {})[c] ? '○' : '');
+    const 수행 = 수행열.map(c => (수행상태[m.sid] || {})[c] || '');
+    const 완료 = 행.filter(String).length;
+    out.appendRow([m.sid, m.name, ...행, ...수행, 완료, W - 완료]);
+  });
+
+  // 차시별 제출 인원
+  const 합계 = 차시목록.map(c => 명단.filter(m => (제출[m.sid] || {})[c]).length);
+  const 수행합 = 수행열.map(c => 명단.filter(m => ((수행상태[m.sid] || {})[c] || '') === '제출').length);
+  out.appendRow(['', '제출 인원', ...합계, ...수행합, '', '']);
+  out.appendRow(['', '미제출 인원', ...합계.map(v => 명단.length - v),
+                 ...수행합.map(v => 명단.length - v), '', '']);
+
+  // 서식
+  const 끝행 = 명단.length + 3;
+  out.getRange(1, 1, 1, WA + 4).setFontWeight('bold').setBackground('#e8eaf6');
+  out.getRange(끝행 - 1, 1, 2, WA + 4).setFontWeight('bold').setBackground('#f1f3f4');
+  out.getRange(2, 3, 명단.length, WA).setHorizontalAlignment('center');
+  out.setFrozenRows(1);
+  out.setFrozenColumns(2);
+
+  // 미제출(빈 칸)을 붉게 — 한눈에 보이도록
+  const 범위 = out.getRange(2, 3, 명단.length, W);
+  범위.setBackground(null);
+  const rule = SpreadsheetApp.newConditionalFormatRule()
+    .whenCellEmpty().setBackground('#fce8e6').setRanges([범위]).build();
+  out.setConditionalFormatRules([rule]);
+
+  // 명단에 없는 학번 경고
+  if (미등록.length) {
+    const st = 끝행 + 2;
+    out.getRange(st, 1).setValue('⚠️ 명단에 없는 학번으로 들어온 제출 — 학번 오타일 수 있습니다')
+      .setFontWeight('bold').setFontColor('#b00020');
+    out.getRange(st + 1, 1, 1, 4).setValues([['차시', '입력한 학번', '입력한 이름', '제출시각']])
+      .setFontWeight('bold').setBackground('#fde7e9');
+    out.getRange(st + 2, 1, 미등록.length, 4).setValues(미등록);
+  }
+
+  out.autoResizeColumns(1, 2);
+  ui.alert('현황을 정리했습니다.\n\n' +
+           '학생 ' + 명단.length + '명 · 차시 ' + W + '개 · 수행평가 ' + 수행열.length + '개' +
+           (미등록.length ? '\n\n⚠️ 명단에 없는 제출 ' + 미등록.length + '건이 아래에 표시됐습니다.' : ''));
+}
+
+function 정렬시트(ss) {
+  const sheets = ss.getSheets()
+    .filter(s => /^\d+차시$/.test(s.getName()))
+    .sort((a, b) => parseInt(a.getName()) - parseInt(b.getName()));
+  sheets.forEach((s, i) => {
+    ss.setActiveSheet(s);
+    ss.moveActiveSheet(i + 1);
+  });
+}
+
+function 차시정렬() {
+  정렬시트(SpreadsheetApp.getActiveSpreadsheet());
+  SpreadsheetApp.getUi().alert('차시 시트를 번호 순으로 정렬했습니다.');
+}
