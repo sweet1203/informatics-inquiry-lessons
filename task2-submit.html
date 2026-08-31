@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>수행평가 2 제출 · 정보과제연구</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1a1d21;--muted:#6b7280;--line:#e3e6ea;
+--accent:#2563eb;--ink2:#fff;--ok:#0d9488;--warn:#b45309;--soft:#eef2ff;--quiz:#fff7ed;--quizline:#fdba74}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+--bg:#14171a;--card:#1c2024;--ink:#e8eaed;--muted:#9aa3ad;--line:#2c3238;
+--accent:#5b8cff;--ink2:#0d1117;--ok:#2dd4bf;--warn:#fbbf24;--soft:#1e2536;--quiz:#2a2118;--quizline:#7c4a12}}
+*{box-sizing:border-box}
+body{margin:0;padding:0 16px 72px;background:var(--bg);color:var(--ink);line-height:1.7;
+font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:780px;margin:0 auto}
+header{padding:30px 0 18px;border-bottom:2px solid var(--line);margin-bottom:22px}
+.chip{display:inline-block;background:var(--accent);color:var(--ink2);font-size:.78rem;font-weight:700;
+padding:4px 12px;border-radius:99px;margin-bottom:10px}
+h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:.93rem;margin:0}
+.me{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:15px;
+margin-bottom:26px;display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.me .f{flex:1;min-width:115px}
+label{display:block;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:5px}
+input[type=text],textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;
+background:var(--card);color:var(--ink);font-size:1rem;font-family:inherit}
+textarea{min-height:88px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:20px}
+section>h2{font-size:1.16rem;margin:0 0 4px;letter-spacing:-.01em}
+.lead{color:var(--muted);font-size:.9rem;margin:0 0 16px}
+.learn h3{font-size:1rem;margin:22px 0 8px;padding-left:10px;border-left:3px solid var(--accent)}
+.learn p{margin:8px 0}
+.learn ul{margin:8px 0;padding-left:20px} .learn li{margin:5px 0}
+.learn table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem}
+.learn th,.learn td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.learn th{background:var(--soft);font-weight:700}
+.learn code{background:var(--soft);padding:1px 6px;border-radius:4px;font-size:.88em}
+.box{background:var(--soft);border-left:3px solid var(--accent);padding:12px 15px;border-radius:0 9px 9px 0;margin:14px 0}
+.book{font-size:.82rem;color:var(--muted);font-weight:600}
+.q{background:var(--quiz);border:1px solid var(--quizline);border-radius:11px;padding:16px;margin-bottom:13px}
+.q .qt{font-weight:700;margin-bottom:10px}
+.opt{display:block;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);
+margin-bottom:7px;cursor:pointer;font-size:.95rem}
+.opt:hover{border-color:var(--accent)}
+.opt input{margin-right:8px}
+.fb{font-size:.9rem;font-weight:600;margin-top:9px;display:none}
+.fb.on{display:block} .fb.o{color:var(--ok)} .fb.x{color:var(--warn)}
+button{font-family:inherit;font-size:.95rem;font-weight:600;border:0;border-radius:9px;padding:11px 20px;
+cursor:pointer;background:var(--accent);color:var(--ink2)}
+button:hover{filter:brightness(1.08)}
+button.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.row{display:flex;gap:9px;align-items:center;margin-top:15px;flex-wrap:wrap}
+.msg{font-size:.9rem;font-weight:600} .msg.ok{color:var(--ok)} .msg.warn{color:var(--warn)}
+.score{font-size:1.05rem;font-weight:700;margin-top:14px}
+#log{white-space:pre-wrap;font-size:.85rem;background:var(--bg);border:1px solid var(--line);
+border-radius:9px;padding:14px;max-height:300px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
+footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:36px}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;
+background:#1f2937;color:#fff;padding:13px 20px;border-radius:11px;font-size:.93rem;font-weight:600;
+box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .22s;max-width:88vw;text-align:center}
+#toast.on{opacity:1}
+
+.fld{margin:16px 0}
+.fld>label{display:block;font-weight:700;margin-bottom:5px;font-size:.97rem}
+.fld .hint{font-size:.86rem;color:var(--muted);margin:0 0 6px}
+.fld input[type=text],.fld textarea,.fld select{width:100%;box-sizing:border-box;
+padding:9px 11px;border:1px solid var(--line);border-radius:8px;font:inherit;background:var(--card);color:var(--ink)}
+.fld textarea{min-height:96px;resize:vertical;line-height:1.6}
+.fld input:focus,.fld textarea:focus,.fld select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.grp{border:1px solid var(--line);border-radius:12px;padding:2px 15px 15px;margin:18px 0}
+.grp>h4{margin:0 -15px 4px;padding:10px 15px;background:var(--accent);color:var(--ink2);
+font-size:.96rem;border-radius:11px 11px 0 0}
+.who{display:flex;gap:9px;flex-wrap:wrap;align-items:flex-end}
+.who .fld{flex:1 1 130px;margin:0}
+.bar{position:sticky;bottom:0;background:var(--bg);border-top:1px solid var(--line);
+padding:11px 0;display:flex;gap:9px;align-items:center;flex-wrap:wrap;z-index:5}
+.state{font-size:.88rem;color:var(--muted);margin-left:auto}
+.state b{color:var(--ok)}
+.lock{opacity:.55;pointer-events:none}
+.cnt{font-size:.82rem;color:var(--muted);text-align:right;margin:3px 0 0}
+.cnt.over{color:var(--warn)}
+</style>
+</head><body>
+<div class="wrap">
+<header>
+  <span class="chip">제출</span>
+  <h1>수행평가 2 제출</h1>
+  <p class="sub">연구 계획서 작성</p>
+</header>
+
+<section class="learn">
+<div class="box">📄 <b><a href="sample-plan.html" target="_blank" rel="noopener">계획서 예시</a></b> · <b><a href="answer-task2.html" target="_blank" rel="noopener">수행평가 2 안내</a></b></div><div class="box">🎯 <b>③ 연구 질문 · ④ 데이터·장치 · ⑤ 분석 방법은 서로 맞물려야 합니다.</b><br>④로 ③에 답할 수 있고, ⑤로 ④를 다룰 수 있어야 합니다.</div>
+<div class="box">💾 <b>「임시저장」을 누르면 지금까지 쓴 내용이 시트에 저장됩니다.</b><br>
+다음 시간에 학번·이름·개별 비밀번호를 넣고 <b>「불러오기」</b>를 누르면 이어서 쓸 수 있습니다. 다른 컴퓨터에서도 됩니다.<br>
+<b>빈 칸은 저장해도 앞서 쓴 내용을 지우지 않습니다.</b> 정말 지우려면 그 칸에 <b>－</b> 한 글자만 넣으세요.</div>
+<div class="box">⚠️ <b>붙여넣기는 막혀 있습니다.</b> 시도한 횟수가 함께 기록됩니다.</div>
+
+<div class="who">
+  <div class="fld"><label for="sid">학번</label><input type="text" id="sid" inputmode="numeric"></div>
+  <div class="fld"><label for="nm">이름</label><input type="text" id="nm"></div>
+  <div class="fld"><label for="pw">개별 비밀번호</label><input type="password" id="pw"></div>
+  <div><button class="ghost" onclick="load()">불러오기</button></div>
+</div>
+<div id="who-msg" class="cnt"></div>
+</section>
+
+<section class="learn" id="form">
+<div class="grp"><h4>연구 계획서 여덟 칸 <span style='font-weight:400'>80점</span></h4>
+<div class="fld">
+<label for="f_트랙">트랙</label>
+<select id="f_트랙" data-k="트랙"><option value="">— 고르세요 —</option><option value="A 데이터 분석">A 데이터 분석</option><option value="B 피지컬 컴퓨팅">B 피지컬 컴퓨팅</option><option value="C 프로그램 제작">C 프로그램 제작</option></select>
+</div>
+<div class="fld">
+<label for="f_①제목">① 연구 제목</label>
+<p class="hint">제목만 읽고 무엇을 어떻게 하는지 알 수 있게</p>
+<input type="text" id="f_①제목" data-k="①제목">
+</div>
+<div class="fld">
+<label for="f_②동기">② 연구 동기</label>
+<p class="hint">「지금은 ○○인데, △△가 되면 좋겠다」 두 문장</p>
+<textarea id="f_②동기" data-k="②동기"></textarea>
+<p class="cnt" id="c_②동기">0자</p>
+</div>
+<div class="fld">
+<label for="f_③연구질문">③ 연구 질문</label>
+<p class="hint">답할 수 있는 한 문장</p>
+<input type="text" id="f_③연구질문" data-k="③연구질문">
+</div>
+<div class="fld">
+<label for="f_④데이터장치">④ 사용할 데이터 또는 장치·프로그램</label>
+<p class="hint">실제로 구할 수 있는 것만</p>
+<textarea id="f_④데이터장치" data-k="④데이터장치"></textarea>
+<p class="cnt" id="c_④데이터장치">0자</p>
+</div>
+<div class="fld">
+<label for="f_⑤방법도구">⑤ 분석·구현 방법과 도구</label>
+<p class="hint">어떤 도구로 어떻게 다룰지</p>
+<textarea id="f_⑤방법도구" data-k="⑤방법도구"></textarea>
+<p class="cnt" id="c_⑤방법도구">0자</p>
+</div>
+<div class="fld">
+<label for="f_⑥절차">⑥ 연구 절차</label>
+<p class="hint">언제 무엇을 할지</p>
+<textarea id="f_⑥절차" data-k="⑥절차"></textarea>
+<p class="cnt" id="c_⑥절차">0자</p>
+</div>
+<div class="fld">
+<label for="f_⑦예상결과">⑦ 예상 결과</label>
+<p class="hint">견줄 수 있게 숫자나 방향으로. 틀려도 됩니다</p>
+<textarea id="f_⑦예상결과" data-k="⑦예상결과"></textarea>
+<p class="cnt" id="c_⑦예상결과">0자</p>
+</div>
+<div class="fld">
+<label for="f_⑧어려움">⑧ 예상되는 어려움</label>
+<p class="hint">어려움마다 대비 방법을 함께</p>
+<textarea id="f_⑧어려움" data-k="⑧어려움"></textarea>
+<p class="cnt" id="c_⑧어려움">0자</p>
+</div>
+</div>
+<div class="grp"><h4>AI 활용 기록</h4>
+<div class="fld">
+<label for="f_AI활용">생성형 AI를 썼다면 — 무엇을 물었고, 무엇을 쓰고 무엇을 버렸나</label>
+<p class="hint">쓰지 않았으면 「사용 안 함」이라고 적으세요</p>
+<textarea id="f_AI활용" data-k="AI활용"></textarea>
+<p class="cnt" id="c_AI활용">0자</p>
+</div>
+</div>
+
+</section>
+
+<div class="bar">
+  <button class="ghost" onclick="save(false)">💾 임시저장</button>
+  <button onclick="save(true)">📮 제출하기</button>
+  <span class="state" id="state">아직 저장하지 않았습니다</span>
+</div>
+
+</div>
+<iframe name="sink" style="display:none"></iframe>
+<script>
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbxa1jCaEXkrPhu15jE-wYaMPx9CcaucpgJm17VYU1b6mW5XitHnzjE3zqP_Sg9Wrxgq6g/exec";
+const TASK = "2";
+const KEYS = ["트랙", "①제목", "②동기", "③연구질문", "④데이터장치", "⑤방법도구", "⑥절차", "⑦예상결과", "⑧어려움", "AI활용"];
+const LS = "정연-수행" + TASK;
+let 차단 = 0;
+let 불러옴 = false;   /* 이번에 서버에서 기존 내용을 확인했는가 */
+let 제출됨 = false;
+
+const $ = function (id) { return document.getElementById(id); };
+const el = function (k) { return $("f_" + k); };
+
+/* ── 붙여넣기 차단 ── */
+KEYS.forEach(function (k) {
+  const e = el(k);
+  if (!e) return;
+  e.addEventListener("paste", function (ev) { ev.preventDefault(); 차단++; note("붙여넣기는 막혀 있습니다 (" + 차단 + "회)"); });
+  e.addEventListener("drop", function (ev) { ev.preventDefault(); });
+  if (e.tagName === "TEXTAREA") {
+    e.addEventListener("input", function () {
+      const c = $("c_" + k);
+      if (c) c.textContent = e.value.length + "자";
+    });
+  }
+});
+
+function note(t) { const m = $("who-msg"); m.textContent = t; }
+function who() {
+  return { sid: $("sid").value.trim(), name: $("nm").value.trim(), pw: $("pw").value.trim() };
+}
+function collect() {
+  const d = {};
+  KEYS.forEach(function (k) { const e = el(k); if (e) d[k] = e.value; });
+  return d;
+}
+function fill(d) {
+  KEYS.forEach(function (k) { const e = el(k); if (e && d[k] != null) e.value = d[k];
+    const c = $("c_" + k); if (c && e) c.textContent = e.value.length + "자"; });
+}
+
+/* ── 불러오기 (JSONP) ── */
+function load() {
+  const w = who();
+  if (!w.sid || !w.name || !w.pw) { note("학번 · 이름 · 개별 비밀번호를 모두 넣어 주세요"); return; }
+  note("불러오는 중…");
+  const cb = "cb" + Date.now();
+  window[cb] = function (r) {
+    delete window[cb];
+    if (!r || !r.ok) {
+      note(r && r.reason === "lockout" ? "시도가 많아 잠겼습니다. 선생님께 말하세요"
+        : "학번 · 이름 · 비밀번호를 다시 확인해 주세요");
+      return;
+    }
+    fill(r.fields || {});
+    불러옴 = true;
+    제출됨 = (r.status === "제출");
+    $("nm").value = r.name || w.name;
+    note(r.when ? ("불러왔습니다 — 마지막 저장 " + r.when + (r.status ? " (" + r.status + ")" : ""))
+                : "저장해 둔 내용이 없습니다. 새로 쓰면 됩니다");
+    if (r.status === "제출") $("state").innerHTML = "<b>제출 완료</b> — 다시 저장하면 덮어씁니다";
+  };
+  const s = document.createElement("script");
+  s.src = ENDPOINT + "?task=" + TASK + "&sid=" + encodeURIComponent(w.sid)
+        + "&name=" + encodeURIComponent(w.name) + "&pw=" + encodeURIComponent(w.pw)
+        + "&callback=" + cb;
+  s.onerror = function () { delete window[cb]; note("연결에 실패했습니다. 잠시 뒤 다시 눌러 주세요"); };
+  document.body.appendChild(s);
+  setTimeout(function () { s.remove(); }, 20000);
+}
+
+/* ── 저장 · 제출 ── */
+function save(final) {
+  const w = who();
+  if (!w.sid || !w.name) { note("학번과 이름을 넣어 주세요"); return; }
+  const data = collect();
+
+  /* 불러오기를 안 했다면 먼저 확인시킵니다. 서버가 빈 칸을 보호하긴 하지만,
+     학생이 「내가 쓴 게 사라졌다」고 느끼지 않게 하는 편이 낫습니다. */
+  if (!불러옴 && w.pw) {
+    note("먼저 「불러오기」를 눌러 앞서 쓴 내용을 확인해 주세요");
+    if (!confirm("아직 「불러오기」를 하지 않았습니다.\n\n앞서 저장해 둔 내용이 있다면 화면에 안 보일 수 있습니다.\n(빈 칸은 지워지지 않으니 안심하세요)\n\n그래도 저장할까요?")) return;
+  }
+  if (제출됨 && !confirm("이미 제출한 상태입니다.\n다시 저장하면 내용이 바뀝니다. 계속할까요?")) return;
+
+  if (final) {
+    const 빈칸 = KEYS.filter(function (k) { return !String(data[k] || "").trim(); });
+    if (빈칸.length) {
+      if (!confirm("아직 안 쓴 칸이 " + 빈칸.length + "개 있습니다.\n그래도 제출할까요?")) return;
+    }
+  }
+  try { localStorage.setItem(LS, JSON.stringify(data)); } catch (e) {}
+
+  if (!ENDPOINT) { $("state").textContent = "전송 설정 전입니다. 이 기기에만 저장했습니다"; return; }
+  const f = document.createElement("form");
+  f.action = ENDPOINT; f.method = "POST"; f.target = "sink";
+  const put = function (n, v) {
+    const i = document.createElement("input");
+    i.type = "hidden"; i.name = n; i.value = v; f.appendChild(i);
+  };
+  put("task", TASK); put("sid", w.sid); put("name", w.name);
+  put("status", final ? "제출" : "임시저장");
+  put("paste", String(차단));
+  put("data", JSON.stringify(data));
+  document.body.appendChild(f); f.submit(); document.body.removeChild(f);
+
+  const t = new Date().toLocaleString("ko-KR", { month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" });
+  if (final) 제출됨 = true;
+  불러옴 = true;   /* 방금 내가 쓴 것이 서버의 최신본이 됩니다 */
+  차단 = 0;        /* 서버에 누적되므로 보낸 뒤 초기화 */
+  $("state").innerHTML = final ? ("<b>제출했습니다</b> — " + t) : ("임시저장했습니다 — " + t);
+}
+
+/* 이 기기에 남은 것이 있으면 되살립니다 */
+try { const a = localStorage.getItem(LS); if (a) fill(JSON.parse(a)); } catch (e) {}
+window.addEventListener("beforeunload", function (ev) {
+  const 쓴것 = KEYS.some(function (k) { const e = el(k); return e && e.value.trim(); });
+  if (쓴것 && $("state").textContent.indexOf("저장") === -1) { ev.preventDefault(); ev.returnValue = ""; }
+});
+</script>
+</body></html>

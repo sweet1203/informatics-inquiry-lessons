@@ -18,6 +18,9 @@ function doPost(e) {
   lock.waitLock(15000);
   try {
     const p = (e && e.parameter) || {};
+    if (p.task) {
+      return ContentService.createTextOutput(taskPost_(p));
+    }
     const n = Number(p.n);
     const sheet = lessonSheet_(n, true);
     const item = canonItem_(p.item, p.kind);
@@ -94,6 +97,19 @@ function lookup_(p) {
   if (!matched) {
     recordFail_(sid);
     return { ok: false, reason: "auth" };
+  }
+
+  if (p.task) {
+    const t = taskLoad_(p.task, matched.sid);
+    return {
+      ok: true,
+      sid: matched.sid,
+      name: matched.name,
+      task: String(p.task),
+      fields: t.fields,
+      status: t.status,
+      when: t.when
+    };
   }
 
   return {
@@ -215,7 +231,8 @@ function rosterSheet_() {
 }
 
 function isRoster_(name) {
-  return ROSTER_NAMES.indexOf(name) !== -1;
+  if (ROSTER_NAMES.indexOf(name) !== -1) return true;
+  return /_이력$/.test(String(name));
 }
 
 function colMap_(headerRow) {
@@ -367,4 +384,153 @@ function recordFail_(sid) {
 function safeCallback_(raw) {
   const s = String(raw || "callback");
   return /^[A-Za-z_][A-Za-z0-9_]*$/.test(s) ? s : "callback";
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+ * 수행평가 제출 — 수행1 · 수행2
+ * 시트 한 행 = 학생 한 명. 「임시저장」을 누를 때마다 같은 행을 덮어씁니다.
+ * 열은 보내온 필드 이름으로 자동 생성되므로 폼을 고치면 시트도 따라옵니다.
+ * ═══════════════════════════════════════════════════════════ */
+
+const TASK_SHEETS = { "1": "수행1", "2": "수행2" };
+const TASK_FIXED = ["학번", "이름", "상태", "최근저장", "최종제출"];
+
+function taskSheet_(task, createIfMissing) {
+  const nm = TASK_SHEETS[String(task)];
+  if (!nm) return null;
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sh = ss.getSheetByName(nm);
+  if (!sh && createIfMissing) {
+    sh = ss.insertSheet(nm);
+    sh.appendRow(TASK_FIXED);
+    sh.setFrozenRows(1);
+    sh.setFrozenColumns(2);
+  }
+  return sh;
+}
+
+function taskPost_(p) {
+  const sh = taskSheet_(p.task, true);
+  if (!sh) return "no-task";
+  const sid = normSid_(p.sid);
+  if (!sid) return "no-sid";
+
+  let data = {};
+  try { data = JSON.parse(p.data || "{}"); } catch (err) { data = {}; }
+
+  const lastCol = Math.max(sh.getLastColumn(), TASK_FIXED.length);
+  const header = sh.getRange(1, 1, 1, lastCol).getValues()[0]
+    .map(function (v) { return String(v == null ? "" : v).trim(); });
+
+  TASK_FIXED.forEach(function (k) { if (header.indexOf(k) === -1) header.push(k); });
+  Object.keys(data).forEach(function (k) { if (header.indexOf(k) === -1) header.push(k); });
+  if (header.indexOf("붙여넣기차단") === -1) header.push("붙여넣기차단");
+  sh.getRange(1, 1, 1, header.length).setValues([header]);
+
+  const sidCol = header.indexOf("학번");
+  const last = sh.getLastRow();
+  let target = 0;
+  if (last >= 2) {
+    const sids = sh.getRange(2, sidCol + 1, last - 1, 1).getValues();
+    for (let i = 0; i < sids.length; i++) {
+      if (normSid_(sids[i][0]) === sid) { target = i + 2; break; }
+    }
+  }
+  if (!target) target = last + 1;
+
+  let row;
+  if (target <= last) {
+    row = sh.getRange(target, 1, 1, header.length).getValues()[0];
+  } else {
+    row = [];
+    for (let i = 0; i < header.length; i++) row.push("");
+  }
+
+  const put = function (col, val) {
+    const i = header.indexOf(col);
+    if (i !== -1) row[i] = val;
+  };
+  const get = function (col) {
+    const i = header.indexOf(col);
+    return i === -1 ? "" : row[i];
+  };
+  const now = new Date();
+  const submitting = String(p.status || "") === "제출";
+  const already = String(get("상태") || "").trim() === "제출";
+
+  put("학번", sid);
+  if (String(p.name || "").trim()) put("이름", String(p.name).trim());
+  put("상태", (submitting || already) ? "제출" : "임시저장");
+  put("최근저장", now);
+  if (submitting) put("최종제출", now);
+  put("붙여넣기차단", Number(get("붙여넣기차단") || 0) + Number(p.paste || 0));
+
+  /* ⚠️ 빈 값으로는 덮어쓰지 않습니다.
+   * 「불러오기」를 하지 않고 저장했을 때 앞서 쓴 내용이 지워지는 것을 막습니다.
+   * 학생이 실제로 지우려면 폼에서 「－」 한 글자를 넣게 안내합니다. */
+  let 보호 = 0;
+  Object.keys(data).forEach(function (k) {
+    const v = String(data[k] == null ? "" : data[k]);
+    if (!v.trim()) {
+      if (String(get(k) || "").trim()) 보호++;
+      return;
+    }
+    put(k, v === "－" ? "" : v);
+  });
+
+  sh.getRange(target, 1, 1, header.length).setValues([row]);
+  taskLog_(p.task, {
+    when: now, sid: sid, name: String(p.name || "").trim(),
+    status: submitting ? "제출" : "임시저장",
+    paste: Number(p.paste || 0),
+    kept: 보호,
+    data: data
+  });
+  return 보호 ? ("ok-kept-" + 보호) : "ok";
+}
+
+/* 저장할 때마다 한 줄씩 쌓이는 이력. 되돌릴 일이 생기면 여기서 찾습니다. */
+function taskLog_(task, rec) {
+  const nm = (TASK_SHEETS[String(task)] || "수행") + "_이력";
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sh = ss.getSheetByName(nm);
+  if (!sh) {
+    sh = ss.insertSheet(nm);
+    sh.appendRow(["시각", "학번", "이름", "상태", "붙여넣기차단", "빈칸보호", "내용(JSON)"]);
+    sh.setFrozenRows(1);
+  }
+  sh.appendRow([rec.when, rec.sid, rec.name, rec.status, rec.paste, rec.kept,
+                JSON.stringify(rec.data)]);
+}
+
+function taskLoad_(task, sid) {
+  const empty = { fields: {}, status: "", when: "" };
+  const sh = taskSheet_(task, false);
+  if (!sh) return empty;
+  const last = sh.getLastRow();
+  if (last < 2) return empty;
+
+  const header = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0]
+    .map(function (v) { return String(v == null ? "" : v).trim(); });
+  const sidCol = header.indexOf("학번");
+  if (sidCol === -1) return empty;
+
+  const values = sh.getRange(2, 1, last - 1, header.length).getValues();
+  for (let i = 0; i < values.length; i++) {
+    if (normSid_(values[i][sidCol]) !== sid) continue;
+    const fields = {};
+    header.forEach(function (h, j) {
+      if (!h || TASK_FIXED.indexOf(h) !== -1 || h === "붙여넣기차단") return;
+      fields[h] = cellText_(values[i][j]);
+    });
+    const stCol = header.indexOf("상태");
+    const whCol = header.indexOf("최근저장");
+    return {
+      fields: fields,
+      status: stCol === -1 ? "" : cellText_(values[i][stCol]),
+      when: whCol === -1 ? "" : formatWhen_(values[i][whCol])
+    };
+  }
+  return empty;
 }
