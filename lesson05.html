@@ -150,7 +150,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
   <p class="lead">쪼갠 것 중 <b>하나만</b> 고릅니다. 그게 여러분의 연구가 됩니다.</p>
-  <div class="f" style="margin-top:12px"><label for="프로젝트0">쪼갠 세 개 중 하나를 골라 주세요. 왜 그걸 골랐나요?</label><textarea id="프로젝트0" placeholder="예) ②번 요일마다 다른가. 재기 쉽고 결과가 분명하게 나올 것 같아서"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">그 결과를 보여준다면 어떤 그래프가 좋을까요?</label><textarea id="프로젝트1" placeholder="예) 요일별 비교니까 막대그래프"></textarea></div>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">쪼갠 세 개 중 하나를 골라 주세요. 왜 그걸 골랐나요?</label><textarea id="프로젝트0" placeholder="예) ②번 요일마다 다른가. 재기 쉽고 결과가 분명하게 나올 것 같아서"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">위에서 고른 질문에 답이 나왔다고 하면, 그 답을 어떤 그래프로 보여주면 좋을까요?</label><textarea id="프로젝트1" placeholder="예) 요일별 비교니까 막대그래프"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>
 </section>
@@ -174,7 +174,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <script>
 const OPEN = [{"q": "내 궁금증을 작은 질문 3개로 쪼개 보세요. 쪼개면서 어떤 게 어려웠나요?"}];
-const PROJ = [{"q": "쪼갠 세 개 중 하나를 골라 주세요. 왜 그걸 골랐나요?"}, {"q": "그 결과를 보여준다면 어떤 그래프가 좋을까요?"}];
+const PROJ = [{"q": "쪼갠 세 개 중 하나를 골라 주세요. 왜 그걸 골랐나요?"}, {"q": "위에서 고른 질문에 답이 나왔다고 하면, 그 답을 어떤 그래프로 보여주면 좋을까요?"}];
 const QUIZ = [{"a": 0, "why": "추상화는 사람의 사고 과정, 자동화는 컴퓨팅 시스템의 능력입니다. (교과서 24쪽)"}, {"a": 3, "why": "필요 없는 걸 걷어내고 핵심만 남기는 것이 문제 재구성입니다. (교과서 27쪽)"}, {"a": 1, "why": "시간의 흐름은 꺾은선입니다. 비율은 원그래프, 항목 비교는 막대그래프예요."}, {"a": 1, "why": "「교실이 왜 덥지?」는 못 풉니다. 쪼개서 하나만 고르면 풀려요."}];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */

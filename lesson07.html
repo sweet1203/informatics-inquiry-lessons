@@ -160,7 +160,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
   <div class="f" style="margin-top:12px"><label for="프로젝트0">내 연구는 어디에 해당하나요? 네 가지를 모두 골라 적어 주세요.</label><textarea id="프로젝트0" placeholder="자료: 일차적 / 이차적 / 둘 다
 숫자·말: 양적 / 질적 / 둘 다
 모으는 법: 질문지 · 실험 · 면접 · 참여관찰 · 센서 · 공공데이터
-따지는 법: 비교대조 · 분류분석 · 연역 · 귀납"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">그 방법을 고른 이유를 한 줄로 써 주세요.</label><textarea id="프로젝트1" placeholder="예) 교실 온도는 이미 있는 자료가 없어서 직접 재야 하고, 교시별로 비교할 거라 비교·대조를 쓴다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">쓸 도구를 적어 주세요. 아직 모르면 「모르겠다」라고 써도 됩니다.</label><textarea id="프로젝트2" placeholder="예) 아두이노 + DHT11 온습도 센서, 구글 스프레드시트"></textarea></div>
+따지는 법: 비교대조 · 분류분석 · 연역 · 귀납"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">위에서 고른 넷 중 「어떻게 따질까」를 그렇게 정한 이유를 한 줄로 써 주세요.</label><textarea id="프로젝트1" placeholder="예) 교실 온도는 이미 있는 자료가 없어서 직접 재야 하고, 교시별로 비교할 거라 비교·대조를 쓴다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">쓸 도구를 적어 주세요. 아직 모르면 「모르겠다」라고 써도 됩니다.</label><textarea id="프로젝트2" placeholder="예) 아두이노 + DHT11 온습도 센서, 구글 스프레드시트"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>
 </section>
@@ -184,7 +184,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <script>
 const OPEN = [{"q": "네 가지 질문 중 내 연구에서 가장 정하기 어려웠던 것은 무엇인가요? 무엇 때문에 망설였는지 써 주세요."}, {"q": "「같이 나타난다고 원인은 아니다」 — 이런 착각을 실제로 본 적이 있나요? 뉴스, SNS, 일상 어디서든 좋습니다."}];
-const PROJ = [{"q": "내 연구는 어디에 해당하나요? 네 가지를 모두 골라 적어 주세요."}, {"q": "그 방법을 고른 이유를 한 줄로 써 주세요."}, {"q": "쓸 도구를 적어 주세요. 아직 모르면 「모르겠다」라고 써도 됩니다."}];
+const PROJ = [{"q": "내 연구는 어디에 해당하나요? 네 가지를 모두 골라 적어 주세요."}, {"q": "위에서 고른 넷 중 「어떻게 따질까」를 그렇게 정한 이유를 한 줄로 써 주세요."}, {"q": "쓸 도구를 적어 주세요. 아직 모르면 「모르겠다」라고 써도 됩니다."}];
 const QUIZ = [{"a": 0, "why": "이미 있는 자료를 가져와 쓰는 것이 이차적 연구입니다. 빠르지만 내 주제에 딱 안 맞을 수 있어요."}, {"a": 1, "why": "「~일 것이다」로 시작해 확인하는 것이 연역입니다. 반대로 일단 다 재고 패턴을 찾으면 귀납이에요."}, {"a": 0, "why": "두 대상의 차이를 찾는 것이 대조입니다. 학교 연구의 거의 대부분이 여기서 시작합니다."}, {"a": 2, "why": "둘 다 「금요일」이라 그럴 수도 있죠. 같이 나타나는 것과 원인인 것은 다릅니다."}];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
