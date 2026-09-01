@@ -142,7 +142,8 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <section>
   <h2>✍️ 생각 나누기</h2>
   <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
-  <div class="f" style="margin-top:12px"><label for="생각나누기0">그 문제가 왜 하필 나에게 눈에 띄었을까요? 언제, 어떤 상황에서 그렇게 느꼈는지 써 주세요.</label><textarea id="생각나누기0" placeholder="예) 나는 창가 자리라 5교시만 되면 유독 더웠다. 복도 쪽 친구는 괜찮다고 해서 자리마다 다른 건가 궁금해졌다"></textarea></div><div class="f" style="margin-top:12px"><label for="생각나누기1">이 문제가 풀리면 누가, 어떻게 좋아질까요? 나 말고 다른 사람 입장에서도 생각해 보세요.</label><textarea id="생각나누기1" placeholder="예) 우리 반 전체가 좋아지고, 선생님도 언제 창문을 열어야 할지 알 수 있다. 다른 반에도 알려줄 수 있다"></textarea></div>
+  <div class="f" style="margin-top:12px"><label for="생각나누기0">학교에서 지내며 「이건 좀 아닌데」 싶었던 일을 하나 적어 주세요. 그리고 그 일이 왜 하필 나에게 눈에 띄었는지도 함께 써 주세요. 언제, 어떤 상황이었나요?</label><textarea id="생각나누기0" placeholder="예) 5교시만 되면 다들 존다.
+나는 창가 자리라 유독 더웠는데 복도 쪽 친구는 괜찮다고 했다. 자리마다 다른 건가 싶어 눈에 띄었다"></textarea></div><div class="f" style="margin-top:12px"><label for="생각나누기1">위에 적은 일이 해결되면 누가, 어떻게 좋아질까요? 나 말고 다른 사람 입장에서도 생각해 보세요.</label><textarea id="생각나누기1" placeholder="예) 우리 반 전체가 좋아지고, 선생님도 언제 창문을 열어야 할지 알 수 있다. 다른 반에도 알려줄 수 있다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
 </section>
@@ -182,7 +183,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <iframe name="sink" style="display:none" title="hidden"></iframe>
 
 <script>
-const OPEN = [{"q": "그 문제가 왜 하필 나에게 눈에 띄었을까요? 언제, 어떤 상황에서 그렇게 느꼈는지 써 주세요."}, {"q": "이 문제가 풀리면 누가, 어떻게 좋아질까요? 나 말고 다른 사람 입장에서도 생각해 보세요."}];
+const OPEN = [{"q": "학교에서 지내며 「이건 좀 아닌데」 싶었던 일을 하나 적어 주세요. 그리고 그 일이 왜 하필 나에게 눈에 띄었는지도 함께 써 주세요. 언제, 어떤 상황이었나요?"}, {"q": "위에 적은 일이 해결되면 누가, 어떻게 좋아질까요? 나 말고 다른 사람 입장에서도 생각해 보세요."}];
 const PROJ = [{"q": "지금은 (              ) 이다."}, {"q": "(              ) 되면 좋겠다."}, {"q": "위 두 문장을 읽고 「그래서 뭘 재면 되는데?」에 답해 보세요. 아직 모르겠으면 「모르겠다」라고 써도 됩니다."}];
 const QUIZ = [{"a": 0, "why": "문제는 나쁜 게 아니라 「틈」입니다. 지금과 바람 사이가 벌어진 것이에요. (교과서 22쪽)"}, {"a": 2, "why": "읽자마자 「그래서 온도를 재면 되겠네」가 떠오릅니다. 나머지는 무엇을 재야 할지 알 수 없어요."}, {"a": 2, "why": "교과서는 연구자의 경험 · 문헌 고찰 · 기존 이론 · 사회적 요청 네 가지를 듭니다. (교과서 35쪽)"}, {"a": 1, "why": "잴 것을 정하면 연구가 됩니다. 「점심을 같이 먹는 사람 수」처럼 셀 수 있는 것으로 바꿔 보세요."}];
 
