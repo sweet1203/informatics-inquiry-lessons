@@ -150,7 +150,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
   <div class="f" style="margin-top:12px"><label for="프로젝트0">연구 제목을 지어 보세요. (무엇을 + 어떻게 + 알아본다)</label><textarea id="프로젝트0" placeholder="예) 교실 온습도 측정을 통한 최적 환기 시점 탐색"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">네 가지 조건을 각각 통과했는지 O/X로 표시해 주세요.</label><textarea id="프로젝트1" placeholder="1 관심: O
 2 선행연구: △ (기사 2건)
 3 연구 방법: O
-4 소통: X (아직 아무한테도 말 안 함)"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">고른 트랙은 무엇인가요? (A 데이터 분석 / B 피지컬 컴퓨팅 / C 프로그램 제작)</label><textarea id="프로젝트2" placeholder="예) B 피지컬 컴퓨팅"></textarea></div>
+4 소통: X (아직 아무한테도 말 안 함)"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">이 주제라면 어떤 방법으로 답을 낼 수 있을까요? (있는 자료 분석 / 직접 재기 / 프로그램 만들기)</label><textarea id="프로젝트2" placeholder="예) B 피지컬 컴퓨팅"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>
 </section>
@@ -174,7 +174,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <script>
 const OPEN = [{"q": "네 가지 조건에 대봤을 때, 내 주제가 가장 약한 부분은 어디였나요? 어떻게 보완할 생각인가요?"}, {"q": "이 주제를 고른 이유를 친구에게 설명한다면 뭐라고 하겠어요? 한두 문장으로 써 주세요."}];
-const PROJ = [{"q": "연구 제목을 지어 보세요. (무엇을 + 어떻게 + 알아본다)"}, {"q": "네 가지 조건을 각각 통과했는지 O/X로 표시해 주세요."}, {"q": "고른 트랙은 무엇인가요? (A 데이터 분석 / B 피지컬 컴퓨팅 / C 프로그램 제작)"}];
+const PROJ = [{"q": "연구 제목을 지어 보세요. (무엇을 + 어떻게 + 알아본다)"}, {"q": "네 가지 조건을 각각 통과했는지 O/X로 표시해 주세요."}, {"q": "이 주제라면 어떤 방법으로 답을 낼 수 있을까요? (있는 자료 분석 / 직접 재기 / 프로그램 만들기)"}];
 const QUIZ = [{"a": 3, "why": "겹쳐도 괜찮습니다. 같은 주제라도 우리 지역·우리 학교로 하면 다른 연구가 돼요."}, {"a": 1, "why": "두 가지가 서로 상관 있다고 볼 근거가 없습니다. 그럴듯해 보여도 의미를 붙이기 어려워요."}, {"a": 1, "why": "말로 설명했을 때 상대가 「그게 왜?」라고 물으면 거기가 구멍입니다. 동료 검토를 하는 이유예요."}, {"a": 2, "why": "무엇을 재고(온습도) 무엇을 알아낼지(환기 시점)가 제목만 봐도 보입니다."}];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
