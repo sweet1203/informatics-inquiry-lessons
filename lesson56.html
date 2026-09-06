@@ -149,7 +149,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
   <p class="lead">한 학기 진로 탐색을 마무리합니다.</p>
-  <div class="f" style="margin-top:12px"><label for="프로젝트0">오늘 이야기하고 들은 뒤, 내 관심 방향을 한 문장으로 정리해 주세요.</label><textarea id="프로젝트0" placeholder="예) 데이터에서 패턴을 찾는 일에 관심이 생겼고, 통계 쪽을 더 알아보고 싶다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">이번 학기 연구를 통해 「내가 할 수 있게 된 것」 세 가지를 적어 주세요.</label><textarea id="프로젝트1" placeholder="예) ① 공공데이터를 찾아 내려받을 수 있다 ② 안 될 때 연결부터 확인한다 ③ 숫자로 말할 수 없는 건 그렇다고 밝힐 수 있다"></textarea></div>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">오늘 이야기하고 들은 뒤, 내 관심 방향을 한 문장으로 정리해 주세요.</label><textarea id="프로젝트0" placeholder="예) 데이터에서 패턴을 찾는 일에 관심이 생겼고, 통계 쪽을 더 알아보고 싶다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">이번 학기를 지나며 「내가 할 수 있게 된 것」 세 가지를 적어 주세요.</label><textarea id="프로젝트1" placeholder="예) ① 공공데이터를 찾아 내려받을 수 있다 ② 안 될 때 연결부터 확인한다 ③ 숫자로 말할 수 없는 건 그렇다고 밝힐 수 있다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>
 </section>
@@ -173,7 +173,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <script>
 const OPEN = [{"q": "친구들의 이야기 중 가장 뜻밖이었던 것은 무엇인가요? 왜 그렇게 느꼈나요?"}, {"q": "내 이야기를 설명하면서 스스로 새로 정리된 것이 있나요?"}];
-const PROJ = [{"q": "오늘 이야기하고 들은 뒤, 내 관심 방향을 한 문장으로 정리해 주세요."}, {"q": "이번 학기 연구를 통해 「내가 할 수 있게 된 것」 세 가지를 적어 주세요."}];
+const PROJ = [{"q": "오늘 이야기하고 들은 뒤, 내 관심 방향을 한 문장으로 정리해 주세요."}, {"q": "이번 학기를 지나며 「내가 할 수 있게 된 것」 세 가지를 적어 주세요."}];
 const QUIZ = [{"a": 2, "why": "오늘은 가능성을 넓히는 시간입니다. 비교하는 시간이 아니에요."}, {"a": 0, "why": "「재미있었던 것」만 있어도 충분합니다. 진로가 확실할 필요 없어요."}, {"a": 2, "why": "가능성을 좁히는 말입니다. 오늘은 넓히는 시간이에요."}, {"a": 1, "why": "「안 될 때 어디부터 확인할지 안다」도 함께입니다. 어느 길로 가든 쓰여요."}];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */

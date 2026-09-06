@@ -151,7 +151,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
   <p class="lead">오늘 배운 기준으로 <b>내 연구를 다시 점검</b>합니다.</p>
-  <div class="f" style="margin-top:12px"><label for="프로젝트0">내 연구에서 사람의 정보를 다룬 부분이 있나요? 있다면 무엇인가요? (없으면 「없음」)</label><textarea id="프로젝트0" placeholder="예) 없음 — 교실 온도만 측정  /  또는: 설문에 학년·반을 받았다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">세 가지 원칙(익명 / 알리고 받기 / 지목하지 않기) 중 지키지 못한 것이 있나요?</label><textarea id="프로젝트1" placeholder="예) 없음  /  또는: 설문 앞에 안내 문구를 안 넣었다. 다음엔 넣겠다"></textarea></div>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">내가 계획한 연구에서 사람의 정보를 다루게 되는 부분이 있나요? 있다면 무엇인가요? (없으면 「없음」)</label><textarea id="프로젝트0" placeholder="예) 없음 — 교실 온도만 측정  /  또는: 설문에 학년·반을 받았다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">세 가지 원칙(익명 / 알리고 받기 / 지목하지 않기) 중 내 계획에서 특히 조심해야 할 것은 무엇인가요?</label><textarea id="프로젝트1" placeholder="예) 없음  /  또는: 설문 앞에 안내 문구를 안 넣었다. 다음엔 넣겠다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>
 </section>
@@ -175,7 +175,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <script>
 const OPEN = [{"q": "내 연구에서 사람과 관련된 부분이 있었나요? 다시 생각해 보니 조심했어야 할 점이 있나요?"}, {"q": "「내가 찍힌 쪽이라면 괜찮을까?」 — 이 질문을 내 연구에 대보면 어떤가요?"}];
-const PROJ = [{"q": "내 연구에서 사람의 정보를 다룬 부분이 있나요? 있다면 무엇인가요? (없으면 「없음」)"}, {"q": "세 가지 원칙(익명 / 알리고 받기 / 지목하지 않기) 중 지키지 못한 것이 있나요?"}];
+const PROJ = [{"q": "내가 계획한 연구에서 사람의 정보를 다루게 되는 부분이 있나요? 있다면 무엇인가요? (없으면 「없음」)"}, {"q": "세 가지 원칙(익명 / 알리고 받기 / 지목하지 않기) 중 내 계획에서 특히 조심해야 할 것은 무엇인가요?"}];
 const QUIZ = [{"a": 0, "why": "나쁜 의도가 없어도 문제가 됩니다. 윤리는 결과로 판단해요."}, {"a": 3, "why": "안 받는 게 가장 확실합니다. 학년·반만으로 충분한 경우가 대부분이에요."}, {"a": 0, "why": "결과를 집단이나 경향으로 말하세요. 특정 집단을 지목하면 안 됩니다."}, {"a": 3, "why": "얼굴은 민감한 개인정보입니다. 사물로 학습하세요."}];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */

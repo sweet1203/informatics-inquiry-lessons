@@ -163,7 +163,7 @@ AI 글로 채우면 <b>해당 항목이 채점에서 제외</b>됩니다. 학기
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
   <p class="lead">내 산출물의 출처 표기를 점검합니다.</p>
-  <div class="f" style="margin-top:12px"><label for="프로젝트0">보고서·포스터에서 출처를 빠뜨린 것이 있나요? 있다면 무엇인가요?</label><textarea id="프로젝트0" placeholder="예) 배선도 출처를 안 적었다  /  또는: 없음"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">AI 활용 내역을 연구일지에 제대로 기록했나요? 빠진 게 있다면 지금 적어 주세요.</label><textarea id="프로젝트1" placeholder="예) nan 오류 해결할 때 물어본 걸 안 적었다. 배선 확인하라는 답을 참고했다"></textarea></div>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">내 계획서에서 출처를 밝혀야 하는데 아직 안 적은 것이 있나요? 있다면 무엇인가요?</label><textarea id="프로젝트0" placeholder="예) 배선도 출처를 안 적었다  /  또는: 없음"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">지금까지 이 수업에서 AI를 쓴 적이 있다면, 무엇을 물었고 무엇을 취했는지 적어 주세요. (없으면 「없음」)</label><textarea id="프로젝트1" placeholder="예) nan 오류 해결할 때 물어본 걸 안 적었다. 배선 확인하라는 답을 참고했다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>
 </section>
@@ -187,7 +187,7 @@ AI 글로 채우면 <b>해당 항목이 채점에서 제외</b>됩니다. 학기
 
 <script>
 const OPEN = [{"q": "내 연구에서 「남의 것」을 쓴 부분을 떠올려 보세요. 출처를 제대로 밝혔나요?"}, {"q": "「AI는 출처가 아니다」 — 이 말을 어떻게 이해했나요?"}];
-const PROJ = [{"q": "보고서·포스터에서 출처를 빠뜨린 것이 있나요? 있다면 무엇인가요?"}, {"q": "AI 활용 내역을 연구일지에 제대로 기록했나요? 빠진 게 있다면 지금 적어 주세요."}];
+const PROJ = [{"q": "내 계획서에서 출처를 밝혀야 하는데 아직 안 적은 것이 있나요? 있다면 무엇인가요?"}, {"q": "지금까지 이 수업에서 AI를 쓴 적이 있다면, 무엇을 물었고 무엇을 취했는지 적어 주세요. (없으면 「없음」)"}];
 const QUIZ = [{"a": 2, "why": "출처를 밝히면 표절이 아닙니다. 문제는 밝히지 않는 것이에요."}, {"a": 0, "why": "단어를 바꾸는 게 인용이 아닙니다. 「말 바꾸기 표현」도 표절이에요."}, {"a": 2, "why": "AI는 통로일 뿐입니다. 실제 자료의 발행처를 적으세요."}, {"a": 2, "why": "연구는 재확인 가능해야 믿을 만해집니다."}];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */

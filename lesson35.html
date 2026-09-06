@@ -133,7 +133,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <section>
   <h2>✍️ 생각 나누기</h2>
   <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
-  <div class="f" style="margin-top:12px"><label for="생각나누기0">내 결과에서 「이것 때문이다」라고 말하고 싶은 게 있나요? 그런데 그렇게 단정할 수 없는 이유는 무엇일까요?</label><textarea id="생각나누기0" placeholder="예) 창문을 열어서 온도가 내려갔다고 말하고 싶은데, 그 시간이 마침 점심시간이라 사람이 빠져서일 수도 있다"></textarea></div>
+  <div class="f" style="margin-top:12px"><label for="생각나누기0">사례 결과를 보고 「모둠 토의가 시끄러움의 원인이다」라고 말할 수 있을까요? 그렇게 단정하기 어려운 이유를 생각해 보세요.</label><textarea id="생각나누기0" placeholder="예) 모둠 토의는 주로 3교시에 했는데, 그 시간에 복도 이동도 겹쳐 있었다"></textarea></div><div class="f" style="margin-top:12px"><label for="생각나누기1">일상에서 「함께 나타났을 뿐인데 원인이라고 말하는」 예를 하나 떠올려 보세요.</label><textarea id="생각나누기1" placeholder="예) 아이스크림이 많이 팔리는 날에 물놀이 사고도 많다 — 아이스크림 때문이 아니라 둘 다 더워서다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
 </section>
@@ -141,7 +141,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <section>
   <h2>✅ 확인 퀴즈</h2>
   <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
-  <div class="q"><div class="qt">1. “5교시가 덥고, 5교시에 조는 학생이 많다”에서 곧바로 내릴 수 <b>없는</b> 결론은?</div><label class="opt"><input type="radio" name="q0" value="0">두 현상이 같은 시간대에 나타났다</label><label class="opt"><input type="radio" name="q0" value="1">5교시 평균 온도가 다른 교시보다 높다</label><label class="opt"><input type="radio" name="q0" value="2">더워서 학생들이 조는 것이다</label><label class="opt"><input type="radio" name="q0" value="3">졸음 호소가 5교시에 가장 많았다</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 차이를 서술할 때 가장 좋은 표현은?</div><label class="opt"><input type="radio" name="q1" value="0">5교시가 훨씬 덥다</label><label class="opt"><input type="radio" name="q1" value="1">5교시가 좀 더 더운 편이다</label><label class="opt"><input type="radio" name="q1" value="2">5교시가 매우 더웠다</label><label class="opt"><input type="radio" name="q1" value="3">5교시가 1교시보다 5.3℃ 높다</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 보고서에 “원인으로 단정하기 어렵다”고 쓰면?</div><label class="opt"><input type="radio" name="q2" value="0">연구가 실패한 것이다</label><label class="opt"><input type="radio" name="q2" value="1">감점된다</label><label class="opt"><input type="radio" name="q2" value="2">결론을 안 낸 것이다</label><label class="opt"><input type="radio" name="q2" value="3">연구자다운 태도이고 한계 서술로 이어져 점수가 된다</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 잠정 답을 「잠정」이라고 부르는 이유는?</div><label class="opt"><input type="radio" name="q3" value="0">아직 한계를 따져보지 않았기 때문</label><label class="opt"><input type="radio" name="q3" value="1">자료가 부족해서</label><label class="opt"><input type="radio" name="q3" value="2">선생님 확인이 안 끝나서</label><label class="opt"><input type="radio" name="q3" value="3">발표를 안 해서</label><div class="fb" id="fb3"></div></div>
+  <div class="q"><div class="qt">1. 「상관」과 「인과」의 차이로 알맞은 것은?</div><label class="opt"><input type="radio" name="q0" value="0">같은 말이다</label><label class="opt"><input type="radio" name="q0" value="1">함께 나타나는 것과, 하나가 다른 하나를 일으키는 것</label><label class="opt"><input type="radio" name="q0" value="2">숫자와 글의 차이</label><label class="opt"><input type="radio" name="q0" value="3">표와 그래프의 차이</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 잠정 답에 <b>반드시 들어가야</b> 하는 것은?</div><label class="opt"><input type="radio" name="q1" value="0">느낀 점</label><label class="opt"><input type="radio" name="q1" value="1">숫자</label><label class="opt"><input type="radio" name="q1" value="2">참고 문헌</label><label class="opt"><input type="radio" name="q1" value="3">그래프 색</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 겹쳐 있는 다른 요인을 찾았을 때 알맞은 태도는?</div><label class="opt"><input type="radio" name="q2" value="0">결과에서 뺀다</label><label class="opt"><input type="radio" name="q2" value="1">모른 척한다</label><label class="opt"><input type="radio" name="q2" value="2">밝혀 적고 단정하는 표현을 피한다</label><label class="opt"><input type="radio" name="q2" value="3">연구를 그만둔다</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 「잠정」 답이라고 부르는 이유는?</div><label class="opt"><input type="radio" name="q3" value="0">아직 한계를 따져 보지 않아서</label><label class="opt"><input type="radio" name="q3" value="1">선생님이 확인 안 해서</label><label class="opt"><input type="radio" name="q3" value="2">숫자가 적어서</label><label class="opt"><input type="radio" name="q3" value="3">발표를 안 해서</label><div class="fb" id="fb3"></div></div>
   <div class="row"><button onclick="grade()">채점하기</button>
     <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
   <div class="score" id="score"></div>
@@ -149,8 +149,8 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">📓 <b>오늘의 연구일지</b> + 잠정 답</p>
-  <div class="f" style="margin-top:12px"><label for="프로젝트0">오늘 「내가」 한 일 · 사용한 도구</label><textarea id="프로젝트0" placeholder="예) 교시별 평균을 비교하고 1교시와 5교시 차이를 계산했다 / 스프레드시트"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">⭐ 내 연구 질문에 대한 「잠정 답」을 한 줄로 써 주세요. 숫자를 넣어서.</label><textarea id="프로젝트1" placeholder="예) 우리 교실은 5교시에 가장 덥고(29.4℃) 습하며(70%), 1교시보다 5.3℃ 높다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">이 결과를 「~때문이다」라고 단정할 수 있나요? 겹쳐 있는 다른 요인을 적어 주세요.</label><textarea id="프로젝트2" placeholder="예) 단정 어렵다. 점심 직후라 사람이 많이 들어온 것도 겹친다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트3">막힌 점 · 해결 과정 · AI 활용 내역</label><textarea id="프로젝트3" placeholder="예) 차이를 어떻게 표현할지 몰랐는데 「몇 도 차이」로 쓰면 된다고 배웠다 / AI 없음"></textarea></div>
+  <p class="lead">사례 결과로 <b>잠정 답</b>을 쓰고, 그 답의 <b>구멍</b>을 찾아봅니다.</p>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">사례의 연구 질문은 「교실 소음은 수업 활동에 따라 얼마나 달라지는가」였습니다. 잠정 답을 한 문장으로, 숫자를 넣어 써 주세요.</label><textarea id="프로젝트0" placeholder="예) 모둠 토의 때가 개별 활동 때의 약 2.2배였다 (623 대 287)"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">그 답에 겹쳐 있는 다른 요인은 무엇일까요? 하나 이상 적어 주세요.</label><textarea id="프로젝트1" placeholder="예) 모둠 토의를 주로 3교시에 했는데 그 시간엔 복도 이동 소리도 섞였다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">그래서 이 답을 쓸 때 어떤 표현을 써야 할까요?</label><textarea id="프로젝트2" placeholder="예) 「모둠 토의 때 소음이 높게 나타났다」까지만 쓰고, 「모둠 토의 때문이다」라고는 쓰지 않는다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>
 </section>
@@ -173,9 +173,9 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <iframe name="sink" style="display:none" title="hidden"></iframe>
 
 <script>
-const OPEN = [{"q": "내 결과에서 「이것 때문이다」라고 말하고 싶은 게 있나요? 그런데 그렇게 단정할 수 없는 이유는 무엇일까요?"}];
-const PROJ = [{"q": "오늘 「내가」 한 일 · 사용한 도구"}, {"q": "⭐ 내 연구 질문에 대한 「잠정 답」을 한 줄로 써 주세요. 숫자를 넣어서."}, {"q": "이 결과를 「~때문이다」라고 단정할 수 있나요? 겹쳐 있는 다른 요인을 적어 주세요."}, {"q": "막힌 점 · 해결 과정 · AI 활용 내역"}];
-const QUIZ = [{"a": 2, "why": "점심 직후라는 요인이 겹쳐 있습니다. 같이 나타난다고 원인은 아니에요."}, {"a": 3, "why": "숫자가 붙어야 근거가 됩니다. 「얼마나」를 꼭 넣으세요."}, {"a": 3, "why": "겁먹은 게 아니라 정확한 태도입니다. 보고서 ⑥번 칸으로 그대로 이어져요."}, {"a": 0, "why": "한계 검토를 거친 뒤에야 최종 결론이 됩니다."}];
+const OPEN = [{"q": "사례 결과를 보고 「모둠 토의가 시끄러움의 원인이다」라고 말할 수 있을까요? 그렇게 단정하기 어려운 이유를 생각해 보세요."}, {"q": "일상에서 「함께 나타났을 뿐인데 원인이라고 말하는」 예를 하나 떠올려 보세요."}];
+const PROJ = [{"q": "사례의 연구 질문은 「교실 소음은 수업 활동에 따라 얼마나 달라지는가」였습니다. 잠정 답을 한 문장으로, 숫자를 넣어 써 주세요."}, {"q": "그 답에 겹쳐 있는 다른 요인은 무엇일까요? 하나 이상 적어 주세요."}, {"q": "그래서 이 답을 쓸 때 어떤 표현을 써야 할까요?"}];
+const QUIZ = [{"a": 1, "why": "함께 나타났다고 원인은 아닙니다. 이것이 결과 해석에서 가장 흔한 함정이에요."}, {"a": 1, "why": "숫자가 없으면 얼마나 다른지 알 수 없고, 나중에 견줄 수도 없습니다."}, {"a": 2, "why": "밝히면 정직한 연구가 되고, 감추면 신뢰를 잃습니다."}, {"a": 0, "why": "한계 검토를 거친 뒤에야 최종 결론이 됩니다."}];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
 const MEM={}; let OK=true;

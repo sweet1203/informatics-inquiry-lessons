@@ -138,7 +138,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <section>
   <h2>✍️ 생각 나누기</h2>
   <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
-  <div class="f" style="margin-top:12px"><label for="생각나누기0">계획서와 실제 연구가 달라진 부분이 있나요? 왜 그렇게 됐는지 적어 주세요.</label><textarea id="생각나누기0" placeholder="예) 일주일 측정을 계획했는데 장치 완성이 늦어 사흘만 쟀다. 그래서 요일별 비교는 포기하고 교시별만 봤다"></textarea></div>
+  <div class="f" style="margin-top:12px"><label for="생각나누기0">「온습도 센서로 측정했다」와 「아두이노 우노 + DHT11로 사흘간 1분 간격으로 측정해 4,320개의 값을 얻었다」 — 무엇이 다른가요?</label><textarea id="생각나누기0" placeholder="예) 두 번째는 남이 똑같이 따라 할 수 있다. 첫 번째는 무엇을 얼마나 했는지 알 수 없다"></textarea></div><div class="f" style="margin-top:12px"><label for="생각나누기1">④ 결과 칸에 「모둠 토의가 시끄러웠다」라고 쓰면 왜 안 될까요?</label><textarea id="생각나누기1" placeholder="예) 그건 해석이다. 결과 칸에는 숫자와 그래프만 넣어야 한다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
 </section>
@@ -146,7 +146,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <section>
   <h2>✅ 확인 퀴즈</h2>
   <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
-  <div class="q"><div class="qt">1. 보고서 ④ 결과 칸에 <b>넣지 말아야</b> 할 것은?</div><label class="opt"><input type="radio" name="q0" value="0">평균값</label><label class="opt"><input type="radio" name="q0" value="1">그래프</label><label class="opt"><input type="radio" name="q0" value="2">표</label><label class="opt"><input type="radio" name="q0" value="3">결과가 무슨 뜻인지에 대한 해석</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. ② 데이터·장치 칸을 쓸 때 가장 중요한 것은?</div><label class="opt"><input type="radio" name="q1" value="0">장비 가격 적기</label><label class="opt"><input type="radio" name="q1" value="1">제조사 이름 적기</label><label class="opt"><input type="radio" name="q1" value="2">구입처 적기</label><label class="opt"><input type="radio" name="q1" value="3">실제로 모은 양을 숫자로 밝히기</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 계획서와 실제 연구가 달라졌습니다. 어떻게 해야 할까요?</div><label class="opt"><input type="radio" name="q2" value="0">계획서대로 한 것처럼 쓴다</label><label class="opt"><input type="radio" name="q2" value="1">바뀐 대로 쓰고 이유를 한 줄 남긴다</label><label class="opt"><input type="radio" name="q2" value="2">보고서를 안 낸다</label><label class="opt"><input type="radio" name="q2" value="3">계획서를 다시 고쳐 낸다</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 그래프에 「[그림 1] 교시별 평균 온도(℃)」처럼 번호와 제목을 붙이는 이유는?</div><label class="opt"><input type="radio" name="q3" value="0">분량을 채우려고</label><label class="opt"><input type="radio" name="q3" value="1">본문에서 「[그림 1]에서 보듯」이라고 가리킬 수 있어서</label><label class="opt"><input type="radio" name="q3" value="2">규칙이라서</label><label class="opt"><input type="radio" name="q3" value="3">그래프가 커 보여서</label><div class="fb" id="fb3"></div></div>
+  <div class="q"><div class="qt">1. ② 데이터 칸에 <b>반드시</b> 들어가야 할 것은?</div><label class="opt"><input type="radio" name="q0" value="0">느낀 점</label><label class="opt"><input type="radio" name="q0" value="1">얼마나 모았는지 숫자</label><label class="opt"><input type="radio" name="q0" value="2">그래프</label><label class="opt"><input type="radio" name="q0" value="3">참고 문헌</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. ③ 방법 칸을 쓰는 기준은?</div><label class="opt"><input type="radio" name="q1" value="0">짧을수록 좋다</label><label class="opt"><input type="radio" name="q1" value="1">남이 읽고 똑같이 따라 할 수 있는가</label><label class="opt"><input type="radio" name="q1" value="2">전문 용어가 많은가</label><label class="opt"><input type="radio" name="q1" value="3">도구 이름만 있으면 된다</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. ④ 결과 칸에 <b>넣으면 안 되는</b> 것은?</div><label class="opt"><input type="radio" name="q2" value="0">평균값</label><label class="opt"><input type="radio" name="q2" value="1">그래프</label><label class="opt"><input type="radio" name="q2" value="2">왜 그런 결과가 나왔는지에 대한 설명</label><label class="opt"><input type="radio" name="q2" value="3">측정 개수</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 보고서 ①~④ 중 <b>계획서에서 거의 그대로 옮겨 오는</b> 칸은?</div><label class="opt"><input type="radio" name="q3" value="0">① 연구 질문</label><label class="opt"><input type="radio" name="q3" value="1">④ 결과</label><label class="opt"><input type="radio" name="q3" value="2">③ 방법</label><label class="opt"><input type="radio" name="q3" value="3">없다</label><div class="fb" id="fb3"></div></div>
   <div class="row"><button onclick="grade()">채점하기</button>
     <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
   <div class="score" id="score"></div>
@@ -154,9 +154,8 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">오늘 쓴 네 칸이 <b>보고서 ①~④</b>입니다.</p>
-  <div class="f" style="margin-top:12px"><label for="프로젝트0">① 연구 질문 — 최종 확정본</label><textarea id="프로젝트0" placeholder="예) 우리 교실은 몇 교시에 가장 덥고 습할까?"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">② 사용한 데이터 또는 장치 — 실제로 모은 양을 숫자로</label><textarea id="프로젝트1" placeholder="예) 아두이노 우노 + DHT11, 10월 13~15일 1분 간격, 총 4,320개"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">③ 분석·구현 방법과 도구 — 남이 따라 할 수 있게. 변인 3가지 포함.</label><textarea id="프로젝트2" placeholder="예) 교실 뒤 게시판 앞 고정 위치에서 측정, 스프레드시트로 교시별 평균 산출
-조작: 교시 / 통제: 측정 위치·센서 / 종속: 온도·습도"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트3">④ 결과 — 숫자와 그래프만. 해석은 빼세요.</label><textarea id="프로젝트3" placeholder="예) 평균 26.8℃, 최대 29.4℃(5교시), 최소 24.1℃(1교시). [그림 1] 교시별 평균 온도(℃) 꺾은선그래프"></textarea></div>
+  <p class="lead">사례 연구로 <b>보고서 ①~④</b>를 채워 봅니다.</p>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">① 연구 질문 — 사례의 질문을 한 문장으로 옮겨 적어 주세요.</label><textarea id="프로젝트0" placeholder="예) 교실 소음은 수업 활동의 종류에 따라 얼마나 달라지는가"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">② 사용한 데이터 또는 장치 — 실제로 모은 양을 숫자로 넣어 써 주세요.</label><textarea id="프로젝트1" placeholder="예) 아두이노 우노 + 사운드 센서 + RTC로 사흘간 1분 간격 측정"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">③ 분석·구현 방법과 도구 — 남이 따라 할 수 있게 써 주세요.</label><textarea id="프로젝트2" placeholder="예) 활동 유형별로 나눠 평균·최댓값·최솟값을 스프레드시트로 계산하고 막대그래프로 비교했다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트3">④ 결과 — 숫자와 그래프만. 해석은 빼고 써 주세요.</label><textarea id="프로젝트3" placeholder="예) 모둠 토의 623, 강의 410, 개별 활동 287. 최댓값은 모둠 토의의 869였다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>
 </section>
@@ -179,9 +178,9 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <iframe name="sink" style="display:none" title="hidden"></iframe>
 
 <script>
-const OPEN = [{"q": "계획서와 실제 연구가 달라진 부분이 있나요? 왜 그렇게 됐는지 적어 주세요."}];
-const PROJ = [{"q": "① 연구 질문 — 최종 확정본"}, {"q": "② 사용한 데이터 또는 장치 — 실제로 모은 양을 숫자로"}, {"q": "③ 분석·구현 방법과 도구 — 남이 따라 할 수 있게. 변인 3가지 포함."}, {"q": "④ 결과 — 숫자와 그래프만. 해석은 빼세요."}];
-const QUIZ = [{"a": 3, "why": "해석은 ⑤번 칸입니다. ④는 숫자와 그림만 넣으세요."}, {"a": 3, "why": "「사흘간 1분 간격으로 4,320개」처럼 써야 신뢰할 수 있습니다."}, {"a": 1, "why": "연구는 원래 계획대로 안 됩니다. 이유를 밝히면 오히려 좋은 보고서예요."}, {"a": 1, "why": "본문과 그림을 연결할 수 있습니다. 학술 글쓰기의 기본이에요."}];
+const OPEN = [{"q": "「온습도 센서로 측정했다」와 「아두이노 우노 + DHT11로 사흘간 1분 간격으로 측정해 4,320개의 값을 얻었다」 — 무엇이 다른가요?"}, {"q": "④ 결과 칸에 「모둠 토의가 시끄러웠다」라고 쓰면 왜 안 될까요?"}];
+const PROJ = [{"q": "① 연구 질문 — 사례의 질문을 한 문장으로 옮겨 적어 주세요."}, {"q": "② 사용한 데이터 또는 장치 — 실제로 모은 양을 숫자로 넣어 써 주세요."}, {"q": "③ 분석·구현 방법과 도구 — 남이 따라 할 수 있게 써 주세요."}, {"q": "④ 결과 — 숫자와 그래프만. 해석은 빼고 써 주세요."}];
+const QUIZ = [{"a": 1, "why": "양이 없으면 그 결과를 얼마나 믿어도 되는지 알 수 없습니다."}, {"a": 1, "why": "재확인 가능해야 연구입니다. 교과서 42~43쪽 도구 명시 의무의 근거예요."}, {"a": 2, "why": "그건 ⑤ 해석입니다. 결과와 해석을 섞으면 사실과 판단이 구분되지 않아요."}, {"a": 0, "why": "계획서 ③ 연구 질문이 보고서 ①이 됩니다. 그래서 계획서를 잘 쓰면 보고서가 쉬워져요."}];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
 const MEM={}; let OK=true;

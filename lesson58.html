@@ -154,7 +154,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
   <p class="lead">내 연구의 편향을 <b>밝히는 문장</b>으로 만들어 봅니다.</p>
-  <div class="f" style="margin-top:12px"><label for="프로젝트0">내 연구에서 「이 조건에서만 그렇다」고 밝혀야 할 것을 적어 주세요.</label><textarea id="프로젝트0" placeholder="예) 사흘간 맑은 날에, 한 교실의 고정된 한 지점에서 측정한 결과다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">이상값을 지운 적이 있나요? 있다면 왜 지웠고, 그걸 어디에 밝혔나요?</label><textarea id="프로젝트1" placeholder="예) 없음 — 표시만 해뒀다  /  또는: 40도로 튄 값 하나를 뺐다. 보고서 한계에 적어야겠다"></textarea></div>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">내가 계획한 연구에서 「이 조건에서만 그렇다」고 밝혀야 할 것을 적어 주세요.</label><textarea id="프로젝트0" placeholder="예) 사흘간 맑은 날에, 한 교실의 고정된 한 지점에서 측정한 결과다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">참고 보고서의 소음 연구에서 3교시 값이 유독 높았습니다. 그 연구자가 그 값을 지웠다면 무엇이 문제였을까요?</label><textarea id="프로젝트1" placeholder="예) 없음 — 표시만 해뒀다  /  또는: 40도로 튄 값 하나를 뺐다. 보고서 한계에 적어야겠다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>
 </section>
@@ -178,7 +178,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <script>
 const OPEN = [{"q": "내 연구에 들어 있는 「기울어진 부분」을 하나 찾아보세요. 앞에서 쓴 한계와 겹쳐도 좋습니다."}, {"q": "일상에서 「숫자로 하는 거짓말」을 본 적이 있나요? 뉴스·광고·SNS 어디서든."}];
-const PROJ = [{"q": "내 연구에서 「이 조건에서만 그렇다」고 밝혀야 할 것을 적어 주세요."}, {"q": "이상값을 지운 적이 있나요? 있다면 왜 지웠고, 그걸 어디에 밝혔나요?"}];
+const PROJ = [{"q": "내가 계획한 연구에서 「이 조건에서만 그렇다」고 밝혀야 할 것을 적어 주세요."}, {"q": "참고 보고서의 소음 연구에서 3교시 값이 유독 높았습니다. 그 연구자가 그 값을 지웠다면 무엇이 문제였을까요?"}];
 const QUIZ = [{"a": 3, "why": "표본이 작은 게 문제가 아니라, 작은 표본으로 전체를 말하는 게 문제입니다."}, {"a": 0, "why": "cooking입니다. 튀는 값을 말없이 지우는 trimming도 같은 부류예요."}, {"a": 2, "why": "지우는 것 자체가 아니라 숨기는 것이 문제입니다."}, {"a": 1, "why": "학습 자료가 기울면 모델도 기웁니다. 이걸 한계로 밝히면 됩니다."}];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */

@@ -137,7 +137,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <section>
   <h2>✍️ 생각 나누기</h2>
   <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
-  <div class="f" style="margin-top:12px"><label for="생각나누기0">내 연구의 한계를 스스로 찾아보니 어떤 기분이었나요? 인정하기 어려웠던 부분이 있나요?</label><textarea id="생각나누기0" placeholder="예) 사흘밖에 못 쟀다는 걸 쓰기가 좀 그랬는데, 쓰고 나니 오히려 「다음엔 2주」라는 생각이 정리됐다"></textarea></div>
+  <div class="f" style="margin-top:12px"><label for="생각나누기0">한계를 밝히면 연구가 약해 보일 것 같나요? 아니면 오히려 믿음이 갈 것 같나요? 왜 그렇게 생각하는지 써 주세요.</label><textarea id="생각나누기0" placeholder="예) 처음엔 약점을 스스로 말하는 것 같았는데, 밝힌 쪽이 더 정직해 보인다"></textarea></div><div class="f" style="margin-top:12px"><label for="생각나누기1">참고 보고서의 소음 연구에서 한계를 하나 찾아보세요. 무엇이 아쉬운가요?</label><textarea id="생각나누기1" placeholder="예) 사흘만 쟀다. 그 주에만 유독 시끄러웠을 수도 있다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
 </section>
@@ -145,7 +145,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <section>
   <h2>✅ 확인 퀴즈</h2>
   <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
-  <div class="q"><div class="qt">1. 한계를 밝힌 연구가 <b>더 좋은 연구</b>인 이유는?</div><label class="opt"><input type="radio" name="q0" value="0">글자 수를 채울 수 있어서</label><label class="opt"><input type="radio" name="q0" value="1">그 결과를 어디까지 믿어도 되는지 정해 주어서</label><label class="opt"><input type="radio" name="q0" value="2">선생님이 좋아해서</label><label class="opt"><input type="radio" name="q0" value="3">발표 시간을 채울 수 있어서</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. “맑은 날에만 측정했다”는 어느 갈래의 한계인가요?</div><label class="opt"><input type="radio" name="q1" value="0">자료 부족</label><label class="opt"><input type="radio" name="q1" value="1">방법·도구의 제약</label><label class="opt"><input type="radio" name="q1" value="2">자료 편중</label><label class="opt"><input type="radio" name="q1" value="3">한계 아님</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 한계를 쓸 때 <b>반드시 함께</b> 써야 하는 것은?</div><label class="opt"><input type="radio" name="q2" value="0">참고 문헌</label><label class="opt"><input type="radio" name="q2" value="1">그래프</label><label class="opt"><input type="radio" name="q2" value="2">다시 한다면 무엇을 바꿀지(개선 방향)</label><label class="opt"><input type="radio" name="q2" value="3">표본 수</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 한계로 쓰기에 <b>적절하지 않은</b> 것은?</div><label class="opt"><input type="radio" name="q3" value="0">센서 오차가 ±2℃라 작은 차이를 말하기 어렵다</label><label class="opt"><input type="radio" name="q3" value="1">한 교실만 측정해 다른 교실로 일반화하기 어렵다</label><label class="opt"><input type="radio" name="q3" value="2">시간이 부족해서 열심히 못 했다</label><label class="opt"><input type="radio" name="q3" value="3">연도별 자료뿐이라 계절 차이를 볼 수 없다</label><div class="fb" id="fb3"></div></div>
+  <div class="q"><div class="qt">1. 한계의 세 갈래가 <b>아닌</b> 것은?</div><label class="opt"><input type="radio" name="q0" value="0">자료 부족</label><label class="opt"><input type="radio" name="q0" value="1">자료 편중</label><label class="opt"><input type="radio" name="q0" value="2">방법·도구의 제약</label><label class="opt"><input type="radio" name="q0" value="3">연구자의 실력 부족</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 「사흘만 측정했다」는 어느 갈래인가요?</div><label class="opt"><input type="radio" name="q1" value="0">자료 부족</label><label class="opt"><input type="radio" name="q1" value="1">자료 편중</label><label class="opt"><input type="radio" name="q1" value="2">방법·도구의 제약</label><label class="opt"><input type="radio" name="q1" value="3">한계가 아니다</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 「모둠 토의를 주로 3교시에만 했다」는 어느 갈래인가요?</div><label class="opt"><input type="radio" name="q2" value="0">자료 부족</label><label class="opt"><input type="radio" name="q2" value="1">자료 편중</label><label class="opt"><input type="radio" name="q2" value="2">방법·도구의 제약</label><label class="opt"><input type="radio" name="q2" value="3">한계가 아니다</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 한계를 밝힌 연구가 더 좋은 연구인 이유는?</div><label class="opt"><input type="radio" name="q3" value="0">글자 수를 채울 수 있어서</label><label class="opt"><input type="radio" name="q3" value="1">그 결과를 어디까지 믿어도 되는지 정해 주어서</label><label class="opt"><input type="radio" name="q3" value="2">선생님이 좋아해서</label><label class="opt"><input type="radio" name="q3" value="3">발표 시간을 채울 수 있어서</label><div class="fb" id="fb3"></div></div>
   <div class="row"><button onclick="grade()">채점하기</button>
     <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
   <div class="score" id="score"></div>
@@ -153,8 +153,8 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">여기 쓴 내용이 그대로 <b>보고서 ⑥ 한계와 개선 방향</b> 칸이 됩니다.</p>
-  <div class="f" style="margin-top:12px"><label for="프로젝트0">한계 ① — 어느 갈래인가요? (자료 부족 / 자료 편중 / 방법·도구의 제약) 그리고 구체적으로.</label><textarea id="프로젝트0" placeholder="예) 자료 부족 — 사흘만 측정해 그 주 날씨에 결과가 좌우될 수 있다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">한계 ①의 개선 방향 — 「다시 한다면 ~하면 좋겠다」</label><textarea id="프로젝트1" placeholder="예) 2주 이상 재고 비 오는 날과 맑은 날을 나눠 비교하면 좋겠다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">한계 ② — 다른 갈래에서 하나 더 찾아 주세요.</label><textarea id="프로젝트2" placeholder="예) 방법·도구의 제약 — DHT11 오차가 ±2℃라 2도 이내 차이는 단정하기 어렵다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트3">한계 ②의 개선 방향</label><textarea id="프로젝트3" placeholder="예) 정밀 센서를 같은 자리에 함께 두고 재어 보정값을 구하면 좋겠다"></textarea></div>
+  <p class="lead">사례 연구의 한계를 <b>세 갈래로 나눠</b> 찾고, 각각에 개선 방향을 답니다.</p>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">한계 ① — 어느 갈래인가요? (자료 부족 / 자료 편중 / 방법·도구의 제약) 구체적으로 써 주세요.</label><textarea id="프로젝트0" placeholder="예) 자료 부족 — 사흘만 측정해 그 주 상황에 좌우될 수 있다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">한계 ①의 개선 방향 — 「다시 한다면 ~하면 좋겠다」</label><textarea id="프로젝트1" placeholder="예) 2주 이상 재고, 요일별로 나눠 비교하면 좋겠다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">한계 ② — 다른 갈래에서 하나 더 찾아 주세요.</label><textarea id="프로젝트2" placeholder="예) 방법·도구의 제약 — 센서가 복도 소리까지 함께 받았다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트3">한계 ②의 개선 방향</label><textarea id="프로젝트3" placeholder="예) 센서를 복도 반대편에 두고, 이동 시간대 값은 따로 표시하면 좋겠다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>
 </section>
@@ -177,9 +177,9 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <iframe name="sink" style="display:none" title="hidden"></iframe>
 
 <script>
-const OPEN = [{"q": "내 연구의 한계를 스스로 찾아보니 어떤 기분이었나요? 인정하기 어려웠던 부분이 있나요?"}];
-const PROJ = [{"q": "한계 ① — 어느 갈래인가요? (자료 부족 / 자료 편중 / 방법·도구의 제약) 그리고 구체적으로."}, {"q": "한계 ①의 개선 방향 — 「다시 한다면 ~하면 좋겠다」"}, {"q": "한계 ② — 다른 갈래에서 하나 더 찾아 주세요."}, {"q": "한계 ②의 개선 방향"}];
-const QUIZ = [{"a": 1, "why": "한계를 감추면 오히려 신뢰를 잃습니다. 결과가 부진해도 이 칸이 튼튼하면 정직한 연구가 돼요."}, {"a": 2, "why": "한쪽 조건에만 쏠린 것이 편중입니다. 부족은 양의 문제예요."}, {"a": 2, "why": "한계만 쓰면 반쪽입니다. 「~하면 좋겠다」를 붙이세요."}, {"a": 2, "why": "일정 문제나 자책은 연구의 한계가 아닙니다. 자료와 방법을 말하세요."}];
+const OPEN = [{"q": "한계를 밝히면 연구가 약해 보일 것 같나요? 아니면 오히려 믿음이 갈 것 같나요? 왜 그렇게 생각하는지 써 주세요."}, {"q": "참고 보고서의 소음 연구에서 한계를 하나 찾아보세요. 무엇이 아쉬운가요?"}];
+const PROJ = [{"q": "한계 ① — 어느 갈래인가요? (자료 부족 / 자료 편중 / 방법·도구의 제약) 구체적으로 써 주세요."}, {"q": "한계 ①의 개선 방향 — 「다시 한다면 ~하면 좋겠다」"}, {"q": "한계 ② — 다른 갈래에서 하나 더 찾아 주세요."}, {"q": "한계 ②의 개선 방향"}];
+const QUIZ = [{"a": 3, "why": "한계는 연구 설계의 조건을 말합니다. 사람을 탓하는 자리가 아니에요."}, {"a": 0, "why": "양이 모자란 것이므로 자료 부족입니다."}, {"a": 1, "why": "한쪽으로 쏠린 것이므로 자료 편중입니다."}, {"a": 1, "why": "한계를 감추면 오히려 신뢰를 잃습니다. 결론의 적용 범위를 정해 주는 것이 한계예요."}];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
 const MEM={}; let OK=true;

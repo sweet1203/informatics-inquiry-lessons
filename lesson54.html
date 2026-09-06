@@ -151,7 +151,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
   <p class="lead">📝 <b>한 쪽 글</b> — 네 문단으로. 한 학기 연구를 한 편으로 정리합니다.</p>
-  <div class="f" style="margin-top:12px"><label for="프로젝트0">① 왜 이 주제였나 — 궁금증이 생긴 구체적인 장면</label><textarea id="프로젝트0" placeholder="예) 5교시마다 다들 조는데 선생님이 창문을 여시면 좀 나아졌다. 그런데 아무도 몇 도인지는 몰랐다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">② 무엇을 어떻게 했나 — 도구·방법·기간을 숫자로</label><textarea id="프로젝트1" placeholder="예) 아두이노에 DHT11을 연결해 교실 뒤 고정 위치에서 사흘간 1분마다 4,320개를 측정했다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">③ 무엇이 어려웠고 어떻게 넘었나 — 「그 뒤로 ~하게 됐다」까지</label><textarea id="프로젝트2" placeholder="예) 센서 값이 nan으로만 나와 코드를 세 번 고쳤는데 알고 보니 배선 문제였다. 그 뒤로 안 될 때 코드부터 의심하지 않고 연결을 먼저 확인하게 됐다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트3">④ 무엇이 남았나 — 알게 된 것 + 더 하고 싶은 것</label><textarea id="프로젝트3" placeholder="예) 숫자가 있으면 「덥다」는 말이 근거가 된다는 걸 알았다. 다음엔 2주 이상 재서 날씨와 함께 보고 싶다"></textarea></div>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">① 왜 이 주제였나 — 궁금증이 생긴 구체적인 장면</label><textarea id="프로젝트0" placeholder="예) 5교시마다 다들 조는데 선생님이 창문을 여시면 좀 나아졌다. 그런데 아무도 몇 도인지는 몰랐다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">② 무엇을 어떻게 하려 했나 — 계획한 도구·방법·기간을 숫자로</label><textarea id="프로젝트1" placeholder="예) 아두이노에 DHT11을 연결해 교실 뒤 고정 위치에서 사흘간 1분마다 4,320개를 측정했다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">③ 무엇이 어려웠고 어떻게 풀어 갔나 — 「그 뒤로 ~하게 됐다」까지</label><textarea id="프로젝트2" placeholder="예) 센서 값이 nan으로만 나와 코드를 세 번 고쳤는데 알고 보니 배선 문제였다. 그 뒤로 안 될 때 코드부터 의심하지 않고 연결을 먼저 확인하게 됐다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트3">④ 무엇이 남았나 — 알게 된 것 + 더 하고 싶은 것</label><textarea id="프로젝트3" placeholder="예) 숫자가 있으면 「덥다」는 말이 근거가 된다는 걸 알았다. 다음엔 2주 이상 재서 날씨와 함께 보고 싶다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>
 </section>
@@ -175,7 +175,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <script>
 const OPEN = [{"q": "글을 쓰면서 스스로 새로 발견한 것이 있나요? 쓰기 전엔 몰랐던 것."}];
-const PROJ = [{"q": "① 왜 이 주제였나 — 궁금증이 생긴 구체적인 장면"}, {"q": "② 무엇을 어떻게 했나 — 도구·방법·기간을 숫자로"}, {"q": "③ 무엇이 어려웠고 어떻게 넘었나 — 「그 뒤로 ~하게 됐다」까지"}, {"q": "④ 무엇이 남았나 — 알게 된 것 + 더 하고 싶은 것"}];
+const PROJ = [{"q": "① 왜 이 주제였나 — 궁금증이 생긴 구체적인 장면"}, {"q": "② 무엇을 어떻게 하려 했나 — 계획한 도구·방법·기간을 숫자로"}, {"q": "③ 무엇이 어려웠고 어떻게 풀어 갔나 — 「그 뒤로 ~하게 됐다」까지"}, {"q": "④ 무엇이 남았나 — 알게 된 것 + 더 하고 싶은 것"}];
 const QUIZ = [{"a": 2, "why": "결과는 남지만, 어디서 막혔고 어떻게 넘었는지는 본인만 압니다."}, {"a": 2, "why": "변화의 증거이기 때문입니다."}, {"a": 1, "why": "무엇을 배웠는지가 없습니다. 구체적 장면으로 바꾸세요."}, {"a": 0, "why": "이 네 마디만 있으면 좋은 글입니다. 다짐은 기록이 아니에요."}];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
