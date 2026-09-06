@@ -109,10 +109,6 @@ padding:11px 0;display:flex;gap:9px;align-items:center;flex-wrap:wrap;z-index:5}
 <section class="learn" id="form">
 <div class="grp"><h4>연구 계획서 여덟 칸 <span style='font-weight:400'>80점</span></h4>
 <div class="fld">
-<label for="f_트랙">트랙</label>
-<select id="f_트랙" data-k="트랙"><option value="">— 고르세요 —</option><option value="A 데이터 분석">A 데이터 분석</option><option value="B 피지컬 컴퓨팅">B 피지컬 컴퓨팅</option><option value="C 프로그램 제작">C 프로그램 제작</option></select>
-</div>
-<div class="fld">
 <label for="f_①제목">① 연구 제목</label>
 <p class="hint">제목만 읽고 무엇을 어떻게 하는지 알 수 있게</p>
 <input type="text" id="f_①제목" data-k="①제목">
@@ -181,7 +177,7 @@ padding:11px 0;display:flex;gap:9px;align-items:center;flex-wrap:wrap;z-index:5}
 <script>
 const ENDPOINT = "https://script.google.com/macros/s/AKfycbxa1jCaEXkrPhu15jE-wYaMPx9CcaucpgJm17VYU1b6mW5XitHnzjE3zqP_Sg9Wrxgq6g/exec";
 const TASK = "2";
-const KEYS = ["트랙", "①제목", "②동기", "③연구질문", "④데이터장치", "⑤방법도구", "⑥절차", "⑦예상결과", "⑧어려움", "AI활용"];
+const KEYS = ["①제목", "②동기", "③연구질문", "④데이터장치", "⑤방법도구", "⑥절차", "⑦예상결과", "⑧어려움", "AI활용"];
 const PASTE_OK = ["AI활용"];
 const LS = "정연-수행" + TASK;
 let 차단 = 0;

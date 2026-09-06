@@ -29,12 +29,12 @@ BODY = r"""
 <h2>읽는 법</h2>
 <p class="lead">각 칸 아래 주황색 상자는 <b>계획서에 들어가는 내용이 아닙니다.</b> 그 칸에서 무엇을 보라는 설명입니다.</p>
 
-<div class="box">이 예시는 트랙 B(피지컬 컴퓨팅)이지만 <b>여덟 칸의 틀은 A·C 트랙도 같습니다.</b><br>
+<div class="box">이 예시는 <b>직접 재는 방법</b>으로 쓴 것이지만, <b>여덟 칸의 틀은 어떤 방법이든 같습니다.</b><br>
 <b><a href="sample-report.html" target="_blank" rel="noopener">참고 보고서</a></b>는 이 계획서로 실제 연구를 끝낸 결과입니다.</div>
 
 <h3>이 계획서 한눈에</h3>
 <table>
-<tr><th>트랙</th><td>B. 피지컬 컴퓨팅 — 사운드 센서</td></tr>
+<tr><th>방법</th><td>직접 재기 — 사운드 센서</td></tr>
 <tr><th>연구 질문</th><td>교실 소음은 수업 활동의 종류에 따라 얼마나 달라지는가</td></tr>
 <tr><th>장치</th><td>아두이노 우노 + 사운드 센서 + RTC 모듈</td></tr>
 <tr><th>기간</th><td>사흘 · 1분 간격</td></tr>
@@ -45,7 +45,7 @@ BODY = r"""
 <h2>계획서 전문</h2>
 
 <div style="background:var(--soft);border:1px solid var(--line);border-radius:9px;padding:12px;font-size:.92rem;margin-bottom:6px">
-학번 <b>30000</b> &nbsp; 이름 <b>구예시</b> &nbsp; 트랙 <b>B 피지컬</b>
+학번 <b>30000</b> &nbsp; 이름 <b>구예시</b>
 </div>
 
 <div class="rep"><h4>① 연구 제목</h4><div>
@@ -122,7 +122,7 @@ SD카드 모듈이 없어 <b>상시 로깅은 안 됩니다.</b> 그래서 수�
 <tr><td>5</td><td><b>⑤로 ④를 다룰 수 있는가</b></td></tr>
 <tr><td>6</td><td>⑦ 예상 결과에 <b>숫자나 방향</b>이 있는가</td></tr>
 <tr><td>7</td><td>⑧ 어려움마다 <b>대비 방법</b>이 붙었는가</td></tr>
-<tr><td>8</td><td>맨 위 <b>학번 · 이름 · 트랙</b>을 적었는가</td></tr>
+<tr><td>8</td><td>맨 위 <b>학번 · 이름</b>을 적었는가</td></tr>
 </table>
 </section>
 
