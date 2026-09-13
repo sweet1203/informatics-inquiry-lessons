@@ -584,6 +584,9 @@ function onOpen() {
     .createMenu('📊 정보과제연구')
     .addItem('제출 현황 정리하기', '제출현황정리')
     .addItem('차시 시트 순서 정렬', '차시정렬')
+    .addSeparator()
+    .addItem('테스트 데이터 찾기', '테스트데이터찾기')
+    .addItem('테스트 데이터 지우기', '테스트데이터지우기')
     .addToUi();
 }
 
@@ -723,4 +726,62 @@ function 정렬시트(ss) {
 function 차시정렬() {
   정렬시트(SpreadsheetApp.getActiveSpreadsheet());
   SpreadsheetApp.getUi().alert('차시 시트를 번호 순으로 정렬했습니다.');
+}
+
+
+/* ═══════════ 테스트 데이터 정리 ═══════════
+ * 폼을 만들며 넣었던 가짜 학번과 검증용 시트를 걷어냅니다.
+ * 반드시 「찾기」로 무엇이 지워질지 본 뒤에 「지우기」를 누르세요.
+ * 다 치우고 나면 이 부분은 지워도 됩니다. */
+
+const 테스트학번 = "39999";
+const 테스트시트 = ["999차시"];
+
+function 테스트데이터찾기() { 테스트정리_(false); }
+function 테스트데이터지우기() { 테스트정리_(true); }
+
+function 테스트정리_(지울까) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const 보고 = [];
+
+  /* 1) 통째로 지울 시트 */
+  테스트시트.forEach(function (nm) {
+    const sh = ss.getSheetByName(nm);
+    if (!sh) return;
+    보고.push("시트 「" + nm + "」 — 내용 " + Math.max(sh.getLastRow() - 1, 0) + "행"
+              + (지울까 ? "  → 시트째 삭제함" : ""));
+    if (지울까) ss.deleteSheet(sh);
+  });
+
+  /* 2) 모든 시트에서 테스트 학번이 든 행 */
+  ss.getSheets().forEach(function (sh) {
+    const nm = sh.getName();
+    if (테스트시트.indexOf(nm) !== -1) return;
+    const last = sh.getLastRow();
+    const lastCol = sh.getLastColumn();
+    if (last < 2 || lastCol < 1) return;
+
+    const header = sh.getRange(1, 1, 1, lastCol).getValues()[0]
+      .map(function (v) { return String(v == null ? "" : v).trim(); });
+    const col = header.indexOf("학번");
+    if (col === -1) return;
+
+    const vals = sh.getRange(2, col + 1, last - 1, 1).getValues();
+    const 행들 = [];
+    for (let i = 0; i < vals.length; i++) {
+      if (normSid_(vals[i][0]) === 테스트학번) 행들.push(i + 2);
+    }
+    if (!행들.length) return;
+
+    보고.push("「" + nm + "」 — " + 행들.length + "행 (" + 행들.join("·") + "행째)"
+              + (지울까 ? "  → 삭제함" : ""));
+    /* 뒤에서부터 지웁니다. 앞에서부터 지우면 행 번호가 밀립니다. */
+    if (지울까) { for (let i = 행들.length - 1; i >= 0; i--) sh.deleteRow(행들[i]); }
+  });
+
+  const ui = SpreadsheetApp.getUi();
+  ui.alert(지울까 ? "테스트 데이터를 지웠습니다" : "지워질 것 — 아직 아무것도 안 지웠습니다",
+           보고.length ? 보고.join("\n")
+                       : "테스트 학번 " + 테스트학번 + " 도, 검증용 시트도 없습니다. 이미 깨끗합니다.",
+           ui.ButtonSet.OK);
 }
