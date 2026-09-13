@@ -423,11 +423,39 @@ function taskSheet_(task, createIfMissing) {
   return sh;
 }
 
+/* 명단의 개별 비밀번호를 확인합니다. 맞으면 {sid, name}, 아니면 null.
+ * 조회용 lookup_ 과 따로 둡니다 — 조회 경로를 건드리지 않기 위해서입니다. */
+function rosterAuth_(sid, name, pw) {
+  const s = normSid_(sid);
+  const p = String(pw == null ? "" : pw).trim();
+  if (!s || !p) return null;
+
+  const roster = rosterSheet_();
+  if (!roster) return null;
+  const last = roster.getLastRow();
+  if (last < 2) return null;
+
+  const rows = roster.getRange(2, 1, last - 1, 3).getValues();
+  const n = normName_(name);
+  for (let i = 0; i < rows.length; i++) {
+    if (normSid_(rows[i][0]) !== s) continue;
+    if (String(rows[i][2] == null ? "" : rows[i][2]).trim() !== p) return null;
+    if (n && normName_(rows[i][1]) !== n) return null;
+    return { sid: s, name: String(rows[i][1]).trim() };
+  }
+  return null;
+}
+
 function taskPost_(p) {
   const sh = taskSheet_(p.task, true);
   if (!sh) return "no-task";
   const sid = normSid_(p.sid);
   if (!sid) return "no-sid";
+
+  /* 개별 비밀번호 확인. 학번과 이름만으로는 남의 답안을 덮어쓸 수 없습니다. */
+  if (tooManyFails_(sid)) return "lockout";
+  const 본인 = rosterAuth_(sid, p.name, p.pw);
+  if (!본인) { recordFail_(sid); return "no-auth"; }
 
   let data = {};
   try { data = JSON.parse(p.data || "{}"); } catch (err) { data = {}; }
@@ -473,7 +501,7 @@ function taskPost_(p) {
   const already = String(get("상태") || "").trim() === "제출";
 
   put("학번", sid);
-  if (String(p.name || "").trim()) put("이름", String(p.name).trim());
+  put("이름", 본인.name);
   put("상태", (submitting || already) ? "제출" : "임시저장");
   put("최근저장", now);
   if (submitting) put("최종제출", now);
@@ -494,7 +522,7 @@ function taskPost_(p) {
 
   sh.getRange(target, 1, 1, header.length).setValues([row]);
   taskLog_(p.task, {
-    when: now, sid: sid, name: String(p.name || "").trim(),
+    when: now, sid: sid, name: 본인.name,
     status: submitting ? "제출" : "임시저장",
     paste: Number(p.paste || 0),
     kept: 보호,
