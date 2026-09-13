@@ -1731,6 +1731,10 @@ AI 글로 채우면 <b>해당 항목은 채점에서 빠집니다.</b></div>
 사이트 이름과 주소, 자료 이름 정도면 돼요.</p>
 
 <div class="box">📄 <b><a href="answer-task1.html" target="_blank" rel="noopener">수행평가 1 안내</a></b> — 문항 ①의 <b>답안 예시와 등급 기준</b>이 있습니다. 논문을 찾기 전에 한 번 보고 오세요.</div>
+
+<div class="box">📮 <b><a href="task1-submit.html" target="_blank" rel="noopener">수행평가 1 제출</a></b> — 찾은 논문 2편을 여기에 정리하고 <b>「임시저장」</b>을 누르세요.<br>
+학번 · 이름 · <b>개별 비밀번호</b>를 먼저 넣어야 저장됩니다. 다음 시간에 <b>「불러오기」</b>로 이어 씁니다.<br>
+답안 칸은 <b>붙여넣기가 막혀 있습니다.</b> 맨 아래 <b>AI 활용 기록</b> 칸만 됩니다.</div>
 """,
 "open": [
  {"q": "AI에게 자료를 물어보고 원 출처를 확인해 보세요. 결과가 어땠나요?",
@@ -3387,6 +3391,9 @@ AI가 특정 집단에 불리한 판단을 한다는 걸 알면서도 <b>편리�
 <tr><td>5</td><td>③에 <b>읽은 연구와의 연결</b>이 있는가</td></tr></table>
 
 <div class="box">📄 <b><a href="answer-task1.html" target="_blank" rel="noopener">수행평가 1 안내</a></b>를 옆에 띄워 두고 쓰세요. 세 문항 모두 <b>답안 예시와 등급 기준</b>이 나란히 있습니다.</div>
+
+<div class="box">📮 <b><a href="task1-submit.html" target="_blank" rel="noopener">수행평가 1 제출</a></b> — 먼저 <b>「불러오기」</b>로 지난 시간에 쓴 문항 1을 가져오세요.<br>
+문항 2·3을 마저 쓰고 <b>「제출하기」</b>를 누르면 끝입니다.</div>
 """,
 "open": [
  {"q": "오늘 답안을 쓰면서 가장 막혔던 부분은 어디인가요? 왜 막혔는지도 써 주세요.",
