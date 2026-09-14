@@ -11,8 +11,9 @@
 
 const ROSTER_NAMES = ["명단", "명단시트", "명렬"];
 const TASK_SHEETS = { "1": "수행1", "2": "수행2" };
-const FAIL_LIMIT = 8;
-const FAIL_MINUTES = 10;
+/* 인증 실패로 잠그지 않습니다. 25명이 한 교실에서 쓰는 상황이라,
+ * 비밀번호를 헷갈린 학생이 몇 번 만에 막혀 수업이 멈추는 쪽이 더 큰 문제였습니다.
+ * (2026-09-14, 실제로 학생 한 명이 수업 중에 잠겼습니다.) */
 
 function doPost(e) {
   const lock = LockService.getScriptLock();
@@ -83,7 +84,6 @@ function lookup_(p) {
   const name = normName_(p.name);
   const pw = String(p.pw == null ? "" : p.pw).trim();
   if (!sid || !name || !pw) return { ok: false, reason: "auth" };
-  if (tooManyFails_(sid)) return { ok: false, reason: "lockout" };
 
   const roster = rosterSheet_();
   if (!roster) return { ok: false, reason: "no-roster" };
@@ -102,10 +102,7 @@ function lookup_(p) {
       break;
     }
   }
-  if (!matched) {
-    recordFail_(sid);
-    return { ok: false, reason: "auth" };
-  }
+  if (!matched) return { ok: false, reason: "auth" };
 
   if (p.task) {
     const t = taskLoad_(p.task, matched.sid);
@@ -390,18 +387,6 @@ function normName_(v) {
   return String(v).trim().normalize("NFC").replace(/\s+/g, "");
 }
 
-function tooManyFails_(sid) {
-  const n = Number(CacheService.getScriptCache().get("fail_" + sid) || "0");
-  return n >= FAIL_LIMIT;
-}
-
-function recordFail_(sid) {
-  const cache = CacheService.getScriptCache();
-  const key = "fail_" + sid;
-  const n = Number(cache.get(key) || "0") + 1;
-  cache.put(key, String(n), FAIL_MINUTES * 60);
-}
-
 function safeCallback_(raw) {
   const s = String(raw || "callback");
   return /^[A-Za-z_][A-Za-z0-9_]*$/.test(s) ? s : "callback";
@@ -460,9 +445,8 @@ function taskPost_(p) {
   if (!sid) return "no-sid";
 
   /* 개별 비밀번호 확인. 학번과 이름만으로는 남의 답안을 덮어쓸 수 없습니다. */
-  if (tooManyFails_(sid)) return "lockout";
   const 본인 = rosterAuth_(sid, p.name, p.pw);
-  if (!본인) { recordFail_(sid); return "no-auth"; }
+  if (!본인) return "no-auth";
 
   let data = {};
   try { data = JSON.parse(p.data || "{}"); } catch (err) { data = {}; }

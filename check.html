@@ -382,7 +382,6 @@ async function submit() {
     if (!data || !data.ok) {
       const why = data && data.reason;
       $("msg").textContent =
-        why === "lockout" ? "잠시 후 다시 시도해 주세요." :
         why === "no-roster" ? "조회 설정이 아직 끝나지 않았습니다. 선생님께 알려 주세요." :
         "학번 · 이름 · 비밀번호가 일치하지 않습니다.";
       $("msg").className = "msg err";
