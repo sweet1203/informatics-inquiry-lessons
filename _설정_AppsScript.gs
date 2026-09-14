@@ -725,7 +725,7 @@ function 차시정렬() {
  * 반드시 「찾기」로 무엇이 지워질지 본 뒤에 「지우기」를 누르세요.
  * 다 치우고 나면 이 부분은 지워도 됩니다. */
 
-const 테스트학번 = "39999";
+const 테스트학번들 = ["39999", "12345"];   /* 12345 는 명단에 넣어 둔 점검용 계정 */
 const 테스트시트 = ["999차시"];
 
 function 테스트데이터찾기() { 테스트정리_(false); }
@@ -760,7 +760,7 @@ function 테스트정리_(지울까) {
     const vals = sh.getRange(2, col + 1, last - 1, 1).getValues();
     const 행들 = [];
     for (let i = 0; i < vals.length; i++) {
-      if (normSid_(vals[i][0]) === 테스트학번) 행들.push(i + 2);
+      if (테스트학번들.indexOf(normSid_(vals[i][0])) !== -1) 행들.push(i + 2);
     }
     if (!행들.length) return;
 
@@ -773,6 +773,6 @@ function 테스트정리_(지울까) {
   const ui = SpreadsheetApp.getUi();
   ui.alert(지울까 ? "테스트 데이터를 지웠습니다" : "지워질 것 — 아직 아무것도 안 지웠습니다",
            보고.length ? 보고.join("\n")
-                       : "테스트 학번 " + 테스트학번 + " 도, 검증용 시트도 없습니다. 이미 깨끗합니다.",
+                       : "테스트 학번(" + 테스트학번들.join(" · ") + ")도, 검증용 시트도 없습니다. 이미 깨끗합니다.",
            ui.ButtonSet.OK);
 }
