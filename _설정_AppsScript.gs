@@ -59,6 +59,10 @@ function doPost(e) {
         body: p.body || ""
       });
     }
+    indexUpsert_({
+      sid: p.sid, n: n || "", item: item,
+      kind: p.kind || "", body: p.body || "", when: new Date()
+    });
     return ContentService.createTextOutput("ok");
   } finally {
     lock.releaseLock();
@@ -140,7 +144,135 @@ function existingLessonNums_() {
   return nums;
 }
 
+/* ═══════════════════════════════════════════════════════════
+ * 제출 색인 — 「내 제출 확인」을 빠르게 하려고 둡니다.
+ *
+ * 예전에는 조회 한 번에 차시 시트를 전부 열어 봤습니다. 18개일 때
+ * 6~13초가 걸렸고, 46개가 되면 화면이 기다리다 포기합니다.
+ * 이제 제출이 들어올 때마다 이 시트에 한 줄을 같이 남기고,
+ * 조회는 이 시트 하나만 읽습니다.
+ *
+ * 차시 시트가 여전히 원본입니다. 이 시트는 읽기 전용 사본이라
+ * 손으로 차시 시트를 고쳤다면 메뉴에서 「제출 색인 다시 만들기」를
+ * 눌러 맞춰 주세요.
+ * ═══════════════════════════════════════════════════════════ */
+
+const INDEX_SHEET = "제출색인";
+const INDEX_HEAD = ["열쇠", "학번", "차시", "항목", "종류", "시각", "내용"];
+
+function indexSheet_(createIfMissing) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sh = ss.getSheetByName(INDEX_SHEET);
+  if (!sh && createIfMissing) {
+    sh = ss.insertSheet(INDEX_SHEET);
+    sh.appendRow(INDEX_HEAD);
+    sh.setFrozenRows(1);
+  }
+  return sh;
+}
+
+/* 학생 한 명의 한 차시 한 항목이 한 줄입니다. 다시 내면 그 줄을 덮어씁니다. */
+function indexKey_(sid, n, item) {
+  const num = (n === "" || n == null) ? "" : Number(n);
+  return normSid_(sid) + "|" + num + "|" + String(item || "");
+}
+
+function indexRow_(rec) {
+  return [
+    indexKey_(rec.sid, rec.n, rec.item),
+    normSid_(rec.sid),
+    (rec.n === "" || rec.n == null) ? "" : Number(rec.n),
+    String(rec.item || ""),
+    String(rec.kind || ""),
+    rec.when,
+    String(rec.body || "")
+  ];
+}
+
+function indexUpsert_(rec) {
+  if (!normSid_(rec.sid)) return;
+  const sh = indexSheet_(true);
+  const key = indexKey_(rec.sid, rec.n, rec.item);
+  const last = sh.getLastRow();
+
+  let target = 0;
+  if (last >= 2) {
+    const keys = sh.getRange(2, 1, last - 1, 1).getValues();
+    for (let i = 0; i < keys.length; i++) {
+      if (String(keys[i][0]).trim() === key) { target = i + 2; break; }
+    }
+  }
+  const row = indexRow_(rec);
+  if (target) sh.getRange(target, 1, 1, row.length).setValues([row]);
+  else sh.appendRow(row);
+}
+
+/* 색인을 한 번이라도 「다시 만들기」로 완성했는가.
+ * 이 표시가 없으면 색인이 있어도 안 믿고 예전 방식으로 읽습니다.
+ * 색인을 만들기 전에 새 제출이 들어와 한 줄만 생기면, 그것만 믿었다가
+ * 지난 제출이 전부 사라진 것처럼 보이기 때문입니다. */
+function indexReady_() {
+  return PropertiesService.getScriptProperties().getProperty("INDEX_READY") === "1";
+}
+
+/* 조회가 부르는 곳. 색인이 준비돼 있으면 시트 하나만 읽고 끝냅니다. */
 function collectSubmissions_(sid) {
+  const sh = indexSheet_(false);
+  if (indexReady_() && sh && sh.getLastRow() >= 2) {
+    const values = sh.getRange(2, 1, sh.getLastRow() - 1, INDEX_HEAD.length).getValues();
+    const out = [];
+    for (let i = 0; i < values.length; i++) {
+      const r = values[i];
+      if (normSid_(r[1]) !== sid) continue;
+      const body = cellText_(r[6]);
+      if (!body) continue;
+      out.push({
+        n: r[2] === "" ? "" : Number(r[2]),
+        item: String(r[3] || ""),
+        kind: cellText_(r[4]),
+        body: body,
+        when: formatWhen_(r[5])
+      });
+    }
+    return out;
+  }
+  return collectSubmissionsScan_(sid);   /* 색인이 아직 준비되지 않았을 때 */
+}
+
+/* 차시 시트를 전부 읽어 색인을 새로 씁니다. 처음 한 번, 그리고
+ * 차시 시트를 손으로 고친 뒤에 메뉴에서 누릅니다. */
+function 색인다시만들기() {
+  const ui = SpreadsheetApp.getUi();
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+
+  const 모두 = collectSubmissionsScan_(null);
+  const 최신 = {};
+  모두.forEach(function (r) {
+    if (!r.sid || !String(r.body || "").trim()) return;
+    최신[indexKey_(r.sid, r.n, r.item)] = r;   /* 같은 칸이 여러 번 나오면 뒤엣것 */
+  });
+
+  const rows = Object.keys(최신).map(function (k) { return indexRow_(최신[k]); });
+  rows.sort(function (a, b) {
+    return (Number(a[2]) || 0) - (Number(b[2]) || 0) || String(a[1]).localeCompare(String(b[1]));
+  });
+
+  const old = ss.getSheetByName(INDEX_SHEET);
+  if (old) ss.deleteSheet(old);
+  const sh = indexSheet_(true);
+  if (rows.length) sh.getRange(2, 1, rows.length, INDEX_HEAD.length).setValues(rows);
+  PropertiesService.getScriptProperties().setProperty("INDEX_READY", "1");
+
+  ui.alert("제출 색인을 다시 만들었습니다",
+           rows.length + "건을 담았습니다.\n" +
+           "이제 「내 제출 확인」이 차시 시트를 훑지 않고 이 시트 하나만 읽습니다.",
+           ui.ButtonSet.OK);
+}
+
+
+/* 시트를 하나씩 다 열어 보는 예전 방식. 이제는 색인을 다시 만들 때와
+ * 색인이 아직 없을 때만 씁니다. sid 를 비우면 전체 학생을 모읍니다. */
+function collectSubmissionsScan_(sid) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const out = [];
   ss.getSheets().forEach(function (sh) {
@@ -157,12 +289,14 @@ function collectSubmissions_(sid) {
     if (wide.length && map.sid != null) {
       for (let r = start; r < values.length; r++) {
         const row = values[r];
-        if (normSid_(row[map.sid]) !== sid) continue;
+        const rowSid = normSid_(row[map.sid]);
+        if (!rowSid || (sid && rowSid !== sid)) continue;
         const when = formatWhen_(row[map.when]);
         wide.forEach(function (col) {
           const body = cellText_(row[col.i]);
           if (!body) return;
           out.push({
+            sid: rowSid,
             n: lessonN != null ? lessonN : "",
             item: col.item,
             kind: col.kind,
@@ -177,13 +311,14 @@ function collectSubmissions_(sid) {
     for (let r = start; r < values.length; r++) {
       const row = values[r];
       const rowSid = sidFromRow_(row, map);
-      if (!rowSid || rowSid !== sid) continue;
+      if (!rowSid || (sid && rowSid !== sid)) continue;
       const body = cellText_(row[map.body]);
       const item = canonItem_(row[map.item], row[map.kind]);
       if (!body && !item) continue;
       const nRaw = map.n != null ? row[map.n] : "";
       const n = looksLikeLesson_(nRaw) ? Number(nRaw) : lessonN;
       out.push({
+        sid: rowSid,
         n: n == null ? "" : n,
         item: item,
         kind: cellText_(row[map.kind]),
@@ -245,6 +380,7 @@ function isRoster_(name) {
  * 「내 제출 확인」에 엉뚱한 줄이 뜬다. */
 function skipInLessonScan_(name) {
   const nm = String(name);
+  if (nm === INDEX_SHEET) return true;
   if (isRoster_(nm)) return true;
   if (/_이력$/.test(nm)) return true;
   for (const k in TASK_SHEETS) {
@@ -575,6 +711,7 @@ function onOpen() {
     .createMenu('📊 정보과제연구')
     .addItem('제출 현황 정리하기', '제출현황정리')
     .addItem('차시 시트 순서 정렬', '차시정렬')
+    .addItem('제출 색인 다시 만들기', '색인다시만들기')
     .addSeparator()
     .addItem('테스트 데이터 찾기', '테스트데이터찾기')
     .addItem('테스트 데이터 지우기', '테스트데이터지우기')
