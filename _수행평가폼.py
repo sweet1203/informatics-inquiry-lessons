@@ -85,6 +85,10 @@ T2 = [
  ]),
 ]
 
+AI_TOOL = ("AI도구", "어떤 생성형 AI를 썼나요", "text",
+           "이름만 적으면 됩니다. 예) ChatGPT · Claude · Gemini · 뤼튼. "
+           "여러 개면 다 적으세요. 쓰지 않았으면 「사용 안 함」", None)
+
 AI_FIELD = ("AI활용", "생성형 AI를 썼다면 — 무엇을 물었고, 무엇을 쓰고 무엇을 버렸나", "area",
             "이 칸은 붙여넣기가 됩니다. 주고받은 대화를 그대로 붙여 넣어도 됩니다. "
             "쓰지 않았으면 「사용 안 함」이라고 적으세요", None)
@@ -109,7 +113,7 @@ def field_html(key, label, kind, hint, opts):
     return h + '</div>\n'
 
 
-def build(task, title, sub, groups, lead):
+def build(task, title, sub, groups, lead, ai_tool=False):
     keys = []
     body = ""
     for gname, flds in groups:
@@ -118,7 +122,11 @@ def build(task, title, sub, groups, lead):
             body += field_html(*f)
             keys.append(f[0])
         body += '</div>\n'
-    body += '<div class="grp"><h4>AI 활용 기록</h4>\n' + field_html(*AI_FIELD) + '</div>\n'
+    body += '<div class="grp"><h4>AI 활용 기록</h4>\n'
+    if ai_tool:                      # 채점 기준이 「사용 도구와 활용 내용」을 함께 요구하는 경우
+        body += field_html(*AI_TOOL)
+        keys.append(AI_TOOL[0])
+    body += field_html(*AI_FIELD) + '</div>\n'
     keys.append(AI_FIELD[0])
 
     page = """<!doctype html>
@@ -353,4 +361,5 @@ build("2", "수행평가 2 제출",
       '<div class="box">📄 <b><a href="sample-plan.html" target="_blank" rel="noopener">계획서 예시</a></b> · '
       '<b><a href="answer-task2.html" target="_blank" rel="noopener">수행평가 2 안내</a></b></div>'
       '<div class="box">🎯 <b>③ 연구 질문 · ④ 데이터·장치 · ⑤ 분석 방법은 서로 맞물려야 합니다.</b><br>'
-      '④로 ③에 답할 수 있고, ⑤로 ④를 다룰 수 있어야 합니다.</div>')
+      '④로 ③에 답할 수 있고, ⑤로 ④를 다룰 수 있어야 합니다.</div>',
+      ai_tool=True)

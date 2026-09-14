@@ -158,6 +158,11 @@ padding:11px 0;display:flex;gap:9px;align-items:center;flex-wrap:wrap;z-index:5}
 </div>
 <div class="grp"><h4>AI 활용 기록</h4>
 <div class="fld">
+<label for="f_AI도구">어떤 생성형 AI를 썼나요</label>
+<p class="hint">이름만 적으면 됩니다. 예) ChatGPT · Claude · Gemini · 뤼튼. 여러 개면 다 적으세요. 쓰지 않았으면 「사용 안 함」</p>
+<input type="text" id="f_AI도구" data-k="AI도구">
+</div>
+<div class="fld">
 <label for="f_AI활용">생성형 AI를 썼다면 — 무엇을 물었고, 무엇을 쓰고 무엇을 버렸나</label>
 <p class="hint">이 칸은 붙여넣기가 됩니다. 주고받은 대화를 그대로 붙여 넣어도 됩니다. 쓰지 않았으면 「사용 안 함」이라고 적으세요</p>
 <textarea id="f_AI활용" data-k="AI활용"></textarea>
@@ -178,7 +183,7 @@ padding:11px 0;display:flex;gap:9px;align-items:center;flex-wrap:wrap;z-index:5}
 <script>
 const ENDPOINT = "https://script.google.com/macros/s/AKfycbxa1jCaEXkrPhu15jE-wYaMPx9CcaucpgJm17VYU1b6mW5XitHnzjE3zqP_Sg9Wrxgq6g/exec";
 const TASK = "2";
-const KEYS = ["①제목", "②동기", "③연구질문", "④데이터장치", "⑤방법도구", "⑥절차", "⑦예상결과", "⑧어려움", "AI활용"];
+const KEYS = ["①제목", "②동기", "③연구질문", "④데이터장치", "⑤방법도구", "⑥절차", "⑦예상결과", "⑧어려움", "AI도구", "AI활용"];
 const PASTE_OK = ["AI활용"];
 const LSBASE = "정연-수행" + TASK;
 let 차단 = 0;
