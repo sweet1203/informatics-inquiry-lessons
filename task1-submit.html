@@ -80,6 +80,7 @@ padding:11px 0;display:flex;gap:9px;align-items:center;flex-wrap:wrap;z-index:5}
 .lock{opacity:.55;pointer-events:none}
 .cnt{font-size:.82rem;color:var(--muted);text-align:right;margin:3px 0 0}
 .cnt.over{color:var(--warn)}
+.state .bad{color:#b91c1c}
 </style>
 </head><body>
 <div class="wrap">
@@ -93,6 +94,7 @@ padding:11px 0;display:flex;gap:9px;align-items:center;flex-wrap:wrap;z-index:5}
 <div class="box">📄 <b><a href="answer-task1.html" target="_blank" rel="noopener">수행평가 1 안내</a></b></div>
 <div class="box">💾 <b>학번 · 이름 · 개별 비밀번호를 먼저 넣으세요.</b> 저장·제출·불러오기에 모두 필요합니다.<br>
 <b>「임시저장」</b>을 누르면 지금까지 쓴 내용이 시트에 저장됩니다.
+오른쪽 아래에 <b>「저장 확인됨」</b>이 떠야 진짜로 들어간 것입니다. 몇 초 걸릴 수 있습니다.<br>
 다음 시간에 <b>「불러오기」</b>를 누르면 이어서 쓸 수 있습니다. 다른 컴퓨터에서도 됩니다.<br>
 <b>빈 칸은 저장해도 앞서 쓴 내용을 지우지 않습니다.</b> 정말 지우려면 그 칸에 <b>－</b> 한 글자만 넣으세요.</div>
 <div class="box">⚠️ <b>답안 칸은 붙여넣기가 막혀 있습니다.</b> 시도한 횟수가 함께 기록됩니다.<br>
@@ -365,6 +367,7 @@ function save(final) {
 }
 
 function 보내기(w, data, final) {
+  저장함 = false;   /* 서버가 받았다고 확인될 때까지는 아직 저장 안 된 것으로 봅니다 */
   try { localStorage.setItem(LSBASE + "-" + w.sid, JSON.stringify(data)); } catch (e) {}
 
   const f = document.createElement("form");
@@ -380,11 +383,39 @@ function 보내기(w, data, final) {
   document.body.appendChild(f); f.submit(); document.body.removeChild(f);
 
   const t = new Date().toLocaleString("ko-KR", { month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" });
-  if (final) 제출됨 = true;
-  저장함 = true;
   차단 = 0;        /* 서버에 누적되므로 보낸 뒤 초기화 */
   note("");
-  $("state").innerHTML = final ? ("<b>제출했습니다</b> — " + t) : ("임시저장했습니다 — " + t);
+  $("state").textContent = (final ? "제출하는 중… " : "저장하는 중… ") + t;
+  setTimeout(function () { 저장확인(data, final, t, 5); }, 3000);
+}
+
+/* ── 정말 들어갔는지 서버에 다시 물어봅니다 ──
+   POST 는 응답을 볼 수 없습니다. 이 확인이 없으면 서버가 못 받았어도
+   화면에는 「저장했습니다」가 뜹니다. 사람이 몰려 밀리는 중일 수 있으니
+   몇 번 더 물어보고 나서 실패로 봅니다. */
+function 저장확인(data, final, t, 남은시도) {
+  $("state").textContent = (final ? "제출 확인 중… " : "저장 확인 중… ") + t;
+  서버에묻기(function (r) {
+    const 다시 = function (까닭) {
+      if (남은시도 > 0) { setTimeout(function () { 저장확인(data, final, t, 남은시도 - 1); }, 8000); return; }
+      저장함 = false;
+      $("state").innerHTML = '<b class="bad">' + 까닭 + '</b> — 한 번 더 눌러 주세요';
+    };
+    if (!r || !r.ok) { 다시("저장을 확인하지 못했습니다"); return; }
+
+    const 서버 = r.fields || {};
+    const 안맞는칸 = KEYS.filter(function (k) {
+      const v = String(data[k] == null ? "" : data[k]).trim();
+      if (!v || v === "－") return false;
+      return String(서버[k] == null ? "" : 서버[k]).trim() !== v;
+    });
+    if (안맞는칸.length) { 다시("저장이 덜 됐습니다 (" + 안맞는칸.length + "칸)"); return; }
+
+    저장함 = true;
+    제출됨 = (r.status === "제출");
+    $("state").innerHTML = (final ? "<b>제출 확인됨</b> — " : "<b>저장 확인됨</b> — ")
+      + t + (r.when ? " <span style='font-weight:400'>(서버 " + r.when + ")</span>" : "");
+  });
 }
 
 /* ── 이 기기에 남은 것 되살리기 ──

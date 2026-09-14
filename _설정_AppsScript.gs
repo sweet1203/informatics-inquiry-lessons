@@ -16,7 +16,14 @@ const FAIL_MINUTES = 10;
 
 function doPost(e) {
   const lock = LockService.getScriptLock();
-  lock.waitLock(15000);
+  /* 25명이 한꺼번에 눌러도 뒤쪽 학생이 밀려나지 않게 넉넉히 기다립니다.
+   * 예전에는 15초였고 try 밖에 있어, 넘치면 doPost 가 그대로 죽었습니다.
+   * 폼은 POST 응답을 볼 수 없으므로 학생 화면에는 저장된 것처럼 보였습니다. */
+  try {
+    lock.waitLock(45000);
+  } catch (err) {
+    return ContentService.createTextOutput("busy");
+  }
   try {
     const p = (e && e.parameter) || {};
     if (p.task) {
