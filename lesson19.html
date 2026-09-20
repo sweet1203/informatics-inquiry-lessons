@@ -98,6 +98,19 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <tr><td>② 동기</td><td>왜 시작했는지</td><td>지금 어떤 틈이 있고, 무엇이 좋아지길 바라나?</td></tr>
 <tr><td>③ 연구 질문</td><td>답해야 할 한 문장</td><td>데이터로 답할 수 있나?</td></tr></table>
 
+<h3>② 동기에는 읽은 연구가 들어갑니다</h3>
+<p>동기는 내 불편만 적는 칸이 아닙니다. 지난 시간에
+<b>“왜 이 주제를 골랐나”</b>를 읽은 연구와 연결지어 썼습니다. 그 내용이 동기의 뒷받침이 됩니다.</p>
+
+<table><tr><th>동기에 들어갈 것</th><th>예</th></tr>
+<tr><td>지금은 어떤가</td><td>5교시에 교실이 덥고 답답한데, 실제로 몇 도인지 재본 적이 없다</td></tr>
+<tr><td>무엇이 되면 좋겠나</td><td>교시별 온도를 알면 언제 환기할지 정할 수 있다</td></tr>
+<tr><td><b>읽은 연구가 준 것</b></td><td>읽은 연구가 “혼잡”을 “시간대별 승하차 인원”으로 바꿔 잰 것을 보고,
+나도 “답답함”을 온도와 습도로 바꿔 재기로 했다</td></tr></table>
+
+<p>읽은 연구를 <b>따라 가도 되고 반대로 가도 됩니다.</b>
+읽은 것이 내 결정에 영향을 줬다는 게 보이면 됩니다.</p>
+
 <h3>좋은 흐름은 이렇게 이어집니다</h3>
 <table><tr><th></th><th>예시</th></tr>
 <tr><td><b>동기</b></td><td>5교시에 교실이 덥고 답답한데, 실제로 몇 도인지 재본 적이 없다</td></tr>
@@ -129,7 +142,8 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <section>
   <h2>✍️ 생각 나누기</h2>
   <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
-  <div class="f" style="margin-top:12px"><label for="생각나누기0">내 제목·동기·연구 질문 중 서로 가장 안 맞는 부분은 어디라고 생각하나요?</label><textarea id="생각나누기0" placeholder="예) 제목은 환기 시점인데 연구 질문은 교시별 온도라서, 제목을 교시별 변화 분석으로 바꿔야 할 것 같다"></textarea></div>
+  <div class="f" style="margin-top:12px"><label for="생각나누기0">내 제목만 읽고 어떤 연구일 것 같은지, 내 연구 질문만 읽고 어떤 연구일 것 같은지 각각 한 줄로 써 보세요.</label><textarea id="생각나누기0" placeholder="제목을 읽으면: 교실 환기 시점을 정하는 연구 같다
+질문을 읽으면: 교시별 온도를 재는 연구 같다"></textarea></div><div class="f" style="margin-top:12px"><label for="생각나누기1">위 두 줄이 다르다면 어느 쪽을 고칠 건가요? 고친 문장을 적어 주세요. 같으면 「같음」이라고 적어 주세요.</label><textarea id="생각나누기1" placeholder="예) 제목을 「교실 온습도 측정을 통한 교시별 환경 변화 분석」으로 바꾼다"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
 </section>
@@ -146,7 +160,9 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
   <p class="lead">계획서 ① 제목, ② 연구 동기, ③ 연구 질문을 다듬습니다.</p>
-  <div class="f" style="margin-top:12px"><label for="프로젝트0">① 연구 제목을 다시 써 주세요.</label><textarea id="프로젝트0" placeholder="예) 조도 센서를 활용한 교실 위치별 밝기 비교"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">② 연구 동기를 두 문장으로 써 주세요. 지금은 / 되면 좋겠다 형식이면 됩니다.</label><textarea id="프로젝트1" placeholder="지금은 창가와 복도 쪽 밝기가 다르게 느껴진다. 위치별 조도 차이를 알면 조명 사용을 더 합리적으로 할 수 있으면 좋겠다."></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">③ 연구 질문을 한 문장으로 써 주세요.</label><textarea id="프로젝트2" placeholder="예) 교실 위치에 따라 조도는 얼마나 차이 날까?"></textarea></div>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">① 연구 제목을 다시 써 주세요.</label><textarea id="프로젝트0" placeholder="예) 조도 센서를 활용한 교실 위치별 밝기 비교"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">② 연구 동기를 써 주세요. 「지금은 / 되면 좋겠다」 두 문장에, 읽은 연구가 준 것 한 문장을 더합니다.</label><textarea id="프로젝트1" placeholder="지금은 창가와 복도 쪽 밝기가 다르게 느껴지는데 재본 적이 없다.
+위치별 조도 차이를 알면 조명을 어디부터 켤지 정할 수 있다.
+읽은 연구가 밝기를 조도 값으로 바꿔 잰 것을 보고, 나도 「밝다·어둡다」를 숫자로 바꾸기로 했다."></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">③ 연구 질문을 한 문장으로 써 주세요.</label><textarea id="프로젝트2" placeholder="예) 교실 위치에 따라 조도는 얼마나 차이 날까?"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>
 </section>
@@ -169,8 +185,8 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <iframe name="sink" style="display:none" title="hidden"></iframe>
 
 <script>
-const OPEN = [{"q": "내 제목·동기·연구 질문 중 서로 가장 안 맞는 부분은 어디라고 생각하나요?"}];
-const PROJ = [{"q": "① 연구 제목을 다시 써 주세요."}, {"q": "② 연구 동기를 두 문장으로 써 주세요. 지금은 / 되면 좋겠다 형식이면 됩니다."}, {"q": "③ 연구 질문을 한 문장으로 써 주세요."}];
+const OPEN = [{"q": "내 제목만 읽고 어떤 연구일 것 같은지, 내 연구 질문만 읽고 어떤 연구일 것 같은지 각각 한 줄로 써 보세요."}, {"q": "위 두 줄이 다르다면 어느 쪽을 고칠 건가요? 고친 문장을 적어 주세요. 같으면 「같음」이라고 적어 주세요."}];
+const PROJ = [{"q": "① 연구 제목을 다시 써 주세요."}, {"q": "② 연구 동기를 써 주세요. 「지금은 / 되면 좋겠다」 두 문장에, 읽은 연구가 준 것 한 문장을 더합니다."}, {"q": "③ 연구 질문을 한 문장으로 써 주세요."}];
 const QUIZ = [{"a": 0, "why": "세 칸이 같은 방향을 봐야 합니다. 읽었을 때 서로 다른 연구처럼 느껴지면 고쳐야 해요."}, {"a": 1, "why": "무엇을 잴지(조도), 어디서 비교할지(교실 위치)가 분명합니다."}, {"a": 1, "why": "직접 확인할 수 있는 크기로 좁혀야 연구가 끝까지 갑니다."}];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
