@@ -113,6 +113,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <tr><td><b>데이터 분석</b></td><td>인구 소멸 위기 지역 분석</td><td>KOSIS에서 받은 인구 자료로 지수를 계산한다</td></tr>
 <tr><td><b>알고리즘</b></td><td>조 추첨 · 최단 경로 산출</td><td>입력, 처리 절차, 결과 출력 방법을 밝힌다</td></tr>
 <tr><td><b>피지컬 컴퓨팅</b></td><td>미세 먼지 알리미</td><td>센서, 측정 위치, 측정 주기, 기록 방법을 밝힌다</td></tr>
+<tr><td><b>프로그램·AI</b></td><td>분리배출 이미지 분류</td><td>학습 자료 수, 분류 기준, 정확도 확인 방법을 밝힌다</td></tr>
 <tr><td><b>로봇·제작</b></td><td>자율 주차 기능 구현</td><td>재료, 역할, 테스트 환경을 밝힌다</td></tr></table>
 
 <p>즉 계획서는 <b>멋진 말</b>보다 <b>따라 할 수 있는 말</b>이 중요합니다.</p>
@@ -149,7 +150,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
   <p class="lead">각 차시에서 이미 쓴 내용을 계획서 양식으로 옮길 준비를 합니다.</p>
-  <div class="f" style="margin-top:12px"><label for="프로젝트0">내 계획서에서 지금 가장 확실한 칸 2개와 가장 불안한 칸 1개를 적어 주세요.</label><textarea id="프로젝트0" placeholder="확실한 칸: ① 제목, ③ 연구 질문 / 불안한 칸: ④ 데이터·장치 — 아직 파일을 못 받았다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">내 연구 방식은 어느 쪽에 가장 가깝나요? (데이터 분석 / 알고리즘 / 피지컬 컴퓨팅 / 프로그램·AI / 제작)</label><textarea id="프로젝트1" placeholder="예) 피지컬 컴퓨팅 — 센서로 직접 데이터를 만들기 때문이다"></textarea></div>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">내 계획서에서 지금 가장 확실한 칸 2개와 가장 불안한 칸 1개를 적어 주세요.</label><textarea id="프로젝트0" placeholder="확실한 칸: ① 제목, ③ 연구 질문 / 불안한 칸: ④ 데이터·장치 — 아직 파일을 못 받았다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">내 연구 방식은 어느 쪽에 가장 가깝나요? (데이터 분석 / 알고리즘 / 피지컬 컴퓨팅 / 프로그램·AI / 로봇·제작)</label><textarea id="프로젝트1" placeholder="예) 피지컬 컴퓨팅 — 센서로 직접 데이터를 만들기 때문이다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>
 </section>
@@ -173,7 +174,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <script>
 const OPEN = [{"q": "오늘 계획서 여덟 칸을 보면서 가장 막힐 것 같은 칸은 어디인가요? 이유도 함께 써 주세요."}];
-const PROJ = [{"q": "내 계획서에서 지금 가장 확실한 칸 2개와 가장 불안한 칸 1개를 적어 주세요."}, {"q": "내 연구 방식은 어느 쪽에 가장 가깝나요? (데이터 분석 / 알고리즘 / 피지컬 컴퓨팅 / 프로그램·AI / 제작)"}];
+const PROJ = [{"q": "내 계획서에서 지금 가장 확실한 칸 2개와 가장 불안한 칸 1개를 적어 주세요."}, {"q": "내 연구 방식은 어느 쪽에 가장 가깝나요? (데이터 분석 / 알고리즘 / 피지컬 컴퓨팅 / 프로그램·AI / 로봇·제작)"}];
 const QUIZ = [{"a": 0, "why": "계획서는 주제·목표·예상 결과를 미리 정리하고, 나중에 보고서의 초안이 됩니다. (교과서 36쪽)"}, {"a": 0, "why": "센서로 직접 데이터를 만드는 연구는 무엇으로, 어디서, 얼마나 자주 재는지가 드러나야 재현할 수 있습니다."}, {"a": 1, "why": "연구는 다시 확인할 수 있어야 믿을 만합니다. 그래서 구체성이 중요합니다."}];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
