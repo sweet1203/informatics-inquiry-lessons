@@ -122,13 +122,38 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <div class="box">⭐ <b>계획서의 기준은 하나입니다.</b><br>
 이 글만 읽고 다른 사람이 내 연구를 비슷하게 다시 해볼 수 있는가?</div>
 
+<h3>읽는 사람이 확인하는 네 가지</h3>
+<table><tr><th>확인</th><th>무슨 뜻인가</th></tr>
+<tr><td>여덟 칸이 <b>다 있다</b></td><td>비어 있는 칸이 없다</td></tr>
+<tr><td><b>③ ④ ⑤가 맞물린다</b></td><td>④로 ③에 답할 수 있고, ⑤로 ④를 다룰 수 있다</td></tr>
+<tr><td>⑦이 <b>③에 답하는 모양</b>이다</td><td>③이 “몇 교시에 가장 더울까”면 ⑦은 “아마 5~6교시일 것이다”</td></tr>
+<tr><td>⑧에 <b>대비가 붙어 있다</b></td><td>어려움마다 “그러면 무엇을 하겠다”가 함께 있다</td></tr></table>
+
+<h3>덜 된 계획서</h3>
+<p>여덟 칸을 다 채웠는데도 계획서가 안 되는 경우가 있습니다.</p>
+
+<table><tr><th>칸</th><th>쓴 내용</th></tr>
+<tr><td>①</td><td>교실 환경 연구</td></tr>
+<tr><td>②</td><td>교실이 답답해서 알아보고 싶다</td></tr>
+<tr><td>③</td><td>교실 환경은 어떨까?</td></tr>
+<tr><td>④</td><td>온습도 센서</td></tr>
+<tr><td>⑤</td><td>측정해서 분석한다</td></tr>
+<tr><td>⑥</td><td>측정하고 정리한다</td></tr>
+<tr><td>⑦</td><td>좋은 결과가 나올 것이다</td></tr>
+<tr><td>⑧</td><td>없음</td></tr></table>
+
+<p>여덟 칸이 다 있으니 첫 번째 확인은 통과합니다. 나머지 셋은 통과하지 못합니다.
+③이 무엇과 무엇을 견주는지 밝히지 않아 ④⑤가 무엇을 해야 할지 정해지지 않고,
+⑦은 맞았는지 틀렸는지 판단할 수 없으며, ⑧에는 대비할 것이 없습니다.</p>
+
 
 </section>
 
 <section>
   <h2>✍️ 생각 나누기</h2>
   <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
-  <div class="f" style="margin-top:12px"><label for="생각나누기0">오늘 계획서 여덟 칸을 보면서 가장 막힐 것 같은 칸은 어디인가요? 이유도 함께 써 주세요.</label><textarea id="생각나누기0" placeholder="예) ⑤ 방법과 도구가 어렵다. 센서 이름은 알지만 몇 분마다 재야 할지 아직 못 정했다"></textarea></div>
+  <div class="f" style="margin-top:12px"><label for="생각나누기0">덜 된 계획서의 ③ 연구 질문을 답할 수 있는 한 문장으로 고쳐 써 주세요.</label><textarea id="생각나누기0" placeholder="예) 우리 교실은 몇 교시에 가장 덥고 습할까?"></textarea></div><div class="f" style="margin-top:12px"><label for="생각나누기1">같은 계획서의 ⑤와 ⑥을 고쳐 써 주세요. ⑤에는 도구와 다루는 방법을, ⑥에는 할 일 순서를 넣습니다.</label><textarea id="생각나누기1" placeholder="⑤ 교실 뒤 같은 자리에 센서를 두고 1분마다 기록해 교시별 평균을 낸다
+⑥ 1 센서 연결·자리 고정 → 2 사흘간 측정 → 3 교시별로 나누기 → 4 평균과 그래프"></textarea></div>
   <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
     <span class="msg" id="msg-생각나누기"></span></div>
 </section>
@@ -144,8 +169,11 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">각 차시에서 이미 쓴 내용을 계획서 양식으로 옮길 준비를 합니다.</p>
-  <div class="f" style="margin-top:12px"><label for="프로젝트0">내 계획서에서 지금 가장 확실한 칸 2개와 가장 불안한 칸 1개를 적어 주세요.</label><textarea id="프로젝트0" placeholder="확실한 칸: ① 제목, ③ 연구 질문 / 불안한 칸: ④ 데이터·장치 — 아직 파일을 못 받았다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">내 연구 방식은 어느 쪽에 가장 가깝나요? (데이터 분석 / 알고리즘 / 피지컬 컴퓨팅 / 프로그램·AI / 로봇·제작)</label><textarea id="프로젝트1" placeholder="예) 피지컬 컴퓨팅 — 센서로 직접 데이터를 만들기 때문이다"></textarea></div>
+  <p class="lead">여기까지 각 차시에서 쓴 것을 모아 ③ ④ ⑤가 맞물리는지 봅니다.</p>
+  <div class="f" style="margin-top:12px"><label for="프로젝트0">내 ③ 연구 질문 · ④ 데이터·장치 · ⑤ 방법을 한 줄씩 옮겨 적어 주세요.</label><textarea id="프로젝트0" placeholder="③ 우리 반은 몇 교시에 가장 시끄러울까?
+④ 사운드 센서로 잰 교시별 소음 값
+⑤ 교시별 평균을 내어 막대그래프로 비교"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">④로 ③에 답할 수 있나요? ⑤로 ④를 다룰 수 있나요? 각각 O/X 와 그 까닭을 한 줄씩 적어 주세요.</label><textarea id="프로젝트1" placeholder="④로 ③에 답할 수 있나: O — 교시별로 나뉜 값이라 교시끼리 견줄 수 있다
+⑤로 ④를 다룰 수 있나: X — 평균만으로는 순간적으로 튄 값을 설명 못 한다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">위에서 X 가 나온 곳을 어떻게 고칠 건가요? 없으면 「없음」이라고 적어 주세요.</label><textarea id="프로젝트2" placeholder="예) 평균과 함께 최댓값도 내서, 시끄러운 순간이 있었는지 같이 본다"></textarea></div>
   <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
     <span class="msg" id="msg-프로젝트"></span></div>
 </section>
@@ -168,8 +196,8 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <iframe name="sink" style="display:none" title="hidden"></iframe>
 
 <script>
-const OPEN = [{"q": "오늘 계획서 여덟 칸을 보면서 가장 막힐 것 같은 칸은 어디인가요? 이유도 함께 써 주세요."}];
-const PROJ = [{"q": "내 계획서에서 지금 가장 확실한 칸 2개와 가장 불안한 칸 1개를 적어 주세요."}, {"q": "내 연구 방식은 어느 쪽에 가장 가깝나요? (데이터 분석 / 알고리즘 / 피지컬 컴퓨팅 / 프로그램·AI / 로봇·제작)"}];
+const OPEN = [{"q": "덜 된 계획서의 ③ 연구 질문을 답할 수 있는 한 문장으로 고쳐 써 주세요."}, {"q": "같은 계획서의 ⑤와 ⑥을 고쳐 써 주세요. ⑤에는 도구와 다루는 방법을, ⑥에는 할 일 순서를 넣습니다."}];
+const PROJ = [{"q": "내 ③ 연구 질문 · ④ 데이터·장치 · ⑤ 방법을 한 줄씩 옮겨 적어 주세요."}, {"q": "④로 ③에 답할 수 있나요? ⑤로 ④를 다룰 수 있나요? 각각 O/X 와 그 까닭을 한 줄씩 적어 주세요."}, {"q": "위에서 X 가 나온 곳을 어떻게 고칠 건가요? 없으면 「없음」이라고 적어 주세요."}];
 const QUIZ = [{"a": 0, "why": "계획서는 주제·목표·예상 결과를 미리 정리하고, 나중에 보고서의 초안이 됩니다. (교과서 36쪽)"}, {"a": 0, "why": "센서로 직접 데이터를 만드는 연구는 무엇으로, 어디서, 얼마나 자주 재는지가 드러나야 재현할 수 있습니다."}, {"a": 1, "why": "연구는 다시 확인할 수 있어야 믿을 만합니다. 그래서 구체성이 중요합니다."}];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
