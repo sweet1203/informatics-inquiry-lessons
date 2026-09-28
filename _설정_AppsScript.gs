@@ -714,7 +714,8 @@ function onOpen() {
     .addItem('제출 색인 다시 만들기', '색인다시만들기')
     .addSeparator()
     .addItem('테스트 데이터 찾기', '테스트데이터찾기')
-    .addItem('테스트 데이터 지우기', '테스트데이터지우기')
+    .addItem('테스트 데이터 지우기 — 39999 만', '테스트데이터지우기_39999')
+    .addItem('테스트 데이터 지우기 — 전부 (12345 포함)', '테스트데이터지우기')
     .addToUi();
 }
 
@@ -868,12 +869,17 @@ const 테스트시트 = ["999차시"];
 function 테스트데이터찾기() { 테스트정리_(false); }
 function 테스트데이터지우기() { 테스트정리_(true); }
 
-function 테스트정리_(지울까) {
+/* 채점이 끝나기 전에는 점검용 계정 12345 의 답안을 남겨 둡니다.
+ * 수업 중 만들어진 39999 만 먼저 치우는 용도입니다. */
+function 테스트데이터지우기_39999() { 테스트정리_(true, ["39999"]); }
+
+function 테스트정리_(지울까, 학번들) {
+  const 대상학번 = 학번들 || 테스트학번들;
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const 보고 = [];
 
-  /* 1) 통째로 지울 시트 */
-  테스트시트.forEach(function (nm) {
+  /* 1) 통째로 지울 시트 — 학번을 따로 지정한 경우에는 건드리지 않습니다 */
+  (학번들 ? [] : 테스트시트).forEach(function (nm) {
     const sh = ss.getSheetByName(nm);
     if (!sh) return;
     보고.push("시트 「" + nm + "」 — 내용 " + Math.max(sh.getLastRow() - 1, 0) + "행"
@@ -885,6 +891,9 @@ function 테스트정리_(지울까) {
   ss.getSheets().forEach(function (sh) {
     const nm = sh.getName();
     if (테스트시트.indexOf(nm) !== -1) return;
+    /* 명단은 건드리지 않습니다. 점검용 계정 12345 의 명단 행까지 지워지면
+     * 앞으로 아무것도 점검할 수 없게 됩니다. */
+    if (isRoster_(nm)) { 보고.push("「" + nm + "」 — 명단이므로 건너뜀"); return; }
     const last = sh.getLastRow();
     const lastCol = sh.getLastColumn();
     if (last < 2 || lastCol < 1) return;
@@ -897,7 +906,7 @@ function 테스트정리_(지울까) {
     const vals = sh.getRange(2, col + 1, last - 1, 1).getValues();
     const 행들 = [];
     for (let i = 0; i < vals.length; i++) {
-      if (테스트학번들.indexOf(normSid_(vals[i][0])) !== -1) 행들.push(i + 2);
+      if (대상학번.indexOf(normSid_(vals[i][0])) !== -1) 행들.push(i + 2);
     }
     if (!행들.length) return;
 
@@ -910,6 +919,6 @@ function 테스트정리_(지울까) {
   const ui = SpreadsheetApp.getUi();
   ui.alert(지울까 ? "테스트 데이터를 지웠습니다" : "지워질 것 — 아직 아무것도 안 지웠습니다",
            보고.length ? 보고.join("\n")
-                       : "테스트 학번(" + 테스트학번들.join(" · ") + ")도, 검증용 시트도 없습니다. 이미 깨끗합니다.",
+                       : "테스트 학번(" + 대상학번.join(" · ") + ")도, 검증용 시트도 없습니다. 이미 깨끗합니다.",
            ui.ButtonSet.OK);
 }
