@@ -143,14 +143,6 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
     <span class="msg" id="msg-생각나누기"></span></div>
 </section>
 
-<section>
-  <h2>✅ 확인 퀴즈</h2>
-  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
-  <div class="q"><div class="qt">1. 계획서 제출 전 가장 중요하게 확인할 연결은?</div><label class="opt"><input type="radio" name="q0" value="0">③ 질문 ↔ ④ 데이터·장치 ↔ ⑤ 방법·도구</label><label class="opt"><input type="radio" name="q0" value="1">① 제목 ↔ ② 연구 동기 ↔ ③ 연구 질문</label><label class="opt"><input type="radio" name="q0" value="2">② 연구 동기 ↔ ⑥ 연구 절차 ↔ ⑧ 어려움</label><label class="opt"><input type="radio" name="q0" value="3">⑤ 방법·도구 ↔ ⑥ 연구 절차 ↔ ⑦ 예상 결과</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 수행평가 2는 무엇을 어디로 내나요?</div><label class="opt"><input type="radio" name="q1" value="0">계획서는 제출 폼 · 발표 자료는 리로스쿨</label><label class="opt"><input type="radio" name="q1" value="1">둘 다 제출 폼</label><label class="opt"><input type="radio" name="q1" value="2">둘 다 리로스쿨</label><label class="opt"><input type="radio" name="q1" value="3">계획서는 리로스쿨 · 발표 자료는 제출 폼</label><div class="fb" id="fb1"></div></div>
-  <div class="row"><button onclick="grade()">채점하기</button>
-    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
-  <div class="score" id="score"></div>
-</section>
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
@@ -180,7 +172,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <script>
 const OPEN = [{"q": "여덟 칸 중 오늘 채운 칸은 무엇인가요? 무엇을 적었나요?"}, {"q": "계획서를 완성하면서 가장 많이 바뀐 부분은 무엇인가요? 왜 바뀌었나요?"}];
 const PROJ = [{"q": "내 연구를 한 문장으로 써 주세요. 나는 이 질문에 답하기 위해, 이 자료를 가지고, 이 방법으로 확인하겠다."}, {"q": "제출 전 반드시 고친 것 1가지를 적어 주세요."}];
-const QUIZ = [{"a": 0, "why": "다른 조합도 맞물리면 좋지만, 등급을 가르는 것은 ③④⑤입니다. 질문에 답할 데이터가 있고 그 데이터를 다룰 방법이 있어야 연구가 성립합니다."}, {"a": 0, "why": "계획서는 폼에서 불러오기·저장·제출을 하고, 발표 자료는 PDF 파일이므로 리로스쿨에 첨부합니다."}];
+const QUIZ = [];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
 const MEM={}; let OK=true;
