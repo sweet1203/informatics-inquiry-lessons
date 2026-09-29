@@ -96,6 +96,35 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <tr><td>②</td><td><b>연구 질문</b> — 무엇을 알아보려는가</td><td>답할 수 있는 한 문장인가</td></tr>
 <tr><td>③</td><td><b>무엇으로 어떻게</b> — 데이터·장치와 방법</td><td>따라 할 수 있을 만큼 구체적인가</td></tr>
 <tr><td>④</td><td><b>예상 결과</b> — 아마 ( ) 일 것이다<br>+ <b>예상 질문 두 개의 답과 근거</b></td><td>숫자나 방향이 있나<br>답과 근거가 내 계획에서 나왔나</td></tr></table>
+<h3>예시 — 교과서 「생체 전기」 연구로 만든 넉 장</h3>
+<p>교과서 <b>40~41쪽 연구 계획서 예시</b>와 <b>42~43쪽 변인</b>을 슬라이드로 옮긴 것입니다. <span class="book">교과서 40~43쪽</span></p>
+
+<div class="box" style="border-left:5px solid var(--accent)"><b>① 표지</b><br><br>
+<b style="font-size:1.12rem">금속에 따라 생체 전기는 얼마나 다를까</b><br>
+3학년 1반 12번 홍길동</div>
+
+<div class="box" style="border-left:5px solid var(--accent)"><b>② 연구 질문</b><br><br>
+생체 센서에 <b>동판 · 은판 · 알루미늄판</b>을 각각 붙이면<br>
+전기 신호 값이 <b>얼마나 다를까?</b></div>
+
+<div class="box" style="border-left:5px solid var(--accent)"><b>③ 무엇으로 어떻게</b><br><br>
+생체 센서 하나에 금속판 세 가지를 번갈아 붙입니다<br>
+측정하는 사람은 <b>한 명으로 고정</b>하고 <b>금속만 바꿉니다</b><br>
+금속마다 <b>열 번씩</b> 재서 <b>평균</b>을 내고 막대그래프로 견줍니다</div>
+
+<div class="box" style="border-left:5px solid var(--accent)"><b>④ 예상 결과 + 예상 질문 두 개의 답</b><br><br>
+아마 <b>은판이 알루미늄판보다 신호가 클 것</b>입니다<br><br>
+<b>「그 장치로 그 질문에 답이 나옵니까?」</b><br>
+질문이 「얼마나 다른가」라서 금속별 평균을 견주면 답이 나옵니다<br><br>
+<b>「장치가 안 되면 어떻게 할 겁니까?」</b><br>
+센서 값이 흔들리면 측정을 스무 번으로 늘려 평균을 씁니다</div>
+
+<p>③이 이렇게 쓰인 까닭은 교과서 42~43쪽의 <b>변인 세 가지</b>를 나눠 두었기 때문입니다.</p>
+<table><tr><th>변인</th><th>이 연구에서</th></tr>
+<tr><td><b>바꾸는 것</b> <span class="book">독립 변인</span></td><td>센서에 붙이는 금속 — 동판 · 은판 · 알루미늄판</td></tr>
+<tr><td><b>똑같이 두는 것</b> <span class="book">통제 변인</span></td><td>측정 대상을 한 사람으로 고정</td></tr>
+<tr><td><b>재는 것</b> <span class="book">종속 변인</span></td><td>금속에 따라 달라지는 생체 전기 값</td></tr></table>
+
 <h3>계획서를 그대로 옮기면 안 됩니다</h3>
 <p><b>같은 내용을 내 말로 다시 씁니다.</b></p>
 <table><tr><th>계획서 문장</th><th>슬라이드 문장</th></tr>
@@ -143,25 +172,6 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 </section>
 
 <section>
-  <h2>✍️ 생각 나누기</h2>
-  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
-  <div class="f" style="margin-top:12px"><label for="생각나누기0">계획서 문장 하나를 골라 슬라이드에 넣을 말로 바꿔 써 보세요. 바꾸기 전과 후를 함께 적어 주세요.</label><textarea id="생각나누기0" placeholder="전) 교실 온습도 측정을 통한 교시별 환경 변화 분석
-후) 5교시가 정말 제일 더울까?"></textarea></div><div class="f" style="margin-top:12px"><label for="생각나누기1">다섯 질문 중 가장 답하기 어려운 것은 몇 번이고, 왜 그런가요?</label><textarea id="생각나누기1" placeholder="예) 3번. 예상 결과를 정하긴 했는데 왜 그렇게 볼 수 있는지는 생각해 본 적이 없다"></textarea></div>
-  <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
-    <span class="msg" id="msg-생각나누기"></span></div>
-</section>
-
-
-<section>
-  <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">슬라이드에 넣을 문장을 정리합니다.</p>
-  <div class="f" style="margin-top:12px"><label for="프로젝트0">② 연구 질문 — 슬라이드에 넣을 한 문장을 적어 주세요.</label><textarea id="프로젝트0" placeholder="예) 5교시가 정말 제일 더울까?"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">③ 무엇으로 어떻게 — 슬라이드에 넣을 말로 적어 주세요.</label><textarea id="프로젝트1" placeholder="예) 센서를 교실 뒤에 두고 사흘간 1분마다 잽니다. 교시별로 평균을 내어 견줍니다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트2">④ 예상 결과 — 「아마 ( ) 일 것이다」로 적어 주세요.</label><textarea id="프로젝트2" placeholder="예) 아마 5~6교시가 1교시보다 3℃쯤 높을 것이다"></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트3">다섯 질문 중 내 계획에 맞는 두 개를 골라, 답과 근거를 적어 주세요.</label><textarea id="프로젝트3" placeholder="1번) 교시별로 나뉜 값이라 교시끼리 견줄 수 있습니다
-3번) 읽은 연구에서도 오후에 실내 온도가 높게 나왔습니다"></textarea></div>
-  <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
-    <span class="msg" id="msg-프로젝트"></span></div>
-</section>
-
-<section>
   <h2>📋 내가 낸 것</h2>
   <div class="row">
     <button class="ghost" onclick="showLog()">보기</button>
@@ -179,8 +189,8 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <iframe name="sink" style="display:none" title="hidden"></iframe>
 
 <script>
-const OPEN = [{"q": "계획서 문장 하나를 골라 슬라이드에 넣을 말로 바꿔 써 보세요. 바꾸기 전과 후를 함께 적어 주세요."}, {"q": "다섯 질문 중 가장 답하기 어려운 것은 몇 번이고, 왜 그런가요?"}];
-const PROJ = [{"q": "② 연구 질문 — 슬라이드에 넣을 한 문장을 적어 주세요."}, {"q": "③ 무엇으로 어떻게 — 슬라이드에 넣을 말로 적어 주세요."}, {"q": "④ 예상 결과 — 「아마 ( ) 일 것이다」로 적어 주세요."}, {"q": "다섯 질문 중 내 계획에 맞는 두 개를 골라, 답과 근거를 적어 주세요."}];
+const OPEN = [];
+const PROJ = [];
 const QUIZ = [];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */

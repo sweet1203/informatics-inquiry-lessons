@@ -93,24 +93,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
   {learn}
 </section>
 
-<section>
-  <h2>✍️ 생각 나누기</h2>
-  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
-  {open_fields}
-  <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
-    <span class="msg" id="msg-생각나누기"></span></div>
-</section>
-
-{quiz_section}
-<section>
-  <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">{project_lead}</p>
-  {proj_fields}
-  <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
-    <span class="msg" id="msg-프로젝트"></span></div>
-</section>
-
-<section>
+{open_section}{quiz_section}{proj_section}<section>
   <h2>📋 내가 낸 것</h2>
   <div class="row">
     <button class="ghost" onclick="showLog()">보기</button>
@@ -285,7 +268,7 @@ def check(L):
     """평문 전용 칸에 HTML 태그가 섞이면 잡아냅니다."""
     bad = []
     for key in ("open", "proj"):
-        for i, f in enumerate(L.get(key, [])):
+        for i, f in enumerate(L.get(key) or []):
             for sub in ("q", "ph"):
                 if "<" in str(f.get(sub, "")):
                     bad.append(f'{L["n"]}차시 {key}[{i}].{sub}')
@@ -302,11 +285,11 @@ def build(L):
     open_fields = "".join(
         f'<div class="f" style="margin-top:12px"><label for="생각나누기{i}">{html.escape(f["q"])}</label>'
         f'<textarea id="생각나누기{i}" placeholder="{html.escape(f.get("ph",""))}"></textarea></div>'
-        for i, f in enumerate(L["open"]))
+        for i, f in enumerate(L.get("open") or []))
     proj_fields = "".join(
         f'<div class="f" style="margin-top:12px"><label for="프로젝트{i}">{html.escape(f["q"])}</label>'
         f'<textarea id="프로젝트{i}" placeholder="{html.escape(f.get("ph",""))}"></textarea></div>'
-        for i, f in enumerate(L["proj"]))
+        for i, f in enumerate(L.get("proj") or []))
     quiz = ""
     for i, q in enumerate(L.get("quiz") or []):
         opts = "".join(
@@ -314,6 +297,22 @@ def build(L):
             for j, o in enumerate(q["o"]))
         quiz += (f'<div class="q"><div class="qt">{i+1}. {q["q"]}</div>'
                  f'{opts}<div class="fb" id="fb{i}"></div></div>')
+    open_section = "" if not open_fields else (
+        '<section>\n'
+        '  <h2>✍️ 생각 나누기</h2>\n'
+        '  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>\n'
+        f'  {open_fields}\n'
+        '  <div class="row"><button onclick="submitBlock(\'생각나누기\')">제출</button>\n'
+        '    <span class="msg" id="msg-생각나누기"></span></div>\n'
+        '</section>\n\n')
+    proj_section = "" if not proj_fields else (
+        '<section>\n'
+        '  <h2>🔬 내 연구로 가져오기</h2>\n'
+        f'  <p class="lead">{L.get("project_lead","")}</p>\n'
+        f'  {proj_fields}\n'
+        '  <div class="row"><button onclick="submitBlock(\'프로젝트\')">제출</button>\n'
+        '    <span class="msg" id="msg-프로젝트"></span></div>\n'
+        '</section>\n\n')
     quiz_section = "" if not quiz else (
         '<section>\n'
         '  <h2>✅ 확인 퀴즈</h2>\n'
@@ -322,15 +321,14 @@ def build(L):
         '  <div class="row"><button onclick="grade()">채점하기</button>\n'
         '    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>\n'
         '  <div class="score" id="score"></div>\n'
-        '</section>\n')
+        '</section>\n\n')
     strip = lambda ds: [{k: v for k, v in d.items() if k in ("q",)} for d in ds]
     return TPL.format(
         n=L["n"], title=html.escape(L["title"]), subtitle=html.escape(L["subtitle"]),
         booknote=html.escape(L["booknote"]), learn=L["learn"],
-        open_fields=open_fields, proj_fields=proj_fields, quiz_section=quiz_section,
-        project_lead=L["project_lead"],          # 굵은 글씨 등 HTML 허용
-        open_json=json.dumps(strip(L["open"]), ensure_ascii=False),
-        proj_json=json.dumps(strip(L["proj"]), ensure_ascii=False),
+        open_section=open_section, proj_section=proj_section, quiz_section=quiz_section,
+        open_json=json.dumps(strip(L.get("open") or []), ensure_ascii=False),
+        proj_json=json.dumps(strip(L.get("proj") or []), ensure_ascii=False),
         quiz_json=json.dumps([{"a": q["a"], "why": q["why"]} for q in (L.get("quiz") or [])], ensure_ascii=False))
 
 
