@@ -391,5 +391,8 @@ build("2", "수행평가 2 제출",
       '<div class="box">📄 <b><a href="sample-plan.html" target="_blank" rel="noopener">계획서 예시</a></b> · '
       '<b><a href="answer-task2.html" target="_blank" rel="noopener">수행평가 2 안내</a></b></div>'
       '<div class="box">🎯 <b>③ 연구 질문 · ④ 데이터·장치 · ⑤ 분석 방법은 서로 맞물려야 합니다.</b><br>'
-      '④로 ③에 답할 수 있고, ⑤로 ④를 다룰 수 있어야 합니다.</div>',
+      '④로 ③에 답할 수 있고, ⑤로 ④를 다룰 수 있어야 합니다.</div>'
+      '<div class="box">📎 <b>이 폼은 수행평가 2의 요소 ① 계획서(80점)입니다.</b><br>'
+      '요소 ② <b>발표 자료(20점)</b>는 슬라이드 3~4장을 만들어 <b>PDF로 리로스쿨에 첨부</b>해 따로 냅니다. '
+      '둘 다 <b>마지막 차시까지</b> 낼 수 있습니다.</div>',
       ai_tool=True)
