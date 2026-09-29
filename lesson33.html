@@ -153,14 +153,6 @@ AI 답을 그대로 받은 게 아니라 <b>내 상황에 맞는지 판단했다
     <span class="msg" id="msg-생각나누기"></span></div>
 </section>
 
-<section>
-  <h2>✅ 확인 퀴즈</h2>
-  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
-  <div class="q"><div class="qt">1. 연구 노트를 쓰는 이유로 교과서가 든 것은?</div><label class="opt"><input type="radio" name="q0" value="0">연구가 어떻게 이뤄졌는지 밝혀 주기 때문</label><label class="opt"><input type="radio" name="q0" value="1">분량을 채우기 위해</label><label class="opt"><input type="radio" name="q0" value="2">선생님이 확인하기 위해</label><label class="opt"><input type="radio" name="q0" value="3">발표 자료로 쓰기 위해</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 연구일지 여섯 칸 중 <b>가장 중요하다고 한</b> 칸은?</div><label class="opt"><input type="radio" name="q1" value="0">오늘 한 일</label><label class="opt"><input type="radio" name="q1" value="1">사용한 도구</label><label class="opt"><input type="radio" name="q1" value="2">막힌 점</label><label class="opt"><input type="radio" name="q1" value="3">다음 계획</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 측정값 중 하나가 유독 튀었습니다. 어떻게 해야 할까요?</div><label class="opt"><input type="radio" name="q2" value="0">지운다</label><label class="opt"><input type="radio" name="q2" value="1">그대로 두고 아무 말도 안 한다</label><label class="opt"><input type="radio" name="q2" value="2">지우지 말고 그때 무슨 일이 있었는지 찾아 표시해 둔다</label><label class="opt"><input type="radio" name="q2" value="3">평균으로 바꿔 넣는다</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. AI 활용 기록에서 핵심으로 꼽은 것은?</div><label class="opt"><input type="radio" name="q3" value="0">어떤 AI를 썼는지</label><label class="opt"><input type="radio" name="q3" value="1">몇 번 물었는지</label><label class="opt"><input type="radio" name="q3" value="2">무엇을 버렸는지</label><label class="opt"><input type="radio" name="q3" value="3">답을 얼마나 받았는지</label><div class="fb" id="fb3"></div></div>
-  <div class="row"><button onclick="grade()">채점하기</button>
-    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
-  <div class="score" id="score"></div>
-</section>
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
@@ -190,7 +182,7 @@ AI 답을 그대로 받은 게 아니라 <b>내 상황에 맞는지 판단했다
 <script>
 const OPEN = [{"q": "「막힌 점을 적는 것이 더 값어치 있다」 — 이 말을 듣고 든 생각을 솔직히 써 주세요."}, {"q": "위 일지에서 2일차 기록이 좋은 기록이라고 한 이유는 무엇일까요? 자기 말로 설명해 보세요."}];
 const PROJ = [{"q": "오늘 한 일 — 사흘치 정리가 끝난 다음 날, 이 연구자는 무엇을 했을까요?"}, {"q": "사용한 도구"}, {"q": "막힌 점 — 이 단계에서 무엇이 안 될 수 있을까요?"}, {"q": "해결 과정 — 그 사람이라면 어떻게 했을까요?"}, {"q": "다음 계획 — 한 줄로"}];
-const QUIZ = [{"a": 0, "why": "결과만으로는 연구가 증명되지 않습니다. 국가 훈령에 작성 지침이 있을 정도예요."}, {"a": 2, "why": "막힘 없이 술술 됐다는 기록에서는 배울 것이 나오지 않습니다."}, {"a": 2, "why": "왜 튀었는지가 보고서 재료가 됩니다. 지우면 아무 데도 안 남고 설명할 수도 없어요."}, {"a": 2, "why": "그대로 받은 게 아니라 내 상황에 맞는지 판단했다는 증거이기 때문입니다."}];
+const QUIZ = [];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
 const MEM={}; let OK=true;

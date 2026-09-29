@@ -136,14 +136,6 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
     <span class="msg" id="msg-생각나누기"></span></div>
 </section>
 
-<section>
-  <h2>✅ 확인 퀴즈</h2>
-  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
-  <div class="q"><div class="qt">1. ⑦ 「알게 된 점」을 잘 쓰는 방법은?</div><label class="opt"><input type="radio" name="q0" value="0">느낀 점을 길게 나열한다</label><label class="opt"><input type="radio" name="q0" value="1">교과서 문장을 인용한다</label><label class="opt"><input type="radio" name="q0" value="2">구체적인 장면 하나를 넣어 쓴다</label><label class="opt"><input type="radio" name="q0" value="3">다음 연구 계획을 쓴다</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. ⑤ 결과 해석의 첫 문장으로 알맞은 것은?</div><label class="opt"><input type="radio" name="q1" value="0">연구를 열심히 했다</label><label class="opt"><input type="radio" name="q1" value="1">가장 시끄러운 때는 모둠 토의 시간이었다</label><label class="opt"><input type="radio" name="q1" value="2">사운드 센서를 사용했다</label><label class="opt"><input type="radio" name="q1" value="3">앞으로 더 연구하고 싶다</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. AI에게 물어서 알게 된 자료는 참고 자료에 어떻게 적나요?</div><label class="opt"><input type="radio" name="q2" value="0">AI 이름을 적는다</label><label class="opt"><input type="radio" name="q2" value="1">적지 않는다</label><label class="opt"><input type="radio" name="q2" value="2">실제 자료의 원 출처를 적는다</label><label class="opt"><input type="radio" name="q2" value="3">「AI 참고」라고 적는다</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 보고서 여덟 칸 중 <b>결과가 부진할수록</b> 쓸 말이 많아지는 칸은?</div><label class="opt"><input type="radio" name="q3" value="0">④ 결과</label><label class="opt"><input type="radio" name="q3" value="1">⑥ 한계와 개선 방향</label><label class="opt"><input type="radio" name="q3" value="2">① 연구 질문</label><label class="opt"><input type="radio" name="q3" value="3">⑧ 참고 자료</label><div class="fb" id="fb3"></div></div>
-  <div class="row"><button onclick="grade()">채점하기</button>
-    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
-  <div class="score" id="score"></div>
-</section>
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
@@ -174,7 +166,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <script>
 const OPEN = [{"q": "⑦ 「알게 된 점」에 「연구가 어렵다는 걸 알았다」라고 쓰면 왜 약한 답일까요?"}, {"q": "참고 보고서를 읽고, 가장 인상 깊었던 칸과 그 이유를 적어 주세요."}];
 const PROJ = [{"q": "⑤ 결과 해석 — 답 · 근거 · 제안 세 겹으로 써 주세요."}, {"q": "⑥ 한계와 개선 방향 — 2개 이상, 각각에 개선 방향을 붙여 주세요."}, {"q": "⑦ 알게 된 점 — 이 연구자라면 무엇을 알게 됐을까요? 구체적인 장면을 넣어서."}, {"q": "⑧ 참고 자료 — 이 연구라면 무엇을 참고했을까요? 형식에 맞춰 2건 적어 보세요."}];
-const QUIZ = [{"a": 2, "why": "「~을 느꼈다」보다 「이런 일이 있었고 그래서 이걸 알았다」가 훨씬 좋습니다."}, {"a": 1, "why": "연구 질문의 표현을 그대로 받아 답하면 읽는 사람이 바로 이해합니다."}, {"a": 2, "why": "AI는 통로일 뿐입니다. 실제 자료의 발행처와 주소를 적으세요."}, {"a": 1, "why": "왜 그렇게 됐는지를 밝히면 그 자체가 연구의 내용이 됩니다."}];
+const QUIZ = [];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
 const MEM={}; let OK=true;

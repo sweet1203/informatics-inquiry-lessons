@@ -133,14 +133,6 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
     <span class="msg" id="msg-생각나누기"></span></div>
 </section>
 
-<section>
-  <h2>✅ 확인 퀴즈</h2>
-  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
-  <div class="q"><div class="qt">1. 교과서가 정리한 <b>정보 과학과 연관된 학문</b>이 아닌 것은?</div><label class="opt"><input type="radio" name="q0" value="0">정보 철학</label><label class="opt"><input type="radio" name="q0" value="1">인지 과학</label><label class="opt"><input type="radio" name="q0" value="2">언어학</label><label class="opt"><input type="radio" name="q0" value="3">천문학</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 진로를 찾을 때 권한 검색 방식은?</div><label class="opt"><input type="radio" name="q1" value="0">하는 일로 검색한다</label><label class="opt"><input type="radio" name="q1" value="1">학과 이름으로 검색한다</label><label class="opt"><input type="radio" name="q1" value="2">입시 점수로 검색한다</label><label class="opt"><input type="radio" name="q1" value="3">인기 순위로 검색한다</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 센서로 환경을 측정한 연구와 가장 가까운 실제 분야는?</div><label class="opt"><input type="radio" name="q2" value="0">의료 영상 판독</label><label class="opt"><input type="radio" name="q2" value="1">UX 리서치</label><label class="opt"><input type="radio" name="q2" value="2">환경 모니터링·스마트 빌딩</label><label class="opt"><input type="radio" name="q2" value="3">번역</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 이 차시의 목표로 알맞은 것은?</div><label class="opt"><input type="radio" name="q3" value="0">진로를 확정한다</label><label class="opt"><input type="radio" name="q3" value="1">지원할 대학을 정한다</label><label class="opt"><input type="radio" name="q3" value="2">내가 한 것이 세상 어디에 있는지 안다</label><label class="opt"><input type="radio" name="q3" value="3">자기소개서를 완성한다</label><div class="fb" id="fb3"></div></div>
-  <div class="row"><button onclick="grade()">채점하기</button>
-    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
-  <div class="score" id="score"></div>
-</section>
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
@@ -170,7 +162,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <script>
 const OPEN = [{"q": "내 연구와 닮은 「실제 일」을 하나 찾아보세요. 어떤 일이고, 무엇이 닮았나요?"}, {"q": "그 일을 하려면 어떤 것을 더 배워야 할까요? 오늘 찾아본 내용을 바탕으로."}];
 const PROJ = [{"q": "관심 가는 학과나 직업을 하나 적어 주세요. 어디서 찾았는지도."}, {"q": "내가 계획한 연구 중 그 분야와 이어지는 부분을 구체적으로 적어 주세요."}];
-const QUIZ = [{"a": 3, "why": "정보 철학·정보 심리학·인지 과학·언어학 네 가지입니다. (교과서 20쪽)"}, {"a": 0, "why": "「데이터 분석 학과」보다 「공공데이터 활용 직업」이 훨씬 많이 나옵니다."}, {"a": 2, "why": "건물마다 센서를 놓고 데이터를 모아 관리하는 일이 실제로 있습니다."}, {"a": 2, "why": "이 나이에 진로가 확실한 사람은 많지 않습니다. 위치를 아는 것이 오늘의 목표예요."}];
+const QUIZ = [];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
 const MEM={}; let OK=true;

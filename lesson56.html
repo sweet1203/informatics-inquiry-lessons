@@ -137,14 +137,6 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
     <span class="msg" id="msg-생각나누기"></span></div>
 </section>
 
-<section>
-  <h2>✅ 확인 퀴즈</h2>
-  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
-  <div class="q"><div class="qt">1. 남의 진로 이야기를 듣는 이유로 제시되지 <b>않은</b> 것은?</div><label class="opt"><input type="radio" name="q0" value="0">몰랐던 길을 알게 된다</label><label class="opt"><input type="radio" name="q0" value="1">설명하다 보면 내 생각이 정리된다</label><label class="opt"><input type="radio" name="q0" value="2">누가 더 좋은 진로인지 비교할 수 있다</label><label class="opt"><input type="radio" name="q0" value="3">서로의 연결이 보인다</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 말할 때 권한 순서는?</div><label class="opt"><input type="radio" name="q1" value="0">무엇을 연구했고 → 무엇이 재미있었고 → 어떤 쪽이 궁금해졌다</label><label class="opt"><input type="radio" name="q1" value="1">희망 학과 → 점수 → 계획</label><label class="opt"><input type="radio" name="q1" value="2">장래희망 → 이유 → 각오</label><label class="opt"><input type="radio" name="q1" value="3">성적 → 강점 → 목표</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 듣는 사람이 <b>피해야 할</b> 말은?</div><label class="opt"><input type="radio" name="q2" value="0">그게 왜 재밌었어?</label><label class="opt"><input type="radio" name="q2" value="1">그 분야에서 뭘 제일 많이 해?</label><label class="opt"><input type="radio" name="q2" value="2">그거 취업 잘 돼?</label><label class="opt"><input type="radio" name="q2" value="3">내 연구랑 어디가 비슷해?</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 진로가 아직 정해지지 않았을 때 이 수업이 남긴 것으로 제시된 것은?</div><label class="opt"><input type="radio" name="q3" value="0">대학 합격 가능성</label><label class="opt"><input type="radio" name="q3" value="1">데이터를 모아 뜻을 찾아본 경험</label><label class="opt"><input type="radio" name="q3" value="2">코딩 자격증</label><label class="opt"><input type="radio" name="q3" value="3">학과 순위 지식</label><div class="fb" id="fb3"></div></div>
-  <div class="row"><button onclick="grade()">채점하기</button>
-    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
-  <div class="score" id="score"></div>
-</section>
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
@@ -174,7 +166,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <script>
 const OPEN = [{"q": "친구들의 이야기 중 가장 뜻밖이었던 것은 무엇인가요? 왜 그렇게 느꼈나요?"}, {"q": "내 이야기를 설명하면서 스스로 새로 정리된 것이 있나요?"}];
 const PROJ = [{"q": "오늘 이야기하고 들은 뒤, 내 관심 방향을 한 문장으로 정리해 주세요."}, {"q": "이번 학기를 지나며 「내가 할 수 있게 된 것」 세 가지를 적어 주세요."}];
-const QUIZ = [{"a": 2, "why": "오늘은 가능성을 넓히는 시간입니다. 비교하는 시간이 아니에요."}, {"a": 0, "why": "「재미있었던 것」만 있어도 충분합니다. 진로가 확실할 필요 없어요."}, {"a": 2, "why": "가능성을 좁히는 말입니다. 오늘은 넓히는 시간이에요."}, {"a": 1, "why": "「안 될 때 어디부터 확인할지 안다」도 함께입니다. 어느 길로 가든 쓰여요."}];
+const QUIZ = [];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
 const MEM={}; let OK=true;

@@ -142,14 +142,6 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
     <span class="msg" id="msg-생각나누기"></span></div>
 </section>
 
-<section>
-  <h2>✅ 확인 퀴즈</h2>
-  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
-  <div class="q"><div class="qt">1. 우리 반 25명을 조사한 결과를 쓸 때 알맞은 것은?</div><label class="opt"><input type="radio" name="q0" value="0">고등학생의 의견은</label><label class="opt"><input type="radio" name="q0" value="1">학교 전체 학생들은</label><label class="opt"><input type="radio" name="q0" value="2">청소년들은</label><label class="opt"><input type="radio" name="q0" value="3">우리 반 25명 대상 조사 결과</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 교과서가 부정행위로 든 <b>「데이터의 조리」</b>란?</div><label class="opt"><input type="radio" name="q1" value="0">내 주장에 맞는 데이터만 골라 쓰는 것</label><label class="opt"><input type="radio" name="q1" value="1">데이터를 그래프로 만드는 것</label><label class="opt"><input type="radio" name="q1" value="2">데이터를 정렬하는 것</label><label class="opt"><input type="radio" name="q1" value="3">평균을 내는 것</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 이상값을 처리하는 <b>올바른</b> 방법은?</div><label class="opt"><input type="radio" name="q2" value="0">조용히 지운다</label><label class="opt"><input type="radio" name="q2" value="1">평균으로 바꾼다</label><label class="opt"><input type="radio" name="q2" value="2">제외했다면 이유와 함께 밝힌다</label><label class="opt"><input type="radio" name="q2" value="3">그냥 둔다</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 티처블 머신 모델이 한 가지 배경에서만 잘 맞히는 것은 무엇의 예인가요?</div><label class="opt"><input type="radio" name="q3" value="0">할루시네이션</label><label class="opt"><input type="radio" name="q3" value="1">학습 데이터의 편향</label><label class="opt"><input type="radio" name="q3" value="2">과적합 방지</label><label class="opt"><input type="radio" name="q3" value="3">익명화</label><div class="fb" id="fb3"></div></div>
-  <div class="row"><button onclick="grade()">채점하기</button>
-    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
-  <div class="score" id="score"></div>
-</section>
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
@@ -179,7 +171,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <script>
 const OPEN = [{"q": "내 연구에 들어 있는 「기울어진 부분」을 하나 찾아보세요. 앞에서 쓴 한계와 겹쳐도 좋습니다."}, {"q": "일상에서 「숫자로 하는 거짓말」을 본 적이 있나요? 뉴스·광고·SNS 어디서든."}];
 const PROJ = [{"q": "내가 계획한 연구에서 「이 조건에서만 그렇다」고 밝혀야 할 것을 적어 주세요."}, {"q": "참고 보고서의 소음 연구에서 3교시 값이 유독 높았습니다. 그 연구자가 그 값을 지웠다면 무엇이 문제였을까요?"}];
-const QUIZ = [{"a": 3, "why": "표본이 작은 게 문제가 아니라, 작은 표본으로 전체를 말하는 게 문제입니다."}, {"a": 0, "why": "cooking입니다. 튀는 값을 말없이 지우는 trimming도 같은 부류예요."}, {"a": 2, "why": "지우는 것 자체가 아니라 숨기는 것이 문제입니다."}, {"a": 1, "why": "학습 자료가 기울면 모델도 기웁니다. 이걸 한계로 밝히면 됩니다."}];
+const QUIZ = [];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
 const MEM={}; let OK=true;

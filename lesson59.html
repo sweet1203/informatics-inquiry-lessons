@@ -151,14 +151,6 @@ AI 글로 채우면 <b>해당 항목이 채점에서 제외</b>됩니다. 학기
     <span class="msg" id="msg-생각나누기"></span></div>
 </section>
 
-<section>
-  <h2>✅ 확인 퀴즈</h2>
-  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
-  <div class="q"><div class="qt">1. 교과서가 든 <b>표절의 종류</b>가 아닌 것은?</div><label class="opt"><input type="radio" name="q0" value="0">연구 주제의 복제</label><label class="opt"><input type="radio" name="q0" value="1">말 바꾸기 표현</label><label class="opt"><input type="radio" name="q0" value="2">출처를 밝힌 직접 인용</label><label class="opt"><input type="radio" name="q0" value="3">중복 게재</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 남의 문장을 <b>내 말로 바꿔</b> 썼습니다. 출처를 밝혀야 할까요?</div><label class="opt"><input type="radio" name="q1" value="0">밝혀야 한다 — 아이디어가 남의 것이므로</label><label class="opt"><input type="radio" name="q1" value="1">안 밝혀도 된다 — 문장이 달라졌으므로</label><label class="opt"><input type="radio" name="q1" value="2">따옴표만 빼면 된다</label><label class="opt"><input type="radio" name="q1" value="3">절반만 밝히면 된다</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. AI가 알려준 통계를 보고서에 쓸 때 출처로 적어야 할 것은?</div><label class="opt"><input type="radio" name="q2" value="0">사용한 AI 이름</label><label class="opt"><input type="radio" name="q2" value="1">질문한 날짜</label><label class="opt"><input type="radio" name="q2" value="2">그 통계를 실제로 만든 기관</label><label class="opt"><input type="radio" name="q2" value="3">AI 대화 주소</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 출처를 밝히는 <b>근본적인 이유</b>는?</div><label class="opt"><input type="radio" name="q3" value="0">규칙이라서</label><label class="opt"><input type="radio" name="q3" value="1">분량을 채우려고</label><label class="opt"><input type="radio" name="q3" value="2">누구나 다시 확인할 수 있게 하려고</label><label class="opt"><input type="radio" name="q3" value="3">감점을 피하려고</label><div class="fb" id="fb3"></div></div>
-  <div class="row"><button onclick="grade()">채점하기</button>
-    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
-  <div class="score" id="score"></div>
-</section>
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
@@ -188,7 +180,7 @@ AI 글로 채우면 <b>해당 항목이 채점에서 제외</b>됩니다. 학기
 <script>
 const OPEN = [{"q": "내 연구에서 「남의 것」을 쓴 부분을 떠올려 보세요. 출처를 제대로 밝혔나요?"}, {"q": "「AI는 출처가 아니다」 — 이 말을 어떻게 이해했나요?"}];
 const PROJ = [{"q": "내 계획서에서 출처를 밝혀야 하는데 아직 안 적은 것이 있나요? 있다면 무엇인가요?"}, {"q": "지금까지 이 수업에서 AI를 쓴 적이 있다면, 무엇을 물었고 무엇을 취했는지 적어 주세요. (없으면 「없음」)"}];
-const QUIZ = [{"a": 2, "why": "출처를 밝히면 표절이 아닙니다. 문제는 밝히지 않는 것이에요."}, {"a": 0, "why": "단어를 바꾸는 게 인용이 아닙니다. 「말 바꾸기 표현」도 표절이에요."}, {"a": 2, "why": "AI는 통로일 뿐입니다. 실제 자료의 발행처를 적으세요."}, {"a": 2, "why": "연구는 재확인 가능해야 믿을 만해집니다."}];
+const QUIZ = [];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
 const MEM={}; let OK=true;

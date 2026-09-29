@@ -128,14 +128,6 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
     <span class="msg" id="msg-생각나누기"></span></div>
 </section>
 
-<section>
-  <h2>✅ 확인 퀴즈</h2>
-  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
-  <div class="q"><div class="qt">1. 보고서 ④ 결과 칸에 들어갈 수 <b>없는</b> 것은?</div><label class="opt"><input type="radio" name="q0" value="0">평균값</label><label class="opt"><input type="radio" name="q0" value="1">그래프</label><label class="opt"><input type="radio" name="q0" value="2">「오후에 더 덥다」는 판단</label><label class="opt"><input type="radio" name="q0" value="3">자료 개수</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 그래프에 반드시 있어야 하는 것이 <b>아닌</b> 것은?</div><label class="opt"><input type="radio" name="q1" value="0">번호</label><label class="opt"><input type="radio" name="q1" value="1">제목</label><label class="opt"><input type="radio" name="q1" value="2">축의 단위</label><label class="opt"><input type="radio" name="q1" value="3">여러 가지 색</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 결과 해석 「세 겹」에 해당하지 <b>않는</b> 것은?</div><label class="opt"><input type="radio" name="q2" value="0">답</label><label class="opt"><input type="radio" name="q2" value="1">근거</label><label class="opt"><input type="radio" name="q2" value="2">제안</label><label class="opt"><input type="radio" name="q2" value="3">참고 문헌</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 두 값이 함께 늘었을 때 올바른 서술은?</div><label class="opt"><input type="radio" name="q3" value="0">A 때문에 B가 늘었다</label><label class="opt"><input type="radio" name="q3" value="1">A와 B가 함께 나타났다. 다만 다른 요인도 있어 단정하기 어렵다</label><label class="opt"><input type="radio" name="q3" value="2">A와 B는 관계가 없다</label><label class="opt"><input type="radio" name="q3" value="3">B 때문에 A가 늘었다</label><div class="fb" id="fb3"></div></div>
-  <div class="row"><button onclick="grade()">채점하기</button>
-    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
-  <div class="score" id="score"></div>
-</section>
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
@@ -165,7 +157,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <script>
 const OPEN = [{"q": "내 연구에서 「결과」에 들어갈 것과 「해석」에 들어갈 것을 하나씩 나눠 써 보세요."}, {"q": "내 연구에서 「함께 나타났지만 원인이라고 단정할 수 없는」 것이 있을까요?"}];
 const PROJ = [{"q": "내 연구의 대표값으로 무엇을 낼 건가요? (평균·최댓값·개수 등)"}, {"q": "어떤 그래프를 그릴 건가요? 축에 들어갈 단위도 함께 써 주세요."}];
-const QUIZ = [{"a": 2, "why": "판단은 ⑤ 결과 해석 칸입니다. ④에는 숫자와 그림만 넣습니다."}, {"a": 3, "why": "색은 상관없습니다. 번호·제목·단위 세 가지가 필수예요."}, {"a": 3, "why": "답 · 근거 · 제안 세 겹입니다."}, {"a": 1, "why": "같이 나타난 것과 원인은 다릅니다. 단정하지 않는 문장이 점수를 올립니다."}];
+const QUIZ = [];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
 const MEM={}; let OK=true;

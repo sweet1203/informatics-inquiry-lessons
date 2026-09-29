@@ -139,14 +139,6 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
     <span class="msg" id="msg-생각나누기"></span></div>
 </section>
 
-<section>
-  <h2>✅ 확인 퀴즈</h2>
-  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
-  <div class="q"><div class="qt">1. 연구 윤리를 판단하는 기준으로 알맞은 것은?</div><label class="opt"><input type="radio" name="q0" value="0">결과가 어떤 영향을 주는지</label><label class="opt"><input type="radio" name="q0" value="1">의도가 나빴는지</label><label class="opt"><input type="radio" name="q0" value="2">법에 걸리는지</label><label class="opt"><input type="radio" name="q0" value="3">다른 사람도 하는지</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 설문에서 <b>익명</b>을 지키는 가장 좋은 방법은?</div><label class="opt"><input type="radio" name="q1" value="0">이름 대신 별명을 받는다</label><label class="opt"><input type="radio" name="q1" value="1">받고 나서 나중에 지운다</label><label class="opt"><input type="radio" name="q1" value="2">선생님만 보게 한다</label><label class="opt"><input type="radio" name="q1" value="3">필요 없으면 이름·학번을 아예 받지 않는다</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 급식 잔반 조사 결과를 발표할 때 알맞은 표현은?</div><label class="opt"><input type="radio" name="q2" value="0">반별로 최대 2배 차이가 났다</label><label class="opt"><input type="radio" name="q2" value="1">3반이 잔반이 가장 많았다</label><label class="opt"><input type="radio" name="q2" value="2">3반 학생들이 편식이 심하다</label><label class="opt"><input type="radio" name="q2" value="3">특정 반의 개선이 필요하다</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. AI 학습용 사진으로 <b>적절한</b> 것은?</div><label class="opt"><input type="radio" name="q3" value="0">친구들의 얼굴 사진</label><label class="opt"><input type="radio" name="q3" value="1">복도를 지나는 사람들</label><label class="opt"><input type="radio" name="q3" value="2">교실에서 찍은 단체 사진</label><label class="opt"><input type="radio" name="q3" value="3">분리배출 품목 사진</label><div class="fb" id="fb3"></div></div>
-  <div class="row"><button onclick="grade()">채점하기</button>
-    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
-  <div class="score" id="score"></div>
-</section>
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
@@ -176,7 +168,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <script>
 const OPEN = [{"q": "내 연구에서 사람과 관련된 부분이 있었나요? 다시 생각해 보니 조심했어야 할 점이 있나요?"}, {"q": "「내가 찍힌 쪽이라면 괜찮을까?」 — 이 질문을 내 연구에 대보면 어떤가요?"}];
 const PROJ = [{"q": "내가 계획한 연구에서 사람의 정보를 다루게 되는 부분이 있나요? 있다면 무엇인가요? (없으면 「없음」)"}, {"q": "세 가지 원칙(익명 / 알리고 받기 / 지목하지 않기) 중 내 계획에서 특히 조심해야 할 것은 무엇인가요?"}];
-const QUIZ = [{"a": 0, "why": "나쁜 의도가 없어도 문제가 됩니다. 윤리는 결과로 판단해요."}, {"a": 3, "why": "안 받는 게 가장 확실합니다. 학년·반만으로 충분한 경우가 대부분이에요."}, {"a": 0, "why": "결과를 집단이나 경향으로 말하세요. 특정 집단을 지목하면 안 됩니다."}, {"a": 3, "why": "얼굴은 민감한 개인정보입니다. 사물로 학습하세요."}];
+const QUIZ = [];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
 const MEM={}; let OK=true;

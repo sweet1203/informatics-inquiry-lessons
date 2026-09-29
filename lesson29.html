@@ -133,14 +133,6 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
     <span class="msg" id="msg-생각나누기"></span></div>
 </section>
 
-<section>
-  <h2>✅ 확인 퀴즈</h2>
-  <p class="lead">점수에 안 들어갑니다. <b>내가 이해했는지 확인</b>하는 용도예요.</p>
-  <div class="q"><div class="qt">1. 연구의 한계로 <b>인정되지 않는</b> 것은?</div><label class="opt"><input type="radio" name="q0" value="0">자료 기간이 짧았다</label><label class="opt"><input type="radio" name="q0" value="1">측정 위치가 한 곳뿐이었다</label><label class="opt"><input type="radio" name="q0" value="2">시간이 부족해 열심히 못 했다</label><label class="opt"><input type="radio" name="q0" value="3">센서가 절대 수치를 주지 않았다</label><div class="fb" id="fb0"></div></div><div class="q"><div class="qt">2. 한계의 세 분류에 <b>없는</b> 것은?</div><label class="opt"><input type="radio" name="q1" value="0">자료 부족</label><label class="opt"><input type="radio" name="q1" value="1">자료 편중</label><label class="opt"><input type="radio" name="q1" value="2">방법·도구의 제약</label><label class="opt"><input type="radio" name="q1" value="3">연구자의 경험 부족</label><div class="fb" id="fb1"></div></div><div class="q"><div class="qt">3. 한계를 썼는데도 제값을 못 받는 경우는?</div><label class="opt"><input type="radio" name="q2" value="0">한계가 두 개여서</label><label class="opt"><input type="radio" name="q2" value="1">개선 방향을 붙이지 않아서</label><label class="opt"><input type="radio" name="q2" value="2">분류 이름을 안 써서</label><label class="opt"><input type="radio" name="q2" value="3">너무 짧아서</label><div class="fb" id="fb2"></div></div><div class="q"><div class="qt">4. 보고서 여덟 칸 중 <b>새로 쓰는</b> 칸은?</div><label class="opt"><input type="radio" name="q3" value="0">① 연구 질문</label><label class="opt"><input type="radio" name="q3" value="1">④ 결과</label><label class="opt"><input type="radio" name="q3" value="2">⑦ 알게 된 점</label><label class="opt"><input type="radio" name="q3" value="3">⑧ 참고 자료</label><div class="fb" id="fb3"></div></div>
-  <div class="row"><button onclick="grade()">채점하기</button>
-    <button class="ghost" onclick="resetQuiz()">다시 풀기</button></div>
-  <div class="score" id="score"></div>
-</section>
 
 <section>
   <h2>🔬 내 연구로 가져오기</h2>
@@ -170,7 +162,7 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <script>
 const OPEN = [{"q": "내 연구에서 예상되는 한계를 하나 골라 세 분류 중 어디에 해당하는지와 함께 써 주세요."}, {"q": "그 한계에 대한 개선 방향은 무엇인가요?"}];
 const PROJ = [{"q": "한계 두 번째 — 다른 분류에서 하나 더 찾아 써 주세요."}, {"q": "그 한계의 개선 방향은?"}];
-const QUIZ = [{"a": 2, "why": "일정 문제나 자책은 연구의 한계가 아닙니다. 자료와 방법을 말해야 해요."}, {"a": 3, "why": "자료 부족 · 자료 편중 · 방법과 도구의 제약 셋입니다."}, {"a": 1, "why": "한계마다 개선 방향을 하나씩 붙여야 합니다."}, {"a": 2, "why": "나머지는 계획서와 각 차시에서 가져옵니다. ⑦만 새로 씁니다."}];
+const QUIZ = [];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
 const MEM={}; let OK=true;
