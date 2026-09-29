@@ -136,22 +136,6 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 </section>
 
 <section>
-  <h2>✍️ 생각 나누기</h2>
-  <p class="lead">정답이 없는 질문입니다. <b>내 생각을 그대로</b> 쓰면 됩니다. 선생님이 읽습니다.</p>
-  <div class="f" style="margin-top:12px"><label for="생각나누기0">여덟 칸 중 오늘 채운 칸은 무엇인가요? 무엇을 적었나요?</label><textarea id="생각나누기0" placeholder="예) ⑥ 연구 절차가 비어 있었다. 사흘간 1분마다 측정 → 교시별 평균 → 막대그래프 순서로 적었다"></textarea></div><div class="f" style="margin-top:12px"><label for="생각나누기1">계획서를 완성하면서 가장 많이 바뀐 부분은 무엇인가요? 왜 바뀌었나요?</label><textarea id="생각나누기1" placeholder="예) 처음엔 교실 환경 전체를 보려고 했는데, 너무 커서 온습도만 보기로 바뀌었다"></textarea></div>
-  <div class="row"><button onclick="submitBlock('생각나누기')">제출</button>
-    <span class="msg" id="msg-생각나누기"></span></div>
-</section>
-
-<section>
-  <h2>🔬 내 연구로 가져오기</h2>
-  <p class="lead">18~21차시에 쓴 답을 계획서로 옮기고, 빈 칸을 채워 냅니다. 여기 쓴 것이 다음 시간 슬라이드의 재료가 됩니다.</p>
-  <div class="f" style="margin-top:12px"><label for="프로젝트0">내 연구를 한 문장으로 써 주세요. 나는 이 질문에 답하기 위해, 이 자료를 가지고, 이 방법으로 확인하겠다.</label><textarea id="프로젝트0" placeholder="예) 나는 우리 교실이 몇 교시에 가장 더운지 알아보기 위해, 아두이노 온습도 센서 데이터를 가지고, 교시별 평균을 비교해 확인하겠다."></textarea></div><div class="f" style="margin-top:12px"><label for="프로젝트1">제출 전 반드시 고친 것 1가지를 적어 주세요.</label><textarea id="프로젝트1" placeholder="예) ⑤번에 측정 위치를 ‘교실 뒤 게시판 앞’으로 구체적으로 적었다"></textarea></div>
-  <div class="row"><button onclick="submitBlock('프로젝트')">제출</button>
-    <span class="msg" id="msg-프로젝트"></span></div>
-</section>
-
-<section>
   <h2>📋 내가 낸 것</h2>
   <div class="row">
     <button class="ghost" onclick="showLog()">보기</button>
@@ -169,8 +153,8 @@ box-shadow:0 8px 28px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:o
 <iframe name="sink" style="display:none" title="hidden"></iframe>
 
 <script>
-const OPEN = [{"q": "여덟 칸 중 오늘 채운 칸은 무엇인가요? 무엇을 적었나요?"}, {"q": "계획서를 완성하면서 가장 많이 바뀐 부분은 무엇인가요? 왜 바뀌었나요?"}];
-const PROJ = [{"q": "내 연구를 한 문장으로 써 주세요. 나는 이 질문에 답하기 위해, 이 자료를 가지고, 이 방법으로 확인하겠다."}, {"q": "제출 전 반드시 고친 것 1가지를 적어 주세요."}];
+const OPEN = [];
+const PROJ = [];
 const QUIZ = [];
 
 /* ── 저장소 (막힌 환경에서도 동작) ── */
