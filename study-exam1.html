@@ -29,22 +29,27 @@ th.row{border-bottom-width:1px;font-weight:700}
 code{border:1px solid var(--line2);padding:0 5px;border-radius:3px;font-size:.88em;font-family:inherit}
 .note{border:1px solid var(--line);border-left:4px solid var(--ink);padding:10px 13px;margin:12px 0;font-size:.93rem}
 .src{font-size:.82rem;color:var(--muted);font-weight:600}
-.flow{border:1px solid var(--line);padding:9px 12px;margin:10px 0;font-size:.92rem;font-weight:600;text-align:center}
+.flow{border:1px solid var(--line);padding:9px 12px;margin:10px 0;font-size:.92rem;text-align:center}
 pre.fmt{border:1px solid var(--line);padding:9px 12px;margin:10px 0;font-size:.86rem;white-space:pre-wrap;font-family:inherit;line-height:1.6}
 footer{border-top:1px solid var(--line);margin-top:34px;padding-top:14px;color:var(--muted);font-size:.8rem;text-align:center}
 a{color:var(--ink)}
 @media print{
-  @page{margin:14mm 12mm}
-  body{padding:0;font-size:10.5pt;line-height:1.5;background:#fff;color:#000}
+  @page{margin:10mm 11mm}
+  body{padding:0;font-size:9.3pt;line-height:1.32;background:#fff;color:#000}
   .wrap{max-width:none}
   a{text-decoration:none;color:#000}
-  header{padding-top:0}
-  section{margin-bottom:16px}
-  h2{margin:16px 0 7px;break-after:avoid;page-break-after:avoid}
-  h3{margin:12px 0 4px;break-after:avoid;page-break-after:avoid}
-  table,.note,.flow,pre.fmt{break-inside:avoid;page-break-inside:avoid}
-  table{font-size:9.5pt;margin:7px 0 10px}
-  th,td{padding:4px 6px}
+  header{padding:0 0 6px;margin-bottom:4px} h1{font-size:13.5pt;margin:0 0 2px}
+  .intro{padding:4px 0 6px;margin-bottom:8px;font-size:8.5pt}
+  section{margin-bottom:6px}
+  h2{font-size:11pt;margin:9px 0 4px;padding:3px 0 3px 8px;break-after:avoid;page-break-after:avoid}
+  h3{font-size:9.8pt;margin:7px 0 2px;padding-bottom:1px;break-after:avoid;page-break-after:avoid}
+  p,ul{margin:3px 0} li{margin:1px 0}
+  .note,.flow,pre.fmt{break-inside:avoid;page-break-inside:avoid;padding:4px 8px;margin:5px 0;font-size:9pt}
+  .src{font-size:8pt}
+  tr{break-inside:avoid;page-break-inside:avoid}
+  table{font-size:8.8pt;margin:4px 0 6px}
+  th,td{padding:1.5px 5px;line-height:1.3}
+  footer{display:none}
 }
 </style>
 </head><body>
@@ -56,7 +61,7 @@ a{color:var(--ink)}
 </header>
 
 <p class="intro">교과서 1부 「정보 과제 연구의 개념 및 방법」의 개념을 표로 정리한 것입니다.
-<b>구분과 순서</b>가 중심이고, 개념마다 <b>왜 그런가</b>를 함께 적었습니다.
+구분과 순서가 중심이고, 개념마다 왜 그런가를 함께 적었습니다.
 쪽수가 붙은 것은 교과서에서 다시 확인할 수 있습니다.</p>
 
 
@@ -65,18 +70,18 @@ a{color:var(--ink)}
 
 <h3>1. 정보 과제 연구의 정의 <span class="src">교과서 20쪽</span></h3>
 <table class="kv">
-<tr><th>정의</th><td>사회 · 과학 · 정보 분야의 문제를 <b>컴퓨터를 이용하여</b> 분석하고 탐구하여 결과를 제시하는 연구 분야</td></tr>
-<tr><th>구별점</th><td>사회 과학이나 자연 과학의 방법을 활용할 수도 있으나, <b>컴퓨팅 사고력을 활용한다는 점</b>에서 다른 연구 과제와 다르다</td></tr>
+<tr><th>정의</th><td>사회 · 과학 · 정보 분야의 문제를 컴퓨터를 이용하여 분석하고 탐구하여 결과를 제시하는 연구 분야</td></tr>
+<tr><th>구별점</th><td>사회 과학이나 자연 과학의 방법을 활용할 수도 있으나, 컴퓨팅 사고력을 활용한다는 점에서 다른 연구 과제와 다르다</td></tr>
 </table>
 
 <h3>2. 컴퓨팅 사고력 <span class="src">교과서 24~25쪽</span></h3>
-<p>컴퓨터가 주어진 문제를 효과적으로 해결할 수 있도록 <b>문제를 정의하고 해결 방안을 찾는 전반적인 사고 과정</b>이다.</p>
+<p>컴퓨터가 주어진 문제를 효과적으로 해결할 수 있도록 문제를 정의하고 해결 방안을 찾는 전반적인 사고 과정이다.</p>
 <table>
 <tr><th class="nw">구성</th><th>뜻</th><th class="nw">누구의 몫</th></tr>
-<tr><th class="row nw">추상화</th><td>문제의 복잡성을 제거하기 위해 사용하는 기법</td><td><b>인간의 사고 과정</b></td></tr>
-<tr><th class="row nw">자동화</th><td>추상화로 도출된 해결 모델을 프로그래밍하거나, 대량의 반복 작업 · 시뮬레이션을 실시</td><td><b>컴퓨팅 시스템</b></td></tr>
+<tr><th class="row nw">추상화</th><td>문제의 복잡성을 제거하기 위해 사용하는 기법</td><td>인간의 사고 과정</td></tr>
+<tr><th class="row nw">자동화</th><td>추상화로 도출된 해결 모델을 프로그래밍하거나, 대량의 반복 작업 · 시뮬레이션을 실시</td><td>컴퓨팅 시스템</td></tr>
 </table>
-<div class="note">정보 과제 연구가 사회 · 과학 과제 연구와 차별성을 갖는 이유는 <b>연구의 전 과정에 컴퓨팅 사고력 요소가 포함되기 때문</b>이다.</div>
+<div class="note">정보 과제 연구가 사회 · 과학 과제 연구와 차별성을 갖는 이유는 연구의 전 과정에 컴퓨팅 사고력 요소가 포함되기 때문이다.</div>
 
 <h3>3. 추상화의 다섯 단계 <span class="src">교과서 26~27쪽</span></h3>
 <div class="flow">자료 수집 → 자료 분석 → 자료 표현 → 문제 분해 → 문제 재구성</div>
@@ -88,7 +93,7 @@ a{color:var(--ink)}
 <tr><th class="row nw">문제 분해</th><td>큰 덩어리 과제를 작은 단위로 쪼갠다</td></tr>
 <tr><th class="row nw">문제 재구성</th><td>필요한 것만 남기고 핵심으로 재구성한다</td></tr>
 </table>
-<p>교과서는 <b>자판기 시스템 개발</b>을 예로 든다. 부품을 다 빼고 「돈을 넣으면 물건이 나온다」만 남기는 것이 재구성이다.</p>
+<p>교과서는 자판기 시스템 개발을 예로 든다. 부품을 다 빼고 「돈을 넣으면 물건이 나온다」만 남기는 것이 재구성이다.</p>
 
 <h3>4. 자료 표현 방법 <span class="src">교과서 26~27쪽</span></h3>
 <table>
@@ -100,42 +105,20 @@ a{color:var(--ink)}
 <tr><td>속성별 분포를 한눈에</td><td>다이어그램</td></tr>
 </table>
 
-<h3>5. 자동화 <span class="src">교과서 28쪽</span></h3>
-<p>알고리즘을 토대로 <b>순차 · 선택 · 반복</b> 구조의 프로그램을 만들어 연구에 적용한다.</p>
-<table class="kv">
-<tr><th>시뮬레이션</th><td>알고리즘을 실제로 수행해 본 결과</td></tr>
-<tr><th>병렬화</th><td>여러 작업을 동시에 수행 — SISD · SIMD · MISD · MIMD</td></tr>
-</table>
-<table>
-<tr><th>시뮬레이션에서 오류가 나면 — 원인</th><th>대처</th></tr>
-<tr><td>알고리즘에 문제가 있다</td><td>알고리즘을 수정한다</td></tr>
-<tr><td>실행 환경에 문제가 있다</td><td>다른 언어를 사용한다</td></tr>
-<tr><td>코드에 문제가 있다</td><td>디버깅한다</td></tr>
-</table>
-
-<h3>6. 정보 과제 연구의 일곱 가지 특징 <span class="src">교과서 21쪽</span></h3>
+<h3>5. 정보 과제 연구의 일곱 가지 특징 <span class="src">교과서 21쪽</span></h3>
 <table>
 <tr><th class="nw">특징</th><th>뜻</th></tr>
 <tr><th class="row nw">문제의 분석</th><td>무엇이 문제인지 들여다본다</td></tr>
 <tr><th class="row nw">분해와 추상</th><td>쪼개고, 핵심만 남긴다</td></tr>
-<tr><th class="row nw">선행적 사고 능력</th><td>일어날 일을 <b>미리 예측</b>해 대비한다</td></tr>
+<tr><th class="row nw">선행적 사고 능력</th><td>일어날 일을 미리 예측해 대비한다</td></tr>
 <tr><th class="row nw">문제의 재정의</th><td>풀 수 있는 형태로 다시 쓴다</td></tr>
-<tr><th class="row nw">재귀적 사고</th><td>같은 방법을 작은 문제에 <b>되풀이해</b> 적용한다</td></tr>
-<tr><th class="row nw">발견적 추론 생성</th><td>사례를 모아 <b>일반적인 규칙</b>을 찾는다</td></tr>
+<tr><th class="row nw">재귀적 사고</th><td>같은 방법을 작은 문제에 되풀이해 적용한다</td></tr>
+<tr><th class="row nw">발견적 추론 생성</th><td>사례를 모아 일반적인 규칙을 찾는다</td></tr>
 <tr><th class="row nw">효율성 유지</th><td>더 적은 비용으로 같은 결과를 낸다</td></tr>
 </table>
-<div class="note"><b>선행적 · 재귀적 · 발견적</b>이 가장 헷갈린다.
+<div class="note">선행적 · 재귀적 · 발견적이 가장 헷갈린다.
 선행적 = 앞을 내다봄, 재귀적 = 같은 것을 되풀이, 발견적 = 모아서 규칙을 찾음.</div>
 
-<h3>7. 지넷 윙 <span class="src">교과서 28쪽</span></h3>
-<p>2006년 카네기멜론대에서 컴퓨팅 사고를 정리했다.</p>
-<ul>
-<li>핵심은 <b>프로그래밍이 아니라 개념화</b>에 있다</li>
-<li>컴퓨터가 아닌 <b>인간의 사고 방법</b>이다</li>
-<li>인공물이 아닌 <b>아이디어</b>다</li>
-<li>단순 반복 기술이 아니라 <b>모든 사람</b>이 갖춰야 하는 핵심 역량이다</li>
-<li>수학적 사고와 공학적 사고를 보완 · 결합한다</li>
-</ul>
 </section>
 
 
@@ -151,137 +134,97 @@ a{color:var(--ink)}
 <tr><th class="row nw">연산 문제</th><td>컴퓨터의 계산 기능으로 해결한다</td><td>1~100의 자연수 중 소수의 합</td></tr>
 <tr><th class="row nw">결정 문제</th><td>「예 / 아니요」를 판단한다</td><td>오목에서 흰 돌이 이길 수 있는가</td></tr>
 <tr><th class="row nw">최적화 문제</th><td>주어진 조건에서 최대 효율을 찾는다</td><td>서울시청 → 부산시청 최단 시간 경로</td></tr>
-<tr><th class="row nw">계수 문제</th><td>조건에 맞는 정답의 <b>개수</b>를 판단한다</td><td>서울시청 → 부산시청 이동 경우의 수</td></tr>
+<tr><th class="row nw">계수 문제</th><td>조건에 맞는 정답의 개수를 판단한다</td><td>서울시청 → 부산시청 이동 경우의 수</td></tr>
 </table>
-<p>같은 주제라도 <b>묻는 말이 바뀌면 유형이 달라진다.</b>
-최적화와 계수는 예가 같은 구간이지만, 하나는 <b>가장 좋은 것</b>을, 하나는 <b>몇 가지인지</b>를 묻는다.</p>
+<p>같은 주제라도 묻는 말이 바뀌면 유형이 달라진다.
+최적화와 계수는 예가 같은 구간이지만, 하나는 가장 좋은 것을, 하나는 몇 가지인지를 묻는다.</p>
 
 <h3>3. 정보 과제 연구의 영역이 아닌 것 <span class="src">교과서 23쪽</span></h3>
 <table>
 <tr><th>사례</th><th>이유</th></tr>
-<tr><td>수학 선생님과 영어 선생님 중 누가 더 인기가 많은가</td><td>인기의 척도가 사람마다 달라 <b>컴퓨터로 처리할 수 없다</b></td></tr>
-<tr><td>내년도 우리나라 경제 성장률 예측</td><td>정치적 판단까지 필요하다 → <b>사회 과학</b> 연구 영역</td></tr>
-<tr><td>철과 고무 중 어느 것이 저항값이 작은가</td><td>옴의 법칙으로 실험 · 측정한다 → <b>자연 과학</b> 연구 영역</td></tr>
+<tr><td>수학 선생님과 영어 선생님 중 누가 더 인기가 많은가</td><td>인기의 척도가 사람마다 달라 컴퓨터로 처리할 수 없다</td></tr>
+<tr><td>내년도 우리나라 경제 성장률 예측</td><td>정치적 판단까지 필요하다 → 사회 과학 연구 영역</td></tr>
+<tr><td>철과 고무 중 어느 것이 저항값이 작은가</td><td>옴의 법칙으로 실험 · 측정한다 → 자연 과학 연구 영역</td></tr>
 </table>
-<div class="note">척도가 사람마다 다른 것은 <b>누구나 같은 값을 얻을 수 있는 기준으로 바꾸면</b> 다룰 수 있다.
+<div class="note">척도가 사람마다 다른 것은 누구나 같은 값을 얻을 수 있는 기준으로 바꾸면 다룰 수 있다.
 「인기」를 「이름을 기억하는 학생 수」로, 「집중도」를 「고개를 든 채 유지한 시간」으로 바꾸는 식이다.</div>
 
 </section>
 
 
 <section>
-<h2>Ⅲ. 연구의 종류와 방법</h2>
-
-<h3>1. 연구의 일반적인 절차 <span class="src">교과서 18쪽</span></h3>
-<div class="flow">문제 제기 → 가설 설정 → 연구 설계 → 자료 수집 및 분석 → 가설 검증 → 결론 도출</div>
-<p>사회 과학과 자연 과학은 모두 <b>정해진 규칙과 절차에 따라 체계적으로 진행</b>한다는 공통점이 있다.</p>
-
-<h3>2. 연구의 세 가지 형태 <span class="src">교과서 12~13쪽</span></h3>
-<table>
-<tr><th class="nw">형태</th><th>방식</th><th>예</th></tr>
-<tr><th class="row nw">과학적 연구</th><td>가설 → 실험 → 관찰 → 가설 확인</td><td>멘델의 유전학 실험</td></tr>
-<tr><th class="row nw">사회학적 연구</th><td>상대적 인식에 기반, 사회 이슈를 다룸</td><td>민주주의 발달 과정</td></tr>
-<tr><th class="row nw">예술 · 실무 위주</th><td>시행착오 기반, 창의성이 중심</td><td>빛으로 그린 그림</td></tr>
-</table>
-
-<h3>3. 연구의 방법 — 추론 <span class="src">교과서 15~16쪽</span></h3>
-<table>
-<tr><th class="nw">추론</th><th>방향</th><th>절차</th></tr>
-<tr><th class="row nw">연역적 추론</th><td>일반적 사실 → 특수한 사실</td><td>문제 인식 → 가설 설정 → 연구 설계 → 자료 수집 → 자료 분석 → 가설 검증 → 결론 도출</td></tr>
-<tr><th class="row nw">귀납적 추론</th><td>다수의 특수한 사실 → 일반적 사항</td><td>문제 인식 → 연구 설계 → 자료 수집 → 자료 처리 및 해석 → 결론 및 적용</td></tr>
-</table>
-<p>이 밖의 연구 방법 — <b>비교와 대조</b>(비교는 공통점, 대조는 차이점) · <b>분류와 분석</b> · <b>유추와 오류</b>.</p>
-
-</section>
-
-
-<section>
-<h2>Ⅳ. 연구 계획</h2>
+<h2>Ⅲ. 연구 계획</h2>
 
 <h3>1. 연구 노트 <span class="src">교과서 36쪽</span></h3>
 <table class="kv">
 <tr><th>근거</th><td>과학기술정보통신부 훈령 「연구 노트 지침」</td></tr>
-<tr><th>언제</th><td><b>계획 단계부터</b> 쓰는 습관이 매우 중요하다. 결과가 나온 뒤 몰아서 쓰는 것이 아니다</td></tr>
+<tr><th>언제</th><td>계획 단계부터 쓰는 습관이 매우 중요하다. 결과가 나온 뒤 몰아서 쓰는 것이 아니다</td></tr>
 <tr><th>왜</th><td>연구 과정과 판단의 근거가 남는다. 연구 부정 시비가 생겼을 때 연구가 실제로 어떻게 이뤄졌는지 밝혀 준다</td></tr>
 </table>
 
 <h3>2. 연구 계획서의 역할 <span class="src">교과서 36쪽</span></h3>
 <ul>
 <li>연구 주제 · 연구 목표 · 예상되는 연구 결과 등을 제시한다</li>
-<li>연구의 <b>효율성</b>을 높인다</li>
-<li><b>연구 보고서의 초안</b>이 된다 — 계획서를 기반으로 결과 보고서를 작성한다</li>
+<li>연구의 효율성을 높인다</li>
+<li>연구 보고서의 초안이 된다 — 계획서를 기반으로 결과 보고서를 작성한다</li>
 </ul>
-<p>연구 계획서의 <b>양식은 정해져 있지 않다.</b> 다만 과학적 사고를 기반으로 하며,
+<p>연구 계획서의 양식은 정해져 있지 않다. 다만 과학적 사고를 기반으로 하며,
 광범위한 영역보다 특이한 문제점을 함축적으로 제시한다.</p>
 
 <h3>3. 연구 계획서의 구성 <span class="src">교과서 40~41쪽</span></h3>
 <div class="flow">연구 목적 → 이론적 배경 → 연구 내용 및 방법 → 기대 효과 및 활용 → 참고 문헌</div>
 <p>교과서의 예시는 「로렌치니(생체 전기)를 이용한 제품 만들기」다.</p>
 
-<h3>4. 이론적 배경을 쓸 때 빠지는 함정 <span class="src">교과서 38쪽</span></h3>
-<table>
-<tr><th class="nw">함정</th><th>증상</th></tr>
-<tr><th class="row nw">먹어 치우기형</th><td>여러 가지를 무분별하게 끌어온다</td></tr>
-<tr><th class="row nw">카오스형</th><td>선행 연구를 읽으며 방향을 잃는다</td></tr>
-<tr><th class="row nw">모든 것이 좋아형</th><td>선행 연구를 비판 없이 받아들인다</td></tr>
-</table>
-
-<h3>5. 인용의 세 가지 <span class="src">교과서 39쪽</span></h3>
-<table class="kv">
-<tr><th>직접 인용</th><td>원문을 그대로 인용한다</td></tr>
-<tr><th>간접 인용</th><td>원문 내용을 요약하거나 다시 정리해 표현한다</td></tr>
-<tr><th>재인용</th><td>다른 사람이 인용한 내용을 다시 인용한다</td></tr>
-</table>
 </section>
 
 
 <section>
-<h2>Ⅴ. 연구 수행</h2>
+<h2>Ⅳ. 연구 수행</h2>
 
 <h3>1. 연구의 아홉 단계 <span class="src">교과서 30~31쪽</span></h3>
 <table>
 <tr><th class="nw">단계</th><th class="nw">STEP</th><th>내용</th><th class="nw">비중</th></tr>
-<tr><th class="row nw" rowspan="4">계획</th><td>1</td><td>주제 탐색 및 자료 조사</td><td rowspan="4"><b>30%</b></td></tr>
+<tr><th class="row nw" rowspan="4">계획</th><td>1</td><td>주제 탐색 및 자료 조사</td><td rowspan="4">30%</td></tr>
 <tr><td>2</td><td>문제 발견 및 선정</td></tr>
 <tr><td>3</td><td>계획 수립 (계획서 작성)</td></tr>
 <tr><td>4</td><td>지식 및 기능 습득</td></tr>
-<tr><th class="row nw" rowspan="3">수행</th><td>5</td><td>실험 설계</td><td rowspan="3"><b>50%</b></td></tr>
+<tr><th class="row nw" rowspan="3">수행</th><td>5</td><td>실험 설계</td><td rowspan="3">50%</td></tr>
 <tr><td>6</td><td>실행 및 결과 정리</td></tr>
 <tr><td>7</td><td>연구 보고서 작성</td></tr>
-<tr><th class="row nw" rowspan="2">표현</th><td>8</td><td>산출물(논문, 포스터 등) 발표</td><td rowspan="2"><b>20%</b></td></tr>
+<tr><th class="row nw" rowspan="2">표현</th><td>8</td><td>산출물(논문, 포스터 등) 발표</td><td rowspan="2">20%</td></tr>
 <tr><td>9</td><td>평가하기</td></tr>
 </table>
-<p>이 비율로 배분하는 것이 효율적이나 <b>단계에 따라 적절하게 조정할 수 있다.</b></p>
+<p>이 비율로 배분하는 것이 효율적이나 단계에 따라 적절하게 조정할 수 있다.</p>
 
 <h3>2. 변인 <span class="src">교과서 42~43쪽</span></h3>
 <table>
 <tr><th class="nw">변인</th><th>뜻</th><th>예 — 생체 전기 측정</th></tr>
-<tr><th class="row nw">독립 변인<br>(조작 변인)</th><td>연구자가 의도적으로 <b>바꾸는</b> 것</td><td>생체 센서에 붙이는 재료 — 동판 · 은판 · 알루미늄</td></tr>
-<tr><th class="row nw">통제 변인</th><td><b>똑같이 유지</b>하는 조건</td><td>측정 대상을 모두 같은 사람으로</td></tr>
-<tr><th class="row nw">종속 변인</th><td>결과로 <b>나타나는</b> 값</td><td>재료에 따라 달라지는 생체 전기 값</td></tr>
+<tr><th class="row nw">독립 변인<br>(조작 변인)</th><td>연구자가 의도적으로 바꾸는 것</td><td>생체 센서에 붙이는 재료 — 동판 · 은판 · 알루미늄</td></tr>
+<tr><th class="row nw">통제 변인</th><td>똑같이 유지하는 조건</td><td>측정 대상을 모두 같은 사람으로</td></tr>
+<tr><th class="row nw">종속 변인</th><td>결과로 나타나는 값</td><td>재료에 따라 달라지는 생체 전기 값</td></tr>
 </table>
-<div class="note"><b>통제 변인을 유지하지 않으면 결론을 낼 수 없다.</b>
+<div class="note">통제 변인을 유지하지 않으면 결론을 낼 수 없다.
 측정 대상이 매번 바뀌면, 값이 달라진 것이 재료 때문인지 사람 때문인지 구별할 수 없다.</div>
 
 <h3>3. 도구를 밝혀야 한다 <span class="src">교과서 42~43쪽</span></h3>
-<p>정보 과제 연구에서는 <b>어떤 프로그래밍 언어를 선택했는지, 어떤 피지컬 도구를 사용했는지</b>가 명시되어야 하며,
+<p>정보 과제 연구에서는 어떤 프로그래밍 언어를 선택했는지, 어떤 피지컬 도구를 사용했는지가 명시되어야 하며,
 컴퓨터를 이용하는 구체적인 방법과 실행 방법도 명시되어야 한다.</p>
 
 <h3>4. 계획을 실행으로 옮길 때 필요한 세 가지</h3>
 <table>
 <tr><th class="nw">무엇</th><th>내용</th><th>하지 않으면</th></tr>
-<tr><th class="row nw">조건 고정</th><td>언제 · 어디서 · 얼마나 자주 잴지 정한다</td><td>모은 자료끼리 <b>비교가 되지 않는다</b></td></tr>
-<tr><th class="row nw">기록</th><td>연구 노트를 남긴다</td><td><b>왜 그렇게 했는지</b> 나중에 설명하지 못한다</td></tr>
-<tr><th class="row nw">중간 점검</th><td>진행 도중에 확인한다</td><td>다 끝난 뒤에야 <b>자료가 모자란 것</b>을 알게 된다</td></tr>
+<tr><th class="row nw">조건 고정</th><td>언제 · 어디서 · 얼마나 자주 잴지 정한다</td><td>모은 자료끼리 비교가 되지 않는다</td></tr>
+<tr><th class="row nw">기록</th><td>연구 노트를 남긴다</td><td>왜 그렇게 했는지 나중에 설명하지 못한다</td></tr>
+<tr><th class="row nw">중간 점검</th><td>진행 도중에 확인한다</td><td>다 끝난 뒤에야 자료가 모자란 것을 알게 된다</td></tr>
 </table>
-<p>세 가지를 외우는 것보다 <b>각각을 빠뜨렸을 때 무슨 일이 생기는지</b>를 기억하는 편이 낫다.
-조건 고정은 결국 <b>통제 변인을 지키는 일</b>이다.</p>
+<p>세 가지를 외우는 것보다 각각을 빠뜨렸을 때 무슨 일이 생기는지를 기억하는 편이 낫다.
+조건 고정은 결국 통제 변인을 지키는 일이다.</p>
 
 </section>
 
 
 <section>
-<h2>Ⅵ. 결과와 해석</h2>
+<h2>Ⅴ. 결과와 해석</h2>
 
 <h3>1. 결과와 해석은 다르다</h3>
 <table>
@@ -289,7 +232,7 @@ a{color:var(--ink)}
 <tr><th class="row nw">예 1</th><td>모둠 토의 평균 623, 개별 활동 287</td><td>모둠 토의 때가 약 2.2배 시끄러웠다</td></tr>
 <tr><th class="row nw">예 2</th><td>5교시 평균 29.4℃, 1교시 24.1℃</td><td>오후로 갈수록 더워진다</td></tr>
 </table>
-<div class="note">「시끄러웠다」 · 「더워진다」는 값이 아니라 <b>판단</b>이다. 결과는 숫자와 사실만으로 나타내고, 뜻은 해석에서 밝힌다.</div>
+<div class="note">「시끄러웠다」 · 「더워진다」는 값이 아니라 판단이다. 결과는 숫자와 사실만으로 나타내고, 뜻은 해석에서 밝힌다.</div>
 
 <h3>2. 결과를 정리하는 세 가지 방법</h3>
 <table class="kv">
@@ -301,28 +244,28 @@ a{color:var(--ink)}
 <h3>3. 그래프에 반드시 있어야 하는 세 가지</h3>
 <div class="flow">번호 · 제목 · 축의 단위</div>
 <p><code>[그림 1] 교시별 평균 온도</code>처럼 번호와 제목을 붙이고, 축에는 단위를 적는다.
-<b>「온도」가 아니라 「온도(℃)」</b>여야 한다. 단위가 없으면 무슨 값인지 알 수 없다.</p>
+「온도」가 아니라 「온도(℃)」여야 한다. 단위가 없으면 무슨 값인지 알 수 없다.</p>
 
 <h3>4. 해석은 세 겹으로</h3>
 <table>
 <tr><th class="nw">겹</th><th>무엇</th><th>예</th></tr>
 <tr><th class="row nw">① 답</th><td>연구 질문에 답하는 한 문장</td><td>모둠 토의 때가 개별 활동의 약 2.2배였다</td></tr>
-<tr><th class="row nw">② 근거</th><td>그렇게 말하는 <b>숫자</b></td><td>623 ÷ 287 ≒ 2.17, 최댓값도 358 높다</td></tr>
+<tr><th class="row nw">② 근거</th><td>그렇게 말하는 숫자</td><td>623 ÷ 287 ≒ 2.17, 최댓값도 358 높다</td></tr>
 <tr><th class="row nw">③ 제안</th><td>그래서 무엇을 하면 좋은가</td><td>모둠 토의를 연속해서 배치하지 않는다</td></tr>
 </table>
 
 <h3>5. 함께 나타난 것은 원인이 아니다</h3>
 <table>
 <tr><th>이렇게 쓰면 안 된다</th><th>이렇게 쓴다</th></tr>
-<tr><td>A 때문에 B다</td><td>A와 B가 함께 나타났다.<br><b>다만 C도 겹쳐 있어 단정하기 어렵다</b></td></tr>
+<tr><td>A 때문에 B다</td><td>A와 B가 함께 나타났다.<br>다만 C도 겹쳐 있어 단정하기 어렵다</td></tr>
 </table>
 <p>아이스크림 판매량과 물놀이 사고는 함께 늘어난다.
-아이스크림이 사고를 부른 것이 아니라 <b>둘 다 더위 때문</b>이다.</p>
+아이스크림이 사고를 부른 것이 아니라 둘 다 더위 때문이다.</p>
 </section>
 
 
 <section>
-<h2>Ⅶ. 한계와 자료 정리</h2>
+<h2>Ⅵ. 한계와 자료 정리</h2>
 
 <h3>1. 한계의 세 가지</h3>
 <table>
@@ -331,48 +274,48 @@ a{color:var(--ink)}
 <tr><th class="row nw">자료 편중</th><td>한쪽에 쏠려 있다</td><td>창가 한 곳에서만 재어 교실 뒤는 반영되지 않았다</td></tr>
 <tr><th class="row nw">방법 · 도구의 제약</th><td>그 방법으로는 알 수 없는 것이 있다</td><td>센서가 dB이 아닌 0~1023 값을 주어 절대 수치로 말할 수 없다</td></tr>
 </table>
-<p>한계에는 <b>개선 방향</b>을 함께 쓴다. 「다시 한다면 ~하겠다」의 형태다.</p>
-<div class="note"><b>연구의 한계가 아닌 것</b> — 「특별한 한계는 없었다」 · 「시간이 부족했다」 · 「내 실력이 부족했다」.
-일정이나 개인의 사정은 연구의 한계가 아니다. 한계는 <b>자료와 방법</b>에서 찾는다.</div>
+<p>한계에는 개선 방향을 함께 쓴다. 「다시 한다면 ~하겠다」의 형태다.</p>
+<div class="note">연구의 한계가 아닌 것 — 「특별한 한계는 없었다」 · 「시간이 부족했다」 · 「내 실력이 부족했다」.
+일정이나 개인의 사정은 연구의 한계가 아니다. 한계는 자료와 방법에서 찾는다.</div>
 
 <h3>2. 자료는 표로 모인다</h3>
-<p><b>행(가로줄) = 하나의 사례</b> · <b>열(세로줄) = 그 사례의 속성</b></p>
+<p>행(가로줄) = 하나의 사례 · 열(세로줄) = 그 사례의 속성</p>
 <table>
 <tr><th>측정 시각</th><th>교시</th><th>온도</th><th>습도</th></tr>
 <tr><td>09:20</td><td>1교시</td><td>24.1</td><td>52</td></tr>
 <tr><td>10:20</td><td>2교시</td><td>25.3</td><td>55</td></tr>
 </table>
-<p>한 줄이 <b>한 번의 측정</b>이다. 이렇게 쌓여야 분석할 수 있다.</p>
+<p>한 줄이 한 번의 측정이다. 이렇게 쌓여야 분석할 수 있다.</p>
 
 <h3>3. 분석할 수 없게 만드는 표</h3>
 <table>
 <tr><th>잘못된 방식</th><th>올바른 방식</th></tr>
-<tr><td>칸에 「24도쯤」이라고 쓴다</td><td><b>24.1</b> — 숫자만 넣고 단위는 <b>열 제목</b>에</td></tr>
+<tr><td>칸에 「24도쯤」이라고 쓴다</td><td>24.1 — 숫자만 넣고 단위는 열 제목에</td></tr>
 <tr><td>한 칸에 온도와 습도를 함께 넣는다</td><td>열을 나눈다</td></tr>
 <tr><td>빈 줄이나 소계 · 합계 줄을 넣는다</td><td>데이터만 연속으로 쌓는다</td></tr>
 <tr><td>열 제목을 두 줄로 만든다</td><td>첫 줄만 제목으로 한다</td></tr>
 </table>
-<div class="note">기준은 하나다 — <b>「이 표를 컴퓨터가 읽는다면?」</b>
+<div class="note">기준은 하나다 — 「이 표를 컴퓨터가 읽는다면?」
 합계 · 소계 · 색칠 · 셀 병합은 사람이 보기에는 편하지만 분석에는 방해가 된다.</div>
 
 <h3>4. 수치형과 범주형</h3>
 <table>
 <tr><th class="nw">종류</th><th>무엇</th><th>예</th><th>할 수 있는 것</th></tr>
-<tr><th class="row nw">수치형</th><td>숫자로 <b>재는</b> 것</td><td>온도 · 인구수 · 정확도 · 무게</td><td>평균 · 최대 · 그래프</td></tr>
-<tr><th class="row nw">범주형</th><td>종류를 <b>나누는</b> 것</td><td>교시 · 요일 · 지역 · 품목</td><td>세기 · 묶기 · 비교</td></tr>
+<tr><th class="row nw">수치형</th><td>숫자로 재는 것</td><td>온도 · 인구수 · 정확도 · 무게</td><td>평균 · 최대 · 그래프</td></tr>
+<tr><th class="row nw">범주형</th><td>종류를 나누는 것</td><td>교시 · 요일 · 지역 · 품목</td><td>세기 · 묶기 · 비교</td></tr>
 </table>
-<p>대부분의 연구는 <b>범주형으로 나누어 수치형을 비교</b>한다 — 교시(범주)별 온도(수치), 지역(범주)별 인구수(수치).
-구분이 헷갈리면 <b>평균을 내어 뜻이 있는지</b> 생각해 본다. 기온의 평균은 뜻이 있지만 요일의 평균은 뜻이 없다.</p>
+<p>대부분의 연구는 범주형으로 나누어 수치형을 비교한다 — 교시(범주)별 온도(수치), 지역(범주)별 인구수(수치).
+구분이 헷갈리면 평균을 내어 뜻이 있는지 생각해 본다. 기온의 평균은 뜻이 있지만 요일의 평균은 뜻이 없다.</p>
 </section>
 
 
 <section>
-<h2>Ⅷ. 연구 보고서</h2>
+<h2>Ⅶ. 연구 보고서</h2>
 
 <h3>1. 논문의 종류 <span class="src">교과서 46쪽</span></h3>
 <table>
 <tr><th class="nw">명칭</th><th>성격</th></tr>
-<tr><th class="row nw">Report</th><td><b>연구 보고서</b></td></tr>
+<tr><th class="row nw">Report</th><td>연구 보고서</td></tr>
 <tr><th class="row nw">Paper</th><td>논문의 체제 및 형식을 갖춘 것</td></tr>
 <tr><th class="row nw">Essay</th><td>포괄적인 의미의 논문</td></tr>
 <tr><th class="row nw">Treatise</th><td>특정 논제를 체계적으로 다룬 것</td></tr>
@@ -384,16 +327,16 @@ a{color:var(--ink)}
 </table>
 
 <h3>2. 연구 보고서는 언제 쓰는가 <span class="src">교과서 36 · 47쪽</span></h3>
-<p>일반적으로 연구가 진행되고 <b>마지막 단계</b>에 작성한다.
-연구 계획서가 <b>보고서의 초안</b>이 되므로, 보고서는 계획서를 바탕으로 쓴다.</p>
+<p>일반적으로 연구가 진행되고 마지막 단계에 작성한다.
+연구 계획서가 보고서의 초안이 되므로, 보고서는 계획서를 바탕으로 쓴다.</p>
 
 <h3>3. 연구 보고서의 기본 구성 <span class="src">교과서 47쪽</span></h3>
 <div class="flow">서론 → 이론적 배경 → 연구 과정 및 방법 → 연구 결과 → 결론 및 제언</div>
-<p><b>결론 및 제언</b>에서는 연구로 알아낸 것을 정리하고, 연구의 한계와 <b>앞으로의 연구 방향</b>을 제시한다.
-마지막에 참고한 자료를 <b>참고 문헌</b>으로 밝힌다.</p>
+<p>결론 및 제언에서는 연구로 알아낸 것을 정리하고, 연구의 한계와 앞으로의 연구 방향을 제시한다.
+마지막에 참고한 자료를 참고 문헌으로 밝힌다.</p>
 
 <h3>4. 연구 보고서의 구성 방식 <span class="src">교과서 48~49쪽</span></h3>
-<p>연구 보고서의 구성은 <b>정해진 형식이 있지는 않지만</b>, 내용의 체계성을 위해 다음처럼 작성할 수 있다.</p>
+<p>연구 보고서의 구성은 정해진 형식이 있지는 않지만, 내용의 체계성을 위해 다음처럼 작성할 수 있다.</p>
 <table>
 <tr><th class="nw">방식</th><th>예</th></tr>
 <tr><th class="row nw">연구 순서에 따라</th><td>1. 과거의 통신 기술 및 문제점 / 2. 현대의 통신 기술 및 기술 개선의 한계</td></tr>
@@ -405,7 +348,7 @@ a{color:var(--ink)}
 <tr><th>구성 요소</th><th class="nw">계획서</th><th class="nw">보고서</th></tr>
 <tr><td>연구 목적</td><td>○</td><td></td></tr>
 <tr><td>서론</td><td></td><td>○</td></tr>
-<tr><td><b>이론적 배경</b></td><td><b>○</b></td><td><b>○</b></td></tr>
+<tr><td>이론적 배경</td><td>○</td><td>○</td></tr>
 <tr><td>연구 내용 및 방법</td><td>○</td><td></td></tr>
 <tr><td>연구 과정 및 방법</td><td></td><td>○</td></tr>
 <tr><td>연구 결과</td><td></td><td>○</td></tr>
@@ -413,14 +356,14 @@ a{color:var(--ink)}
 <tr><td>결론 및 제언</td><td></td><td>○</td></tr>
 <tr><td>참고 문헌</td><td>○</td><td>○</td></tr>
 </table>
-<p>계획서는 연구 <b>전</b>에 무엇을 할지를, 보고서는 연구 <b>후</b>에 무엇을 했고 무엇을 알아냈는지를 쓴다.
+<p>계획서는 연구 전에 무엇을 할지를, 보고서는 연구 후에 무엇을 했고 무엇을 알아냈는지를 쓴다.
 그래서 계획서에는 「기대 효과 및 활용」이, 보고서에는 「연구 결과」와 「결론 및 제언」이 들어간다.
-<b>이론적 배경</b>과 <b>참고 문헌</b>은 두 문서에 모두 들어간다.</p>
+이론적 배경과 참고 문헌은 두 문서에 모두 들어간다.</p>
 
 <h3>6. 튀는 값과 데이터 조리 <span class="src">교과서 52~53쪽</span></h3>
-<p>측정값 하나가 유독 튀었다면 <b>지우지 말고 표시해 두고</b>, 그때 무슨 일이 있었는지 기록한다.
+<p>측정값 하나가 유독 튀었다면 지우지 말고 표시해 두고, 그때 무슨 일이 있었는지 기록한다.
 난방을 켰거나 센서에 햇빛이 들었거나 — 그 까닭을 찾는 것이 연구이고, 연구의 한계로 이어진다.</p>
-<div class="note">원하는 결과에 맞게 자료를 골라내거나 고치는 것은 <b>데이터 「조리(cooking)」</b>로, <b>연구 부정행위</b>다.
+<div class="note">원하는 결과에 맞게 자료를 골라내거나 고치는 것은 데이터 「조리(cooking)」로, 연구 부정행위다.
 튀는 값을 지우거나 평균에 가깝게 고쳐 적는 것도 여기에 해당한다.</div>
 </section>
 
@@ -429,27 +372,25 @@ a{color:var(--ink)}
 <h2>한눈에 정리</h2>
 <table>
 <tr><th class="nw">구분</th><th>내용</th></tr>
-<tr><th class="row nw">정보 과제 연구</th><td>컴퓨터를 이용해 분석 · 탐구. <b>컴퓨팅 사고력</b>을 활용한다는 점이 다르다</td></tr>
-<tr><th class="row nw">컴퓨팅 사고력</th><td>추상화 = <b>인간의 사고</b> / 자동화 = <b>컴퓨팅 시스템</b></td></tr>
-<tr><th class="row nw">추상화 5단계</th><td>자료 수집 → 자료 분석 → 자료 표현 → <b>문제 분해 → 문제 재구성</b></td></tr>
-<tr><th class="row nw">문제의 정의</th><td>현재의 모습과 바람직한 모습의 <b>차이</b></td></tr>
+<tr><th class="row nw">정보 과제 연구</th><td>컴퓨터를 이용해 분석 · 탐구. 컴퓨팅 사고력을 활용한다는 점이 다르다</td></tr>
+<tr><th class="row nw">컴퓨팅 사고력</th><td>추상화 = 인간의 사고 / 자동화 = 컴퓨팅 시스템</td></tr>
+<tr><th class="row nw">추상화 5단계</th><td>자료 수집 → 자료 분석 → 자료 표현 → 문제 분해 → 문제 재구성</td></tr>
+<tr><th class="row nw">문제의 정의</th><td>현재의 모습과 바람직한 모습의 차이</td></tr>
 <tr><th class="row nw">문제 유형 4</th><td>연산(계산) · 결정(예/아니요) · 최적화(최대 효율) · 계수(개수)</td></tr>
-<tr><th class="row nw">연구의 절차</th><td>문제 제기 → 가설 설정 → 연구 설계 → 자료 수집 및 분석 → 가설 검증 → 결론 도출</td></tr>
-<tr><th class="row nw">연역과 귀납</th><td>연역 = 일반 → 특수 / 귀납 = 다수의 특수 → 일반</td></tr>
-<tr><th class="row nw">아홉 단계 비중</th><td>계획 <b>30%</b> · 수행 <b>50%</b> · 표현 <b>20%</b></td></tr>
+<tr><th class="row nw">아홉 단계 비중</th><td>계획 30% · 수행 50% · 표현 20%</td></tr>
 <tr><th class="row nw">변인</th><td>독립(조작, 바꾼다) · 통제(유지한다) · 종속(결과로 나타난다)</td></tr>
-<tr><th class="row nw">연구 노트</th><td><b>계획 단계부터</b> 쓴다 · 과학기술정보통신부 훈령</td></tr>
+<tr><th class="row nw">연구 노트</th><td>계획 단계부터 쓴다 · 과학기술정보통신부 훈령</td></tr>
 <tr><th class="row nw">결과와 해석</th><td>결과 = 사실 · 숫자 / 해석 = 그 뜻</td></tr>
 <tr><th class="row nw">해석 세 겹</th><td>답 · 근거 · 제안</td></tr>
-<tr><th class="row nw">상관과 인과</th><td>함께 나타난 것은 원인이 아니다. <b>「다만 ~도 겹쳐 있어」</b></td></tr>
-<tr><th class="row nw">그래프 3요소</th><td>번호 · 제목 · <b>축의 단위</b></td></tr>
+<tr><th class="row nw">상관과 인과</th><td>함께 나타난 것은 원인이 아니다. 「다만 ~도 겹쳐 있어」</td></tr>
+<tr><th class="row nw">그래프 3요소</th><td>번호 · 제목 · 축의 단위</td></tr>
 <tr><th class="row nw">한계 세 가지</th><td>자료 부족 · 자료 편중 · 방법 · 도구의 제약</td></tr>
 <tr><th class="row nw">표의 구조</th><td>행 = 하나의 사례 · 열 = 그 사례의 속성</td></tr>
 <tr><th class="row nw">수치형 · 범주형</th><td>범주형으로 나누어 수치형을 비교한다</td></tr>
-<tr><th class="row nw">연구 보고서</th><td><b>Report</b> · 연구의 마지막 단계에 작성 · 정해진 형식은 없다</td></tr>
-<tr><th class="row nw">보고서 구성</th><td>서론 → 이론적 배경 → 연구 과정 및 방법 → 연구 결과 → <b>결론 및 제언</b></td></tr>
-<tr><th class="row nw">계획서 구성</th><td>연구 목적 → 이론적 배경 → 연구 내용 및 방법 → <b>기대 효과 및 활용</b> → 참고 문헌</td></tr>
-<tr><th class="row nw">튀는 값</th><td>지우지 말고 표시 · 고치거나 골라내면 <b>데이터 조리</b></td></tr>
+<tr><th class="row nw">연구 보고서</th><td>Report · 연구의 마지막 단계에 작성 · 정해진 형식은 없다</td></tr>
+<tr><th class="row nw">보고서 구성</th><td>서론 → 이론적 배경 → 연구 과정 및 방법 → 연구 결과 → 결론 및 제언</td></tr>
+<tr><th class="row nw">계획서 구성</th><td>연구 목적 → 이론적 배경 → 연구 내용 및 방법 → 기대 효과 및 활용 → 참고 문헌</td></tr>
+<tr><th class="row nw">튀는 값</th><td>지우지 말고 표시 · 고치거나 골라내면 데이터 조리</td></tr>
 </table>
 </section>
 
